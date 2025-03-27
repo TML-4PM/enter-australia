@@ -1,0 +1,176 @@
+
+/* Updated Contact Section */
+.contact-section {
+  padding: 5rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-intro {
+  margin-bottom: 2.5rem;
+  color: var(--gray-dark);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.contact-form-container {
+  text-align: left;
+}
+
+#contact-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-group {
+  position: relative;
+}
+
+#contact-form input,
+#contact-form textarea,
+#contact-form select {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--gray-medium);
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus,
+#contact-form select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+#contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.submit-btn {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  transition: var(--transition);
+}
+
+.submit-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.submit-btn:disabled {
+  background-color: var(--gray-medium);
+  cursor: not-allowed;
+}
+
+/* Contact info container */
+.contact-info-container {
+  text-align: left;
+}
+
+.calendly-container {
+  margin-bottom: 2rem;
+}
+
+.calendly-container h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.calendly-embed {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.contact-details {
+  margin-top: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.contact-icon {
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+}
+
+.contact-details p {
+  margin-bottom: 0.5rem;
+}
+
+.contact-details a {
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.contact-details a:hover {
+  color: var(--secondary-color);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-links button {
+  background: var(--gray-light);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--primary-color);
+}
+
+.social-links button:hover {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+@media (max-width: 992px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .calendly-embed iframe {
+    height: 500px;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-section h2 {
+    font-size: 1.75rem;
+  }
+}

@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import '../styles/pricing.css';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 

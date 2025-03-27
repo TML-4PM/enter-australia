@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/opportunities.css';
 
 const OpportunitiesSection = () => {
   const [activeTab, setActiveTab] = useState("defence");

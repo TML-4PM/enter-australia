@@ -1,5 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* This file imports existing styles to maintain the current design */
-/* Additional React-specific styles can be added here */
+/* Import all modular CSS files */
+@import './styles/global.css';
+@import './styles/header.css';
+@import './styles/hero.css';
+@import './styles/lead-form.css';
+@import './styles/value-props.css';
+@import './styles/how-it-works.css';
+@import './styles/opportunities.css';
+@import './styles/pricing.css';
+@import './styles/blog.css';
+@import './styles/contact.css';
+@import './styles/footer.css';
+@import './styles/responsive.css';

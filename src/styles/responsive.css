@@ -1,0 +1,22 @@
+
+/* Responsive Design */
+@media (min-width: 992px) {
+  .nav-cta {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  #services h2,
+  .about-content h2,
+  .testimonials-section h2,
+  .contact-section h2 {
+    font-size: 1.75rem;
+  }
+}

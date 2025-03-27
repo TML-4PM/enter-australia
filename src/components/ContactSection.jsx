@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import { Linkedin, Instagram, Facebook, Mail, Phone } from 'lucide-react';
+import '../styles/contact.css';
 
 const ContactSection = () => {
   const [formState, setFormState] = useState({
