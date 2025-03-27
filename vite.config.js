@@ -4,7 +4,7 @@ import path from 'path';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig(async ({ mode }) => {
-  // Dynamically import the componentTagger if in development mode
+  // Disable component tagger in production to avoid conflicts
   let componentTaggerPlugin = null;
   if (mode === 'development') {
     try {
@@ -20,7 +20,12 @@ export default defineConfig(async ({ mode }) => {
     publicDir: 'public',
     build: {
       outDir: 'dist',
-      emptyOutDir: true
+      emptyOutDir: true,
+      // Ensure Vercel can build the project
+      commonjsOptions: {
+        include: [/node_modules/],
+        extensions: ['.js', '.jsx']
+      }
     },
     server: {
       host: "::",
@@ -28,12 +33,17 @@ export default defineConfig(async ({ mode }) => {
     },
     plugins: [
       react(),
-      componentTaggerPlugin,
+      // Only include the tagger in dev mode
+      mode === 'development' ? componentTaggerPlugin : null,
     ].filter(Boolean),
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    // This will help with any dependency resolution issues
+    optimizeDeps: {
+      exclude: mode === 'production' ? ['lovable-tagger'] : []
+    }
   };
 });
