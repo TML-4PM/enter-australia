@@ -5,7 +5,8 @@ export default defineConfig({
   root: '.',
   publicDir: 'public',
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    emptyOutDir: true
   },
   server: {
     port: 8080
