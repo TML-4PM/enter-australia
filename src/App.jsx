@@ -80,8 +80,8 @@ function App() {
                     <input type="email" name="email" placeholder="Your Email" required />
                 </div>
                 <div className="form-group">
-                    <select name="service" required>
-                        <option value="" disabled selected>Select Service</option>
+                    <select name="service" required defaultValue="">
+                        <option value="" disabled>Select Service</option>
                         <option value="visa">Visa Assistance</option>
                         <option value="job">Job Placement</option>
                         <option value="relocation">Relocation Support</option>
