@@ -6,17 +6,44 @@ import '../styles/pricing.css';
 // Initialize Stripe with the publishable key
 const stripePromise = loadStripe('pk_live_51QdfYbD6fFdhmypR798NoSCJ4G9TGCkqw9QTuiDTkyvmn9tSrhey2n3cTHxjFG6GYDlcoBClLWsDN5Mgjb0tIfII00oVKQ67in');
 
+// Define the product IDs and details in a constant to avoid repetition
+const PRODUCTS = {
+  ENTRY_KIT: {
+    priceId: 'price_1R6NDED6fFdhmypRzqX57oPS',
+    name: 'Entry Kit',
+    isSubscription: false
+  },
+  GROWTH_PLAN: {
+    priceId: 'price_1R7DVLD6fFdhmypRyEkK3z52',
+    name: 'Growth Plan',
+    isSubscription: true
+  },
+  PREMIUM_RETAINER: {
+    priceId: 'price_1R6NEHD6fFdhmypRg6CN1BuQ',
+    name: 'Premium Retainer',
+    isSubscription: true
+  }
+};
+
 const PricingSection = () => {
-  const [isLoadingEntry, setIsLoadingEntry] = useState(false);
-  const [isLoadingMidTier, setIsLoadingMidTier] = useState(false);
-  const [isLoadingRetainer, setIsLoadingRetainer] = useState(false);
+  const [isLoading, setIsLoading] = useState({
+    [PRODUCTS.ENTRY_KIT.priceId]: false,
+    [PRODUCTS.GROWTH_PLAN.priceId]: false,
+    [PRODUCTS.PREMIUM_RETAINER.priceId]: false
+  });
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleCheckout = async (priceId, productName, isSubscription = false, setLoadingState) => {
-    setLoadingState(true);
+  const handleCheckout = async (product) => {
+    const { priceId, name, isSubscription } = product;
+    
+    // Clear any previous errors
     setErrorMessage('');
     
+    // Set loading state for the specific button
+    setIsLoading(prev => ({ ...prev, [priceId]: true }));
+    
     try {
+      // Load Stripe safely with error handling
       const stripe = await stripePromise;
       
       if (!stripe) {
@@ -31,17 +58,29 @@ const PricingSection = () => {
         },
         body: JSON.stringify({
           priceId,
-          productName,
+          productName: name,
           paymentType: isSubscription ? 'subscription' : 'one-time',
         }),
       });
       
+      // Handle server errors with specific messages
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Something went wrong with the payment process.');
+        if (response.status === 429) {
+          throw new Error('Too many requests. Please try again in a few minutes.');
+        } else if (response.status === 500) {
+          throw new Error('Our payment system is temporarily unavailable. Please try again later.');
+        } else {
+          throw new Error(errorData.error || 'Something went wrong with the payment process.');
+        }
       }
       
+      // Parse the session data
       const session = await response.json();
+      
+      if (!session || !session.id) {
+        throw new Error('Invalid checkout session received from server.');
+      }
       
       // Redirect to Stripe Checkout
       const result = await stripe.redirectToCheckout({
@@ -53,31 +92,56 @@ const PricingSection = () => {
       }
     } catch (error) {
       console.error("Error initiating checkout:", error);
-      setErrorMessage(error.message || 'There was an error processing your payment. Please try again.');
+      // Show user-friendly error message
+      setErrorMessage(
+        error.message || 
+        'There was an error processing your payment. Please try again or contact support.'
+      );
+      
+      // Scroll to the error message to ensure it's visible
+      setTimeout(() => {
+        const errorElement = document.querySelector('.error-message');
+        if (errorElement) {
+          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
     } finally {
-      setLoadingState(false);
+      // Reset loading state for the specific button
+      setIsLoading(prev => ({ ...prev, [priceId]: false }));
     }
-  };
-
-  const handleEntryKit = () => {
-    handleCheckout('price_1R6NDED6fFdhmypRzqX57oPS', 'Entry Kit', false, setIsLoadingEntry);
-  };
-
-  const handleMidTier = () => {
-    handleCheckout('price_1R7DVLD6fFdhmypRyEkK3z52', 'Growth Plan', true, setIsLoadingMidTier);
-  };
-
-  const handleRetainer = () => {
-    handleCheckout('price_1R6NEHD6fFdhmypRg6CN1BuQ', 'Premium Retainer', true, setIsLoadingRetainer);
   };
 
   const handleBookCall = () => {
     window.open('https://calendly.com/tech4humanity/30min', '_blank');
   };
 
+  // Helper function to render the button text based on loading state
+  const getButtonText = (product) => {
+    if (isLoading[product.priceId]) {
+      return "Processing...";
+    }
+    
+    if (product.isSubscription) {
+      return "Subscribe Now";
+    }
+    
+    return "Buy Now";
+  };
+
   return (
     <section id="pricing" className="pricing-section">
       <h2>Your Australian Edge, Priced to Win</h2>
+      
+      {/* Display error message prominently if there is one */}
+      {errorMessage && (
+        <div className="error-message-container">
+          <div className="error-message">
+            <strong>Payment Error:</strong> {errorMessage}
+            <button onClick={() => setErrorMessage('')} className="error-dismiss">×</button>
+          </div>
+        </div>
+      )}
+      
       <div className="pricing-grid">
         <div className="pricing-card">
           <div className="price-header">
@@ -98,13 +162,12 @@ const PricingSection = () => {
             <li>7-10 business days turnaround</li>
           </ul>
           <button 
-            onClick={handleEntryKit} 
+            onClick={() => handleCheckout(PRODUCTS.ENTRY_KIT)} 
             className="pricing-cta" 
-            disabled={isLoadingEntry}
+            disabled={isLoading[PRODUCTS.ENTRY_KIT.priceId]}
           >
-            {isLoadingEntry ? "Processing..." : "Buy Now"}
+            {getButtonText(PRODUCTS.ENTRY_KIT)}
           </button>
-          {errorMessage && <div className="error-message">{errorMessage}</div>}
         </div>
         
         <div className="pricing-card">
@@ -126,11 +189,11 @@ const PricingSection = () => {
             <li>Monthly progress reporting</li>
           </ul>
           <button 
-            onClick={handleMidTier} 
+            onClick={() => handleCheckout(PRODUCTS.GROWTH_PLAN)} 
             className="pricing-cta"
-            disabled={isLoadingMidTier}
+            disabled={isLoading[PRODUCTS.GROWTH_PLAN.priceId]}
           >
-            {isLoadingMidTier ? "Processing..." : "Subscribe Now"}
+            {getButtonText(PRODUCTS.GROWTH_PLAN)}
           </button>
         </div>
         
@@ -154,15 +217,16 @@ const PricingSection = () => {
             <li>Weekly & monthly progress reporting</li>
           </ul>
           <button 
-            onClick={handleRetainer} 
+            onClick={() => handleCheckout(PRODUCTS.PREMIUM_RETAINER)} 
             className="pricing-cta"
-            disabled={isLoadingRetainer}
+            disabled={isLoading[PRODUCTS.PREMIUM_RETAINER.priceId]}
           >
-            {isLoadingRetainer ? "Processing..." : "Get Started"}
+            {getButtonText(PRODUCTS.PREMIUM_RETAINER)}
           </button>
         </div>
       </div>
       
+      {/* Comparison table */}
       <div className="comparison">
         <h3>Comparison</h3>
         <table className="comparison-table">
