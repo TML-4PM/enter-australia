@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 function App() {
@@ -113,12 +112,12 @@ function App() {
             </div>
             <div className="footer-section">
                 <h3>Contact Us</h3>
-                <p>Email: info@enteraustralia.com</p>
+                <p>Email: info@enterautsralia.tech</p>
                 <p>Phone: +61 2 1234 5678</p>
             </div>
         </div>
         <div className="copyright">
-            <p>© 2025 Enter Australia. All rights reserved.</p>
+            <p>© 2025 Enter Australia. All rights reserved. | enterautsralia.tech</p>
         </div>
       </footer>
     </div>
