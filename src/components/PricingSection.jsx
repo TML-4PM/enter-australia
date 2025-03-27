@@ -4,14 +4,16 @@ import { loadStripe } from '@stripe/stripe-js';
 import '../styles/pricing.css';
 
 // Initialize Stripe with the publishable key
-const stripePromise = loadStripe('pk_test_51PD5QJFPBJZkDgtBDQPBY5rO0gHXEXwCGb7aDK12b5OZ5hJXzfFRW7kkMhXvVX2iIBQRNHfEg4nJvV1tzM7uBXjJ00g6e8iAFO');
+const stripePromise = loadStripe('pk_live_51QdfYbD6fFdhmypR798NoSCJ4G9TGCkqw9QTuiDTkyvmn9tSrhey2n3cTHxjFG6GYDlcoBClLWsDN5Mgjb0tIfII00oVKQ67in');
 
 const PricingSection = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingEntry, setIsLoadingEntry] = useState(false);
+  const [isLoadingRetainer, setIsLoadingRetainer] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleBuyNow = async () => {
-    setIsLoading(true);
+  const handleCheckout = async (priceId, productName, isRetainer = false) => {
+    const setLoading = isRetainer ? setIsLoadingRetainer : setIsLoadingEntry;
+    setLoading(true);
     setErrorMessage('');
     
     try {
@@ -28,9 +30,9 @@ const PricingSection = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          priceId: 'price_entry_kit', // This would be your actual Price ID from Stripe
-          productName: 'Entry Kit',
-          amount: 5000, // $5000 in cents
+          priceId,
+          productName,
+          paymentType: isRetainer ? 'subscription' : 'one-time',
         }),
       });
       
@@ -53,8 +55,16 @@ const PricingSection = () => {
       console.error("Error initiating checkout:", error);
       setErrorMessage(error.message || 'There was an error processing your payment. Please try again.');
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
+  };
+
+  const handleEntryKit = () => {
+    handleCheckout('price_1R6NDED6fFdhmypRzqX57oPS', 'Entry Kit');
+  };
+
+  const handleRetainer = () => {
+    handleCheckout('price_1R6NEHD6fFdhmypRg6CN1BuQ', 'Retainer', true);
   };
 
   const handleBookCall = () => {
@@ -84,11 +94,11 @@ const PricingSection = () => {
             <li>7-10 business days turnaround</li>
           </ul>
           <button 
-            onClick={handleBuyNow} 
+            onClick={handleEntryKit} 
             className="pricing-cta" 
-            disabled={isLoading}
+            disabled={isLoadingEntry}
           >
-            {isLoading ? "Processing..." : "Buy Now"}
+            {isLoadingEntry ? "Processing..." : "Buy Now"}
           </button>
           {errorMessage && <div className="error-message">{errorMessage}</div>}
         </div>
@@ -112,7 +122,13 @@ const PricingSection = () => {
             <li>Tech & cybersecurity compliance support</li>
             <li>Weekly & monthly progress reporting</li>
           </ul>
-          <button onClick={handleBookCall} className="pricing-cta">Book a Call</button>
+          <button 
+            onClick={handleRetainer} 
+            className="pricing-cta"
+            disabled={isLoadingRetainer}
+          >
+            {isLoadingRetainer ? "Processing..." : "Get Started"}
+          </button>
         </div>
       </div>
       

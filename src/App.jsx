@@ -7,6 +7,7 @@ import PricingSection from './components/PricingSection';
 import HowItWorksSection from './components/HowItWorksSection';
 import OpportunitiesSection from './components/OpportunitiesSection';
 import ContactSection from './components/ContactSection';
+import SuccessPage from './components/SuccessPage';
 
 function App() {
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -55,6 +56,7 @@ function App() {
             <Route path="/pricing" element={<PricingSection />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/contact" element={<ContactSection />} />
+            <Route path="/success" element={<SuccessPage />} />
           </Routes>
 
           {showLeadForm && (
