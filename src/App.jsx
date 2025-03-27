@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import BlogPage from './components/BlogPage';
@@ -8,12 +7,18 @@ import HowItWorksSection from './components/HowItWorksSection';
 import OpportunitiesSection from './components/OpportunitiesSection';
 import ContactSection from './components/ContactSection';
 import SuccessPage from './components/SuccessPage';
+import { Menu } from 'lucide-react';
 
 function App() {
   const [showLeadForm, setShowLeadForm] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleLeadForm = () => {
     setShowLeadForm(!showLeadForm);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const handleFormSubmit = (e) => {
@@ -28,16 +33,22 @@ function App() {
       <div className="app">
         <header>
           <nav>
-            <div className="logo">enterAustralia<span style={{ color: '#FF6B00' }}>tech</span></div>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/how-it-works">How It Works</Link></li>
-              <li><Link to="/opportunities">Opportunities</Link></li>
-              <li><Link to="/pricing">Pricing</Link></li>
-              <li><Link to="/blog">Blog</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+            <div className="logo">enterAustralia<span>tech</span></div>
+            <ul className={isMenuOpen ? 'active' : ''}>
+              <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+              <li><Link to="/how-it-works" onClick={() => setIsMenuOpen(false)}>How It Works</Link></li>
+              <li><Link to="/opportunities" onClick={() => setIsMenuOpen(false)}>Opportunities</Link></li>
+              <li><Link to="/pricing" onClick={() => setIsMenuOpen(false)}>Pricing</Link></li>
+              <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
+              <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
             </ul>
-            <button className="menu-toggle" aria-label="Toggle menu">☰</button>
+            <button 
+              className="menu-toggle" 
+              aria-label="Toggle menu"
+              onClick={toggleMenu}
+            >
+              <Menu />
+            </button>
             <Link to="/pricing" className="nav-cta">Get Started – $5K</Link>
           </nav>
         </header>
