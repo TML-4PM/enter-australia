@@ -16,13 +16,19 @@ export default async function handler(req, res) {
     const { priceId, productName, paymentType } = req.body;
     
     // Validate the price ID is one of the allowed values
-    const validPriceIds = ['price_1R6NDED6fFdhmypRzqX57oPS', 'price_1R6NEHD6fFdhmypRg6CN1BuQ'];
+    const validPriceIds = [
+      'price_1R6NDED6fFdhmypRzqX57oPS', // Entry Kit
+      'price_1R6NEHD6fFdhmypRg6CN1BuQ', // Premium Retainer
+      'price_1R7DVLD6fFdhmypRyEkK3z52'  // Growth Plan
+    ];
+    
     if (!validPriceIds.includes(priceId)) {
       return res.status(400).json({ error: 'Invalid price ID' });
     }
     
     // Determine if this is a one-time payment or subscription
-    const isSubscription = priceId === 'price_1R6NEHD6fFdhmypRg6CN1BuQ';
+    const isSubscription = priceId === 'price_1R6NEHD6fFdhmypRg6CN1BuQ' || 
+                           priceId === 'price_1R7DVLD6fFdhmypRyEkK3z52';
     
     // Create checkout session
     const session = await stripe.checkout.sessions.create({

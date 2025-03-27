@@ -8,12 +8,12 @@ const stripePromise = loadStripe('pk_live_51QdfYbD6fFdhmypR798NoSCJ4G9TGCkqw9QTu
 
 const PricingSection = () => {
   const [isLoadingEntry, setIsLoadingEntry] = useState(false);
+  const [isLoadingMidTier, setIsLoadingMidTier] = useState(false);
   const [isLoadingRetainer, setIsLoadingRetainer] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleCheckout = async (priceId, productName, isRetainer = false) => {
-    const setLoading = isRetainer ? setIsLoadingRetainer : setIsLoadingEntry;
-    setLoading(true);
+  const handleCheckout = async (priceId, productName, isSubscription = false, setLoadingState) => {
+    setLoadingState(true);
     setErrorMessage('');
     
     try {
@@ -32,7 +32,7 @@ const PricingSection = () => {
         body: JSON.stringify({
           priceId,
           productName,
-          paymentType: isRetainer ? 'subscription' : 'one-time',
+          paymentType: isSubscription ? 'subscription' : 'one-time',
         }),
       });
       
@@ -55,16 +55,20 @@ const PricingSection = () => {
       console.error("Error initiating checkout:", error);
       setErrorMessage(error.message || 'There was an error processing your payment. Please try again.');
     } finally {
-      setLoading(false);
+      setLoadingState(false);
     }
   };
 
   const handleEntryKit = () => {
-    handleCheckout('price_1R6NDED6fFdhmypRzqX57oPS', 'Entry Kit');
+    handleCheckout('price_1R6NDED6fFdhmypRzqX57oPS', 'Entry Kit', false, setIsLoadingEntry);
+  };
+
+  const handleMidTier = () => {
+    handleCheckout('price_1R7DVLD6fFdhmypRyEkK3z52', 'Growth Plan', true, setIsLoadingMidTier);
   };
 
   const handleRetainer = () => {
-    handleCheckout('price_1R6NEHD6fFdhmypRg6CN1BuQ', 'Retainer', true);
+    handleCheckout('price_1R6NEHD6fFdhmypRg6CN1BuQ', 'Premium Retainer', true, setIsLoadingRetainer);
   };
 
   const handleBookCall = () => {
@@ -103,15 +107,42 @@ const PricingSection = () => {
           {errorMessage && <div className="error-message">{errorMessage}</div>}
         </div>
         
+        <div className="pricing-card">
+          <div className="price-header">
+            <h3>Growth Plan</h3>
+            <div className="price">$5K</div>
+            <p className="price-period">per month</p>
+          </div>
+          <p className="price-description">
+            Monthly service to develop your Australian market presence with targeted government introductions.
+          </p>
+          <ul className="features">
+            <li>Up to 2 govt department introductions monthly</li>
+            <li>Virtual office in premium location</li>
+            <li>Up to 2 in-person govt meetings monthly</li>
+            <li>1 tender response support monthly</li>
+            <li>1 local partner coordination</li>
+            <li>Basic compliance guidance</li>
+            <li>Monthly progress reporting</li>
+          </ul>
+          <button 
+            onClick={handleMidTier} 
+            className="pricing-cta"
+            disabled={isLoadingMidTier}
+          >
+            {isLoadingMidTier ? "Processing..." : "Subscribe Now"}
+          </button>
+        </div>
+        
         <div className="pricing-card featured">
           <div className="popular-badge">POPULAR</div>
           <div className="price-header">
-            <h3>Retainer</h3>
+            <h3>Premium Retainer</h3>
             <div className="price">$15K</div>
             <p className="price-period">per month</p>
           </div>
           <p className="price-description">
-            Monthly service to actively pursue and win Australian government contracts.
+            Comprehensive monthly service to actively pursue and win Australian government contracts.
           </p>
           <ul className="features">
             <li>Up to 5 govt department introductions monthly</li>
@@ -139,7 +170,8 @@ const PricingSection = () => {
             <tr>
               <th>Feature</th>
               <th>Entry Kit ($5K)</th>
-              <th>Retainer ($15K/mo)</th>
+              <th>Growth Plan ($5K/mo)</th>
+              <th>Premium Retainer ($15K/mo)</th>
             </tr>
           </thead>
           <tbody>
@@ -147,35 +179,42 @@ const PricingSection = () => {
               <td>ABN Registration</td>
               <td>✓</td>
               <td>✓</td>
+              <td>✓</td>
             </tr>
             <tr>
               <td>Office</td>
               <td>Virtual</td>
+              <td>Virtual Premium</td>
               <td>Physical (as needed)</td>
             </tr>
             <tr>
               <td>Government Meetings</td>
               <td>1</td>
+              <td>Up to 2 monthly</td>
               <td>Up to 4 monthly</td>
             </tr>
             <tr>
               <td>Tender Support</td>
               <td>Basic</td>
-              <td>Full (2 per month)</td>
+              <td>1 per month</td>
+              <td>Up to 2 per month</td>
             </tr>
             <tr>
               <td>Local Partner Connections</td>
               <td>-</td>
+              <td>1</td>
               <td>Up to 3</td>
             </tr>
             <tr>
               <td>Compliance Support</td>
               <td>-</td>
-              <td>✓</td>
+              <td>Basic</td>
+              <td>Comprehensive</td>
             </tr>
             <tr>
               <td>Progress Reporting</td>
               <td>-</td>
+              <td>Monthly</td>
               <td>Weekly & Monthly</td>
             </tr>
           </tbody>

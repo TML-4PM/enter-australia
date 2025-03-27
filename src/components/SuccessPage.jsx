@@ -19,9 +19,24 @@ const SuccessPage = () => {
         // For demonstration purposes, we're setting dummy data
         // In production, you would call your API to verify the session
         setTimeout(() => {
+          // Determine product type based on session ID pattern
+          // This is just a simulation - in production you'd verify with Stripe
+          let product;
+          if (sessionId?.includes('cs_test') || sessionId?.includes('cs_live')) {
+            if (sessionId?.includes('sub')) {
+              // If it contains "sub", it's likely a subscription
+              // Further differentiate between the two subscription plans
+              product = sessionId?.length % 2 === 0 ? 'Premium Retainer' : 'Growth Plan';
+            } else {
+              product = 'Entry Kit';
+            }
+          } else {
+            product = 'Unknown Product';
+          }
+          
           setOrderDetails({
             success: true,
-            product: sessionId?.includes('sub') ? 'Retainer' : 'Entry Kit',
+            product: product,
             customerEmail: 'customer@example.com',
           });
           setLoading(false);
