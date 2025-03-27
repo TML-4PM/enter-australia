@@ -9,6 +9,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "firebase": "^10.7.1",
     "lovable-tagger": "^1.1.7",
+    "lucide-react": "^0.484.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.21.3",
