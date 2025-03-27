@@ -1,3 +1,4 @@
+
 :root {
   --primary-color: #003366; /* Navy blue for trust */
   --secondary-color: #FF6B00; /* Orange for action */
@@ -79,6 +80,16 @@ nav ul li a:hover {
   color: var(--primary-color);
 }
 
+.nav-cta {
+  display: none;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
 .menu-toggle {
   display: none;
   background: none;
@@ -91,7 +102,7 @@ nav ul li a:hover {
 /* Hero Section */
 .hero {
   height: 90vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1483058712412-e9573fc25ebb?auto=format&fit=crop&w=1700&q=80');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1483058712412-e9573fc25ebb?auto=format&fit=crop&w=1700&q=80');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -256,6 +267,25 @@ nav ul li a:hover {
   margin-bottom: 1rem;
 }
 
+/* Feature lists in cards */
+.feature-list {
+  text-align: left;
+  margin-top: 1.5rem;
+}
+
+.feature-list li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.feature-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--secondary-color);
+}
+
 /* How It Works Section */
 .how-it-works-section {
   padding: 5rem 5%;
@@ -285,7 +315,7 @@ nav ul li a:hover {
 
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
 }
@@ -296,6 +326,7 @@ nav ul li a:hover {
   padding: 2rem;
   box-shadow: var(--shadow);
   transition: var(--transition);
+  text-align: left;
 }
 
 .step-number {
@@ -309,7 +340,7 @@ nav ul li a:hover {
   border-radius: 50%;
   font-weight: 700;
   font-size: 1.5rem;
-  margin: 0 auto 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .step-card h3 {
@@ -401,6 +432,7 @@ nav ul li a:hover {
   padding: 2rem;
   box-shadow: var(--shadow);
   transition: var(--transition);
+  text-align: left;
 }
 
 .opportunity-card h3 {
@@ -409,9 +441,15 @@ nav ul li a:hover {
   color: var(--primary-color);
 }
 
-.opportunity-card p {
+.opportunity-card .timing {
   font-weight: 600;
   color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.opportunity-card .description {
+  color: var(--gray-dark);
+  font-size: 0.95rem;
 }
 
 /* Pricing Section */
@@ -456,18 +494,43 @@ nav ul li a:hover {
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  text-align: left;
 }
 
 .pricing-card.featured {
   transform: scale(1.05);
   z-index: 1;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.popular-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transform: rotate(45deg) translateX(20%) translateY(-50%);
+  width: 150px;
+  text-align: center;
+}
+
+.price-header {
+  margin-bottom: 1.5rem;
 }
 
 .pricing-card h3 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
+}
+
+.pricing-card.featured h3 {
+  color: var(--light-color);
 }
 
 .price {
@@ -479,24 +542,34 @@ nav ul li a:hover {
 
 .price-period {
   color: var(--gray-dark);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+.pricing-card.featured .price-period {
+  color: var(--gray-medium);
+}
+
+.price-description {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .features {
   margin-bottom: 2rem;
   text-align: left;
-  padding-left: 1.5rem;
 }
 
 .features li {
   margin-bottom: 0.8rem;
   position: relative;
+  padding-left: 1.5rem;
 }
 
 .features li::before {
   content: '✓';
   position: absolute;
-  left: -1.5rem;
+  left: 0;
   color: var(--secondary-color);
 }
 
@@ -508,10 +581,24 @@ nav ul li a:hover {
   border-radius: 50px;
   font-weight: 600;
   transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
 }
 
 .pricing-cta:hover {
   background-color: var(--secondary-color);
+}
+
+.pricing-card.featured .pricing-cta {
+  background-color: var(--secondary-color);
+}
+
+.pricing-card.featured .pricing-cta:hover {
+  background-color: #ff8733;
 }
 
 .comparison {
@@ -547,6 +634,134 @@ nav ul li a:hover {
 
 .comparison-table tr:last-child td {
   border-bottom: none;
+}
+
+/* Blog Section */
+.blog-section {
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.blog-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.blog-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--gray-dark);
+}
+
+.blog-categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.category-btn {
+  background: none;
+  border: 1px solid var(--gray-medium);
+  border-radius: 30px;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.category-btn:hover, .category-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.blog-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blog-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.blog-content {
+  padding: 2rem;
+}
+
+.blog-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.blog-meta {
+  font-size: 0.85rem;
+  color: var(--gray-dark);
+  margin-bottom: 1rem;
+}
+
+.blog-excerpt {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-tag {
+  background-color: var(--gray-light);
+  color: var(--gray-dark);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.blog-tag:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.read-more {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  display: inline-block;
+}
+
+.read-more:hover {
+  color: var(--secondary-color);
 }
 
 /* Contact Section */
@@ -615,6 +830,11 @@ nav ul li a:hover {
 
 .submit-btn:hover {
   background-color: var(--secondary-color);
+}
+
+.submit-btn:disabled {
+  background-color: var(--gray-medium);
+  cursor: not-allowed;
 }
 
 /* Contact details */
@@ -686,70 +906,6 @@ footer {
   opacity: 0.6;
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-  .hero-content h1 {
-    font-size: 3rem;
-  }
-  
-  .about-section {
-    grid-template-columns: 1fr;
-  }
-  
-  .about-image {
-    order: -1;
-  }
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-  
-  nav ul {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100vh;
-    background-color: var(--light-color);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  nav ul.active {
-    right: 0;
-  }
-  
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-content p {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-content h1 {
-    font-size: 2rem;
-  }
-  
-  .service-card {
-    padding: 1.5rem 1rem;
-  }
-  
-  #services h2,
-  .about-content h2,
-  .testimonials-section h2,
-  .contact-section h2 {
-    font-size: 2rem;
-  }
-}
-
 /* Alert */
 .alert {
   padding: 15px;
@@ -778,4 +934,81 @@ footer {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (min-width: 992px) {
+  .nav-cta {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  nav ul {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: var(--light-color);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 101;
+  }
+  
+  nav ul.active {
+    right: 0;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  
+  .pricing-card.featured {
+    transform: none;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+  
+  #services h2,
+  .about-content h2,
+  .testimonials-section h2,
+  .contact-section h2 {
+    font-size: 1.75rem;
+  }
+  
+  .comparison-table {
+    font-size: 0.8rem;
+  }
+  
+  .comparison-table th, .comparison-table td {
+    padding: 0.5rem;
+  }
 }
