@@ -1,8 +1,37 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const HowItWorksSection = () => {
+  const [activeStory, setActiveStory] = useState(0);
+  
+  const successStories = [
+    {
+      company: "Red 6",
+      description: "$5K got them RAAF-ready; $15K aims for $20M combat training simulation contract with the Royal Australian Air Force.",
+    },
+    {
+      company: "Shield AI",
+      description: "From zero presence to a $35M autonomous systems contract with the Australian Army in 90 days.",
+    },
+    {
+      company: "Anduril",
+      description: "Leveraged our $5K Entry Kit to establish presence and won a $150M drone contract within 6 months.",
+    },
+    {
+      company: "Palantir",
+      description: "Used our Premium Retainer to navigate complex agency relationships, resulting in a $75M data integration project.",
+    }
+  ];
+  
+  const nextStory = () => {
+    setActiveStory((prev) => (prev + 1) % successStories.length);
+  };
+  
+  const prevStory = () => {
+    setActiveStory((prev) => (prev - 1 + successStories.length) % successStories.length);
+  };
+
   return (
     <section id="how-it-works" className="how-it-works-section">
       <h2>From Zero to Aussie Wins in 30 Days</h2>
@@ -41,10 +70,34 @@ const HowItWorksSection = () => {
           </ul>
         </div>
       </div>
-      <div className="example-box">
-        <h3>Success Story</h3>
-        <p>Red 6: $5K got them RAAF-ready; $15K aims for $20M combat training simulation contract with the Royal Australian Air Force.</p>
+      
+      <div className="success-stories-container">
+        <h3>Success Stories</h3>
+        <div className="success-story-carousel">
+          <button className="carousel-btn prev-btn" onClick={prevStory} aria-label="Previous story">
+            &lt;
+          </button>
+          
+          <div className="success-story">
+            <h4>{successStories[activeStory].company}</h4>
+            <p>{successStories[activeStory].description}</p>
+            <div className="story-indicator">
+              {successStories.map((_, index) => (
+                <span 
+                  key={index} 
+                  className={`indicator ${index === activeStory ? 'active' : ''}`}
+                  onClick={() => setActiveStory(index)}
+                ></span>
+              ))}
+            </div>
+          </div>
+          
+          <button className="carousel-btn next-btn" onClick={nextStory} aria-label="Next story">
+            &gt;
+          </button>
+        </div>
       </div>
+      
       <Link to="/pricing" className="cta">Start Now – $5K</Link>
     </section>
   );
