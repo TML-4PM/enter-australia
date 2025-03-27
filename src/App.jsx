@@ -7,7 +7,7 @@ import HowItWorksSection from './components/HowItWorksSection';
 import OpportunitiesSection from './components/OpportunitiesSection';
 import ContactSection from './components/ContactSection';
 import SuccessPage from './components/SuccessPage';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 function App() {
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -21,9 +21,40 @@ function App() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleEscKey = (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        closeMenu();
+      }
+    };
+
+    const handleOutsideClick = (e) => {
+      if (isMenuOpen && !e.target.closest('nav ul') && !e.target.closest('.menu-toggle')) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscKey);
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscKey);
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [isMenuOpen]);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Form submission logic would go here
     setShowLeadForm(false);
     alert("Thanks! Your 2025 Bid Forecast has been sent to your email.");
   };
@@ -35,21 +66,28 @@ function App() {
           <nav>
             <div className="logo">enterAustralia<span>tech</span></div>
             <ul className={isMenuOpen ? 'active' : ''}>
-              <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-              <li><Link to="/how-it-works" onClick={() => setIsMenuOpen(false)}>How It Works</Link></li>
-              <li><Link to="/opportunities" onClick={() => setIsMenuOpen(false)}>Opportunities</Link></li>
-              <li><Link to="/pricing" onClick={() => setIsMenuOpen(false)}>Pricing</Link></li>
-              <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
-              <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+              <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+              <li><Link to="/how-it-works" onClick={closeMenu}>How It Works</Link></li>
+              <li><Link to="/opportunities" onClick={closeMenu}>Opportunities</Link></li>
+              <li><Link to="/pricing" onClick={closeMenu}>Pricing</Link></li>
+              <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
+              <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
+              {isMenuOpen && (
+                <li className="visible-mobile">
+                  <Link to="/pricing" className="nav-cta mobile" onClick={closeMenu}>
+                    Get Started – $5K
+                  </Link>
+                </li>
+              )}
             </ul>
             <button 
               className="menu-toggle" 
               aria-label="Toggle menu"
               onClick={toggleMenu}
             >
-              <Menu />
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-            <Link to="/pricing" className="nav-cta">Get Started – $5K</Link>
+            <Link to="/pricing" className="nav-cta desktop-only">Get Started – $5K</Link>
           </nav>
         </header>
 

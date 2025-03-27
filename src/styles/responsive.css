@@ -4,11 +4,34 @@
   .nav-cta {
     display: inline-block;
   }
+  
+  .visible-mobile {
+    display: none !important;
+  }
 }
 
 @media (max-width: 992px) {
   .hero-content h1 {
     font-size: 2.5rem;
+  }
+  
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .nav-cta.mobile {
+    margin: 1rem 0 0;
+    display: inline-block;
+  }
+}
+
+@media (max-width: 768px) {
+  nav ul li {
+    margin: 0.75rem 0;
+  }
+  
+  nav ul li a {
+    font-size: 1.1rem;
   }
 }
 
