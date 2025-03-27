@@ -1,39 +1,64 @@
+
 import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import '../styles/pricing.css';
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+// Initialize Stripe with the publishable key
+const stripePromise = loadStripe('pk_test_51PD5QJFPBJZkDgtBDQPBY5rO0gHXEXwCGb7aDK12b5OZ5hJXzfFRW7kkMhXvVX2iIBQRNHfEg4nJvV1tzM7uBXjJ00g6e8iAFO');
 
 const PricingSection = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleBuyNow = async () => {
     setIsLoading(true);
+    setErrorMessage('');
     
     try {
-      // Create checkout session with Stripe
       const stripe = await stripePromise;
       
-      // Instead of a real backend, we're mocking this for demo purposes
-      // In a real implementation, you would call your backend to create a checkout session
-      setTimeout(async () => {
-        // Simulate a successful checkout session creation
-        const session = {
-          id: 'cs_test_' + Math.random().toString(36).substr(2, 9)
-        };
-        
-        // Redirect to checkout
-        await stripe.redirectToCheckout({
-          sessionId: session.id
-        });
-        
-        setIsLoading(false);
-      }, 1500);
+      if (!stripe) {
+        throw new Error("Stripe hasn't loaded yet. Please try again in a moment.");
+      }
+      
+      // Call your backend to create a checkout session
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          priceId: 'price_entry_kit', // This would be your actual Price ID from Stripe
+          productName: 'Entry Kit',
+          amount: 5000, // $5000 in cents
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Something went wrong with the payment process.');
+      }
+      
+      const session = await response.json();
+      
+      // Redirect to Stripe Checkout
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+      
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
     } catch (error) {
       console.error("Error initiating checkout:", error);
+      setErrorMessage(error.message || 'There was an error processing your payment. Please try again.');
+    } finally {
       setIsLoading(false);
-      alert("There was an error processing your payment. Please try again.");
     }
+  };
+
+  const handleBookCall = () => {
+    window.open('https://calendly.com/tech4humanity/30min', '_blank');
   };
 
   return (
@@ -65,6 +90,7 @@ const PricingSection = () => {
           >
             {isLoading ? "Processing..." : "Buy Now"}
           </button>
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
         </div>
         
         <div className="pricing-card featured">
@@ -86,7 +112,7 @@ const PricingSection = () => {
             <li>Tech & cybersecurity compliance support</li>
             <li>Weekly & monthly progress reporting</li>
           </ul>
-          <a href="https://calendly.com/enteraustralia" target="_blank" rel="noopener noreferrer" className="pricing-cta">Book a Call</a>
+          <button onClick={handleBookCall} className="pricing-cta">Book a Call</button>
         </div>
       </div>
       

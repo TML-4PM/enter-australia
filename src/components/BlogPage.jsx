@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore';
+import '../styles/blog.css';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -27,15 +28,20 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
+        setLoading(true);
         let articlesQuery;
         
         if (selectedCategory && selectedCategory !== 'all') {
           articlesQuery = query(
             collection(db, 'articles'),
-            where('tags', 'array-contains', selectedCategory)
+            where('tags', 'array-contains', selectedCategory),
+            orderBy('date', 'desc')
           );
         } else {
-          articlesQuery = collection(db, 'articles');
+          articlesQuery = query(
+            collection(db, 'articles'),
+            orderBy('date', 'desc')
+          );
         }
         
         const querySnapshot = await getDocs(articlesQuery);
@@ -48,6 +54,9 @@ const BlogPage = () => {
         // Extract unique categories from articles' tags
         const allTags = articlesData.flatMap(article => article.tags || []);
         const uniqueCategories = [...new Set(allTags)];
+        
+        console.log('Fetched articles:', articlesData.length);
+        console.log('Unique categories:', uniqueCategories);
         
         setArticles(articlesData);
         setCategories(uniqueCategories);
