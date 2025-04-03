@@ -39,6 +39,16 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
       }),
     });
     
+    // First check if the response is JSON
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      if (contentType && contentType.includes('text/html')) {
+        throw new Error('API endpoint returned HTML instead of JSON. The server may be misconfigured or unavailable.');
+      } else {
+        throw new Error(`Invalid response format: ${contentType}. Expected JSON.`);
+      }
+    }
+    
     // Handle server errors with specific messages
     if (!response.ok) {
       const errorData = await response.json();
@@ -68,11 +78,19 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     }
   } catch (error) {
     console.error("Error initiating checkout:", error);
-    // Show user-friendly error message
-    setErrorMessage(
-      error.message || 
-      'There was an error processing your payment. Please try again or contact support.'
-    );
+    
+    // Check if error is related to API connection issues
+    if (error.message && error.message.includes('<!DOCTYPE')) {
+      setErrorMessage('API connection error. The service might be unavailable or misconfigured.');
+    } else if (error.message && error.message.includes('HTML instead of JSON')) {
+      setErrorMessage('Payment service is not properly configured. Please contact support.');
+    } else {
+      // Show user-friendly error message
+      setErrorMessage(
+        error.message || 
+        'There was an error processing your payment. Please try again or contact support.'
+      );
+    }
     
     // Scroll to the error message to ensure it's visible
     setTimeout(() => {

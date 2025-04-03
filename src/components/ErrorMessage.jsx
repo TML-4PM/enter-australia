@@ -7,8 +7,13 @@ const ErrorMessage = ({ message, onDismiss }) => {
   return (
     <div className="error-message-container">
       <div className="error-message">
-        <strong>Payment Error:</strong> {message}
-        <button onClick={onDismiss} className="error-dismiss">×</button>
+        <div className="error-content">
+          <strong>Payment Error:</strong> {message}
+          <div className="error-help">
+            If this error persists, please refresh the page or contact our support team.
+          </div>
+        </div>
+        <button onClick={onDismiss} className="error-dismiss" aria-label="Dismiss error">×</button>
       </div>
     </div>
   );

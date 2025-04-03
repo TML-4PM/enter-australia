@@ -35,6 +35,8 @@ const PricingSection = () => {
 
   // Process checkout wrapped in a handler for this component
   const processCheckout = (product) => {
+    // Clear any previous errors when starting a new checkout
+    setErrorMessage('');
     handleCheckout(product, setIsLoading, setErrorMessage);
   };
 
