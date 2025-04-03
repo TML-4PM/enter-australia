@@ -1,0 +1,40 @@
+
+@media (max-width: 992px) {
+  .pricing-section h2 {
+    font-size: 2.5rem;
+  }
+  
+  .solutions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-card.featured {
+    transform: none;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .pricing-section h2 {
+    font-size: 2rem;
+  }
+  
+  .solution-image {
+    height: 250px;
+  }
+}
+
+@media (max-width: 576px) {
+  .comparison-table {
+    font-size: 0.8rem;
+  }
+  
+  .comparison-table th, .comparison-table td {
+    padding: 0.5rem;
+  }
+  
+  .pricing-section h2 {
+    font-size: 1.75rem;
+  }
+}

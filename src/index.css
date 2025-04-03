@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* Import all modular CSS files */
@@ -20,3 +19,8 @@
 @import './styles/contact.css';
 @import './styles/footer.css';
 @import './styles/responsive.css';
+
+@import './styles/pricing-badges.css';
+@import './styles/pricing-grid.css';
+@import './styles/pricing-solutions-section.css';
+@import './styles/pricing-media-queries.css';
