@@ -21,7 +21,6 @@ export default defineConfig(async ({ mode }) => {
     build: {
       outDir: 'dist',
       emptyOutDir: true,
-      // Ensure Vercel can build the project
       commonjsOptions: {
         include: [/node_modules/],
         extensions: ['.js', '.jsx']
