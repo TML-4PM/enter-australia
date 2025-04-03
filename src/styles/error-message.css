@@ -1,0 +1,40 @@
+
+.error-message-container {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.error-message {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.error-content {
+  flex: 1;
+}
+
+.error-help {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.error-dismiss {
+  background: none;
+  border: none;
+  color: #721c24;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  margin-left: 1rem;
+}

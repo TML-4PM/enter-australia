@@ -1,0 +1,32 @@
+
+.pricing-cta-section {
+  margin: 5rem auto 0;
+  padding: 3rem;
+  text-align: center;
+  max-width: 800px;
+}
+
+.pricing-cta-section h3 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--dark-color);
+}
+
+.book-call-btn {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.book-call-btn:hover {
+  background-color: #ff8733;
+  transform: translateY(-3px);
+}

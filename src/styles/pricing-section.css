@@ -1,0 +1,13 @@
+
+.pricing-section {
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--light-color);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

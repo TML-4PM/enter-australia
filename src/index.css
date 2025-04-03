@@ -9,7 +9,13 @@
 @import './styles/value-props.css';
 @import './styles/how-it-works.css';
 @import './styles/opportunities.css';
-@import './styles/pricing.css';
+@import './styles/pricing-section.css';
+@import './styles/pricing-header.css';
+@import './styles/pricing-cards.css';
+@import './styles/pricing-solutions.css';
+@import './styles/pricing-cta.css';
+@import './styles/comparison-table.css';
+@import './styles/error-message.css';
 @import './styles/blog.css';
 @import './styles/contact.css';
 @import './styles/footer.css';
