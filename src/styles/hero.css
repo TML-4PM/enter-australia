@@ -88,6 +88,17 @@
   gap: 2rem;
 }
 
+/* New style for the flowchart image */
+.flowchart-image {
+  max-width: 90%;
+  max-height: 180px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+}
+
+/* Previous placeholder styles kept for reference */
 .placeholder-item {
   width: 100px;
   height: 50px;
@@ -114,5 +125,9 @@
 @media (max-width: 576px) {
   .hero-content h1 {
     font-size: 1.75rem;
+  }
+  
+  .flowchart-image {
+    max-height: 140px;
   }
 }
