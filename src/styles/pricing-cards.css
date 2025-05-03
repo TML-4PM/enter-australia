@@ -26,19 +26,7 @@
   color: var(--light-color);
 }
 
-.popular-badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: var(--secondary-color);
-  color: var(--light-color);
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  transform: rotate(45deg) translateX(20%) translateY(-50%);
-  width: 150px;
-  text-align: center;
-}
+/* Badge styles moved to pricing-badges.css */
 
 .price-header {
   margin-bottom: 1.5rem;
@@ -120,12 +108,4 @@
 
 .pricing-card.featured .pricing-cta:hover {
   background-color: #ff8733;
-}
-
-@media (max-width: 768px) {
-  .pricing-card.featured {
-    transform: none;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
 }
