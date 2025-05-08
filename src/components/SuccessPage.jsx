@@ -8,42 +8,37 @@ const SuccessPage = () => {
   const sessionId = searchParams.get('session_id');
   const [orderDetails, setOrderDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // In a production environment, you would verify the session with Stripe
-    // For now, we'll just simulate success
     const getOrderDetails = async () => {
       try {
         setLoading(true);
         
-        // For demonstration purposes, we're setting dummy data
-        // In production, you would call your API to verify the session
-        setTimeout(() => {
-          // Determine product type based on session ID pattern
-          // This is just a simulation - in production you'd verify with Stripe
-          let product;
-          if (sessionId?.includes('cs_test') || sessionId?.includes('cs_live')) {
-            if (sessionId?.includes('sub')) {
-              // If it contains "sub", it's likely a subscription
-              // Further differentiate between the two subscription plans
-              product = sessionId?.length % 2 === 0 ? 'Premium Retainer' : 'Growth Plan';
-            } else {
-              product = 'Entry Kit';
-            }
-          } else {
-            product = 'Unknown Product';
-          }
-          
-          setOrderDetails({
-            success: true,
-            product: product,
-            customerEmail: 'customer@example.com',
-          });
-          setLoading(false);
-        }, 1500);
+        if (!sessionId) {
+          throw new Error('No session ID provided');
+        }
+        
+        // In a real implementation, we'd verify the session with our backend
+        // which would then use Stripe's API to get session details
+        const response = await fetch(`/api/verify-session?session_id=${sessionId}`);
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to verify session');
+        }
+        
+        const data = await response.json();
+        setOrderDetails({
+          success: true,
+          product: data.productName,
+          customerEmail: data.customerEmail,
+        });
         
       } catch (error) {
         console.error('Error fetching order details:', error);
+        setError(error.message);
+      } finally {
         setLoading(false);
       }
     };
@@ -67,12 +62,12 @@ const SuccessPage = () => {
     );
   }
 
-  if (!sessionId || !orderDetails?.success) {
+  if (!sessionId || error || !orderDetails?.success) {
     return (
       <div className="success-container">
         <div className="success-card error">
           <h2>Something Went Wrong</h2>
-          <p>We couldn't find details for your order. Please contact our support team for assistance.</p>
+          <p>{error || "We couldn't find details for your order. Please contact our support team for assistance."}</p>
           <Link to="/pricing" className="back-button">Return to Pricing</Link>
         </div>
       </div>

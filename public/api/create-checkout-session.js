@@ -1,7 +1,9 @@
 
 // This is a serverless function for handling Stripe checkout sessions
 // For development purposes, we're placing this in the public/api folder
-// In production, this would typically be deployed to a serverless platform
+// In production, this should be deployed to a proper serverless platform
+
+import Stripe from 'stripe';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -22,23 +24,33 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid price ID' });
     }
     
+    // Initialize Stripe with the secret key
+    // IMPORTANT: In production, use environment variables for the secret key
+    // For development, you can replace 'YOUR_STRIPE_SECRET_KEY' with your actual key
+    // but NEVER commit this to version control
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'YOUR_STRIPE_SECRET_KEY');
+    
     // Determine if this is a one-time payment or subscription
     const isSubscription = paymentType === 'subscription';
     
-    // In a real implementation, you would call Stripe API here
-    // For this demo, we'll simulate a successful response
+    // Create a Stripe checkout session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
+      mode: isSubscription ? 'subscription' : 'payment',
+      success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${req.headers.origin}/pricing`,
+    });
     
-    // Generate a fake session ID for demonstration
-    const sessionId = `cs_test_${Math.random().toString(36).substring(2, 15)}`;
-    if (isSubscription) {
-      sessionId += '_sub';
-    }
-    
-    // Simulate successful session creation
+    // Return the session ID for the frontend to use
     return res.status(200).json({ 
-      id: sessionId,
-      // In real implementation, Stripe would return URL
-      url: `/success?session_id=${sessionId}`
+      id: session.id,
+      url: session.url
     });
   } catch (error) {
     console.error('Error creating checkout session:', error);
