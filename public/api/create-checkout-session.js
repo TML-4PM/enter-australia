@@ -25,11 +25,17 @@ export default async function handler(req, res) {
     }
     
     // Initialize Stripe with the secret key
-    // IMPORTANT: In production, use environment variables for the secret key
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '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');
+    // The key can be either a standard secret key (sk_) or a restricted key (rk_)
+    const stripeKey = process.env.STRIPE_SECRET_KEY || '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';
+    console.log("Initializing Stripe with key type:", stripeKey.substring(0, 3));
+    
+    const stripe = new Stripe(stripeKey);
     
     // Determine if this is a one-time payment or subscription
     const isSubscription = paymentType === 'subscription';
+    
+    // Log checkout attempt
+    console.log(`Creating ${isSubscription ? 'subscription' : 'one-time payment'} checkout session for ${productName}`);
     
     // Create a Stripe checkout session
     const session = await stripe.checkout.sessions.create({
@@ -45,6 +51,8 @@ export default async function handler(req, res) {
       cancel_url: `${req.headers.origin}/pricing`,
     });
     
+    console.log("Checkout session created successfully:", session.id);
+    
     // Return the session ID and URL for the frontend to use
     return res.status(200).json({ 
       id: session.id,
@@ -52,6 +60,18 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error('Error creating checkout session:', error);
+    
+    // Provide more specific error messages based on error type
+    if (error.type === 'StripeAuthenticationError') {
+      return res.status(401).json({ 
+        error: 'Invalid API key or insufficient permissions. Please check your Stripe configuration.' 
+      });
+    } else if (error.type === 'StripeInvalidRequestError') {
+      return res.status(400).json({ 
+        error: `Stripe request error: ${error.message}`
+      });
+    }
+    
     return res.status(500).json({ 
       error: 'Failed to create checkout session. Please try again later.' 
     });

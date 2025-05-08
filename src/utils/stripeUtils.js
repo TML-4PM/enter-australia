@@ -45,8 +45,17 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
       if (contentType && contentType.includes('text/html')) {
-        console.error('API returned HTML instead of JSON:', await response.text());
-        throw new Error('API endpoint returned HTML instead of JSON. The server may be misconfigured or unavailable.');
+        const htmlResponse = await response.text();
+        console.error('API returned HTML instead of JSON:', htmlResponse);
+        
+        // Check if this is a Stripe API key error
+        if (htmlResponse.includes("Invalid API key provided") || 
+            htmlResponse.includes("API key") || 
+            htmlResponse.includes("authentication")) {
+          throw new Error('Invalid Stripe API key. Please check your configuration.');
+        } else {
+          throw new Error('API endpoint returned HTML instead of JSON. The server may be misconfigured or unavailable.');
+        }
       } else {
         throw new Error(`Invalid response format: ${contentType}. Expected JSON.`);
       }
@@ -58,6 +67,8 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
       console.error('Server error response:', errorData);
       if (response.status === 429) {
         throw new Error('Too many requests. Please try again in a few minutes.');
+      } else if (response.status === 401) {
+        throw new Error('Invalid API key or insufficient permissions. Please check your Stripe configuration.');
       } else if (response.status === 500) {
         throw new Error('Our payment system is temporarily unavailable. Please try again later.');
       } else {
@@ -95,6 +106,8 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
       setErrorMessage('API connection error. The service might be unavailable or misconfigured.');
     } else if (error.message && error.message.includes('HTML instead of JSON')) {
       setErrorMessage('Payment service is not properly configured. Please contact support.');
+    } else if (error.message && error.message.includes('API key')) {
+      setErrorMessage('Invalid Stripe API key configuration. Please check your configuration.');
     } else {
       // Show user-friendly error message
       setErrorMessage(

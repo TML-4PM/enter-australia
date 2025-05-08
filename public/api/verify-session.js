@@ -16,9 +16,13 @@ export default async function handler(req, res) {
   }
   
   try {
-    // Initialize Stripe with the secret key
-    // IMPORTANT: In production, use environment variables
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_51QdfYbD6fFdhmypRBpOyVahhmVGSGCA7LyZlAaUhy5tmmuGgqWMj2LvbymJJiGsXUxpBY7U9ewFLrNJxgWeGpDqq00vohqUhmN');
+    // Initialize Stripe with the secret key - works with both sk_ and rk_ keys
+    const stripeKey = process.env.STRIPE_SECRET_KEY || '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';
+    console.log("Initializing Stripe with key type:", stripeKey.substring(0, 3));
+    
+    const stripe = new Stripe(stripeKey);
+    
+    console.log("Retrieving session:", sessionId);
     
     // Retrieve the session from Stripe
     const session = await stripe.checkout.sessions.retrieve(sessionId);
@@ -26,6 +30,8 @@ export default async function handler(req, res) {
     if (!session) {
       return res.status(404).json({ error: 'Session not found' });
     }
+    
+    console.log("Session retrieved successfully");
     
     // Determine the product name from the line items or metadata
     let productName = "Your Order";
@@ -44,6 +50,17 @@ export default async function handler(req, res) {
     
   } catch (error) {
     console.error('Error verifying session:', error);
+    
+    if (error.type === 'StripeAuthenticationError') {
+      return res.status(401).json({ 
+        error: 'Invalid API key or insufficient permissions. Please check your Stripe configuration.' 
+      });
+    } else if (error.type === 'StripeInvalidRequestError') {
+      return res.status(400).json({ 
+        error: `Stripe request error: ${error.message}` 
+      });
+    }
+    
     return res.status(500).json({
       error: 'Failed to verify payment session. Please contact support.'
     });
