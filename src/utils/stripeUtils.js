@@ -26,6 +26,8 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
       throw new Error("Stripe hasn't loaded yet. Please try again in a moment.");
     }
     
+    console.log("Creating checkout session for:", name, "with priceId:", priceId);
+    
     // Call our backend to create a checkout session
     const response = await fetch('/api/create-checkout-session', {
       method: 'POST',
@@ -43,6 +45,7 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
       if (contentType && contentType.includes('text/html')) {
+        console.error('API returned HTML instead of JSON:', await response.text());
         throw new Error('API endpoint returned HTML instead of JSON. The server may be misconfigured or unavailable.');
       } else {
         throw new Error(`Invalid response format: ${contentType}. Expected JSON.`);
@@ -52,6 +55,7 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     // Handle server errors with specific messages
     if (!response.ok) {
       const errorData = await response.json();
+      console.error('Server error response:', errorData);
       if (response.status === 429) {
         throw new Error('Too many requests. Please try again in a few minutes.');
       } else if (response.status === 500) {
@@ -63,18 +67,25 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     
     // Parse the session data
     const session = await response.json();
+    console.log("Session received:", session);
     
     if (!session || !session.id) {
       throw new Error('Invalid checkout session received from server.');
     }
     
     // Redirect to Stripe Checkout
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-    
-    if (result.error) {
-      throw new Error(result.error.message);
+    if (session.url) {
+      // Direct redirect to Checkout URL if available (preferred method)
+      window.location.href = session.url;
+    } else {
+      // Fallback to redirectToCheckout method
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+      
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
     }
   } catch (error) {
     console.error("Error initiating checkout:", error);

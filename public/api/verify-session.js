@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   try {
     // Initialize Stripe with the secret key
     // IMPORTANT: In production, use environment variables
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'YOUR_STRIPE_SECRET_KEY');
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_51QdfYbD6fFdhmypRBpOyVahhmVGSGCA7LyZlAaUhy5tmmuGgqWMj2LvbymJJiGsXUxpBY7U9ewFLrNJxgWeGpDqq00vohqUhmN');
     
     // Retrieve the session from Stripe
     const session = await stripe.checkout.sessions.retrieve(sessionId);

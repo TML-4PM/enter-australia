@@ -1,10 +1,8 @@
-
 import { loadStripe } from '@stripe/stripe-js';
 
 // Initialize Stripe with the publishable key
-// Replace 'YOUR_PUBLISHABLE_KEY' with your actual publishable key
 // This key is safe to expose in frontend code
-export const stripePromise = loadStripe('pk_live_51QdfYbD6fFdhmypR798NoSCJ4G9TGCkqw9QTuiDTkyvmn9cTHxjFG6GYDlcoBClLWsDN5Mgjb0tIfII00oVKQ67in');
+export const stripePromise = loadStripe('pk_test_51QdfYbD6fFdhmypR798NoSCJ4G9TGCkqw9QTuiDTkyvmn9cTHxjFG6GYDlcoBClLWsDN5Mgjb0tIfII00oVKQ67in');
 
 // Define the product IDs and details
 export const PRODUCTS = {

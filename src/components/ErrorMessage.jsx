@@ -1,5 +1,6 @@
 
 import React from 'react';
+import '../styles/error-message.css';
 
 const ErrorMessage = ({ message, onDismiss }) => {
   if (!message) return null;

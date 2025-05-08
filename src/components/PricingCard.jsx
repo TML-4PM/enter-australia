@@ -25,7 +25,7 @@ const PricingCard = ({
       </ul>
       <button 
         onClick={() => onCheckout(product)} 
-        className="pricing-cta" 
+        className={`pricing-cta ${isLoading ? 'loading' : ''}`}
         disabled={isLoading}
       >
         {getButtonText(product)}
