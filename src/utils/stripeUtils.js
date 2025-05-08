@@ -26,7 +26,7 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
       throw new Error("Stripe hasn't loaded yet. Please try again in a moment.");
     }
     
-    // Call your backend to create a checkout session
+    // Call our backend to create a checkout session
     const response = await fetch('/api/create-checkout-session', {
       method: 'POST',
       headers: {
