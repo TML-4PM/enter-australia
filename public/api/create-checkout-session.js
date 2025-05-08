@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     
     // Initialize Stripe with the secret key
     // IMPORTANT: In production, use environment variables for the secret key
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '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');
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'pk_live_51QdfYbD6fFdhmypR798NoSCJ4G9TGCkqw9QTuiDTkyvmn9tSrhey2n3cTHxjFG6GYDlcoBClLWsDN5Mgjb0tIfII00oVKQ67in');
     
     // Determine if this is a one-time payment or subscription
     const isSubscription = paymentType === 'subscription';
