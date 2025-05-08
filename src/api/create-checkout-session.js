@@ -5,7 +5,7 @@
 import Stripe from 'stripe';
 
 // Initialize Stripe with the secret key (must be set in environment variables on your hosting platform)
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.pk_live_51QdfYbD6fFdhmypR798NoSCJ4G9TGCkqw9QTuiDTkyvmn9tSrhey2n3cTHxjFG6GYDlcoBClLWsDN5Mgjb0tIfII00oVKQ67in);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
