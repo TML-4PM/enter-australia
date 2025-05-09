@@ -1,67 +1,102 @@
 
 import React from 'react';
 import { PRODUCTS } from '../config/stripeConfig';
+import '../styles/comparison-table.css';
 
 const ComparisonTable = () => {
-  const { ENTRY_KIT, GROWTH_PLAN, PREMIUM_RETAINER } = PRODUCTS;
+  const { ASSESSMENT, LAUNCH, GROWTH, SCALE, ENTERPRISE } = PRODUCTS;
   
   return (
     <div className="comparison">
-      <h3>Comparison</h3>
-      <table className="comparison-table">
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Entry Kit ({ENTRY_KIT.price})</th>
-            <th>Growth Plan ({GROWTH_PLAN.price}/{GROWTH_PLAN.period.split(' ')[0]})</th>
-            <th>Premium Retainer ({PREMIUM_RETAINER.price}/{PREMIUM_RETAINER.period.split(' ')[0]})</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>ABN Registration</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td>Office</td>
-            <td>Virtual</td>
-            <td>Virtual Premium</td>
-            <td>Physical (as needed)</td>
-          </tr>
-          <tr>
-            <td>Government Meetings</td>
-            <td>1</td>
-            <td>Up to 2 monthly</td>
-            <td>Up to 4 monthly</td>
-          </tr>
-          <tr>
-            <td>Tender Support</td>
-            <td>Basic</td>
-            <td>1 per month</td>
-            <td>Up to 2 per month</td>
-          </tr>
-          <tr>
-            <td>Local Partner Connections</td>
-            <td>-</td>
-            <td>1</td>
-            <td>Up to 3</td>
-          </tr>
-          <tr>
-            <td>Compliance Support</td>
-            <td>-</td>
-            <td>Basic</td>
-            <td>Comprehensive</td>
-          </tr>
-          <tr>
-            <td>Progress Reporting</td>
-            <td>-</td>
-            <td>Monthly</td>
-            <td>Weekly & Monthly</td>
-          </tr>
-        </tbody>
-      </table>
+      <h3>Compare Our Packages</h3>
+      <div className="comparison-table-container">
+        <table className="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Assessment ({ASSESSMENT.price})</th>
+              <th>Launch ({LAUNCH.price}/{LAUNCH.period.split(' ')[0]})</th>
+              <th>Growth ({GROWTH.price}/{GROWTH.period.split(' ')[0]})</th>
+              <th>Scale ({SCALE.price}/{SCALE.period.split(' ')[0]})</th>
+              <th>Enterprise ({ENTERPRISE.price})</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Free Market Assessment</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Compliance Toolkit</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Dedicated Advisor Calls</td>
+              <td>—</td>
+              <td>1× / month</td>
+              <td>2× / month</td>
+              <td>Weekly</td>
+              <td>Weekly + On-site</td>
+            </tr>
+            <tr>
+              <td>Partnership Introductions</td>
+              <td>—</td>
+              <td>1× / quarter</td>
+              <td>3× / quarter</td>
+              <td>Unlimited</td>
+              <td>Unlimited + Co-sell</td>
+            </tr>
+            <tr>
+              <td>On-site Launch Support</td>
+              <td>—</td>
+              <td>1 week</td>
+              <td>2 weeks</td>
+              <td>1 month</td>
+              <td>As needed</td>
+            </tr>
+            <tr>
+              <td>R&D Grants & Rebates</td>
+              <td>—</td>
+              <td>Up to $25K</td>
+              <td>Up to $50K</td>
+              <td>Full Program</td>
+              <td>Full Program + Admin</td>
+            </tr>
+            <tr>
+              <td>GovTech Tender Response</td>
+              <td>—</td>
+              <td>—</td>
+              <td>1× / year</td>
+              <td>3× / year</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Custom Integrations</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Dedicated Account Team</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -4,14 +4,14 @@ import React from 'react';
 const PricingCard = ({ 
   product, 
   isLoading, 
-  onCheckout,
+  onAction,
   getButtonText
 }) => {
   const { name, price, period, description, features, featured } = product;
 
   return (
     <div className={`pricing-card ${featured ? 'featured' : ''}`}>
-      {featured && <div className="popular-badge">POPULAR</div>}
+      {featured && <div className="popular-badge">RECOMMENDED</div>}
       <div className="price-header">
         <h3>{name}</h3>
         <div className="price">{price}</div>
@@ -24,8 +24,8 @@ const PricingCard = ({
         ))}
       </ul>
       <button 
-        onClick={() => onCheckout(product)} 
-        className={`pricing-cta ${isLoading ? 'loading' : ''}`}
+        onClick={() => onAction(product)} 
+        className={`pricing-cta ${isLoading ? 'loading' : ''} ${name === 'Assessment' ? 'free' : ''} ${name === 'Enterprise' ? 'enterprise' : ''}`}
         disabled={isLoading}
       >
         {getButtonText(product)}

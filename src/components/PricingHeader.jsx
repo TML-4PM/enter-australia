@@ -5,13 +5,12 @@ import '../styles/pricing-header.css';
 const PricingHeader = () => {
   return (
     <div className="pricing-header">
-      <span className="pricing-tagline">EMPOWERING TECH FIRMS</span>
-      <h2>Unlock Australian Government Contracts</h2>
+      <span className="pricing-tagline">FLEXIBLE OPTIONS</span>
+      <h2>Five Flexible Packages</h2>
       <p className="pricing-intro">
-        enterAustralia.tech specializes in helping small global tech companies in defense, AI, cyber, and simulation 
-        secure Australian government contracts without the need for a local presence. Based in Sydney, we provide a 
-        streamlined approach that establishes your legitimacy with our $5K Entry Kit, followed by ongoing support 
-        with our $15K/month retainer.
+        enterAustralia.tech offers five flexible tiers to support tech companies at every stage of market entry. 
+        From our free assessment to full-scale enterprise support, we've got your Australian expansion covered.
+        Select the package that best matches your needs and timeline.
       </p>
     </div>
   );
