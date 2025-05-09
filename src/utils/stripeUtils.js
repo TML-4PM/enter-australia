@@ -26,7 +26,7 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
       throw new Error("Stripe hasn't loaded yet. Please try again in a moment.");
     }
     
-    console.log("Creating checkout session for:", name, "with priceId:", priceId);
+    console.log(`Creating checkout session for: ${name} (${isSubscription ? 'subscription' : 'one-time payment'})`);
     
     // Call our backend to create a checkout session
     const response = await fetch('/api/create-checkout-session', {
@@ -38,6 +38,8 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
         priceId,
         productName: name,
         paymentType: isSubscription ? 'subscription' : 'one-time',
+        // Original user email is tracked in metadata but actual recipient is Troy
+        recipientEmail: 'troy@tech4humanity.com.au'
       }),
     });
     

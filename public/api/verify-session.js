@@ -24,8 +24,10 @@ export default async function handler(req, res) {
     
     console.log("Retrieving session:", sessionId);
     
-    // Retrieve the session from Stripe
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    // Retrieve the session from Stripe with expanded data
+    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: ['line_items', 'line_items.data.price.product', 'customer']
+    });
     
     if (!session) {
       return res.status(404).json({ error: 'Session not found' });
@@ -35,17 +37,43 @@ export default async function handler(req, res) {
     
     // Determine the product name from the line items or metadata
     let productName = "Your Order";
-    if (session.line_items) {
-      // In a real implementation, you would fetch line items and get the product name
-      productName = "Your Selected Plan";
+    let isSubscription = session.mode === 'subscription';
+    let amount = 0;
+    let interval = null;
+    
+    if (session.line_items && session.line_items.data.length > 0) {
+      const lineItem = session.line_items.data[0];
+      // Get product details
+      if (lineItem.price && lineItem.price.product) {
+        productName = lineItem.price.product.name || "Your Order";
+      }
+      // Get amount
+      if (lineItem.price) {
+        amount = lineItem.price.unit_amount / 100; // Convert from cents to dollars
+        if (lineItem.price.recurring) {
+          interval = lineItem.price.recurring.interval;
+        }
+      }
     }
+    
+    // Use metadata if available
+    if (session.metadata && session.metadata.product) {
+      productName = session.metadata.product;
+    }
+    
+    // The actual customer email will always be Troy's, but we'll refer to it generically for the UI
+    const customerEmail = 'troy@tech4humanity.com.au';
     
     // Return details about the successful payment
     return res.status(200).json({
       success: true,
       productName,
-      customerEmail: session.customer_details?.email || "Customer",
+      customerEmail,
       paymentStatus: session.payment_status,
+      amount: amount,
+      currency: session.currency,
+      isSubscription,
+      interval
     });
     
   } catch (error) {

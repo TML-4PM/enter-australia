@@ -19,8 +19,7 @@ const SuccessPage = () => {
           throw new Error('No session ID provided');
         }
         
-        // In a real implementation, we'd verify the session with our backend
-        // which would then use Stripe's API to get session details
+        // Verify the session with our backend
         const response = await fetch(`/api/verify-session?session_id=${sessionId}`);
         
         if (!response.ok) {
@@ -29,11 +28,7 @@ const SuccessPage = () => {
         }
         
         const data = await response.json();
-        setOrderDetails({
-          success: true,
-          product: data.productName,
-          customerEmail: data.customerEmail,
-        });
+        setOrderDetails(data);
         
       } catch (error) {
         console.error('Error fetching order details:', error);
@@ -74,6 +69,28 @@ const SuccessPage = () => {
     );
   }
 
+  // Format the amount with currency symbol
+  const formatAmount = () => {
+    const amount = orderDetails.amount;
+    const currency = orderDetails.currency || 'usd';
+    
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: currency.toUpperCase(),
+    });
+    
+    return formatter.format(amount);
+  };
+  
+  // Format the payment type description
+  const getPaymentDescription = () => {
+    if (orderDetails.isSubscription) {
+      return `${formatAmount()}/${orderDetails.interval || 'month'} subscription`;
+    } else {
+      return `${formatAmount()} one-time payment`;
+    }
+  };
+
   return (
     <div className="success-container">
       <div className="success-card">
@@ -83,11 +100,16 @@ const SuccessPage = () => {
         
         <div className="order-details">
           <h3>Order Details</h3>
-          <p><strong>Product:</strong> {orderDetails.product}</p>
+          <p><strong>Product:</strong> {orderDetails.productName}</p>
+          <p><strong>Amount:</strong> {getPaymentDescription()}</p>
+          {orderDetails.isSubscription && (
+            <p><strong>Billing:</strong> Recurring {orderDetails.interval || 'monthly'}</p>
+          )}
+          <p><strong>Status:</strong> <span className="status-paid">{orderDetails.paymentStatus}</span></p>
           <p><strong>Order ID:</strong> {sessionId.substring(0, 8)}...</p>
         </div>
         
-        <p>Our team will reach out to you shortly to get started with your {orderDetails.product}.</p>
+        <p>Our team will reach out to you shortly to get started with your {orderDetails.productName} service.</p>
         
         <div className="next-steps">
           <h3>Next Steps</h3>
@@ -98,7 +120,16 @@ const SuccessPage = () => {
           </ol>
         </div>
         
-        <Link to="/" className="back-button">Return to Home</Link>
+        {orderDetails.isSubscription && (
+          <div className="subscription-note">
+            <p>As a subscriber, you'll receive priority support and regular updates on your Australian market entry progress.</p>
+          </div>
+        )}
+        
+        <div className="action-buttons">
+          <Link to="/" className="back-button primary">Return to Home</Link>
+          <Link to="/pricing" className="back-button secondary">View Other Plans</Link>
+        </div>
       </div>
     </div>
   );

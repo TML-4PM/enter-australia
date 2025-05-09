@@ -15,15 +15,18 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Email is required' });
     }
     
+    // Always use Troy's email as the actual recipient
+    const actualRecipientEmail = 'troy@tech4humanity.com.au';
+    
     // Initialize Stripe with the secret key
     const stripeKey = process.env.STRIPE_SECRET_KEY || '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';
     console.log("Initializing Stripe for customer creation");
     
     const stripe = new Stripe(stripeKey);
     
-    // Check if customer already exists
+    // Check if customer already exists with Troy's email
     const existingCustomers = await stripe.customers.list({
-      email,
+      email: actualRecipientEmail,
       limit: 1
     });
     
@@ -33,21 +36,21 @@ export default async function handler(req, res) {
       customer = existingCustomers.data[0];
       console.log("Customer already exists:", customer.id);
       
-      // Update metadata
+      // Update metadata with new information from this subscription
       customer = await stripe.customers.update(customer.id, {
         metadata: {
           ...customer.metadata,
-          originalEmail: originalEmail || email, // Store the original user input email if available
+          originalEmail: originalEmail || email, // Store the original user input email
           last_subscription: source,
           updated_at: new Date().toISOString()
         }
       });
     } else {
-      // Create a new customer
+      // Create a new customer with Troy's email
       customer = await stripe.customers.create({
-        email, // This will always be troy@tech4humanity.com.au
+        email: actualRecipientEmail, // Always use Troy's email
         metadata: {
-          originalEmail: originalEmail || email, // Store the original user input email if available
+          originalEmail: originalEmail || email, // Store the original user input email
           source,
           created_at: new Date().toISOString()
         }
