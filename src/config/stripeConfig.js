@@ -57,7 +57,6 @@ export const PRODUCTS = {
     ]
   },
   PREMIUM: {
-    priceId: 'price_1R6NEHD6fFdhmypRg6CN1BuQ',
     name: 'Premium Retainer',
     isSubscription: true,
     price: '$15K',

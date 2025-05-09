@@ -12,9 +12,12 @@ const PricingCard = ({
 
   // Determine if this is a one-time payment or subscription
   const isOneTime = period && period.toLowerCase().includes('one-time');
+  
+  // Determine if this is the premium plan
+  const isPremium = name === 'Premium Retainer';
 
   return (
-    <div className={`pricing-card ${featured ? 'featured' : ''} ${isCurrentPlan ? 'current-plan' : ''}`}>
+    <div className={`pricing-card ${featured ? 'featured' : ''} ${isCurrentPlan ? 'current-plan' : ''} ${isPremium ? 'premium-plan' : ''}`}>
       {featured && <div className="popular-badge">RECOMMENDED</div>}
       {isCurrentPlan && <div className="current-plan-badge">YOUR PLAN</div>}
       
@@ -37,8 +40,9 @@ const PricingCard = ({
         className={`pricing-cta 
           ${isLoading ? 'loading' : ''} 
           ${name === 'Assessment' ? 'free' : ''} 
-          ${name === 'Enterprise' ? 'enterprise' : ''}
+          ${name === 'Enterprise' || isPremium ? 'enterprise' : ''}
           ${isCurrentPlan ? 'current-plan-btn' : ''}
+          ${isPremium ? 'premium-btn' : ''}
         `}
         disabled={isLoading}
       >

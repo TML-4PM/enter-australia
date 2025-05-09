@@ -103,7 +103,7 @@ const PricingSection = () => {
       return "Start Your Free Assessment";
     }
     
-    if (product.name === 'Enterprise') {
+    if (product.name === 'Enterprise' || product.name === 'Premium Retainer') {
       return "Contact Sales";
     }
     
@@ -162,7 +162,7 @@ const PricingSection = () => {
       return;
     }
     
-    if (product.name === 'Enterprise') {
+    if (product.name === 'Enterprise' || product.name === 'Premium Retainer') {
       handleContactSales();
       return;
     }
