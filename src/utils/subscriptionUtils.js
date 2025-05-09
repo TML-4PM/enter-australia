@@ -9,11 +9,15 @@ import { supabase } from './supabaseClient';
  */
 export const saveEmailSubscription = async (email, source = 'website') => {
   try {
-    // Save to Supabase first
+    // Always use troy@tech4humanity.com.au as actual recipient
+    const actualRecipientEmail = 'troy@tech4humanity.com.au';
+    
+    // Save to Supabase first with both emails
     const { error: supabaseError } = await supabase
       .from('email_subscriptions')
       .upsert({
-        email,
+        email, // Original user input for tracking
+        target_email: actualRecipientEmail, // Actual recipient email
         source,
         subscribed_at: new Date().toISOString()
       }, { onConflict: 'email' });
@@ -24,12 +28,17 @@ export const saveEmailSubscription = async (email, source = 'website') => {
     }
 
     // Create a Stripe customer (or retrieve if exists)
+    // Use the actualRecipientEmail for Stripe customer creation
     const response = await fetch('/api/create-stripe-customer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, source }),
+      body: JSON.stringify({ 
+        email: actualRecipientEmail, // Send the actual recipient email to Stripe
+        originalEmail: email, // Include original email for reference
+        source 
+      }),
     });
 
     if (!response.ok) {

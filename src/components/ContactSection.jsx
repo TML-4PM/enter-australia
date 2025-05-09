@@ -27,12 +27,16 @@ const ContactSection = () => {
     setFormStatus({ type: 'loading', message: 'Sending your message...' });
     
     try {
-      // Save to Supabase leads table
+      // Always use troy@tech4humanity.com.au as the recipient
+      const actualRecipientEmail = 'troy@tech4humanity.com.au';
+      
+      // Save to Supabase leads table with original user email for tracking
       const { error } = await supabase
         .from('leads')
         .insert({
           name: formState.name,
-          email: formState.email,
+          email: formState.email, // Store user's input for tracking
+          target_email: actualRecipientEmail, // Store actual recipient
           company: formState.company,
           service: formState.service,
           message: formState.message,
@@ -42,6 +46,9 @@ const ContactSection = () => {
       if (error) {
         throw new Error(error.message);
       }
+      
+      // If you're sending an actual email, you would use the actualRecipientEmail here
+      // instead of the user's provided email
       
       setFormStatus({ type: 'success', message: 'Message sent successfully! We will contact you shortly.' });
       setFormState({

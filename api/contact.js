@@ -14,7 +14,16 @@ export default function handler(req, res) {
     }
 
     // In a real application, you would send this data to your email service
-    // or database here. For demo purposes, we'll just return success.
+    // Always send to troy@tech4humanity.com.au regardless of what email was input
+    const actualRecipientEmail = 'troy@tech4humanity.com.au';
+    
+    // Here you would have your email sending logic, using actualRecipientEmail
+    // Example pseudocode:
+    // sendEmail({
+    //   to: actualRecipientEmail,
+    //   subject: `Contact Form: ${service} inquiry from ${name}`,
+    //   body: `Name: ${name}\nOriginal Email: ${email}\nService: ${service}\nMessage: ${message}`
+    // });
     
     // Return success response
     return res.status(200).json({ success: true });

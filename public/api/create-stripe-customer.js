@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   }
   
   try {
-    const { email, source } = req.body;
+    const { email, originalEmail, source } = req.body;
     
     if (!email) {
       return res.status(400).json({ error: 'Email is required' });
@@ -37,6 +37,7 @@ export default async function handler(req, res) {
       customer = await stripe.customers.update(customer.id, {
         metadata: {
           ...customer.metadata,
+          originalEmail: originalEmail || email, // Store the original user input email if available
           last_subscription: source,
           updated_at: new Date().toISOString()
         }
@@ -44,8 +45,9 @@ export default async function handler(req, res) {
     } else {
       // Create a new customer
       customer = await stripe.customers.create({
-        email,
+        email, // This will always be troy@tech4humanity.com.au
         metadata: {
+          originalEmail: originalEmail || email, // Store the original user input email if available
           source,
           created_at: new Date().toISOString()
         }
