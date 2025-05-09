@@ -23,6 +23,10 @@
     margin: 1rem 0 0;
     display: inline-block;
   }
+  
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -33,6 +37,31 @@
   nav ul li a {
     font-size: 1.1rem;
   }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-section {
+    text-align: center;
+  }
+  
+  .footer-section h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+  
+  .footer-section ul li {
+    text-align: center;
+  }
+  
+  .footer-section ul li:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 576px) {
@@ -41,5 +70,10 @@
   .testimonials-section h2,
   .contact-section h2 {
     font-size: 1.75rem;
+  }
+  
+  .footer-legal {
+    flex-direction: column;
+    gap: 0.8rem;
   }
 }

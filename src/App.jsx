@@ -16,11 +16,12 @@ import AboutPage from './components/AboutPage';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import ProfilePage from './components/ProfilePage';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 
 function App() {
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [emailSubscription, setEmailSubscription] = useState('');
 
   const toggleLeadForm = () => {
     setShowLeadForm(!showLeadForm);
@@ -66,6 +67,14 @@ function App() {
     e.preventDefault();
     setShowLeadForm(false);
     alert("Thanks! Your 2025 Bid Forecast has been sent to your email.");
+  };
+
+  const handleFooterSubscribe = (e) => {
+    e.preventDefault();
+    if (emailSubscription.trim() !== '') {
+      alert(`Thank you for subscribing with: ${emailSubscription}`);
+      setEmailSubscription('');
+    }
   };
 
   return (
@@ -153,32 +162,78 @@ function App() {
           <footer>
             <div className="footer-content">
               <div className="footer-section">
-                <h3>enterAustralia<span style={{ color: '#FF6B00' }}>tech</span></h3>
-                <p>Your trusted partner for Australian market entry and government contracts.</p>
+                <h3>About Us</h3>
+                <p>Your trusted partner for Australian market entry and government contract success. We help global tech businesses navigate regulations and unlock growth.</p>
+                <div className="social-icons">
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <Facebook size={20} />
+                  </a>
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <Twitter size={20} />
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <Linkedin size={20} />
+                  </a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <Instagram size={20} />
+                  </a>
+                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <Youtube size={20} />
+                  </a>
+                </div>
               </div>
+              
               <div className="footer-section">
-                <h3>Quick Links</h3>
+                <h3>Solutions</h3>
                 <ul>
-                  <li><Link to="/">Home</Link></li>
-                  <li><Link to="/solutions">Solutions</Link></li>
-                  <li><Link to="/regions">Regions</Link></li>
-                  <li><Link to="/pricing">Pricing</Link></li>
-                  <li><Link to="/opportunities">Opportunities</Link></li>
-                  <li><Link to="/resources">Resources</Link></li>
-                  <li><Link to="/about">About</Link></li>
-                  <li><Link to="/contact">Contact</Link></li>
-                  <li><Link to="/login">Login</Link></li>
-                  <li><Link to="/profile">My Profile</Link></li>
+                  <li><Link to="/solutions#market-entry">Market Entry</Link></li>
+                  <li><Link to="/solutions#gov-tech">GovTech Procurement</Link></li>
+                  <li><Link to="/solutions#local-partnerships">Local Partnerships</Link></li>
+                  <li><Link to="/solutions#compliance">Compliance & Regulations</Link></li>
+                  <li><Link to="/solutions#grants">Grants & Incentives</Link></li>
                 </ul>
               </div>
+              
               <div className="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: info@enteraustralia.tech</p>
-                <p>Phone: +61 2 1234 5678</p>
+                <h3>Resources</h3>
+                <ul>
+                  <li><Link to="/resources#guides">Guides & Reports</Link></li>
+                  <li><Link to="/resources#apis">Data APIs & Tools</Link></li>
+                  <li><Link to="/resources#blog">Blog & Insights</Link></li>
+                  <li><Link to="/resources#webinars">Webinars</Link></li>
+                  <li><Link to="/contact">Request Custom Research</Link></li>
+                </ul>
+              </div>
+              
+              <div className="footer-section">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest market insights, tender alerts and industry updates.</p>
+                <div className="footer-subscribe">
+                  <form className="footer-subscribe-form" onSubmit={handleFooterSubscribe}>
+                    <input 
+                      type="email" 
+                      placeholder="Your email address" 
+                      required
+                      value={emailSubscription}
+                      onChange={(e) => setEmailSubscription(e.target.value)}
+                    />
+                    <button type="submit">Subscribe</button>
+                  </form>
+                </div>
               </div>
             </div>
-            <div className="copyright">
-              <p>© 2025 Enter Australia. All rights reserved. | enteraustralia.tech</p>
+            
+            <div className="footer-bottom">
+              <div className="copyright">
+                <p>© 2025 Enter Australia. All rights reserved. | enteraustralia.tech</p>
+              </div>
+              
+              <div className="footer-legal">
+                <Link to="/privacy-policy">Privacy Policy</Link>
+                <Link to="/terms">Terms of Service</Link>
+                <Link to="/cookies">Cookie Policy</Link>
+                <Link to="/sitemap">Sitemap</Link>
+              </div>
             </div>
           </footer>
         </div>
