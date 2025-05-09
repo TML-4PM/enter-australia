@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
 import { Linkedin, Instagram, Facebook, Mail, Phone } from 'lucide-react';
+import { supabase } from '../utils/supabaseClient';
 import '../styles/contact.css';
 
 const ContactSection = () => {
@@ -25,14 +27,21 @@ const ContactSection = () => {
     setFormStatus({ type: 'loading', message: 'Sending your message...' });
     
     try {
-      // Send email to troy@tech4humanity.com.au
-      // This would typically be done through a server API
-      // For demo purposes, we're simulating a successful submission
-      console.log('Sending email to: troy@tech4humanity.com.au');
-      console.log('Form data:', formState);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Save to Supabase leads table
+      const { error } = await supabase
+        .from('leads')
+        .insert({
+          name: formState.name,
+          email: formState.email,
+          company: formState.company,
+          service: formState.service,
+          message: formState.message,
+          source: 'contact_form'
+        });
+        
+      if (error) {
+        throw new Error(error.message);
+      }
       
       setFormStatus({ type: 'success', message: 'Message sent successfully! We will contact you shortly.' });
       setFormState({

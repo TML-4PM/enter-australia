@@ -27,10 +27,13 @@
 @import './styles/resources.css';
 @import './styles/about.css';
 
+/* Auth styles */
+@import './styles/auth.css';
+@import './styles/profile.css';
+
 /* Other styles */
 @import './styles/error-message.css';
 @import './styles/blog.css';
 @import './styles/contact.css';
 @import './styles/footer.css';
 @import './styles/responsive.css';
-
