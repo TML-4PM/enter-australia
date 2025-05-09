@@ -21,9 +21,16 @@
 @import './styles/comparison-table.css';
 @import './styles/pricing-media-queries.css';
 
+/* New page styles */
+@import './styles/solutions.css';
+@import './styles/regions.css';
+@import './styles/resources.css';
+@import './styles/about.css';
+
 /* Other styles */
 @import './styles/error-message.css';
 @import './styles/blog.css';
 @import './styles/contact.css';
 @import './styles/footer.css';
 @import './styles/responsive.css';
+

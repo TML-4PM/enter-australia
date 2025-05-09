@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import BlogPage from './components/BlogPage';
@@ -7,6 +8,10 @@ import HowItWorksSection from './components/HowItWorksSection';
 import OpportunitiesSection from './components/OpportunitiesSection';
 import ContactSection from './components/ContactSection';
 import SuccessPage from './components/SuccessPage';
+import SolutionsPage from './components/SolutionsPage';
+import RegionsPage from './components/RegionsPage';
+import ResourcesPage from './components/ResourcesPage';
+import AboutPage from './components/AboutPage';
 import { Menu, X } from 'lucide-react';
 
 function App() {
@@ -67,15 +72,17 @@ function App() {
             <div className="logo">enterAustralia<span>tech</span></div>
             <ul className={isMenuOpen ? 'active' : ''}>
               <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-              <li><Link to="/how-it-works" onClick={closeMenu}>How It Works</Link></li>
-              <li><Link to="/opportunities" onClick={closeMenu}>Opportunities</Link></li>
+              <li><Link to="/solutions" onClick={closeMenu}>Solutions</Link></li>
+              <li><Link to="/regions" onClick={closeMenu}>Regions</Link></li>
               <li><Link to="/pricing" onClick={closeMenu}>Pricing</Link></li>
-              <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
+              <li><Link to="/opportunities" onClick={closeMenu}>Opportunities</Link></li>
+              <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li>
+              <li><Link to="/about" onClick={closeMenu}>About</Link></li>
               <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
               {isMenuOpen && (
                 <li className="visible-mobile">
                   <Link to="/pricing" className="nav-cta mobile" onClick={closeMenu}>
-                    Get Started – $5K
+                    Get Started
                   </Link>
                 </li>
               )}
@@ -87,7 +94,7 @@ function App() {
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-            <Link to="/pricing" className="nav-cta desktop-only">Get Started – $5K</Link>
+            <Link to="/pricing" className="nav-cta desktop-only">Get Started</Link>
           </nav>
         </header>
 
@@ -100,10 +107,12 @@ function App() {
                 handleFormSubmit={handleFormSubmit} 
               />
             } />
-            <Route path="/how-it-works" element={<HowItWorksSection />} />
+            <Route path="/solutions" element={<SolutionsPage />} />
+            <Route path="/regions" element={<RegionsPage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/opportunities" element={<OpportunitiesSection />} />
             <Route path="/pricing" element={<PricingSection />} />
-            <Route path="/blog" element={<BlogPage />} />
             <Route path="/contact" element={<ContactSection />} />
             <Route path="/success" element={<SuccessPage />} />
           </Routes>
@@ -112,7 +121,7 @@ function App() {
             <div className="lead-form-overlay">
               <div className="lead-form-container">
                 <button className="close-btn" onClick={toggleLeadForm}>×</button>
-                <h2>Download 2025 Bid Forecast</h2>
+                <h2>Get Your Free Market Assessment</h2>
                 <form onSubmit={handleFormSubmit}>
                   <div className="form-group">
                     <input type="text" name="name" placeholder="Your Name" required />
@@ -123,7 +132,7 @@ function App() {
                   <div className="form-group">
                     <input type="text" name="company" placeholder="Company Name" required />
                   </div>
-                  <button type="submit" className="submit-btn">Get Access Now</button>
+                  <button type="submit" className="submit-btn">Get My Free Assessment</button>
                 </form>
               </div>
             </div>
@@ -140,10 +149,12 @@ function App() {
               <h3>Quick Links</h3>
               <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/how-it-works">How It Works</Link></li>
-                <li><Link to="/opportunities">Opportunities</Link></li>
+                <li><Link to="/solutions">Solutions</Link></li>
+                <li><Link to="/regions">Regions</Link></li>
                 <li><Link to="/pricing">Pricing</Link></li>
-                <li><Link to="/blog">Blog</Link></li>
+                <li><Link to="/opportunities">Opportunities</Link></li>
+                <li><Link to="/resources">Resources</Link></li>
+                <li><Link to="/about">About</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
