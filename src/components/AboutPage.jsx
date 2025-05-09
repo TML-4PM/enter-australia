@@ -26,7 +26,7 @@ const AboutPage = () => {
     {
       name: "David Fitzpatrick",
       role: "Director of GovTech Services",
-      bio: "A former policy adviser in Canberra's Digital Transformation Agency, David knows how to write winning tender responses and navigate federal procurement frameworks. He leads our GovTech practice, helping clients secure large-scale contracts in health, education and defense. David designed the government's first open-data API standards and authored the "Digital Services in Government" whitepaper that's now a benchmark across OECD countries.",
+      bio: "A former policy adviser in Canberra's Digital Transformation Agency, David knows how to write winning tender responses and navigate federal procurement frameworks. He leads our GovTech practice, helping clients secure large-scale contracts in health, education and defense. David designed the government's first open-data API standards and authored the 'Digital Services in Government' whitepaper that's now a benchmark across OECD countries.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
     },
     {
