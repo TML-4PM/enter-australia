@@ -15,11 +15,7 @@ const HomePage = ({ toggleLeadForm }) => {
         <div className="social-proof">
           <p>Trusted by US tech firms eyeing AUKUS</p>
           <div className="logo-placeholder">
-            <img 
-              src="/lovable-uploads/640fedd1-d972-4339-8918-915a2df69bf6.png" 
-              alt="Tech procurement process flowchart" 
-              className="flowchart-image"
-            />
+            {/* Flowchart image has been removed */}
           </div>
         </div>
       </section>
