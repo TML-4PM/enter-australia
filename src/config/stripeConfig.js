@@ -96,7 +96,7 @@ export const PRODUCTS = {
       { title: 'Week 1–2', description: 'Identify & outreach to depts' },
       { title: 'Week 2–3', description: 'Schedule & prep meetings' },
       { title: 'Week 3–4', description: 'Tender drafting & partner tasks' },
-      { title: 'Ongoing', description: 'Monthly report & next month's plan' },
+      { title: 'Ongoing', description: 'Monthly report & next month\'s plan' }
     ],
     support: 'Email, Live Chat, Phone (M–F, 8 am–6 pm AEST) with responses within 1 business day.',
     outcomes: '2–4 qualified gov leads per month with 10–15% uplift in pipeline monthly.',
@@ -128,7 +128,7 @@ export const PRODUCTS = {
       { title: 'Month Start', description: 'Executive alignment workshop' },
       { title: 'Weeks 1–2', description: 'Dept & partner outreach' },
       { title: 'Weeks 2–4', description: 'Meetings, tender prep, integration tasks' },
-      { title: 'Last Week', description: 'Exec review & next-month kickoff' },
+      { title: 'Last Week', description: 'Exec review & next-month kickoff' }
     ],
     support: '24/5 dedicated Slack channel, Phone, Email with response within 4 hours and quarterly on-site workshop.',
     outcomes: '5–10 active opportunities in funnel with approximately 3× pipeline growth in 6 months.',
@@ -161,7 +161,7 @@ export const PRODUCTS = {
       { title: 'Kickoff', description: 'Custom roadmap workshop & governance setup' },
       { title: 'Ongoing', description: 'Weekly sprints for intros, tenders, integrations' },
       { title: 'Quarterly', description: 'Business review & strategy reset' },
-      { title: 'Ad hoc', description: 'On-site support & training' },
+      { title: 'Ad hoc', description: 'On-site support & training' }
     ],
     support: '24/7 dedicated account team with SLA: < 1 hr for critical issues; < 4 hrs for high-priority, plus custom reporting dashboards.',
     outcomes: 'Measurable enterprise-grade contract wins, strategic partnerships & co-sell agreements, and sustained pipeline growth YoY.',
