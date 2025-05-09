@@ -22,56 +22,56 @@ export const PRODUCTS = {
       'Access to Resource Library'
     ]
   },
-  LAUNCH: {
+  ENTRY_KIT: {
     priceId: 'price_1R6NDED6fFdhmypRzqX57oPS',
-    name: 'Launch',
-    isSubscription: true,
-    price: '$2.5K',
-    period: 'per month',
-    description: 'Begin your Australian market entry with essential support and monthly advisor calls.',
+    name: 'Entry Kit',
+    isSubscription: false,
+    price: '$5K',
+    period: 'One-time payment',
+    description: 'One-time payment to establish your Australian presence and get your first government introduction.',
     features: [
-      'Free Market Assessment',
-      'Compliance Toolkit',
-      '1 Dedicated Advisor Call Monthly',
-      '1 Partnership Introduction Quarterly',
-      '1 Week On-site Launch Support',
-      'Up to $25K R&D Grants Assistance'
+      'Australian Business Number (ABN) registration',
+      'Virtual office in strategic location',
+      'Localized marketing materials',
+      'Introduction to one government department',
+      'Capability brief development',
+      '30-day initial market entry support',
+      '7-10 business days turnaround'
     ]
   },
   GROWTH: {
     priceId: 'price_1R7DVLD6fFdhmypRyEkK3z52',
-    name: 'Growth',
+    name: 'Growth Plan',
     isSubscription: true,
     price: '$5K',
     period: 'per month',
-    description: 'Accelerate your Australian presence with increased support and tender response assistance.',
+    description: 'Monthly service to develop your Australian market presence with targeted government introductions.',
     features: [
-      'Free Market Assessment',
-      'Compliance Toolkit',
-      '2 Dedicated Advisor Calls Monthly',
-      '3 Partnership Introductions Quarterly',
-      '2 Weeks On-site Launch Support',
-      'Up to $50K R&D Grants Assistance',
-      '1 GovTech Tender Response Yearly'
+      'Up to 2 govt department introductions monthly',
+      'Virtual office in premium location',
+      'Up to 2 in-person govt meetings monthly',
+      '1 tender response support monthly',
+      '1 local partner coordination',
+      'Basic compliance guidance',
+      'Monthly progress reporting'
+    ]
+  },
+  PREMIUM: {
+    priceId: 'price_1R6NEHD6fFdhmypRg6CN1BuQ',
+    name: 'Premium Retainer',
+    isSubscription: true,
+    price: '$15K',
+    period: 'per month',
+    description: 'Comprehensive monthly service to actively pursue and win Australian government contracts.',
+    features: [
+      'Up to 5 govt department introductions monthly',
+      'Physical office presence when needed',
+      'Up to 4 in-person govt meetings monthly',
+      'Up to 2 tender responses monthly',
+      'Up to 3 local partner coordination',
+      'Tech & cybersecurity compliance support'
     ],
     featured: true
-  },
-  SCALE: {
-    priceId: 'price_1R6NEHD6fFdhmypRg6CN1BuQ',
-    name: 'Scale',
-    isSubscription: true,
-    price: '$8.5K',
-    period: 'per month',
-    description: 'Maximize your Australian market potential with weekly support and unlimited partnership introductions.',
-    features: [
-      'Free Market Assessment',
-      'Compliance Toolkit',
-      'Weekly Dedicated Advisor Calls',
-      'Unlimited Partnership Introductions',
-      '1 Month On-site Launch Support',
-      'Full R&D Program Assistance',
-      '3 GovTech Tender Responses Yearly'
-    ]
   },
   ENTERPRISE: {
     name: 'Enterprise',

@@ -14,8 +14,8 @@ const PricingSolutions = () => {
           <a href="#pricing" className="learn-more">Learn more</a>
         </div>
         <div className="solution-card">
-          <img src="/lovable-uploads/dd141c59-78d3-40da-974d-074867ce8906.png" alt="Ongoing support" className="solution-image" />
-          <h4>Ongoing Support</h4>
+          <img src="/lovable-uploads/dd141c59-78d3-40da-974d-074867ce8906.png" alt="Premium Retainer" className="solution-image" />
+          <h4>Premium Retainer</h4>
           <p>Stay ahead with our tailored $15K/month ongoing support.</p>
           <a href="#pricing" className="learn-more">Learn more</a>
         </div>

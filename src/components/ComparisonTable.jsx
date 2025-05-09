@@ -4,7 +4,7 @@ import { PRODUCTS } from '../config/stripeConfig';
 import '../styles/comparison-table.css';
 
 const ComparisonTable = () => {
-  const { ASSESSMENT, LAUNCH, GROWTH, SCALE, ENTERPRISE } = PRODUCTS;
+  const { ASSESSMENT, ENTRY_KIT, GROWTH, PREMIUM, ENTERPRISE } = PRODUCTS;
   
   return (
     <div className="comparison">
@@ -15,15 +15,15 @@ const ComparisonTable = () => {
             <tr>
               <th>Feature</th>
               <th>Assessment ({ASSESSMENT.price})</th>
-              <th>Launch ({LAUNCH.price}/{LAUNCH.period.split(' ')[0]})</th>
+              <th>Entry Kit ({ENTRY_KIT.price})</th>
               <th>Growth ({GROWTH.price}/{GROWTH.period.split(' ')[0]})</th>
-              <th>Scale ({SCALE.price}/{SCALE.period.split(' ')[0]})</th>
+              <th>Premium ({PREMIUM.price}/{PREMIUM.period.split(' ')[0]})</th>
               <th>Enterprise ({ENTERPRISE.price})</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Free Market Assessment</td>
+              <td>Market Assessment</td>
               <td>✓</td>
               <td>✓</td>
               <td>✓</td>
@@ -31,63 +31,63 @@ const ComparisonTable = () => {
               <td>✓</td>
             </tr>
             <tr>
-              <td>Compliance Toolkit</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>✓</td>
-            </tr>
-            <tr>
-              <td>Dedicated Advisor Calls</td>
+              <td>Virtual Office</td>
               <td>—</td>
-              <td>1× / month</td>
-              <td>2× / month</td>
-              <td>Weekly</td>
-              <td>Weekly + On-site</td>
+              <td>Strategic Location</td>
+              <td>Premium Location</td>
+              <td>Premium Location</td>
+              <td>Custom</td>
             </tr>
             <tr>
-              <td>Partnership Introductions</td>
+              <td>Govt Dept Introductions</td>
               <td>—</td>
-              <td>1× / quarter</td>
-              <td>3× / quarter</td>
+              <td>1 total</td>
+              <td>Up to 2 monthly</td>
+              <td>Up to 5 monthly</td>
               <td>Unlimited</td>
-              <td>Unlimited + Co-sell</td>
             </tr>
             <tr>
-              <td>On-site Launch Support</td>
+              <td>In-person Govt Meetings</td>
               <td>—</td>
-              <td>1 week</td>
-              <td>2 weeks</td>
-              <td>1 month</td>
-              <td>As needed</td>
+              <td>—</td>
+              <td>Up to 2 monthly</td>
+              <td>Up to 4 monthly</td>
+              <td>Unlimited</td>
             </tr>
             <tr>
-              <td>R&D Grants & Rebates</td>
+              <td>Tender Response Support</td>
               <td>—</td>
-              <td>Up to $25K</td>
-              <td>Up to $50K</td>
+              <td>—</td>
+              <td>1 monthly</td>
+              <td>Up to 2 monthly</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Local Partner Coordination</td>
+              <td>—</td>
+              <td>—</td>
+              <td>1 partner</td>
+              <td>Up to 3 partners</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Compliance Support</td>
+              <td>Basic Guidance</td>
+              <td>Basic Setup</td>
+              <td>Basic Guidance</td>
+              <td>Tech & Cybersecurity</td>
               <td>Full Program</td>
-              <td>Full Program + Admin</td>
             </tr>
             <tr>
-              <td>GovTech Tender Response</td>
+              <td>Physical Office</td>
               <td>—</td>
               <td>—</td>
-              <td>1× / year</td>
-              <td>3× / year</td>
-              <td>Unlimited</td>
+              <td>—</td>
+              <td>When Needed</td>
+              <td>Dedicated</td>
             </tr>
             <tr>
-              <td>Custom Integrations</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-              <td>✓</td>
-            </tr>
-            <tr>
-              <td>Dedicated Account Team</td>
+              <td>Dedicated Team</td>
               <td>—</td>
               <td>—</td>
               <td>—</td>

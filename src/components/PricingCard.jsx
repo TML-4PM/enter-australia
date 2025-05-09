@@ -9,6 +9,9 @@ const PricingCard = ({
 }) => {
   const { name, price, period, description, features, featured } = product;
 
+  // Determine if this is a one-time payment or subscription
+  const isOneTime = period && period.toLowerCase().includes('one-time');
+
   return (
     <div className={`pricing-card ${featured ? 'featured' : ''}`}>
       {featured && <div className="popular-badge">RECOMMENDED</div>}
