@@ -1,19 +1,56 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { saveEmailSubscription } from '../utils/subscriptionUtils';
+import { fetchLinkedInActivity } from '../utils/linkedinUtils';
 import '../styles/resources.css';
 
 const ResourcesPage = () => {
   const [email, setEmail] = React.useState('');
   const [showThankYou, setShowThankYou] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [blogPosts, setBlogPosts] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
   
-  const handleSubscribe = (e) => {
+  useEffect(() => {
+    const loadBlogPosts = async () => {
+      try {
+        setIsLoading(true);
+        const posts = await fetchLinkedInActivity();
+        setBlogPosts(posts);
+        setIsLoading(false);
+      } catch (err) {
+        console.error('Failed to load blog posts:', err);
+        setError('Failed to load blog content. Please try again later.');
+        setIsLoading(false);
+      }
+    };
+    
+    loadBlogPosts();
+  }, []);
+  
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    // In a real app, you would submit to an API
-    console.log('Subscribed:', email);
-    setShowThankYou(true);
-    setEmail('');
-    setTimeout(() => setShowThankYou(false), 3000);
+    setIsSubmitting(true);
+    
+    try {
+      const result = await saveEmailSubscription(email, 'resources_page');
+      
+      if (result.success) {
+        setShowThankYou(true);
+        setEmail('');
+        setTimeout(() => setShowThankYou(false), 5000);
+      } else {
+        alert("There was an error subscribing. Please try again.");
+        console.error(result.error);
+      }
+    } catch (err) {
+      console.error('Error in subscription:', err);
+      alert("Subscription failed. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   return (
@@ -65,31 +102,33 @@ const ResourcesPage = () => {
         </div>
         
         <div className="resources-blog">
-          <h2>Blog</h2>
+          <h2>Blog & Insights from LinkedIn</h2>
           <div className="blog-grid">
-            <div className="blog-card">
-              <div className="blog-image"></div>
-              <div className="blog-content">
-                <span className="blog-date">April 28, 2025</span>
-                <h3>Why Australian Data-Sovereignty Matters</h3>
-                <p>How local data storage requirements impact your tech expansion strategy</p>
-                <Link to="#" className="blog-link">Read More →</Link>
-              </div>
-            </div>
-            
-            <div className="blog-card">
-              <div className="blog-image"></div>
-              <div className="blog-content">
-                <span className="blog-date">April 15, 2025</span>
-                <h3>Top 5 Cloud Trends in 2025</h3>
-                <p>How Australia's cloud adoption is evolving for enterprise and government</p>
-                <Link to="#" className="blog-link">Read More →</Link>
-              </div>
-            </div>
+            {isLoading ? (
+              <div className="blog-loading">Loading latest insights...</div>
+            ) : error ? (
+              <div className="blog-error">{error}</div>
+            ) : (
+              blogPosts.map(post => (
+                <div className="blog-card" key={post.id}>
+                  <div className="blog-image" style={{ backgroundImage: `url(${post.imageUrl})` }}></div>
+                  <div className="blog-content">
+                    <span className="blog-date">{new Date(post.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}</span>
+                    <h3>{post.title}</h3>
+                    <p>{post.content.length > 120 ? post.content.substring(0, 120) + '...' : post.content}</p>
+                    <a href={post.url} target="_blank" rel="noopener noreferrer" className="blog-link">Read More →</a>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
         
-        <div className="resources-subscribe">
+        <div className="resources-subscribe" id="subscribe">
           <h2>Stay Informed</h2>
           <p>Get weekly insights on Australian tech opportunities</p>
           <form onSubmit={handleSubscribe}>
@@ -100,10 +139,21 @@ const ResourcesPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email address" 
                 required 
+                disabled={isSubmitting}
               />
-              <button type="submit" className="btn primary">Subscribe</button>
+              <button 
+                type="submit" 
+                className={`btn primary ${isSubmitting ? 'loading' : ''}`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Processing...' : 'Subscribe'}
+              </button>
             </div>
-            {showThankYou && <p className="thank-you-message">Thank you for subscribing!</p>}
+            {showThankYou && (
+              <p className="thank-you-message">
+                Thank you for subscribing! You'll receive our weekly insights shortly.
+              </p>
+            )}
           </form>
         </div>
       </div>

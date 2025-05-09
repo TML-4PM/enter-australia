@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { saveEmailSubscription } from './utils/subscriptionUtils';
 import BlogPage from './components/BlogPage';
 import HomePage from './components/HomePage';
 import PricingSection from './components/PricingSection';
@@ -22,6 +22,8 @@ function App() {
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [emailSubscription, setEmailSubscription] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const toggleLeadForm = () => {
     setShowLeadForm(!showLeadForm);
@@ -69,11 +71,28 @@ function App() {
     alert("Thanks! Your 2025 Bid Forecast has been sent to your email.");
   };
 
-  const handleFooterSubscribe = (e) => {
+  const handleFooterSubscribe = async (e) => {
     e.preventDefault();
-    if (emailSubscription.trim() !== '') {
-      alert(`Thank you for subscribing with: ${emailSubscription}`);
-      setEmailSubscription('');
+    if (emailSubscription.trim() === '') return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      const result = await saveEmailSubscription(emailSubscription, 'footer');
+      
+      if (result.success) {
+        setShowThankYou(true);
+        setEmailSubscription('');
+        setTimeout(() => setShowThankYou(false), 5000);
+      } else {
+        console.error('Error saving subscription:', result.error);
+        alert('There was an issue with your subscription. Please try again.');
+      }
+    } catch (err) {
+      console.error('Failed to submit subscription:', err);
+      alert('Subscription failed. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -171,7 +190,7 @@ function App() {
                   <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon">
                     <Twitter size={20} />
                   </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                  <a href="https://linkedin.com/in/theinnovater" target="_blank" rel="noopener noreferrer" className="social-icon">
                     <Linkedin size={20} />
                   </a>
                   <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
@@ -198,8 +217,8 @@ function App() {
                 <h3>Resources</h3>
                 <ul>
                   <li><Link to="/resources#guides">Guides & Reports</Link></li>
-                  <li><Link to="/resources#apis">Data APIs & Tools</Link></li>
-                  <li><Link to="/resources#blog">Blog & Insights</Link></li>
+                  <li><a href="https://data.gov.au/search" target="_blank" rel="noopener noreferrer">Data APIs & Tools</a></li>
+                  <li><Link to="/blog">Blog & Insights</Link></li>
                   <li><Link to="/resources#webinars">Webinars</Link></li>
                   <li><Link to="/contact">Request Custom Research</Link></li>
                 </ul>
@@ -216,9 +235,20 @@ function App() {
                       required
                       value={emailSubscription}
                       onChange={(e) => setEmailSubscription(e.target.value)}
+                      disabled={isSubmitting}
                     />
-                    <button type="submit">Subscribe</button>
+                    <button 
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? '...' : 'Subscribe'}
+                    </button>
                   </form>
+                  {showThankYou && (
+                    <p className="thank-you-message">
+                      Thanks for subscribing! We'll keep you updated.
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
