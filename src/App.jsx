@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
@@ -5,6 +6,7 @@ import { saveEmailSubscription } from './utils/subscriptionUtils';
 import BlogPage from './components/BlogPage';
 import HomePage from './components/HomePage';
 import PricingSection from './components/PricingSection';
+import PricingDetail from './components/PricingDetail';
 import HowItWorksSection from './components/HowItWorksSection';
 import OpportunitiesSection from './components/OpportunitiesSection';
 import ContactSection from './components/ContactSection';
@@ -149,6 +151,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/opportunities" element={<OpportunitiesSection />} />
               <Route path="/pricing" element={<PricingSection />} />
+              <Route path="/pricing/:tierSlug" element={<PricingDetail />} />
               <Route path="/contact" element={<ContactSection />} />
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/login" element={<LoginPage />} />

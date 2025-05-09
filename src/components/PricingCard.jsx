@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PricingCard = ({ 
   product, 
@@ -16,6 +17,9 @@ const PricingCard = ({
   // Determine if this is the premium plan
   const isPremium = name === 'Premium Retainer';
 
+  // Create a URL-friendly slug from the product name
+  const productSlug = name.toLowerCase().replace(/\s+/g, '-');
+  
   return (
     <div className={`pricing-card ${featured ? 'featured' : ''} ${isCurrentPlan ? 'current-plan' : ''} ${isPremium ? 'premium-plan' : ''}`}>
       {featured && <div className="popular-badge">RECOMMENDED</div>}
@@ -30,24 +34,35 @@ const PricingCard = ({
       <p className="price-description">{description}</p>
       
       <ul className="features">
-        {features.map((feature, index) => (
+        {features.slice(0, 4).map((feature, index) => (
           <li key={index}>{feature}</li>
         ))}
+        {features.length > 4 && (
+          <li className="more-features">
+            <Link to={`/pricing/${productSlug}`} className="view-more-link">+ {features.length - 4} more features</Link>
+          </li>
+        )}
       </ul>
       
-      <button 
-        onClick={() => onAction(product)} 
-        className={`pricing-cta 
-          ${isLoading ? 'loading' : ''} 
-          ${name === 'Assessment' ? 'free' : ''} 
-          ${name === 'Enterprise' || isPremium ? 'enterprise' : ''}
-          ${isCurrentPlan ? 'current-plan-btn' : ''}
-          ${isPremium ? 'premium-btn' : ''}
-        `}
-        disabled={isLoading}
-      >
-        {getButtonText(product)}
-      </button>
+      <div className="pricing-card-actions">
+        <button 
+          onClick={() => onAction(product)} 
+          className={`pricing-cta 
+            ${isLoading ? 'loading' : ''} 
+            ${name === 'Assessment' ? 'free' : ''} 
+            ${name === 'Enterprise' || isPremium ? 'enterprise' : ''}
+            ${isCurrentPlan ? 'current-plan-btn' : ''}
+            ${isPremium ? 'premium-btn' : ''}
+          `}
+          disabled={isLoading}
+        >
+          {getButtonText(product)}
+        </button>
+        
+        <Link to={`/pricing/${productSlug}`} className="learn-more-link">
+          Learn More
+        </Link>
+      </div>
     </div>
   );
 };
