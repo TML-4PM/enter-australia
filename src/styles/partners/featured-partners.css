@@ -1,0 +1,102 @@
+
+/* Featured Partners Section */
+.featured-partners {
+  padding: 3rem 5%;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.featured-partners h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.featured-partners > p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: var(--gray-dark);
+}
+
+.featured-partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.featured-partner-card {
+  background-color: var(--light-color);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  text-align: left;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.featured-partner-card:hover {
+  transform: translateY(-5px);
+}
+
+.partner-logo {
+  height: 80px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.partner-logo img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.featured-partner-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary-color);
+}
+
+.featured-partner-card p {
+  margin-bottom: 1.5rem;
+  color: var(--gray-dark);
+  flex-grow: 1;
+}
+
+.partner-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.partner-industry {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background-color: var(--gray-light);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--gray-dark);
+}
+
+.partner-level {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background-color: var(--australian-blue);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--light-color);
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .featured-partners-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .featured-partners h2 {
+    font-size: 2rem;
+  }
+}

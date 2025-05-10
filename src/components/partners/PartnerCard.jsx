@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { LinkIcon } from 'lucide-react';
+import '../../styles/partners/partner-card.css';
 
 const PartnerCard = ({ partner }) => {
   return (

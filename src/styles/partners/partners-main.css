@@ -1,0 +1,17 @@
+
+/* Partners Page Styles */
+.partners-page {
+  padding: 0 0 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Import all partner-specific stylesheets */
+@import './partner-hero.css';
+@import './partnership-value.css';
+@import './featured-partners.css';
+@import './partner-directory.css';
+@import './partner-card.css';
+@import './partnership-process.css';
+@import './success-stories.css';
+@import './partner-cta.css';

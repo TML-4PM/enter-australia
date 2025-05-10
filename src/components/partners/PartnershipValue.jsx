@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Handshake, Users, Building, Briefcase } from 'lucide-react';
+import '../../styles/partners/partnership-value.css';
 
 const PartnershipValue = () => {
   return (

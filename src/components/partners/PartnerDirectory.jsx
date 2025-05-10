@@ -1,8 +1,8 @@
-
 import React from 'react';
-import { Search, LinkIcon } from 'lucide-react';
+import { Search } from 'lucide-react';
 import PartnerSearchFilters from './PartnerSearchFilters';
 import PartnerCard from './PartnerCard';
+import '../../styles/partners/partner-directory.css';
 
 const PartnerDirectory = ({ 
   partners, 

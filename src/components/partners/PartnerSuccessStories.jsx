@@ -1,5 +1,6 @@
 
 import React from 'react';
+import '../../styles/partners/success-stories.css';
 
 const PartnerSuccessStories = () => {
   return (

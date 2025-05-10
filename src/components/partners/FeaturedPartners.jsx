@@ -1,5 +1,6 @@
 
 import React from 'react';
+import '../../styles/partners/featured-partners.css';
 
 const FeaturedPartners = ({ featuredPartners, isLoading }) => {
   return (

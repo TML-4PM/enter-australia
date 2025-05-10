@@ -1,0 +1,42 @@
+
+/* CTA Section */
+.partners-cta {
+  background-color: var(--gray-light);
+  padding: 4rem 5%;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.partners-cta h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.partners-cta p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: var(--gray-dark);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .partners-cta {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cta-buttons {
+    flex-direction: column;
+  }
+}

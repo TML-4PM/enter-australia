@@ -1,5 +1,6 @@
 
 import React from 'react';
+import '../../styles/partners/partnership-process.css';
 
 const PartnershipProcess = () => {
   return (

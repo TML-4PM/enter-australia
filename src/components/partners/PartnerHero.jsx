@@ -1,5 +1,6 @@
 
 import React from 'react';
+import '../../styles/partners/partner-hero.css';
 
 const PartnerHero = () => {
   return (

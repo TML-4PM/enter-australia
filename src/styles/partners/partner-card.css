@@ -1,0 +1,71 @@
+
+/* Partner Card Styles */
+.partner-card {
+  background-color: var(--light-color);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+}
+
+.partner-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.partner-category {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  background-color: var(--australian-blue);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--light-color);
+  margin-bottom: 1rem;
+}
+
+.partner-card p {
+  margin-bottom: 1.5rem;
+  color: var(--gray-dark);
+  flex-grow: 1;
+}
+
+.partner-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.partner-specialty {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background-color: var(--secondary-light);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+.partner-website {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.partner-website:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
