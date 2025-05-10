@@ -2,14 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary-color: #003366; /* Navy blue for trust */
-  --secondary-color: #FF6B00; /* Orange for action */
+  --primary-color: #00843D; /* Australian green */
+  --secondary-color: #FFCD00; /* Australian gold */
   --dark-color: #1A1F2C;
   --light-color: #ffffff;
-  --accent-color: #9b87f5;
+  --accent-color: #E9483F; /* Red ochre - Australian earth */
+  --australian-blue: #0A3161; /* Australian blue */
   --gray-light: #f5f5f5;
   --gray-medium: #e0e0e0;
   --gray-dark: #333333;
+  --eucalyptus: #8BA58F; /* Eucalyptus green */
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
 }

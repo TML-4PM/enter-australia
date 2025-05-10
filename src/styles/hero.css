@@ -1,8 +1,7 @@
-
 /* Hero Section */
 .hero {
   height: 90vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1483058712412-e9573fc25ebb?auto=format&fit=crop&w=1700&q=80');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1483058712412-e9573fc25ebb?auto=format&fit=crop&w=1700&q=80');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -24,6 +23,7 @@
   font-size: 4rem;
   margin-bottom: 1rem;
   font-weight: 700;
+  color: var(--secondary-color); /* Australian gold for heading */
 }
 
 .hero-content h2 {
@@ -58,29 +58,30 @@
 }
 
 .btn.primary {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color); /* Australian green */
   color: var(--light-color);
 }
 
 .btn.primary:hover {
-  background-color: #ff8733;
+  background-color: #00a651; /* Lighter Australian green */
   transform: translateY(-3px);
 }
 
 .btn.secondary {
   background-color: transparent;
-  color: var(--light-color);
-  border: 2px solid var(--light-color);
+  color: var(--secondary-color); /* Australian gold */
+  border: 2px solid var(--secondary-color);
 }
 
 .btn.secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 205, 0, 0.1); /* Semi-transparent gold */
   transform: translateY(-3px);
 }
 
 .social-proof {
   margin-top: 3rem;
   text-align: center;
+  color: var(--secondary-color); /* Australian gold */
 }
 
 .social-proof p {
@@ -99,7 +100,7 @@
 .why-australia-section h2 {
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Australian green */
 }
 
 .icon-bar {
@@ -128,7 +129,7 @@
 .icon-item h3 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Australian green */
 }
 
 /* Core Services Section */
@@ -141,7 +142,7 @@
 .core-services-section h2 {
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Australian green */
 }
 
 .services-grid {
@@ -163,12 +164,13 @@
 
 .service-card:hover {
   transform: translateY(-5px);
+  border-top: 3px solid var(--secondary-color); /* Australian gold accent */
 }
 
 .service-card h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: var(--primary-color);
+  color: var(--australian-blue); /* Australian blue */
 }
 
 /* Case Study Section */
@@ -216,14 +218,16 @@ blockquote cite {
 /* Regional Teasers Section */
 .regional-teasers-section {
   padding: 5rem 5%;
-  background-color: var(--gray-light);
+  background-color: var(--eucalyptus); /* Eucalyptus green background */
+  background: linear-gradient(to right, var(--eucalyptus), #a8c0a8);
   text-align: center;
+  color: var(--dark-color);
 }
 
 .regional-teasers-section h2 {
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: var(--primary-color);
+  color: var(--dark-color);
 }
 
 .regions-grid {
@@ -245,12 +249,13 @@ blockquote cite {
 
 .region-card:hover {
   transform: translateY(-5px);
+  border-left: 4px solid var(--accent-color); /* Red ochre border */
 }
 
 .region-card h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Australian green */
 }
 
 .region-card p {
@@ -258,13 +263,13 @@ blockquote cite {
 }
 
 .region-link {
-  color: var(--secondary-color);
+  color: var(--accent-color); /* Red ochre */
   font-weight: 600;
   transition: var(--transition);
 }
 
 .region-link:hover {
-  color: #ff8733;
+  color: #ff5a4f; /* Lighter red ochre */
 }
 
 /* Footer CTA Section */
@@ -278,12 +283,12 @@ blockquote cite {
 .footer-cta-section h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Australian green */
 }
 
 .cta {
   display: inline-block;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color); /* Australian green */
   color: var(--light-color);
   padding: 1rem 2.5rem;
   border-radius: 50px;
@@ -293,7 +298,7 @@ blockquote cite {
 }
 
 .cta:hover {
-  background-color: #ff8733;
+  background-color: #00a651; /* Lighter Australian green */
   transform: translateY(-3px);
 }
 

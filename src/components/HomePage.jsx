@@ -14,7 +14,7 @@ const HomePage = ({ toggleLeadForm }) => {
           <Link to="/resources" className="btn secondary">Download the Australia Tech Playbook</Link>
         </div>
         <div className="social-proof">
-          <p>Trusted by US tech firms eyeing AUKUS</p>
+          <p>Trusted by FVEYs firms eying AUKUS, Critical Minerals, Telecommunications, Health, Trade and more</p>
         </div>
       </section>
 
@@ -22,12 +22,12 @@ const HomePage = ({ toggleLeadForm }) => {
         <h2>Why Australia</h2>
         <div className="icon-bar">
           <div className="icon-item">
-            <div className="icon">🏛️</div>
+            <div className="icon">🦘</div>
             <h3>Regulatory Expertise</h3>
             <p>Skip the red tape.</p>
           </div>
           <div className="icon-item">
-            <div className="icon">🤝</div>
+            <div className="icon">🏛️</div>
             <h3>Gov't Partnerships</h3>
             <p>Access state & federal contracts.</p>
           </div>
@@ -77,12 +77,12 @@ const HomePage = ({ toggleLeadForm }) => {
         <div className="regions-grid">
           <div className="region-card">
             <h3>Asia-Pac</h3>
-            <p>Leverage our Singapore HQ for seamless regional expansion.</p>
+            <p>Leverage our Sydney HQ for seamless regional expansion.</p>
             <Link to="/regions" className="region-link">Learn more →</Link>
           </div>
           <div className="region-card">
             <h3>Middle East</h3>
-            <p>Dubai–Melbourne corridor for innovative tech solutions.</p>
+            <p>Perth–Dubai corridor for innovative tech solutions.</p>
             <Link to="/regions" className="region-link">Learn more →</Link>
           </div>
           <div className="region-card">
