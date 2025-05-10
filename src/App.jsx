@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
@@ -18,6 +19,7 @@ import AboutPage from './components/AboutPage';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import ProfilePage from './components/ProfilePage';
+import WebinarPage from './components/WebinarPage';
 import LiveChatBot from './components/LiveChatBot';
 import { Menu, X, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 
@@ -140,6 +142,7 @@ function App() {
                 <li><Link to="/regions" onClick={closeMenu}>Regions</Link></li>
                 <li><Link to="/pricing" onClick={closeMenu}>Pricing</Link></li>
                 <li><Link to="/opportunities" onClick={closeMenu}>Opportunities</Link></li>
+                <li><Link to="/webinars" onClick={closeMenu}>Webinars</Link></li>
                 <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li>
                 <li><Link to="/about" onClick={closeMenu}>About</Link></li>
                 <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
@@ -181,6 +184,7 @@ function App() {
               <Route path="/opportunities" element={<OpportunitiesSection />} />
               <Route path="/pricing" element={<PricingSection />} />
               <Route path="/pricing/:tierSlug" element={<PricingDetail />} />
+              <Route path="/webinars" element={<WebinarPage />} />
               <Route path="/contact" element={<ContactSection />} />
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/login" element={<LoginPage />} />

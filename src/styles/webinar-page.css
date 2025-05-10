@@ -1,0 +1,248 @@
+
+.webinar-page {
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.webinar-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.webinar-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.webinar-hero p {
+  font-size: 1.2rem;
+  color: var(--gray-dark);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.webinar-section {
+  margin-bottom: 4rem;
+}
+
+.webinar-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--dark-color);
+  text-align: center;
+}
+
+.webinar-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.webinar-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.webinar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.webinar-card-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.webinar-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.webinar-meta {
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1.5rem;
+  color: var(--gray-dark);
+}
+
+.webinar-date, .webinar-time {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.webinar-date::before {
+  content: "📅";
+  margin-right: 0.5rem;
+}
+
+.webinar-time::before {
+  content: "🕒";
+  margin-right: 0.5rem;
+}
+
+.webinar-presenter {
+  font-style: italic;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--gray-dark);
+}
+
+.webinar-description {
+  color: var(--gray-dark);
+  line-height: 1.5;
+}
+
+.webinar-card-actions {
+  padding: 1rem 1.5rem;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.webinar-register-btn {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.webinar-register-btn:hover {
+  background-color: #ff8733;
+}
+
+.webinar-registration-section {
+  margin-bottom: 4rem;
+  scroll-margin-top: 100px;
+}
+
+.webinar-faq-section {
+  margin-bottom: 4rem;
+}
+
+.webinar-faq-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.webinar-faq-item {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.webinar-faq-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary-color);
+}
+
+.webinar-faq-item p {
+  color: var(--gray-dark);
+  line-height: 1.5;
+}
+
+.webinar-cta {
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 3rem;
+  border-radius: 10px;
+}
+
+.webinar-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.webinar-cta p {
+  color: var(--gray-dark);
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.webinar-cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.primary-btn {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.primary-btn:hover {
+  background-color: #ff8733;
+}
+
+.secondary-btn {
+  display: inline-block;
+  border: 2px solid var(--secondary-color);
+  background-color: transparent;
+  color: var(--secondary-color);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.secondary-btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+}
+
+@media (max-width: 992px) {
+  .webinar-hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .webinar-faq-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .webinar-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .webinar-hero p {
+    font-size: 1rem;
+  }
+  
+  .webinar-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .webinar-cta {
+    padding: 2rem 1.5rem;
+  }
+  
+  .webinar-cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

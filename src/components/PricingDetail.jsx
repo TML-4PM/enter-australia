@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../config/stripeConfig';
 import { useSubscription } from '../hooks/useSubscription';
@@ -10,10 +10,12 @@ import ErrorMessage from './ErrorMessage';
 import PdfDownloadButton from './PdfDownloadButton';
 import EmailDripSignup from './EmailDripSignup';
 import LiveChatBot from './LiveChatBot';
+import DemoScheduler from './DemoScheduler';
 import '../styles/pricing-detail.css';
 
 const PricingDetail = () => {
   const { tierSlug } = useParams();
+  const [showDemoScheduler, setShowDemoScheduler] = useState(false);
   
   // Find the product that matches the slug
   const product = Object.values(PRODUCTS).find(
@@ -51,6 +53,11 @@ const PricingDetail = () => {
     }
   };
   
+  const handleScheduleDemo = () => {
+    setShowDemoScheduler(true);
+    trackCtaClick('Schedule Demo', product?.name || 'Unknown');
+  };
+  
   // If no matching product is found
   if (!product) {
     return (
@@ -81,18 +88,27 @@ const PricingDetail = () => {
           {product.period && <span className="pricing-detail-period">{product.period}</span>}
         </div>
         
-        <button 
-          onClick={handleCtaClick} 
-          className={`pricing-detail-cta 
-            ${isLoading[product.priceId] ? 'loading' : ''} 
-            ${product.name === 'Assessment' ? 'free' : ''} 
-            ${product.name === 'Enterprise' || product.name === 'Premium Retainer' ? 'enterprise' : ''}
-            ${isCurrentPlan ? 'current-plan-btn' : ''}
-          `}
-          disabled={isLoading[product.priceId] || isCurrentPlan}
-        >
-          {getButtonText(product, subscriptionStatus, isLoading)}
-        </button>
+        <div className="pricing-detail-button-group">
+          <button 
+            onClick={handleCtaClick} 
+            className={`pricing-detail-cta 
+              ${isLoading[product.priceId] ? 'loading' : ''} 
+              ${product.name === 'Assessment' ? 'free' : ''} 
+              ${product.name === 'Enterprise' || product.name === 'Premium Retainer' ? 'enterprise' : ''}
+              ${isCurrentPlan ? 'current-plan-btn' : ''}
+            `}
+            disabled={isLoading[product.priceId] || isCurrentPlan}
+          >
+            {getButtonText(product, subscriptionStatus, isLoading)}
+          </button>
+          
+          <button 
+            onClick={handleScheduleDemo}
+            className="schedule-demo-btn"
+          >
+            Schedule Demo
+          </button>
+        </div>
         
         {/* PDF Download button */}
         <div className="pdf-btn-container">
@@ -104,6 +120,16 @@ const PricingDetail = () => {
         message={errorMessage} 
         onDismiss={() => setErrorMessage('')} 
       />
+      
+      {showDemoScheduler && (
+        <div className="demo-scheduler-overlay">
+          <DemoScheduler 
+            tierName={product.name}
+            setErrorMessage={setErrorMessage}
+            onClose={() => setShowDemoScheduler(false)}
+          />
+        </div>
+      )}
       
       <div className="pricing-detail-grid">
         <div className="pricing-detail-section">
@@ -165,18 +191,27 @@ const PricingDetail = () => {
       
       <div className="pricing-detail-cta-section">
         <h2>Ready to Get Started?</h2>
-        <button 
-          onClick={handleCtaClick} 
-          className={`pricing-detail-cta-large 
-            ${isLoading[product.priceId] ? 'loading' : ''} 
-            ${product.name === 'Assessment' ? 'free' : ''} 
-            ${product.name === 'Enterprise' || product.name === 'Premium Retainer' ? 'enterprise' : ''}
-            ${isCurrentPlan ? 'current-plan-btn' : ''}
-          `}
-          disabled={isLoading[product.priceId] || isCurrentPlan}
-        >
-          {getButtonText(product, subscriptionStatus, isLoading)}
-        </button>
+        <div className="pricing-detail-cta-buttons">
+          <button 
+            onClick={handleCtaClick} 
+            className={`pricing-detail-cta-large 
+              ${isLoading[product.priceId] ? 'loading' : ''} 
+              ${product.name === 'Assessment' ? 'free' : ''} 
+              ${product.name === 'Enterprise' || product.name === 'Premium Retainer' ? 'enterprise' : ''}
+              ${isCurrentPlan ? 'current-plan-btn' : ''}
+            `}
+            disabled={isLoading[product.priceId] || isCurrentPlan}
+          >
+            {getButtonText(product, subscriptionStatus, isLoading)}
+          </button>
+          
+          <button 
+            onClick={handleScheduleDemo}
+            className="schedule-demo-cta"
+          >
+            Schedule a Demo
+          </button>
+        </div>
         <p className="pricing-detail-contact">
           Have questions? <Link to="/contact">Contact our team</Link> or <button onClick={handleBookCall} className="book-call-link">book a consultation call</button>.
         </p>

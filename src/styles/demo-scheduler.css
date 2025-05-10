@@ -1,0 +1,273 @@
+
+.demo-scheduler-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.demo-scheduler {
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: scale-in 0.3s ease-out;
+}
+
+@keyframes scale-in {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.demo-scheduler-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.demo-scheduler-header h3 {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #777;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--dark-color);
+}
+
+.demo-scheduler-content {
+  padding: 1.5rem;
+}
+
+.scheduler-step {
+  animation: fade-in 0.3s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scheduler-step h4 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--dark-color);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(255, 127, 17, 0.1);
+}
+
+.date-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.date-option {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.date-option:hover {
+  background-color: #f0f0f0;
+}
+
+.date-option.selected {
+  background-color: var(--secondary-color);
+  color: white;
+  border-color: var(--secondary-color);
+}
+
+.selected-date {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.time-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.time-option {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-option:hover {
+  background-color: #f0f0f0;
+}
+
+.time-option.selected {
+  background-color: var(--secondary-color);
+  color: white;
+  border-color: var(--secondary-color);
+}
+
+.scheduler-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.scheduler-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scheduler-btn.next,
+.scheduler-btn.confirm {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+}
+
+.scheduler-btn.next:hover,
+.scheduler-btn.confirm:hover {
+  background-color: #ff8733;
+}
+
+.scheduler-btn.back {
+  background-color: transparent;
+  color: var(--gray-dark);
+  border: 1px solid #e0e0e0;
+}
+
+.scheduler-btn.back:hover {
+  background-color: #f5f5f5;
+}
+
+.scheduler-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.demo-summary {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.demo-summary p {
+  margin: 0.5rem 0;
+}
+
+.scheduler-step.success {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.success-icon {
+  background-color: #4CAF50;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1.5rem;
+}
+
+.scheduler-step.success h4 {
+  color: #4CAF50;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.scheduler-step.success p {
+  margin-bottom: 0.5rem;
+}
+
+.scheduler-btn.close {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  margin: 1.5rem auto 0;
+  display: block;
+}
+
+.scheduler-btn.close:hover {
+  background-color: #3d8b3d;
+}
+
+@media (max-width: 576px) {
+  .date-selector,
+  .time-selector {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+  
+  .scheduler-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .scheduler-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
