@@ -120,7 +120,7 @@ const PartnershipsSolution = () => {
         <div className="container">
           <h2>Ready to get started?</h2>
           <div className="cta-buttons">
-            <a href="/resources" className="btn secondary">Download the Partnerships PDF</a>
+            <Link to="/resources" className="btn secondary">Download the Partnerships PDF</Link>
             <Link to="/contact" className="btn primary">Start Partner Mapping</Link>
           </div>
         </div>

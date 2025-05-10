@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/solution-detail.css';
@@ -120,7 +119,7 @@ const GrantsSolution = () => {
         <div className="container">
           <h2>Ready to get started?</h2>
           <div className="cta-buttons">
-            <a href="/resources" className="btn secondary">Download the Grants PDF</a>
+            <Link to="/resources" className="btn secondary">Download the Grants PDF</Link>
             <Link to="/contact" className="btn primary">Start Your Eligibility Check</Link>
           </div>
         </div>
