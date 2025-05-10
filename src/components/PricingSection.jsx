@@ -7,6 +7,7 @@ import PricingGrid from './PricingGrid';
 import ComparisonTable from './ComparisonTable';
 import PricingFaq from './PricingFaq';
 import PricingCta from './PricingCta';
+import MarketingPosts from './MarketingPosts';
 import SubscriptionStatusBanner from './SubscriptionStatusBanner';
 import { useSubscription } from '../hooks/useSubscription';
 import { usePricing } from '../hooks/usePricing';
@@ -58,6 +59,8 @@ const PricingSection = () => {
       <PricingFaq />
       
       <PricingCta handleBookCall={handleBookCall} />
+      
+      <MarketingPosts />
     </section>
   );
 };

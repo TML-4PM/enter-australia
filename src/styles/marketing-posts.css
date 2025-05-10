@@ -1,0 +1,251 @@
+
+.marketing-posts-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.marketing-posts-container h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.marketing-intro {
+  text-align: center;
+  color: var(--gray-dark);
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.limited-time-offer {
+  background-color: rgba(255, 127, 17, 0.1);
+  border: 1px dashed var(--secondary-color);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  text-align: center;
+}
+
+.limited-time-offer p {
+  margin: 0;
+  color: var(--dark-color);
+  font-weight: 500;
+}
+
+.offer-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.3rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.post-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  background-color: var(--light-color);
+  transition: transform 0.3s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+.post-header {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.post-day {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.post-content {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: 300px;
+  border-bottom: 1px solid #eee;
+}
+
+.post-content pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: inherit;
+  margin: 0;
+  line-height: 1.5;
+  color: var(--dark-color);
+}
+
+.post-actions {
+  display: flex;
+  padding: 0;
+}
+
+.post-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex: 1;
+  color: var(--gray-dark);
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+.post-action-btn:not(:last-child) {
+  border-right: 1px solid #eee;
+}
+
+.post-action-btn:hover {
+  background-color: #f9f9f9;
+  color: var(--primary-color);
+}
+
+.post-action-btn.share:hover {
+  color: #0077B5; /* LinkedIn color */
+}
+
+.post-action-btn.view {
+  color: var(--secondary-color);
+}
+
+.post-action-btn.view:hover {
+  color: #ff8733;
+}
+
+.marketing-tips {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.marketing-tips h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.marketing-tips ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.marketing-tips li {
+  margin-bottom: 0.8rem;
+  color: var(--gray-dark);
+}
+
+.social-proof {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 2rem auto 0;
+  text-align: center;
+}
+
+.social-proof h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--light-color);
+}
+
+.testimonial {
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  position: relative;
+  padding: 0 1.5rem;
+}
+
+.testimonial::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -5px;
+  font-size: 2rem;
+  color: var(--secondary-color);
+}
+
+.testimonial::after {
+  content: '"';
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  font-size: 2rem;
+  color: var(--secondary-color);
+}
+
+.testimonial-source {
+  display: block;
+  margin-top: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--light-color);
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .post-actions {
+    flex-wrap: wrap;
+  }
+  
+  .post-action-btn {
+    flex-basis: 100%;
+    border-right: none !important;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .post-action-btn:last-child {
+    border-bottom: none;
+  }
+  
+  .limited-time-offer {
+    padding: 1.5rem 1rem 1rem;
+  }
+}

@@ -63,6 +63,17 @@ export const trackCtaClick = (ctaText, tierName) => {
   }
 };
 
+// Track marketing post actions
+export const trackMarketingAction = (actionType, postTitle) => {
+  if (window.gtag) {
+    window.gtag('event', actionType, {
+      event_category: 'Marketing',
+      event_label: postTitle,
+      value: 1
+    });
+  }
+};
+
 // Lead scoring helper - will integrate with CRM
 export const scoreLead = (actions) => {
   let score = 0;
@@ -71,6 +82,7 @@ export const scoreLead = (actions) => {
   if (actions.downloadedPdf) score += 10;
   if (actions.subscribedToEmails) score += 5;
   if (actions.viewedPricing) score += 3;
+  if (actions.sharedContent) score += 7; // New: award points for content sharing
   
   // Premium tiers get higher scores
   if (actions.tier === 'Premium Retainer' || actions.tier === 'Enterprise') {
