@@ -23,7 +23,7 @@ const SolutionsPage = () => {
     {
       id: 'partnerships',
       title: 'Local Partnerships',
-      description: 'Multiply your reach—partner with Australia's top channels. Build co-sell deals and reseller networks that accelerate your sales cycle.',
+      description: 'Multiply your reach—partner with Australia\'s top channels. Build co-sell deals and reseller networks that accelerate your sales cycle.',
       icon: '🤝',
       link: '/solutions/partnerships'
     },

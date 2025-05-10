@@ -12,6 +12,7 @@ import OpportunitiesSection from './components/OpportunitiesSection';
 import ContactSection from './components/ContactSection';
 import SuccessPage from './components/SuccessPage';
 import SolutionsPage from './components/SolutionsPage';
+import PartnersPage from './components/PartnersPage';
 import RegionsPage from './components/RegionsPage';
 import ResourcesPage from './components/ResourcesPage';
 import AboutPage from './components/AboutPage';
@@ -147,6 +148,7 @@ function App() {
               <ul className={isMenuOpen ? 'active' : ''}>
                 <li><Link to="/" onClick={closeMenu}>Home</Link></li>
                 <li><Link to="/solutions" onClick={closeMenu}>Solutions</Link></li>
+                <li><Link to="/partners" onClick={closeMenu}>Partners</Link></li>
                 <li><Link to="/regions" onClick={closeMenu}>Regions</Link></li>
                 <li><Link to="/pricing" onClick={closeMenu}>Pricing</Link></li>
                 <li><Link to="/opportunities" onClick={closeMenu}>Opportunities</Link></li>
@@ -194,6 +196,7 @@ function App() {
               <Route path="/solutions/partnerships" element={<PartnershipsSolution />} />
               <Route path="/solutions/compliance" element={<ComplianceSolution />} />
               <Route path="/solutions/grants" element={<GrantsSolution />} />
+              <Route path="/partners" element={<PartnersPage />} />
               <Route path="/regions" element={<RegionsPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/faq" element={<FAQPage />} />

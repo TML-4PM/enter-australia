@@ -23,6 +23,7 @@
 
 /* New page styles */
 @import './styles/solutions.css';
+@import './styles/partners.css';
 @import './styles/solution-detail.css';
 @import './styles/regions.css';
 @import './styles/resources.css';
