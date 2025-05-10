@@ -19,6 +19,7 @@ import SuccessPage from '../SuccessPage';
 import LoginPage from '../LoginPage';
 import RegisterPage from '../RegisterPage';
 import ProfilePage from '../ProfilePage';
+import PreDeploymentCheck from '../PreDeploymentCheck';
 
 // Solution detail pages
 import MarketEntrySolution from '../solutions/MarketEntrySolution';
@@ -59,6 +60,7 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/pre-deployment-check" element={<PreDeploymentCheck />} />
       </Routes>
 
       <LeadForm 
