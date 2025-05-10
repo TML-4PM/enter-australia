@@ -1,5 +1,4 @@
 
-/* Blog Styles Index File */
 @import './blog-base.css';
 @import './blog-categories.css';
 @import './blog-grid.css';
@@ -8,3 +7,5 @@
 @import './blog-cta.css';
 @import './blog-loader.css';
 @import './blog-responsive.css';
+
+/* Blog Styles Index File */

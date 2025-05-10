@@ -1,7 +1,8 @@
 
-/* Main webinar styles index file that imports all other webinar styles */
 @import './layout.css';
 @import './cards.css';
 @import './hero.css';
 @import './faq.css';
 @import './cta.css';
+
+/* Main webinar styles index file that imports all other webinar styles */

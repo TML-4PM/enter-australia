@@ -1,5 +1,4 @@
 
-/* Main home page styles index file */
 @import '../components/hero.css';
 @import '../components/buttons.css';
 @import '../sections/why-australia.css';
@@ -7,3 +6,5 @@
 @import '../sections/case-study.css';
 @import '../sections/regional-teasers.css';
 @import '../sections/footer-cta.css';
+
+/* Main home page styles index file */

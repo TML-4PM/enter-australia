@@ -1,5 +1,4 @@
 
-/* This file now imports all the smaller, more focused CSS files */
 @import './pricing-card-base.css';
 @import './pricing-card-premium.css';
 @import './pricing-card-header.css';
@@ -7,3 +6,5 @@
 @import './pricing-card-actions.css';
 @import './pricing-card-badges.css';
 @import './subscription-status-banner.css';
+
+/* This file now imports all the smaller, more focused CSS files */
