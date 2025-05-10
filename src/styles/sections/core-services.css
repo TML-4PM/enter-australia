@@ -1,0 +1,51 @@
+
+/* Core Services Section */
+.core-services-section {
+  padding: 5rem 5%;
+  background-color: var(--gray-light);
+  text-align: center;
+}
+
+.core-services-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--primary-color); /* Australian green */
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.service-card {
+  padding: 2rem;
+  background-color: var(--light-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  height: 100%;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  border-top: 3px solid var(--secondary-color); /* Australian gold accent */
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--australian-blue); /* Australian blue */
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .core-services-section h2 {
+    font-size: 2rem;
+  }
+}

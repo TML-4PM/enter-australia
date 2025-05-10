@@ -1,0 +1,48 @@
+
+/* Case Study Section */
+.case-study-section {
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.case-study-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: var(--light-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+blockquote {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+blockquote cite {
+  font-style: normal;
+  font-weight: 600;
+  display: block;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+.read-more {
+  color: var(--secondary-color);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.read-more:hover {
+  color: #ff8733;
+}
+
+@media (max-width: 768px) {
+  blockquote {
+    font-size: 1.3rem;
+  }
+}

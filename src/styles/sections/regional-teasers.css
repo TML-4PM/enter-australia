@@ -1,0 +1,67 @@
+
+/* Regional Teasers Section */
+.regional-teasers-section {
+  padding: 5rem 5%;
+  background-color: var(--eucalyptus); /* Eucalyptus green background */
+  background: linear-gradient(to right, var(--eucalyptus), #a8c0a8);
+  text-align: center;
+  color: var(--dark-color);
+}
+
+.regional-teasers-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--dark-color);
+}
+
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.region-card {
+  padding: 2rem;
+  background-color: var(--light-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  height: 100%;
+}
+
+.region-card:hover {
+  transform: translateY(-5px);
+  border-left: 4px solid var(--accent-color); /* Red ochre border */
+}
+
+.region-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color); /* Australian green */
+}
+
+.region-card p {
+  margin-bottom: 1.5rem;
+}
+
+.region-link {
+  color: var(--accent-color); /* Red ochre */
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.region-link:hover {
+  color: #ff5a4f; /* Lighter red ochre */
+}
+
+@media (max-width: 768px) {
+  .regions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .regional-teasers-section h2 {
+    font-size: 2rem;
+  }
+}

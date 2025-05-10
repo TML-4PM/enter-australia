@@ -1,0 +1,90 @@
+
+/* Hero Section */
+.hero {
+  height: 90vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1483058712412-e9573fc25ebb?auto=format&fit=crop&w=1700&q=80');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--light-color);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--secondary-color); /* Australian gold for heading */
+}
+
+.hero-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  color: var(--light-color);
+}
+
+.highlight {
+  color: var(--secondary-color);
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.social-proof {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--secondary-color); /* Australian gold */
+}
+
+.social-proof p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.4rem;
+  }
+}

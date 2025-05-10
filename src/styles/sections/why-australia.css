@@ -1,0 +1,52 @@
+
+.why-australia-section {
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.why-australia-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--primary-color); /* Australian green */
+}
+
+.icon-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.icon-item {
+  padding: 2rem;
+  background-color: var(--light-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.icon-item:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.icon-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color); /* Australian green */
+}
+
+@media (max-width: 768px) {
+  .icon-bar {
+    grid-template-columns: 1fr;
+  }
+  
+  .why-australia-section h2 {
+    font-size: 2rem;
+  }
+}
