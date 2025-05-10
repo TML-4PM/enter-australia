@@ -1,5 +1,5 @@
 
-/* Main demo scheduler styles index file that imports all other demo scheduler styles */
+/* Main demo scheduler styles */
 @import './layout.css';
 @import './header.css';
 @import './forms.css';

@@ -7,14 +7,10 @@
 @import './styles/header.css';
 @import './styles/components/hero.css';
 @import './styles/components/buttons.css';
-
-/* Other component styles */
 @import './styles/lead-form.css';
 @import './styles/value-props.css';
 @import './styles/how-it-works.css';
 @import './styles/opportunities.css';
-
-/* Pricing related styles */
 @import './styles/pricing-section.css';
 @import './styles/pricing-header.css';
 @import './styles/pricing-cards.css';
@@ -24,8 +20,6 @@
 @import './styles/pricing-cta.css';
 @import './styles/comparison-table.css';
 @import './styles/pricing-media-queries.css';
-
-/* New page styles */
 @import './styles/solutions.css';
 @import './styles/partners.css';
 @import './styles/solution-detail.css';
@@ -33,14 +27,17 @@
 @import './styles/resources.css';
 @import './styles/about.css';
 @import './styles/faq-page.css';
-
-/* Auth styles */
 @import './styles/auth.css';
 @import './styles/profile.css';
-
-/* Other styles */
 @import './styles/error-message.css';
 @import './styles/blog/index.css';
 @import './styles/contact.css';
 @import './styles/footer.css';
 @import './styles/responsive.css';
+
+/* All comments must come after all imports */
+/* Other component styles */
+/* Pricing related styles */
+/* New page styles */
+/* Auth styles */
+/* Other styles */

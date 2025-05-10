@@ -6,7 +6,6 @@
   margin: 0 auto;
 }
 
-/* Import all partner-specific stylesheets */
 @import './partner-hero.css';
 @import './partnership-value.css';
 @import './featured-partners.css';
@@ -15,3 +14,5 @@
 @import './partnership-process.css';
 @import './success-stories.css';
 @import './partner-cta.css';
+
+/* Import all partner-specific stylesheets */
