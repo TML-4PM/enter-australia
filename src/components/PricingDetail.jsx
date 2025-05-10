@@ -1,11 +1,15 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../config/stripeConfig';
 import { useSubscription } from '../hooks/useSubscription';
 import { usePricing } from '../hooks/usePricing';
 import { getButtonText } from '../utils/pricingButtonUtils';
+import { trackPageView, trackCtaClick } from '../utils/analyticsUtils';
 import ErrorMessage from './ErrorMessage';
+import PdfDownloadButton from './PdfDownloadButton';
+import EmailDripSignup from './EmailDripSignup';
+import LiveChatBot from './LiveChatBot';
 import '../styles/pricing-detail.css';
 
 const PricingDetail = () => {
@@ -31,6 +35,21 @@ const PricingDetail = () => {
     handleBookCall,
     processAction
   } = usePricing(setErrorMessage);
+  
+  // Track page view on component mount
+  useEffect(() => {
+    if (product) {
+      trackPageView(`/pricing/${tierSlug}`);
+    }
+  }, [tierSlug, product]);
+  
+  // Track CTA clicks
+  const handleCtaClick = () => {
+    if (product) {
+      trackCtaClick(getButtonText(product, subscriptionStatus, isLoading), product.name);
+      processAction(product);
+    }
+  };
   
   // If no matching product is found
   if (!product) {
@@ -63,7 +82,7 @@ const PricingDetail = () => {
         </div>
         
         <button 
-          onClick={() => processAction(product)} 
+          onClick={handleCtaClick} 
           className={`pricing-detail-cta 
             ${isLoading[product.priceId] ? 'loading' : ''} 
             ${product.name === 'Assessment' ? 'free' : ''} 
@@ -74,6 +93,11 @@ const PricingDetail = () => {
         >
           {getButtonText(product, subscriptionStatus, isLoading)}
         </button>
+        
+        {/* PDF Download button */}
+        <div className="pdf-btn-container">
+          <PdfDownloadButton tierName={product.name} setErrorMessage={setErrorMessage} />
+        </div>
       </div>
       
       <ErrorMessage 
@@ -136,10 +160,13 @@ const PricingDetail = () => {
         </div>
       </div>
       
+      {/* Email Drip Campaign Signup */}
+      <EmailDripSignup tierName={product.name} setErrorMessage={setErrorMessage} />
+      
       <div className="pricing-detail-cta-section">
         <h2>Ready to Get Started?</h2>
         <button 
-          onClick={() => processAction(product)} 
+          onClick={handleCtaClick} 
           className={`pricing-detail-cta-large 
             ${isLoading[product.priceId] ? 'loading' : ''} 
             ${product.name === 'Assessment' ? 'free' : ''} 
@@ -154,6 +181,9 @@ const PricingDetail = () => {
           Have questions? <Link to="/contact">Contact our team</Link> or <button onClick={handleBookCall} className="book-call-link">book a consultation call</button>.
         </p>
       </div>
+      
+      {/* Live Chat Bot */}
+      <LiveChatBot />
     </div>
   );
 };

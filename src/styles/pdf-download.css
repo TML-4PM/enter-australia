@@ -1,0 +1,113 @@
+
+.pdf-download-container {
+  margin: 2rem 0;
+}
+
+.pdf-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.pdf-download-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.pdf-form-container {
+  background-color: var(--light-color);
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pdf-form-container h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+.pdf-form-group {
+  margin-bottom: 1rem;
+}
+
+.pdf-form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--gray-medium);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.pdf-form-group input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.pdf-submit-btn {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.pdf-submit-btn:hover {
+  background-color: #ff8733;
+}
+
+.pdf-submit-btn:disabled {
+  background-color: var(--gray-medium);
+  cursor: not-allowed;
+}
+
+.pdf-success-message {
+  text-align: center;
+  padding: 1rem;
+}
+
+.pdf-success-message .checkmark {
+  color: #22c55e;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.pdf-success-message p {
+  margin: 0.5rem 0;
+  color: var(--gray-dark);
+}
+
+.pdf-success-message .email-note {
+  font-size: 0.9rem;
+  color: var(--gray-medium);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .pdf-download-btn,
+  .pdf-submit-btn {
+    padding: 0.7rem 1rem;
+  }
+  
+  .pdf-form-container {
+    padding: 1rem;
+  }
+}

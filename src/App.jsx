@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { saveEmailSubscription } from './utils/subscriptionUtils';
+import { initializeAnalytics, trackPageView } from './utils/analyticsUtils';
 import BlogPage from './components/BlogPage';
 import HomePage from './components/HomePage';
 import PricingSection from './components/PricingSection';
@@ -18,7 +18,19 @@ import AboutPage from './components/AboutPage';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import ProfilePage from './components/ProfilePage';
+import LiveChatBot from './components/LiveChatBot';
 import { Menu, X, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
+
+// Route tracker component
+const RouteTracker = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location]);
+  
+  return null;
+};
 
 function App() {
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -26,6 +38,20 @@ function App() {
   const [emailSubscription, setEmailSubscription] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
+
+  // Initialize analytics on app mount
+  useEffect(() => {
+    initializeAnalytics();
+  }, []);
+
+  // Make toggleLeadForm available globally for components that need it
+  useEffect(() => {
+    window.toggleLeadForm = toggleLeadForm;
+    
+    return () => {
+      delete window.toggleLeadForm;
+    };
+  }, [showLeadForm]);
 
   const toggleLeadForm = () => {
     setShowLeadForm(!showLeadForm);
@@ -101,6 +127,9 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        {/* Route tracker to log page views */}
+        <RouteTracker />
+        
         <div className="app">
           <header>
             <nav>
