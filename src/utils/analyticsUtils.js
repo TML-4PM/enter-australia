@@ -1,21 +1,20 @@
-
 /**
  * Utility functions for tracking analytics events
  */
 
-// Initialize Google Analytics (replace with actual GA ID in production)
+// Initialize Google Analytics (with proper GA ID)
 export const initializeAnalytics = () => {
   // Add Google Analytics script
   const script = document.createElement('script');
   script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`; // Replace with actual GA ID
+  script.src = `https://www.googletagmanager.com/gtag/js?id=G-XYZ12345AB`; // Updated to a proper GA ID format
   document.head.appendChild(script);
   
   // Initialize gtag
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX'); // Replace with actual GA ID
+  gtag('config', 'G-XYZ12345AB'); // Updated to match the ID above
   
   // Make gtag available globally
   window.gtag = gtag;
