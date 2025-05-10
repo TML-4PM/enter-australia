@@ -8,94 +8,39 @@ const HomePage = ({ toggleLeadForm }) => {
       <section id="home" className="hero">
         <div className="hero-content">
           <h1>Enter Australia</h1>
-          <h2>Your front door to the world's third-largest tech market</h2>
-          <p>We guide global tech brands through compliance, partnerships & scale—fast, low-risk, guaranteed.</p>
-          <button onClick={toggleLeadForm} className="btn primary">Get My Free Market Assessment</button>
-          <Link to="/resources" className="btn secondary">Download the Australia Tech Playbook</Link>
-        </div>
-        <div className="social-proof">
-          <p>Trusted by FVEYs firms eying AUKUS, Critical Minerals, Telecommunications, Health, Trade and more</p>
+          <h2>Your journey to Australia starts here.</h2>
+          <p>We guide you through visa applications, job placement, and relocation with ease.</p>
+          <button onClick={toggleLeadForm} className="btn primary">Get Started</button>
+          <Link to="/resources" className="btn secondary">Learn More</Link>
         </div>
       </section>
 
-      <section id="why-australia" className="why-australia-section">
-        <h2>Why Australia</h2>
-        <div className="icon-bar">
-          <div className="icon-item">
-            <div className="icon">🦘</div>
-            <h3>Regulatory Expertise</h3>
-            <p>Skip the red tape.</p>
-          </div>
-          <div className="icon-item">
-            <div className="icon">🏛️</div>
-            <h3>Gov't Partnerships</h3>
-            <p>Access state & federal contracts.</p>
-          </div>
-          <div className="icon-item">
-            <div className="icon">📊</div>
-            <h3>Market Intelligence</h3>
-            <p>Data-driven growth insights.</p>
-          </div>
-          <div className="icon-item">
-            <div className="icon">🚀</div>
-            <h3>Rapid Onboarding</h3>
-            <p>Launch live in weeks.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="core-services" className="core-services-section">
-        <h2>Core Services</h2>
+      <section id="services" className="core-services-section">
+        <h2>Our Services</h2>
         <div className="services-grid">
           <div className="service-card">
-            <h3>Compliance & Legal</h3>
-            <p>Local IP, data-sovereignty, cybersecurity, ACL, TGA.</p>
+            <h3>Visa Assistance</h3>
+            <p>Expert help with visa applications.</p>
           </div>
           <div className="service-card">
-            <h3>Go-to-Market & Partnerships</h3>
-            <p>Channel sourcing, pilot programs, co-sell with integrators.</p>
+            <h3>Job Placement</h3>
+            <p>Connect with Australian employers.</p>
           </div>
           <div className="service-card">
-            <h3>Scale & Ops Support</h3>
-            <p>On-the-ground teams, customer success, 24×7 support.</p>
+            <h3>Relocation Support</h3>
+            <p>Seamless transition to Australia.</p>
           </div>
         </div>
       </section>
 
-      <section id="case-study" className="case-study-section">
-        <div className="case-study-content">
-          <blockquote>
-            <p>"With Enter Australia, we closed our first $5M GovTech contract in 6 weeks."</p>
-            <cite>— Lisa Tan, CEO, NeoHealth</cite>
-          </blockquote>
-          <Link to="/resources" className="read-more">Read the full case study →</Link>
-        </div>
-      </section>
-
-      <section id="regional-teasers" className="regional-teasers-section">
-        <h2>Regional Expertise</h2>
-        <div className="regions-grid">
-          <div className="region-card">
-            <h3>Asia-Pac</h3>
-            <p>Leverage our Sydney HQ for seamless regional expansion.</p>
-            <Link to="/regions" className="region-link">Learn more →</Link>
-          </div>
-          <div className="region-card">
-            <h3>Middle East</h3>
-            <p>Perth–Dubai corridor for innovative tech solutions.</p>
-            <Link to="/regions" className="region-link">Learn more →</Link>
-          </div>
-          <div className="region-card">
-            <h3>U.S.</h3>
-            <p>Tap into Australian cloud procurement with ease.</p>
-            <Link to="/regions" className="region-link">Learn more →</Link>
-          </div>
-        </div>
+      <section id="about-us" className="why-australia-section">
+        <h2>About Us</h2>
+        <p>We're a team dedicated to helping you enter Australia with ease.</p>
       </section>
 
       <section id="footer-cta" className="footer-cta-section">
-        <h2>Ready to expand Down Under?</h2>
-        <Link to="/contact" className="cta">Book Your Discovery Call →</Link>
+        <h2>Ready to begin your journey?</h2>
+        <Link to="/contact" className="cta">Contact Us</Link>
       </section>
     </>
   );

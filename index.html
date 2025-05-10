@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>enterAustralia tech - Your gateway to Australian gov tech contracts</title>
-    <meta name="description" content="Unlock Australia's $10B Government Tech Market with just $5K. Your trusted partner for market entry and government contracts.">
+    <title>Enter Australia - Your journey to Australia starts here</title>
+    <meta name="description" content="We guide you through visa applications, job placement, and relocation with ease.">
     <!-- Preload critical CSS -->
     <link rel="preload" href="/styles.css" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
@@ -58,7 +58,7 @@
       /* Add anti-cache versioning */
       .version {
         display: none;
-        content: "v1.0.2-build-<?php echo time(); ?>";
+        content: "v1.0.3-build-<?php echo time(); ?>";
       }
     </style>
     <!-- Prevent caching -->
@@ -83,7 +83,7 @@
         } else {
           // This might be a cached page load
           const lastUpdateTime = localStorage.getItem('siteUpdateTime');
-          const currentVersion = '1.0.2-' + new Date().toISOString().split('T')[0];
+          const currentVersion = '1.0.3-' + new Date().toISOString().split('T')[0];
           
           if (lastUpdateTime !== currentVersion) {
             console.log('Version mismatch, forcing reload from server');
