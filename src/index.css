@@ -4,7 +4,7 @@
 /* Import all modular CSS files */
 @import './styles/global.css';
 @import './styles/header.css';
-@import './styles/hero.css';
+@import './styles/components/hero.css';
 @import './styles/lead-form.css';
 @import './styles/value-props.css';
 @import './styles/how-it-works.css';

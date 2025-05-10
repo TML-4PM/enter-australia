@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { fetchLinkedInActivity } from '../utils/linkedinUtils';
+import { fetchLinkedInActivity, seedBlogPosts } from '../utils/linkedinUtils';
 import '../styles/blog.css';
 
 const BlogPage = () => {
@@ -9,39 +9,43 @@ const BlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlesPerPage = 6;
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         setLoading(true);
         
-        // Fetch LinkedIn activity first
-        const linkedinPosts = await fetchLinkedInActivity('theinnovater');
+        // First, ensure we have seed data in Supabase
+        await seedBlogPosts();
         
-        // Transform LinkedIn posts into article format
-        const articlesFromLinkedIn = linkedinPosts.map(post => ({
+        // Fetch blog posts with enhanced LinkedIn activity function
+        const fetchedPosts = await fetchLinkedInActivity('theinnovater');
+        
+        console.log('Fetched blog posts:', fetchedPosts.length);
+        
+        // Transform posts to ensure consistent format
+        const formattedPosts = fetchedPosts.map(post => ({
           id: post.id,
-          title: post.title,
-          excerpt: post.content,
-          author: post.author,
+          title: post.title || 'Untitled Post',
+          excerpt: post.excerpt || post.content?.substring(0, 150) + '...' || '',
+          author: post.author || 'Enter Australia Team',
           date: new Date(post.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
           }),
-          imageUrl: post.imageUrl,
-          tags: ['linkedin', 'tech', 'australia'], // Default tags
-          url: post.url
+          imageUrl: post.imageUrl || 'https://images.unsplash.com/photo-1483058712412-e9573fc25ebb?auto=format&fit=crop&w=1700&q=80',
+          tags: post.tags || ['australia', 'tech'],
+          url: post.url || '/blog'
         }));
         
         // Extract unique categories from articles' tags
-        const allTags = articlesFromLinkedIn.flatMap(article => article.tags || []);
+        const allTags = formattedPosts.flatMap(article => article.tags || []);
         const uniqueCategories = [...new Set(allTags)];
         
-        console.log('Fetched LinkedIn articles:', articlesFromLinkedIn.length);
-        console.log('Unique categories:', uniqueCategories);
-        
-        setArticles(articlesFromLinkedIn);
+        setArticles(formattedPosts);
         setCategories(uniqueCategories);
         setLoading(false);
       } catch (err) {
@@ -50,7 +54,7 @@ const BlogPage = () => {
         setLoading(false);
         
         // If there's an error, we'll fall back to placeholder data
-        setArticles([
+        const placeholderArticles = [
           {
             id: '1',
             title: 'Navigating AUKUS: Tech Opportunities for US Companies',
@@ -81,48 +85,62 @@ const BlogPage = () => {
             tags: ['business', 'setup', 'compliance'],
             url: 'https://www.linkedin.com/in/theinnovater/recent-activity/all/'
           },
-        ]);
+        ];
+        setArticles(placeholderArticles);
         setCategories(['defence', 'aukus', 'technology', 'government', 'procurement', 'strategy', 'business', 'setup', 'compliance']);
       }
     };
 
     fetchArticles();
-  }, [selectedCategory]);
+  }, []);
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
+    setCurrentPage(1); // Reset to first page when changing categories
   };
-
-  if (loading) {
-    return (
-      <section className="blog-section">
-        <div className="container">
-          <h2>Loading articles...</h2>
-        </div>
-      </section>
-    );
-  }
 
   // Filter articles based on selected category
   const filteredArticles = selectedCategory === 'all' 
     ? articles 
     : articles.filter(article => article.tags && article.tags.includes(selectedCategory));
 
+  // Paginate articles
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
+  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  if (loading) {
+    return (
+      <section className="blog-section">
+        <div className="container">
+          <h2>Loading articles...</h2>
+          <div className="blog-loader">
+            <div className="spinner"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="blog-section">
       <div className="container">
-        <h2>Australian Government Tech Insights</h2>
-        <p className="blog-intro">
-          Expert analysis, market insights, and strategies for tech companies targeting the Australian government sector.
-          Content sourced from <a href="https://www.linkedin.com/in/theinnovater/recent-activity/all/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
-        </p>
+        <div className="blog-header">
+          <h2>Australian Tech Market Insights</h2>
+          <p className="blog-intro">
+            Expert analysis, market intelligence, and strategic guidance for tech companies targeting the Australian government sector and adjacent markets.
+          </p>
+        </div>
         
         <div className="blog-categories">
           <button 
             className={`category-btn ${selectedCategory === 'all' ? 'active' : ''}`}
             onClick={() => handleCategoryChange('all')}
           >
-            All
+            All Topics
           </button>
           {categories.map((category) => (
             <button
@@ -130,13 +148,13 @@ const BlogPage = () => {
               className={`category-btn ${selectedCategory === category ? 'active' : ''}`}
               onClick={() => handleCategoryChange(category)}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
             </button>
           ))}
         </div>
         
         <div className="blog-grid">
-          {filteredArticles.length > 0 ? filteredArticles.map((article) => (
+          {currentArticles.length > 0 ? currentArticles.map((article) => (
             <div className="blog-card" key={article.id}>
               <div className="blog-image" style={{ backgroundImage: `url(${article.imageUrl})` }}></div>
               <div className="blog-content">
@@ -148,7 +166,7 @@ const BlogPage = () => {
                 <div className="blog-tags">
                   {article.tags?.map((tag) => (
                     <span key={tag} className="blog-tag" onClick={() => handleCategoryChange(tag)}>
-                      {tag}
+                      {tag.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                     </span>
                   ))}
                 </div>
@@ -160,6 +178,45 @@ const BlogPage = () => {
               <p>No articles found for the selected category. Please select another category.</p>
             </div>
           )}
+        </div>
+
+        {totalPages > 1 && (
+          <div className="blog-pagination">
+            <button 
+              onClick={() => paginate(currentPage - 1)} 
+              disabled={currentPage === 1}
+              className="pagination-btn"
+            >
+              Previous
+            </button>
+            
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => paginate(i + 1)}
+                className={`pagination-btn ${currentPage === i + 1 ? 'active' : ''}`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            
+            <button 
+              onClick={() => paginate(currentPage + 1)} 
+              disabled={currentPage === totalPages}
+              className="pagination-btn"
+            >
+              Next
+            </button>
+          </div>
+        )}
+
+        <div className="blog-cta">
+          <h3>Get More Insights</h3>
+          <p>Subscribe to our newsletter for weekly Australian market intelligence and tender alerts.</p>
+          <div className="cta-buttons">
+            <a href="/resources#subscribe" className="btn primary">Subscribe Now</a>
+            <a href="/contact" className="btn secondary">Request Custom Research</a>
+          </div>
         </div>
       </div>
     </section>

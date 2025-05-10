@@ -144,6 +144,7 @@ function App() {
                 <li><Link to="/opportunities" onClick={closeMenu}>Opportunities</Link></li>
                 <li><Link to="/webinars" onClick={closeMenu}>Webinars</Link></li>
                 <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li>
+                <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
                 <li><Link to="/about" onClick={closeMenu}>About</Link></li>
                 <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
                 {isMenuOpen && (
@@ -177,6 +178,7 @@ function App() {
                   handleFormSubmit={handleFormSubmit} 
                 />
               } />
+              <Route path="/blog" element={<BlogPage />} />
               <Route path="/solutions" element={<SolutionsPage />} />
               <Route path="/regions" element={<RegionsPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
