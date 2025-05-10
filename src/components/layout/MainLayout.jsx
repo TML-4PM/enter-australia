@@ -20,6 +20,7 @@ import LoginPage from '../LoginPage';
 import RegisterPage from '../RegisterPage';
 import ProfilePage from '../ProfilePage';
 import PreDeploymentCheck from '../PreDeploymentCheck';
+import DataApisPage from '../DataApisPage';
 
 // Solution detail pages
 import MarketEntrySolution from '../solutions/MarketEntrySolution';
@@ -62,6 +63,7 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
         <Route path="/partners" element={<PartnersPage />} />
         <Route path="/regions" element={<RegionsPage />} />
         <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/data-apis" element={<DataApisPage />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/opportunities" element={<OpportunitiesSection />} />

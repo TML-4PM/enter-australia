@@ -74,9 +74,9 @@ const Footer = () => {
           <h3>Resources</h3>
           <ul>
             <li><Link to="/resources#guides">Guides & Reports</Link></li>
-            <li><a href="https://data.gov.au/search" target="_blank" rel="noopener noreferrer">Data APIs & Tools</a></li>
+            <li><Link to="/data-apis">Data APIs & Tools</Link></li>
             <li><Link to="/blog">Blog & Insights</Link></li>
-            <li><Link to="/resources#webinars">Webinars</Link></li>
+            <li><Link to="/webinars">Webinars</Link></li>
             <li><Link to="/faq">FAQs</Link></li>
             <li><Link to="/contact">Request Custom Research</Link></li>
           </ul>

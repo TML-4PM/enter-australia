@@ -29,7 +29,12 @@ export const fetchLinkedInActivity = async (username = 'theinnovater') => {
         date: post.published_at,
         imageUrl: post.image_url || 'https://images.unsplash.com/photo-1483058712412-e9573fc25ebb?auto=format&fit=crop&w=1700&q=80',
         tags: post.tags || ['australia', 'tech', 'government'],
-        url: post.slug ? `/blog/${post.slug}` : `/blog#${post.id}`
+        url: post.slug ? `/blog/${post.slug}` : `/blog#${post.id}`,
+        webinarData: post.webinar_id ? {
+          id: post.webinar_id,
+          attended: !!post.attended,
+          registered: !!post.registered
+        } : null
       }));
     }
     
@@ -62,7 +67,12 @@ export const fetchLinkedInActivity = async (username = 'theinnovater') => {
         imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1700&q=80',
         url: '/blog#australian-govtech-spending',
         author: 'Tech Industry Analyst',
-        tags: ['govtech', 'procurement', 'australia']
+        tags: ['govtech', 'procurement', 'australia'],
+        webinarData: {
+          id: 'web001',
+          attended: true,
+          registered: true
+        }
       },
       {
         id: 'linkedin-2',
@@ -73,7 +83,12 @@ export const fetchLinkedInActivity = async (username = 'theinnovater') => {
         imageUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1700&q=80',
         url: '/blog#aukus-tech-opportunities',
         author: 'Defence Technology Expert',
-        tags: ['aukus', 'defence', 'technology']
+        tags: ['aukus', 'defence', 'technology'],
+        webinarData: {
+          id: 'web002',
+          attended: false,
+          registered: true
+        }
       },
       {
         id: 'linkedin-3',

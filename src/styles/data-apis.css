@@ -1,0 +1,358 @@
+
+.data-apis-page {
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.data-apis-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.data-apis-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.data-apis-hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--gray-dark);
+}
+
+.data-apis-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Search and filters */
+.data-apis-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.data-apis-search {
+  display: flex;
+  align-items: center;
+  background-color: #f5f7fa;
+  border: 1px solid #eaecef;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.data-apis-search svg {
+  color: var(--gray-dark);
+  margin-right: 0.8rem;
+}
+
+.data-apis-search input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 0.8rem 0;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--dark-color);
+}
+
+.data-apis-search input:focus {
+  outline: none;
+}
+
+.data-apis-categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.category-button {
+  background-color: #f5f7fa;
+  border: 1px solid #eaecef;
+  border-radius: 30px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+  color: var(--dark-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: #eaecef;
+}
+
+.category-button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* API Cards Grid */
+.data-apis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.api-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.api-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.api-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.api-card h3 {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin-right: 1rem;
+}
+
+.api-status {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.api-status.active {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.api-status.maintenance {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.api-status.deprecated {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.api-description {
+  color: var(--gray-dark);
+  margin-bottom: 1.2rem;
+  flex-grow: 1;
+  line-height: 1.6;
+}
+
+.api-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.api-tag {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.api-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.api-link, .api-doc-link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.api-link {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.api-link:hover {
+  background-color: #ff8733;
+}
+
+.api-doc-link {
+  background-color: #f3f4f6;
+  color: var(--dark-color);
+}
+
+.api-doc-link:hover {
+  background-color: #e5e7eb;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  background-color: #f9fafb;
+  border-radius: 10px;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.no-results p {
+  color: var(--gray-dark);
+}
+
+/* Info section */
+.data-apis-info {
+  margin-top: 2rem;
+  padding: 3rem;
+  background-color: #f9fafb;
+  border-radius: 10px;
+}
+
+.data-apis-info h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.data-apis-info > p {
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  color: var(--gray-dark);
+  line-height: 1.6;
+}
+
+.data-apis-tips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.tip {
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tip h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary-color);
+}
+
+.tip p {
+  color: var(--gray-dark);
+  line-height: 1.5;
+}
+
+/* CTA section */
+.data-apis-cta {
+  margin-top: 2rem;
+  padding: 3rem;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.data-apis-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.data-apis-cta p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.cta-buttons .primary-btn {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-buttons .primary-btn:hover {
+  background-color: #ff8733;
+}
+
+.cta-buttons .secondary-btn {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-buttons .secondary-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .data-apis-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .data-apis-hero p {
+    font-size: 1.1rem;
+  }
+  
+  .data-apis-info, .data-apis-cta {
+    padding: 2rem 1.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .data-apis-categories {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    justify-content: flex-start;
+  }
+}
