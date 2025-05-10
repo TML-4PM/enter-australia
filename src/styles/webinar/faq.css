@@ -1,0 +1,28 @@
+
+.webinar-faq-section {
+  margin-bottom: 4rem;
+}
+
+.webinar-faq-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.webinar-faq-item {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.webinar-faq-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary-color);
+}
+
+.webinar-faq-item p {
+  color: var(--gray-dark);
+  line-height: 1.5;
+}

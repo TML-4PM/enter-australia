@@ -1,0 +1,54 @@
+
+.scheduler-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scheduler-btn.next,
+.scheduler-btn.confirm {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+}
+
+.scheduler-btn.next:hover,
+.scheduler-btn.confirm:hover {
+  background-color: #ff8733;
+}
+
+.scheduler-btn.back {
+  background-color: transparent;
+  color: var(--gray-dark);
+  border: 1px solid #e0e0e0;
+}
+
+.scheduler-btn.back:hover {
+  background-color: #f5f5f5;
+}
+
+.scheduler-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.scheduler-btn.close {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  margin: 1.5rem auto 0;
+  display: block;
+}
+
+.scheduler-btn.close:hover {
+  background-color: #3d8b3d;
+}
+
+@media (max-width: 576px) {
+  .scheduler-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

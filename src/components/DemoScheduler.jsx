@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { Calendar, Clock } from 'lucide-react';
 import { trackFormSubmission } from '../utils/analyticsUtils';
-import '../styles/demo-scheduler.css';
+import '../styles/demo-scheduler/index.css';
 
 const DemoScheduler = ({ tierName = 'Product', setErrorMessage, onClose }) => {
   const [step, setStep] = useState(1);

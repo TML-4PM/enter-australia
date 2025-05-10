@@ -1,0 +1,29 @@
+
+.scheduler-step.success {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.success-icon {
+  background-color: #4CAF50;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1.5rem;
+}
+
+.scheduler-step.success h4 {
+  color: #4CAF50;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.scheduler-step.success p {
+  margin-bottom: 0.5rem;
+}

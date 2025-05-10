@@ -1,0 +1,28 @@
+
+.demo-scheduler-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.demo-scheduler-header h3 {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #777;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--dark-color);
+}

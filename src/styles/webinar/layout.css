@@ -1,0 +1,40 @@
+
+.webinar-page {
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.webinar-section {
+  margin-bottom: 4rem;
+}
+
+.webinar-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--dark-color);
+  text-align: center;
+}
+
+.webinar-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.webinar-registration-section {
+  margin-bottom: 4rem;
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 992px) {
+  .webinar-faq-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .webinar-list {
+    grid-template-columns: 1fr;
+  }
+}

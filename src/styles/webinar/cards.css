@@ -1,0 +1,82 @@
+
+.webinar-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.webinar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.webinar-card-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.webinar-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.webinar-meta {
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1.5rem;
+  color: var(--gray-dark);
+}
+
+.webinar-date, .webinar-time {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.webinar-date::before {
+  content: "📅";
+  margin-right: 0.5rem;
+}
+
+.webinar-time::before {
+  content: "🕒";
+  margin-right: 0.5rem;
+}
+
+.webinar-presenter {
+  font-style: italic;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--gray-dark);
+}
+
+.webinar-description {
+  color: var(--gray-dark);
+  line-height: 1.5;
+}
+
+.webinar-card-actions {
+  padding: 1rem 1.5rem;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.webinar-register-btn {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.webinar-register-btn:hover {
+  background-color: #ff8733;
+}

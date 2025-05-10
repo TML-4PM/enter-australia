@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import WebinarRegistration from './WebinarRegistration';
 import ErrorMessage from './ErrorMessage';
 import { trackPageView } from '../utils/analyticsUtils';
-import '../styles/webinar-page.css';
+import '../styles/webinar/index.css';
 
 const WebinarPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
