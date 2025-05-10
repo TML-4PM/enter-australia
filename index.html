@@ -7,13 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>enterAustralia tech - Your gateway to Australian gov tech contracts</title>
     <meta name="description" content="Unlock Australia's $10B Government Tech Market with just $5K. Your trusted partner for market entry and government contracts.">
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
     <!-- Fallback CSS -->
     <link rel="stylesheet" href="/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
       /* Critical CSS for initial render */
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', sans-serif !important;
         margin: 0;
         padding: 0;
       }
@@ -29,10 +32,49 @@
         background-color: #00843D;
         color: white;
       }
+      
+      /* Force basic layout during initial load */
+      header {
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        width: 100%;
+        position: relative;
+        z-index: 1000;
+      }
+      
+      nav {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .logo {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #00843D;
+      }
     </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Force CSS reload if needed
+      window.addEventListener('DOMContentLoaded', (event) => {
+        console.log('DOM fully loaded - checking styles');
+        setTimeout(() => {
+          const bodyStyles = getComputedStyle(document.body);
+          if (bodyStyles.fontFamily.indexOf('Poppins') === -1) {
+            console.log('Forcing CSS reload');
+            const links = document.querySelectorAll('link[rel="stylesheet"]');
+            links.forEach(link => {
+              const clone = link.cloneNode();
+              link.parentNode.replaceChild(clone, link);
+            });
+          }
+        }, 1000);
+      });
+    </script>
   </body>
 </html>
