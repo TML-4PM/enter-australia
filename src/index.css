@@ -1,11 +1,14 @@
 
+/* Ensure font is loaded first */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* Import all modular CSS files */
+/* Critical base styles */
 @import './styles/global.css';
 @import './styles/header.css';
 @import './styles/components/hero.css';
 @import './styles/components/buttons.css';
+
+/* Other component styles */
 @import './styles/lead-form.css';
 @import './styles/value-props.css';
 @import './styles/how-it-works.css';

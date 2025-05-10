@@ -22,15 +22,18 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html, body {
+  scroll-behavior: smooth !important;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  color: var(--dark-color);
-  background-color: var(--light-color);
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.6 !important;
+  color: var(--dark-color) !important;
+  background-color: var(--light-color) !important;
+  overflow-x: hidden;
 }
 
 a {
@@ -76,6 +79,24 @@ img {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Import home page styles */
-@import './home/index.css';
+/* Make styling more forceful */
+header {
+  display: block !important;
+}
 
+nav {
+  display: flex !important;
+}
+
+.btn.primary {
+  background-color: var(--primary-color) !important;
+  color: var(--light-color) !important;
+}
+
+.btn.secondary {
+  border: 2px solid var(--secondary-color) !important;
+  color: var(--secondary-color) !important;
+}
+
+/* Force load home page styles */
+@import './home/index.css';
