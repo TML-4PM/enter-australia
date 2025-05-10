@@ -32,6 +32,19 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
   return (
     <main>
       <Routes>
+        {/* Debug route that will render even if other routes fail */}
+        <Route path="/debug" element={
+          <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+            <h1>Debug Page</h1>
+            <p>If you can see this, routing is working correctly!</p>
+            <p>Time now: {new Date().toLocaleString()}</p>
+            <p>
+              <a href="/" style={{ color: 'blue', textDecoration: 'underline' }}>
+                Go to homepage
+              </a>
+            </p>
+          </div>
+        } />
         <Route path="/" element={
           <HomePage 
             toggleLeadForm={toggleLeadForm} 

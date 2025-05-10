@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css'; // Import CSS before App
 import App from './App';
 
-// More comprehensive CSS debugging
-console.log('Main JavaScript file loaded, CSS should be applied');
+// More comprehensive debugging
+console.log('Main JavaScript file loaded, beginning app initialization');
 
 // Function to check if CSS is loaded properly
 const checkCSSLoading = () => {
@@ -20,20 +20,35 @@ const checkCSSLoading = () => {
     console.log('Body color:', computedStyle.color);
     console.log('Body background:', computedStyle.backgroundColor);
     
-    // Check button styles
-    const buttons = document.querySelectorAll('.btn');
-    if (buttons.length > 0) {
-      console.log('Found', buttons.length, 'buttons');
-      const btnStyle = window.getComputedStyle(buttons[0]);
-      console.log('Button background:', btnStyle.backgroundColor);
+    // Check page layout
+    const header = document.querySelector('header');
+    if (header) {
+      console.log('Header element found');
     } else {
-      console.log('No buttons found yet');
+      console.error('Header element not found - possible rendering issue');
     }
-  }, 500);
+    
+    const main = document.querySelector('main');
+    if (main) {
+      console.log('Main element found');
+    } else {
+      console.error('Main element not found - possible rendering issue');
+    }
+    
+    // Check route rendering
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+      console.log('Hero section found - home page rendering');
+    }
+    
+    console.log('App rendering complete, checking for errors...');
+    if (document.querySelector('.error')) {
+      console.error('Error elements found in the DOM');
+    } else {
+      console.log('No visible error elements in the DOM');
+    }
+  }, 1000);
 };
-
-// Run the check
-checkCSSLoading();
 
 // Create a function to monitor for styling issues
 const monitorStyles = () => {
@@ -47,20 +62,35 @@ const monitorStyles = () => {
   
   // Start observing once the DOM is loaded
   window.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM content loaded, starting style observer');
     observer.observe(document.body, { 
       attributes: true, 
       childList: true, 
       subtree: true,
       attributeFilter: ['class', 'style']
     });
+    
+    // Check if the application loaded correctly
+    checkCSSLoading();
   });
 };
 
 // Start monitoring
 monitorStyles();
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Add global error handler
+window.addEventListener('error', (event) => {
+  console.error('Global error caught:', event.error);
+});
+
+console.log('Creating React root and rendering app...');
+try {
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+  console.log('React render call complete');
+} catch (error) {
+  console.error('Failed to render React application:', error);
+}
