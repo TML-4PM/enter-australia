@@ -13,7 +13,16 @@ export default defineConfig(({ mode }) => ({
       include: [/node_modules/],
       extensions: ['.js', '.jsx']
     },
-    chunkSizeWarningLimit: 600 // Increased warning limit to avoid the 500kB warning
+    chunkSizeWarningLimit: 600, // Increased warning limit to avoid the 500kB warning
+    sourcemap: true, // Enable sourcemaps for better debugging
+    minify: 'terser', // Use terser for better minification
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom']
+        }
+      }
+    }
   },
   server: {
     host: "::",
