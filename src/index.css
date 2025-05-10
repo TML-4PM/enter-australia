@@ -40,7 +40,7 @@
 
 /* Other styles */
 @import './styles/error-message.css';
-@import './styles/blog.css';
+@import './styles/blog/index.css';
 @import './styles/contact.css';
 @import './styles/footer.css';
 @import './styles/responsive.css';

@@ -1,0 +1,26 @@
+
+/* Blog CTA Styles */
+.blog-cta {
+  background-color: var(--gray-light);
+  padding: 3rem;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.blog-cta h3 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.blog-cta p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

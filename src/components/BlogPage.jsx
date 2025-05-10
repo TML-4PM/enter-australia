@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { fetchLinkedInActivity, seedBlogPosts } from '../utils/linkedinUtils';
-import '../styles/blog.css';
+import '../styles/blog/index.css';
 
 const BlogPage = () => {
   const [articles, setArticles] = useState([]);
