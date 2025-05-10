@@ -1,10 +1,47 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/solutions.css';
 
 const SolutionsPage = () => {
-  const [activeTab, setActiveTab] = useState("govtech");
+  // Solution cards data
+  const solutions = [
+    {
+      id: 'market-entry',
+      title: 'Market Entry',
+      description: 'Launch in Australia—zero guesswork, zero red tape. Get legal, operational & strategic market readiness in 30 days.',
+      icon: '🚀',
+      link: '/solutions/market-entry'
+    },
+    {
+      id: 'govtech',
+      title: 'GovTech Procurement',
+      description: 'Win government contracts—no more 80% rejections. Submit compliant, compelling bids that boost your shortlist rate by 30%.',
+      icon: '🏛️',
+      link: '/solutions/govtech'
+    },
+    {
+      id: 'partnerships',
+      title: 'Local Partnerships',
+      description: 'Multiply your reach—partner with Australia's top channels. Build co-sell deals and reseller networks that accelerate your sales cycle.',
+      icon: '🤝',
+      link: '/solutions/partnerships'
+    },
+    {
+      id: 'compliance',
+      title: 'Compliance & Regulations',
+      description: 'Stay audit-ready—no surprises, no fines. Full regulatory posture in 60 days, across cybersecurity, data, export controls & more.',
+      icon: '📋',
+      link: '/solutions/compliance'
+    },
+    {
+      id: 'grants',
+      title: 'Grants & Incentives',
+      description: 'Fund your expansion—unlock non-dilutive capital. Navigate A$5 billion+ in grants, R&D tax offsets & state rebates.',
+      icon: '💰',
+      link: '/solutions/grants'
+    }
+  ];
   
   return (
     <section id="solutions" className="solutions-page">
@@ -13,169 +50,23 @@ const SolutionsPage = () => {
         <p>Customized market-entry strategies for every technology vertical</p>
       </div>
       
-      <div className="solutions-tabs">
-        <button 
-          className={`tab ${activeTab === 'govtech' ? 'active' : ''}`}
-          onClick={() => setActiveTab('govtech')}
-        >
-          GovTech
-        </button>
-        <button 
-          className={`tab ${activeTab === 'fintech' ? 'active' : ''}`}
-          onClick={() => setActiveTab('fintech')}
-        >
-          FinTech
-        </button>
-        <button 
-          className={`tab ${activeTab === 'healthtech' ? 'active' : ''}`}
-          onClick={() => setActiveTab('healthtech')}
-        >
-          HealthTech
-        </button>
-        <button 
-          className={`tab ${activeTab === 'saas' ? 'active' : ''}`}
-          onClick={() => setActiveTab('saas')}
-        >
-          SaaS
-        </button>
-        <button 
-          className={`tab ${activeTab === 'iot' ? 'active' : ''}`}
-          onClick={() => setActiveTab('iot')}
-        >
-          IoT
-        </button>
+      <div className="solutions-cards">
+        {solutions.map((solution) => (
+          <div key={solution.id} className="solution-card">
+            <div className="solution-icon">{solution.icon}</div>
+            <h3>{solution.title}</h3>
+            <p>{solution.description}</p>
+            <Link to={solution.link} className="solution-link">
+              Learn more <span className="arrow-icon">→</span>
+            </Link>
+          </div>
+        ))}
       </div>
       
-      <div className="solutions-content">
-        <div className={`solution-tab-content ${activeTab === 'govtech' ? 'active' : ''}`}>
-          <div className="solution-problem">
-            <h3>Pain Points</h3>
-            <p>Complex tender processes, high compliance requirements, lengthy procurement cycles.</p>
-          </div>
-          
-          <div className="solution-offer">
-            <h3>We Offer</h3>
-            <ul>
-              <li>RFP response support</li>
-              <li>Secure-cloud certification</li>
-              <li>Stakeholder introductions</li>
-              <li>Project delivery frameworks</li>
-            </ul>
-          </div>
-          
-          <div className="solution-case">
-            <h3>Success Case</h3>
-            <p>"City X digitalized permit applications in 8 weeks, improving processing time by 85%."</p>
-          </div>
-          
-          <div className="solution-cta">
-            <Link to="/contact" className="btn primary">Talk to our GovTech Lead</Link>
-          </div>
-        </div>
-        
-        <div className={`solution-tab-content ${activeTab === 'fintech' ? 'active' : ''}`}>
-          <div className="solution-problem">
-            <h3>Pain Points</h3>
-            <p>APRA licensing, local-payments integration, regulatory compliance.</p>
-          </div>
-          
-          <div className="solution-offer">
-            <h3>We Offer</h3>
-            <ul>
-              <li>Licensing roadmaps</li>
-              <li>PSP partnerships (Visa, Adyen)</li>
-              <li>Regulatory sandbox access</li>
-              <li>Compliance frameworks</li>
-            </ul>
-          </div>
-          
-          <div className="solution-case">
-            <h3>Success Case</h3>
-            <p>"Neobank Y launched with 150k customers in 3 months with our regulatory fast-track."</p>
-          </div>
-          
-          <div className="solution-cta">
-            <Link to="/contact" className="btn primary">Speak with our FinTech Expert</Link>
-          </div>
-        </div>
-        
-        <div className={`solution-tab-content ${activeTab === 'healthtech' ? 'active' : ''}`}>
-          <div className="solution-problem">
-            <h3>Pain Points</h3>
-            <p>TGA approvals, My Health Record integration, data security compliance.</p>
-          </div>
-          
-          <div className="solution-offer">
-            <h3>We Offer</h3>
-            <ul>
-              <li>Clinical trials setup</li>
-              <li>EHR connectors</li>
-              <li>Reimbursement pathways</li>
-              <li>Hospital partnership introductions</li>
-            </ul>
-          </div>
-          
-          <div className="solution-case">
-            <h3>Success Case</h3>
-            <p>"MedApp Z scaled to 100 clinics in Q1 through our healthcare accelerator program."</p>
-          </div>
-          
-          <div className="solution-cta">
-            <Link to="/contact" className="btn primary">Connect with our HealthTech Team</Link>
-          </div>
-        </div>
-        
-        <div className={`solution-tab-content ${activeTab === 'saas' ? 'active' : ''}`}>
-          <div className="solution-problem">
-            <h3>Pain Points</h3>
-            <p>Data sovereignty, local hosting requirements, enterprise sales cycles.</p>
-          </div>
-          
-          <div className="solution-offer">
-            <h3>We Offer</h3>
-            <ul>
-              <li>AWS/Azure partnership facilitation</li>
-              <li>Data residency compliance</li>
-              <li>Enterprise sales introductions</li>
-              <li>ISV partnership development</li>
-            </ul>
-          </div>
-          
-          <div className="solution-case">
-            <h3>Success Case</h3>
-            <p>"B2B platform secured 3 enterprise clients in first quarter after Australian launch."</p>
-          </div>
-          
-          <div className="solution-cta">
-            <Link to="/contact" className="btn primary">Talk to our SaaS Specialist</Link>
-          </div>
-        </div>
-        
-        <div className={`solution-tab-content ${activeTab === 'iot' ? 'active' : ''}`}>
-          <div className="solution-problem">
-            <h3>Pain Points</h3>
-            <p>Spectrum licensing, hardware certification, supply chain complexity.</p>
-          </div>
-          
-          <div className="solution-offer">
-            <h3>We Offer</h3>
-            <ul>
-              <li>ACMA certification support</li>
-              <li>Manufacturing partnerships</li>
-              <li>Distribution channel development</li>
-              <li>Pilot program management</li>
-            </ul>
-          </div>
-          
-          <div className="solution-case">
-            <h3>Success Case</h3>
-            <p>"Smart city solution deployed across 3 regional councils within 6 months of market entry."</p>
-          </div>
-          
-          <div className="solution-cta">
-            <Link to="/contact" className="btn primary">Connect with our IoT Team</Link>
-          </div>
-        </div>
+      <div className="solutions-cta">
+        <h2>Not sure which solution is right for you?</h2>
+        <p>Book a free consultation and our experts will guide you through the options.</p>
+        <Link to="/contact" className="btn primary">Book a Free Consultation</Link>
       </div>
     </section>
   );

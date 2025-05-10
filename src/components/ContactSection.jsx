@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Linkedin, Instagram, Facebook, Mail, Phone } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, Mail, Twitter } from 'lucide-react';
 import { supabase } from '../utils/supabaseClient';
 import '../styles/contact.css';
 
@@ -28,7 +28,9 @@ const ContactSection = () => {
     
     try {
       // Always use troy@tech4humanity.com.au as the recipient
+      // but store info@enteraustralia.tech as the target for display
       const actualRecipientEmail = 'troy@tech4humanity.com.au';
+      const displayEmail = 'info@enteraustralia.tech';
       
       // Save to Supabase leads table with original user email for tracking
       const { error } = await supabase
@@ -37,6 +39,7 @@ const ContactSection = () => {
           name: formState.name,
           email: formState.email, // Store user's input for tracking
           target_email: actualRecipientEmail, // Store actual recipient
+          display_email: displayEmail, // Store display email
           company: formState.company,
           service: formState.service,
           message: formState.message,
@@ -46,9 +49,6 @@ const ContactSection = () => {
       if (error) {
         throw new Error(error.message);
       }
-      
-      // If you're sending an actual email, you would use the actualRecipientEmail here
-      // instead of the user's provided email
       
       setFormStatus({ type: 'success', message: 'Message sent successfully! We will contact you shortly.' });
       setFormState({
@@ -70,7 +70,8 @@ const ContactSection = () => {
     const socialUrls = {
       linkedin: 'https://www.linkedin.com/company/enteraustralia-tech',
       instagram: 'https://www.instagram.com/enteraustralia.tech',
-      facebook: 'https://www.facebook.com/enteraustralia.tech'
+      facebook: 'https://www.facebook.com/enteraustralia.tech',
+      twitter: 'https://twitter.com/enteraustralia',
     };
     
     if (socialUrls[platform]) {
@@ -167,11 +168,7 @@ const ContactSection = () => {
           <div className="contact-details">
             <div className="contact-item">
               <Mail size={20} className="contact-icon" />
-              <p>Email: <a href="mailto:troy@tech4humanity.com.au">troy@tech4humanity.com.au</a></p>
-            </div>
-            <div className="contact-item">
-              <Phone size={20} className="contact-icon" />
-              <p>Phone: +61 2 1234 5678</p>
+              <p>Email: <a href="mailto:info@enteraustralia.tech">info@enteraustralia.tech</a></p>
             </div>
             <div className="social-links">
               <button onClick={() => handleSocialClick('linkedin')} aria-label="LinkedIn">
@@ -182,6 +179,9 @@ const ContactSection = () => {
               </button>
               <button onClick={() => handleSocialClick('facebook')} aria-label="Facebook">
                 <Facebook size={24} />
+              </button>
+              <button onClick={() => handleSocialClick('twitter')} aria-label="Twitter">
+                <Twitter size={24} />
               </button>
             </div>
           </div>

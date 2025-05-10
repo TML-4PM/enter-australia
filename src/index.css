@@ -23,9 +23,11 @@
 
 /* New page styles */
 @import './styles/solutions.css';
+@import './styles/solution-detail.css';
 @import './styles/regions.css';
 @import './styles/resources.css';
 @import './styles/about.css';
+@import './styles/faq-page.css';
 
 /* Auth styles */
 @import './styles/auth.css';
@@ -37,3 +39,4 @@
 @import './styles/contact.css';
 @import './styles/footer.css';
 @import './styles/responsive.css';
+

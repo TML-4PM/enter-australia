@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
@@ -21,6 +20,15 @@ import RegisterPage from './components/RegisterPage';
 import ProfilePage from './components/ProfilePage';
 import WebinarPage from './components/WebinarPage';
 import LiveChatBot from './components/LiveChatBot';
+import FAQPage from './components/FAQPage';
+
+// Solution detail pages
+import MarketEntrySolution from './components/solutions/MarketEntrySolution';
+import GovTechSolution from './components/solutions/GovTechSolution';
+import PartnershipsSolution from './components/solutions/PartnershipsSolution';
+import ComplianceSolution from './components/solutions/ComplianceSolution';
+import GrantsSolution from './components/solutions/GrantsSolution';
+
 import { Menu, X, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 
 // Route tracker component
@@ -147,6 +155,7 @@ function App() {
                 <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
                 <li><Link to="/about" onClick={closeMenu}>About</Link></li>
                 <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
+                <li><Link to="/faq" onClick={closeMenu}>FAQ</Link></li>
                 {isMenuOpen && (
                   <li className="visible-mobile">
                     <Link to="/pricing" className="nav-cta mobile" onClick={closeMenu}>
@@ -180,8 +189,14 @@ function App() {
               } />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/solutions" element={<SolutionsPage />} />
+              <Route path="/solutions/market-entry" element={<MarketEntrySolution />} />
+              <Route path="/solutions/govtech" element={<GovTechSolution />} />
+              <Route path="/solutions/partnerships" element={<PartnershipsSolution />} />
+              <Route path="/solutions/compliance" element={<ComplianceSolution />} />
+              <Route path="/solutions/grants" element={<GrantsSolution />} />
               <Route path="/regions" element={<RegionsPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
+              <Route path="/faq" element={<FAQPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/opportunities" element={<OpportunitiesSection />} />
               <Route path="/pricing" element={<PricingSection />} />
@@ -243,11 +258,11 @@ function App() {
               <div className="footer-section">
                 <h3>Solutions</h3>
                 <ul>
-                  <li><Link to="/solutions#market-entry">Market Entry</Link></li>
-                  <li><Link to="/solutions#gov-tech">GovTech Procurement</Link></li>
-                  <li><Link to="/solutions#local-partnerships">Local Partnerships</Link></li>
-                  <li><Link to="/solutions#compliance">Compliance & Regulations</Link></li>
-                  <li><Link to="/solutions#grants">Grants & Incentives</Link></li>
+                  <li><Link to="/solutions/market-entry">Market Entry</Link></li>
+                  <li><Link to="/solutions/govtech">GovTech Procurement</Link></li>
+                  <li><Link to="/solutions/partnerships">Local Partnerships</Link></li>
+                  <li><Link to="/solutions/compliance">Compliance & Regulations</Link></li>
+                  <li><Link to="/solutions/grants">Grants & Incentives</Link></li>
                 </ul>
               </div>
               
@@ -258,6 +273,7 @@ function App() {
                   <li><a href="https://data.gov.au/search" target="_blank" rel="noopener noreferrer">Data APIs & Tools</a></li>
                   <li><Link to="/blog">Blog & Insights</Link></li>
                   <li><Link to="/resources#webinars">Webinars</Link></li>
+                  <li><Link to="/faq">FAQs</Link></li>
                   <li><Link to="/contact">Request Custom Research</Link></li>
                 </ul>
               </div>
