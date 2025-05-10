@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -88,14 +89,14 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- Required Lovable script tag for "Select" feature -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <!-- Removed Lovable script to eliminate notifications -->
+    <!-- <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script> -->
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // Immediately hide notification elements
-      window.addEventListener('load', function() {
-        // Aggressive approach to hide notifications
-        const hideNotifications = function() {
+      // MutationObserver to aggressively remove notification elements
+      window.addEventListener('DOMContentLoaded', function() {
+        // Function to remove notification elements
+        const removeNotifications = function() {
           const selectors = [
             '[data-testid="update-project-notification"]',
             '[data-testid="update-project-button"]',
@@ -108,18 +109,29 @@
           selectors.forEach(selector => {
             const elements = document.querySelectorAll(selector);
             elements.forEach(el => {
-              el.style.display = 'none';
-              el.style.opacity = '0';
-              el.style.visibility = 'hidden';
+              if (el && el.parentNode) {
+                el.parentNode.removeChild(el);
+              }
             });
           });
-          
-          // Keep checking periodically
-          setTimeout(hideNotifications, 1000);
         };
         
-        // Start hiding notifications
-        hideNotifications();
+        // Initial removal
+        removeNotifications();
+        
+        // Set up MutationObserver to catch dynamically added elements
+        const observer = new MutationObserver(mutations => {
+          removeNotifications();
+        });
+        
+        // Start observing the entire document
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true
+        });
+        
+        // Also run periodically as a fallback
+        setInterval(removeNotifications, 500);
       });
       
       // Simplified version checking

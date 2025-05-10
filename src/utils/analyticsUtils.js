@@ -18,6 +18,9 @@ export const initializeAnalytics = () => {
   
   // Make gtag available globally
   window.gtag = gtag;
+  
+  // Run notification blocker after analytics loads
+  runNotificationBlocker();
 };
 
 // Track page views
@@ -26,6 +29,50 @@ export const trackPageView = (path) => {
     window.gtag('event', 'page_view', {
       page_path: path
     });
+  }
+};
+
+// Extra function to block update notifications
+const runNotificationBlocker = () => {
+  const selectors = [
+    '[data-testid="update-project-notification"]',
+    '[data-testid="update-project-button"]',
+    'div[role="alert"][data-testid]',
+    'button[data-testid*="update"]',
+    '.notification-update',
+    '.lovable-update-banner'
+  ];
+  
+  // Remove elements immediately
+  const removeElements = () => {
+    selectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => {
+        if (el && el.parentNode) {
+          el.parentNode.removeChild(el);
+        }
+      });
+    });
+  };
+  
+  // Run immediately
+  removeElements();
+  
+  // Set up observer
+  try {
+    const observer = new MutationObserver(() => {
+      removeElements();
+    });
+    
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    
+    // Also run periodically
+    setInterval(removeElements, 500);
+  } catch (err) {
+    console.log("Observer setup failed, falling back to interval only");
+    setInterval(removeElements, 200);
   }
 };
 
