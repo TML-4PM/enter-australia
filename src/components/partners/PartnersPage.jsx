@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../utils/supabaseClient';
-import '../../styles/partners.css';
+import '../../styles/partners/partners-main.css';
 
 // Import components
 import PartnerHero from './PartnerHero';

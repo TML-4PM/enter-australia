@@ -5,6 +5,7 @@
 @import './styles/global.css';
 @import './styles/header.css';
 @import './styles/components/hero.css';
+@import './styles/components/buttons.css';
 @import './styles/lead-form.css';
 @import './styles/value-props.css';
 @import './styles/how-it-works.css';
@@ -40,4 +41,3 @@
 @import './styles/contact.css';
 @import './styles/footer.css';
 @import './styles/responsive.css';
-
