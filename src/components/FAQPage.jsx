@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import '../styles/faq-page.css';
 
@@ -31,7 +30,7 @@ const FAQPage = () => {
       id: 3,
       category: 'market-entry',
       question: 'What happens after the 30 days?',
-      answer: 'You'll be fully operational with all legal and setup complete. Optional ongoing support is available.'
+      answer: "You'll be fully operational with all legal and setup complete. Optional ongoing support is available."
     },
     {
       id: 4,

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../utils/supabaseClient';
-import { Search, Briefcase, Handshake, Users } from 'lucide-react';
+import { Search, Briefcase, Handshake, Users, Building, LinkIcon } from 'lucide-react';
 import '../styles/partners.css';
 
 const PartnersPage = () => {
@@ -10,6 +10,7 @@ const PartnersPage = () => {
   const [featuredPartners, setFeaturedPartners] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedIndustry, setSelectedIndustry] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -54,20 +55,25 @@ const PartnersPage = () => {
     fetchPartners();
   }, []);
 
-  // Filter partners based on search and category
+  // Filter partners based on search, category, and industry
   const filteredPartners = partners.filter(partner => {
     const matchesSearch = 
       partner.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       partner.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      partner.industry.toLowerCase().includes(searchQuery.toLowerCase());
+      (partner.industry && partner.industry.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (partner.specialty && partner.specialty.toLowerCase().includes(searchQuery.toLowerCase()));
     
     const matchesCategory = selectedCategory === 'all' || partner.category === selectedCategory;
+    const matchesIndustry = selectedIndustry === 'all' || partner.industry === selectedIndustry;
     
-    return matchesSearch && matchesCategory;
+    return matchesSearch && matchesCategory && matchesIndustry;
   });
 
   // Get unique categories for filter
   const categories = ['all', ...new Set(partners.map(partner => partner.category))];
+  
+  // Get unique industries for filter
+  const industries = ['all', ...new Set(partners.filter(partner => partner.industry).map(partner => partner.industry))];
 
   return (
     <section className="partners-page">
@@ -103,6 +109,11 @@ const PartnersPage = () => {
               <p>Multiply your capabilities through complementary skills and networks</p>
             </div>
             <div className="value-card">
+              <Building size={36} />
+              <h3>Local Expertise</h3>
+              <p>Access deep industry knowledge and established relationships in the Australian market</p>
+            </div>
+            <div className="value-card">
               <Briefcase size={36} />
               <h3>Global Best Practices</h3>
               <p>Fill RFTs and opportunities with best-in-class solutions and expertise</p>
@@ -128,7 +139,12 @@ const PartnersPage = () => {
                   </div>
                   <h3>{partner.name}</h3>
                   <p>{partner.description}</p>
-                  <div className="partner-industry">{partner.industry}</div>
+                  <div className="partner-tags">
+                    {partner.industry && <span className="partner-industry">{partner.industry}</span>}
+                    {partner.partnership_level && (
+                      <span className="partner-level">{partner.partnership_level}</span>
+                    )}
+                  </div>
                 </div>
               ))
             ) : (
@@ -140,31 +156,51 @@ const PartnersPage = () => {
       
       {/* Partner Directory Section */}
       <div className="partner-directory">
-        <h2>Partner Directory</h2>
-        <p>Browse our extensive network of partners across various industries and specialties</p>
+        <h2>Partner Ecosystem</h2>
+        <p>Browse our extensive network of 250+ partners across various industries and specialties</p>
         
-        {/* Search and Filter */}
+        {/* Search and Filters */}
         <div className="directory-filters">
           <div className="search-box">
             <Search size={20} />
             <input 
               type="text"
-              placeholder="Search partners by name, industry, or keywords..."
+              placeholder="Search partners by name, industry, or specialty..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
           
-          <div className="category-filter">
-            {categories.map((category) => (
-              <button 
-                key={category}
-                className={selectedCategory === category ? 'active' : ''}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
-            ))}
+          <div className="filter-controls">
+            <div className="filter-group">
+              <label>Category:</label>
+              <div className="category-filter">
+                {categories.map((category) => (
+                  <button 
+                    key={category}
+                    className={selectedCategory === category ? 'active' : ''}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category === 'all' ? 'All Categories' : category.charAt(0).toUpperCase() + category.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            <div className="filter-group">
+              <label>Industry:</label>
+              <div className="industry-filter">
+                {industries.map((industry) => (
+                  <button 
+                    key={industry}
+                    className={selectedIndustry === industry ? 'active' : ''}
+                    onClick={() => setSelectedIndustry(industry)}
+                  >
+                    {industry === 'all' ? 'All Industries' : industry}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         
@@ -185,10 +221,13 @@ const PartnersPage = () => {
                   <div className="partner-category">{partner.category}</div>
                   <p>{partner.description}</p>
                   <div className="partner-details">
-                    <span className="partner-industry">{partner.industry}</span>
+                    <div className="partner-tags">
+                      {partner.industry && <span className="partner-industry">{partner.industry}</span>}
+                      {partner.specialty && <span className="partner-specialty">{partner.specialty}</span>}
+                    </div>
                     {partner.website && (
                       <a href={partner.website} target="_blank" rel="noopener noreferrer" className="partner-website">
-                        Visit website
+                        <LinkIcon size={16} /> Website
                       </a>
                     )}
                   </div>
@@ -203,8 +242,8 @@ const PartnersPage = () => {
       
       {/* Partnership Process */}
       <div className="partnership-process">
-        <h2>How We Work With Partners</h2>
-        <p>We integrate seamlessly as an extension of your organization</p>
+        <h2>How We Integrate as Your Australian Leadership Team</h2>
+        <p>We function as an extension of your organization in the Australian market</p>
         
         <div className="process-steps">
           <div className="process-step">
@@ -230,7 +269,7 @@ const PartnersPage = () => {
         </div>
       </div>
       
-      {/* Case Studies/Success Stories (Brief) */}
+      {/* Case Studies/Success Stories */}
       <div className="partner-success-stories">
         <h2>Partnership Success Stories</h2>
         <p>Real results achieved through our strategic partnerships</p>
@@ -280,9 +319,11 @@ const samplePartners = [
     name: "TechSys Solutions",
     category: "integrator",
     industry: "IT Services",
+    specialty: "Government Systems",
     description: "Leading systems integrator specializing in government and enterprise solutions.",
     logo_url: "https://placehold.co/200x100/00843D/FFFFFF?text=TechSys",
     website: "https://example.com",
+    partnership_level: "Premier",
     is_featured: true,
     is_active: true
   },
@@ -291,9 +332,11 @@ const samplePartners = [
     name: "DataPoint Analytics",
     category: "technology",
     industry: "Data & Analytics",
+    specialty: "AI/ML Solutions",
     description: "Advanced analytics and data engineering partner for decision intelligence.",
     logo_url: "https://placehold.co/200x100/0A3161/FFFFFF?text=DataPoint",
     website: "https://example.com",
+    partnership_level: "Gold",
     is_featured: true,
     is_active: true
   },
@@ -302,9 +345,11 @@ const samplePartners = [
     name: "SoftWave Consulting",
     category: "consultant",
     industry: "Software Development",
+    specialty: "Enterprise Architecture",
     description: "Software engineering and architecture specialists with deep enterprise experience.",
     logo_url: "https://placehold.co/200x100/FFCD00/000000?text=SoftWave",
     website: "https://example.com",
+    partnership_level: "Silver",
     is_featured: false,
     is_active: true
   },
@@ -313,9 +358,11 @@ const samplePartners = [
     name: "SecurePath Cyber",
     category: "technology",
     industry: "Cybersecurity",
+    specialty: "Compliance & Risk Management",
     description: "Comprehensive cybersecurity services and compliance for regulated industries.",
     logo_url: "https://placehold.co/200x100/E9483F/FFFFFF?text=SecurePath",
     website: "https://example.com",
+    partnership_level: "Gold",
     is_featured: true,
     is_active: true
   },
@@ -324,9 +371,11 @@ const samplePartners = [
     name: "CloudMatrix Systems",
     category: "integrator",
     industry: "Cloud Infrastructure",
+    specialty: "Multi-cloud Management",
     description: "Cloud migration and infrastructure modernization experts for AWS and Azure.",
     logo_url: "https://placehold.co/200x100/8BA58F/FFFFFF?text=CloudMatrix",
     website: "https://example.com",
+    partnership_level: "Silver",
     is_featured: false,
     is_active: true
   },
@@ -335,9 +384,11 @@ const samplePartners = [
     name: "HealthTech Solutions",
     category: "technology",
     industry: "Healthcare",
+    specialty: "EMR Systems",
     description: "Specialized healthcare technology solutions for hospitals and clinics.",
     logo_url: "https://placehold.co/200x100/00843D/FFFFFF?text=HealthTech",
     website: "https://example.com",
+    partnership_level: "Silver",
     is_featured: false,
     is_active: true
   },
@@ -346,9 +397,11 @@ const samplePartners = [
     name: "GovConnect",
     category: "reseller",
     industry: "Government",
+    specialty: "Tender Response",
     description: "Premier government procurement and tender response specialists.",
     logo_url: "https://placehold.co/200x100/0A3161/FFFFFF?text=GovConnect",
     website: "https://example.com",
+    partnership_level: "Premier",
     is_featured: true,
     is_active: true
   },
@@ -357,9 +410,11 @@ const samplePartners = [
     name: "FinSmart Technologies",
     category: "technology",
     industry: "Financial Services",
+    specialty: "Payments & Compliance",
     description: "Fintech solutions provider specializing in payment systems and compliance.",
     logo_url: "https://placehold.co/200x100/FFCD00/000000?text=FinSmart",
     website: "https://example.com",
+    partnership_level: "Gold",
     is_featured: false,
     is_active: true
   }
