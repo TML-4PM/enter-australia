@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import '../styles/faq-page.css';
 
@@ -54,7 +55,7 @@ const FAQPage = () => {
       id: 7,
       category: 'partnerships',
       question: 'Do you negotiate commercial terms?',
-      answer: 'Yes—we'll help set margins, SLAs and co-sell SLAs.'
+      answer: "Yes—we'll help set margins, SLAs and co-sell SLAs."
     },
     {
       id: 8,
