@@ -1,0 +1,50 @@
+
+.process-timeline {
+  position: relative;
+}
+
+.process-step {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.step-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1.5rem;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  border-radius: 50%;
+  font-weight: 600;
+}
+
+.step-line {
+  width: 2px;
+  background-color: var(--gray-light);
+  flex-grow: 1;
+  margin: 5px 0;
+}
+
+.step-content h3 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.step-content p {
+  color: var(--gray-dark);
+  line-height: 1.5;
+}
+
+.process-step:last-child .step-line {
+  display: none;
+}

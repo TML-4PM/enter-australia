@@ -1,0 +1,106 @@
+
+.pricing-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.pricing-cta {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.pricing-cta:hover {
+  background-color: var(--secondary-color);
+}
+
+.pricing-cta.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.pricing-cta.loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.pricing-card.featured .pricing-cta {
+  background-color: var(--secondary-color);
+}
+
+.pricing-card.featured .pricing-cta:hover {
+  background-color: #ff8733;
+}
+
+.pricing-cta.free {
+  background-color: var(--gray-medium);
+}
+
+.pricing-cta.free:hover {
+  background-color: var(--gray-dark);
+}
+
+.pricing-cta.enterprise {
+  background-color: var(--dark-color);
+  border: 2px solid var(--secondary-color);
+}
+
+.pricing-cta.enterprise:hover {
+  background-color: var(--secondary-color);
+}
+
+.pricing-cta.current-plan-btn {
+  background-color: var(--gray-medium);
+}
+
+.pricing-cta.current-plan-btn:hover {
+  background-color: var(--gray-dark);
+}
+
+.learn-more-link {
+  display: inline-block;
+  text-align: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  transition: var(--transition);
+  border-bottom: 1px dashed var(--gray-medium);
+}
+
+.pricing-card.featured .learn-more-link,
+.pricing-card.premium-plan .learn-more-link {
+  color: var(--light-color);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.learn-more-link:hover {
+  color: var(--secondary-color);
+  border-bottom-color: var(--secondary-color);
+}

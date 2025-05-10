@@ -1,0 +1,43 @@
+
+.pricing-detail-cta-section {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 3rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.pricing-detail-cta-section h2 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.pricing-detail-contact {
+  color: var(--gray-dark);
+  margin: 0;
+}
+
+.pricing-detail-contact a,
+.book-call-link {
+  color: var(--secondary-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+
+.pricing-detail-contact a:hover,
+.book-call-link:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+  .pricing-detail-cta-section {
+    padding: 2rem 1rem;
+  }
+}

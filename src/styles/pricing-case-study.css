@@ -1,0 +1,14 @@
+
+.case-study-box {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--secondary-color);
+}
+
+.case-study-quote {
+  color: var(--gray-dark);
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}

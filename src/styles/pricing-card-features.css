@@ -1,0 +1,42 @@
+
+.features {
+  margin-bottom: 2rem;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.features li {
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--secondary-color);
+}
+
+.features li.more-features::before {
+  content: '';
+}
+
+.view-more-link {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.view-more-link:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+  .features li {
+    font-size: 0.85rem;
+  }
+}
