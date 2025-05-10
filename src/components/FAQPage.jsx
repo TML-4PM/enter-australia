@@ -66,7 +66,7 @@ const FAQPage = () => {
     {
       id: 9,
       category: 'compliance',
-      question: 'What's included in the quarterly health check?',
+      question: "What's included in the quarterly health check?",
       answer: 'Updated risk score, new recommendations, policy refresh.'
     },
     {
@@ -90,7 +90,7 @@ const FAQPage = () => {
     {
       id: 13,
       category: 'govtech',
-      question: 'What's your success rate with government tenders?',
+      question: "What's your success rate with government tenders?",
       answer: 'Our clients experience a 65% shortlisting rate, compared to the industry average of 20%.'
     },
     {

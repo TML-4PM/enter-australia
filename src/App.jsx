@@ -12,7 +12,7 @@ import OpportunitiesSection from './components/OpportunitiesSection';
 import ContactSection from './components/ContactSection';
 import SuccessPage from './components/SuccessPage';
 import SolutionsPage from './components/SolutionsPage';
-import PartnersPage from './components/PartnersPage';
+import PartnersPage from './components/partners/PartnersPage';
 import RegionsPage from './components/RegionsPage';
 import ResourcesPage from './components/ResourcesPage';
 import AboutPage from './components/AboutPage';
