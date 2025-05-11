@@ -14,6 +14,10 @@ const monitorStyles = () => {
     console.log('Body color:', computedStyle.color);
     console.log('Body background:', computedStyle.backgroundColor);
     
+    // Log CSS variables to ensure they're loaded
+    console.log('--primary-color:', getComputedStyle(document.documentElement).getPropertyValue('--primary-color'));
+    console.log('--secondary-color:', getComputedStyle(document.documentElement).getPropertyValue('--secondary-color'));
+    
     console.log('App rendering complete, checking for errors...');
     if (document.querySelector('.error')) {
       console.error('Error elements found in the DOM');
@@ -33,6 +37,12 @@ const monitorStyles = () => {
     if (document.querySelector('main')) {
       console.log('Main element found');
     }
+
+    // Force a refresh of CSS classes if needed
+    document.body.classList.add('css-loaded');
+    setTimeout(() => {
+      document.body.classList.remove('css-loaded');
+    }, 100);
   }, 1000);
 };
 

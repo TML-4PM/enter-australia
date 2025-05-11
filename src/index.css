@@ -1,12 +1,26 @@
 
 /* Ensure font is loaded first */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-/* Critical base styles */
+/* Base styles */
 @import './styles/global.css';
+
+/* Layout components */
 @import './styles/header.css';
+@import './styles/footer.css';
+
+/* Home page specific styles - ensure they're loaded before components render */
 @import './styles/components/hero.css';
 @import './styles/components/buttons.css';
+@import './styles/sections/why-australia.css';
+@import './styles/sections/core-services.css';
+@import './styles/sections/case-study.css';
+@import './styles/sections/regional-teasers.css';
+@import './styles/sections/footer-cta.css';
+@import './styles/sections/pricing-teaser.css';
+
+/* Other styles */
+@import './styles/home/index.css';
 @import './styles/lead-form.css';
 @import './styles/value-props.css';
 @import './styles/how-it-works.css';
@@ -32,12 +46,4 @@
 @import './styles/error-message.css';
 @import './styles/blog/index.css';
 @import './styles/contact.css';
-@import './styles/footer.css';
 @import './styles/responsive.css';
-
-/* All comments must come after all imports */
-/* Other component styles */
-/* Pricing related styles */
-/* New page styles */
-/* Auth styles */
-/* Other styles */

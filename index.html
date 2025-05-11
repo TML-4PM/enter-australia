@@ -7,12 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Enter Australia - Your journey to Australia starts here</title>
     <meta name="description" content="We guide you through visa applications, job placement, and relocation with ease.">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Preload critical CSS -->
     <link rel="preload" href="/styles.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" as="style">
-    <!-- Fallback CSS -->
     <link rel="stylesheet" href="/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
       /* Critical CSS for initial render */
       body {
@@ -41,7 +45,20 @@
         font-size: 1.5rem;
         color: #00843D;
       }
+      
+      :root {
+        --primary-color: #00843D;
+        --secondary-color: #FFCD00;
+        --dark-color: #1A1F2C;
+        --light-color: #ffffff;
+        --accent-color: #E9483F;
+        --australian-blue: #0A3161;
+        --gray-light: #f7f9fa;
+        --gray-medium: #e5e7eb;
+        --gray-dark: #2D3748;
+      }
     </style>
+    
     <!-- Prevent caching -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -55,6 +72,15 @@
       window.addEventListener('DOMContentLoaded', (event) => {
         console.log('DOM fully loaded - checking styles');
         
+        // Add CSS variables to document root if they're not already there
+        const rootStyle = document.documentElement.style;
+        if (!rootStyle.getPropertyValue('--primary-color')) {
+          rootStyle.setProperty('--primary-color', '#00843D');
+          rootStyle.setProperty('--secondary-color', '#FFCD00');
+          rootStyle.setProperty('--dark-color', '#1A1F2C');
+          rootStyle.setProperty('--light-color', '#ffffff');
+        }
+        
         setTimeout(() => {
           const bodyStyles = getComputedStyle(document.body);
           if (bodyStyles.fontFamily.indexOf('Inter') === -1) {
@@ -65,6 +91,11 @@
               link.parentNode.replaceChild(clone, link);
             });
           }
+          
+          // Force redraw of elements
+          document.body.style.display = 'none';
+          document.body.offsetHeight; // Trigger reflow
+          document.body.style.display = '';
         }, 1000);
       });
     </script>
