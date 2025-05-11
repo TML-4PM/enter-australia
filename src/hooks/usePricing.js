@@ -17,13 +17,23 @@ export const usePricing = (setErrorMessage) => {
   };
   
   const handleFreeAssessment = () => {
-    // Open the lead form or redirect to assessment page
-    window.scrollTo({
-      top: document.querySelector('.lead-form-overlay') ? 0 : 0,
-      behavior: 'smooth'
-    });
-    // If there's a lead form toggler in the parent component
-    if (window.toggleLeadForm) {
+    // Scroll to lead form section if it exists
+    const leadFormElement = document.querySelector('.lead-form-overlay');
+    if (leadFormElement) {
+      window.scrollTo({
+        top: leadFormElement.offsetTop,
+        behavior: 'smooth'
+      });
+    } else {
+      // Scroll to top if lead form not found
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    // Try to toggle lead form if the function exists in parent component
+    if (typeof window.toggleLeadForm === 'function') {
       window.toggleLeadForm();
     }
   };
