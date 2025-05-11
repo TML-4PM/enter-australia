@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BarChart3, Building, RefreshCcw, Globe, Flag, Award, MapPin, Map } from 'lucide-react';
+import { BarChart3, Building, RefreshCcw, Globe, Flag, Award, MapPin, Map, Check } from 'lucide-react';
 
 const HomePage = ({ toggleLeadForm }) => {
   return (
@@ -134,15 +134,15 @@ const HomePage = ({ toggleLeadForm }) => {
           <p>From initial market assessments to comprehensive entry management, our services scale with your business needs.</p>
           <div className="pricing-benefits">
             <div className="benefit">
-              <span className="benefit-check">✓</span>
+              <span className="benefit-check"><Check size={20} /></span>
               <span>Customized strategy</span>
             </div>
             <div className="benefit">
-              <span className="benefit-check">✓</span>
+              <span className="benefit-check"><Check size={20} /></span>
               <span>Flexible payment options</span>
             </div>
             <div className="benefit">
-              <span className="benefit-check">✓</span>
+              <span className="benefit-check"><Check size={20} /></span>
               <span>Transparent pricing</span>
             </div>
           </div>
