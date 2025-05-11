@@ -12,7 +12,6 @@ const Navigation = ({ isMenuOpen, toggleMenu, closeMenu }) => {
         <li><Link to="/solutions" onClick={closeMenu}>Solutions</Link></li>
         <li><Link to="/partners" onClick={closeMenu}>Partners</Link></li>
         <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li>
-        <li><Link to="/data-apis" onClick={closeMenu}>Data APIs</Link></li>
         <li><Link to="/about" onClick={closeMenu}>About</Link></li>
         {isMenuOpen && (
           <li className="visible-mobile">
