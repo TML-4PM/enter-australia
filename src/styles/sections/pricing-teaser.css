@@ -1,44 +1,97 @@
 
-/* Pricing Teaser Section */
 .pricing-teaser-section {
-  padding: 5rem 5%;
-  background-color: var(--light-color);
+  padding: 6rem 5%;
   text-align: center;
-  color: var(--dark-color);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--light-color);
+  position: relative;
+}
+
+.pricing-teaser-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gray-medium), transparent);
 }
 
 .pricing-teaser-section h2 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   margin-bottom: 1.5rem;
   color: var(--primary-color);
 }
 
 .pricing-teaser-section p {
+  font-size: 1.3rem;
   max-width: 800px;
-  margin: 0 auto 2rem;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  margin: 0 auto 2.5rem;
+  color: var(--gray-dark);
+}
+
+.pricing-benefits {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.benefit-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
 }
 
 .pricing-teaser-section .cta {
-  display: inline-block;
-  background-color: var(--secondary-color);
-  color: var(--light-color);
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: var(--transition);
-  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 1.2rem 3rem;
 }
 
-.pricing-teaser-section .cta:hover {
-  background-color: #ff8733;
-  transform: translateY(-3px);
+@media (max-width: 992px) {
+  .pricing-teaser-section h2 {
+    font-size: 2.4rem;
+  }
+  
+  .pricing-teaser-section p {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .pricing-teaser-section {
+    padding: 5rem 5%;
+  }
+  
+  .pricing-teaser-section h2 {
+    font-size: 2.2rem;
+  }
+  
+  .pricing-benefits {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
   .pricing-teaser-section h2 {
     font-size: 2rem;
+  }
+  
+  .pricing-teaser-section p {
+    font-size: 1.1rem;
   }
 }

@@ -1,16 +1,36 @@
 
 /* Regional Teasers Section */
 .regional-teasers-section {
-  padding: 5rem 5%;
-  background-color: var(--eucalyptus); /* Eucalyptus green background */
-  background: linear-gradient(to right, var(--eucalyptus), #a8c0a8);
+  padding: 6rem 5%;
+  background-color: var(--eucalyptus);
+  background: linear-gradient(135deg, var(--eucalyptus), #a8c0a8);
   text-align: center;
   color: var(--dark-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.regional-teasers-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1700&q=10');
+  background-size: cover;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.regional-teasers-section .section-container {
+  position: relative;
+  z-index: 1;
 }
 
 .regional-teasers-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
   color: var(--dark-color);
 }
 
@@ -19,48 +39,84 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 3rem auto 0;
 }
 
 .region-card {
-  padding: 2rem;
-  background-color: var(--light-color);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
+  padding: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transition: var(--transition);
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .region-card:hover {
-  transform: translateY(-5px);
-  border-left: 4px solid var(--accent-color); /* Red ochre border */
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  border-left: 4px solid var(--accent-color);
+}
+
+.region-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .region-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
-  color: var(--primary-color); /* Australian green */
+  color: var(--primary-color);
 }
 
 .region-card p {
   margin-bottom: 1.5rem;
+  flex-grow: 1;
+  line-height: 1.6;
 }
 
 .region-link {
-  color: var(--accent-color); /* Red ochre */
+  color: var(--accent-color);
   font-weight: 600;
   transition: var(--transition);
+  display: inline-block;
 }
 
 .region-link:hover {
-  color: #ff5a4f; /* Lighter red ochre */
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+@media (max-width: 992px) {
+  .regional-teasers-section h2 {
+    font-size: 2.4rem;
+  }
+  
+  .regions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  .regions-grid {
-    grid-template-columns: 1fr;
+  .regional-teasers-section {
+    padding: 5rem 5%;
   }
   
+  .regional-teasers-section h2 {
+    font-size: 2.2rem;
+  }
+  
+  .regions-grid {
+    grid-template-columns: 1fr;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 576px) {
   .regional-teasers-section h2 {
     font-size: 2rem;
   }

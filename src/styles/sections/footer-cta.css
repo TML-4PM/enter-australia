@@ -1,20 +1,79 @@
 
-/* Footer CTA Section */
 .footer-cta-section {
-  padding: 5rem 5%;
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 7rem 5%;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1700&q=80');
+  background-size: cover;
+  background-position: center;
+  color: var(--light-color);
   text-align: center;
+  position: relative;
 }
 
 .footer-cta-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: var(--primary-color); /* Australian green */
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--light-color);
+}
+
+.footer-cta-section p {
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.primary-cta {
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+  font-weight: bold;
+}
+
+.primary-cta:hover {
+  background-color: #ffd633;
+}
+
+@media (max-width: 992px) {
+  .footer-cta-section h2 {
+    font-size: 2.6rem;
+  }
+  
+  .footer-cta-section p {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .footer-cta-section {
+    padding: 5rem 5%;
+  }
+  
   .footer-cta-section h2 {
-    font-size: 2rem;
+    font-size: 2.4rem;
+  }
+  
+  .footer-cta-section p {
+    font-size: 1.2rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-cta-section h2 {
+    font-size: 2.2rem;
+  }
+  
+  .footer-cta-section p {
+    font-size: 1.1rem;
   }
 }
