@@ -1,31 +1,60 @@
 
 .pricing-teaser-section {
-  padding: 6rem 5%;
+  padding: 7rem 5%;
   text-align: center;
   background-color: var(--light-color);
   position: relative;
+  overflow: hidden;
+}
+
+.pricing-teaser-section::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: rgba(255, 205, 0, 0.05);
+  z-index: 0;
 }
 
 .pricing-teaser-section::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--gray-medium), transparent);
+  bottom: -70px;
+  right: -70px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: rgba(0, 132, 61, 0.05);
+  z-index: 0;
 }
 
 .pricing-teaser-section h2 {
-  font-size: 2.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
   color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+}
+
+.pricing-teaser-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--secondary-color);
+  border-radius: 3px;
 }
 
 .pricing-teaser-section p {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   max-width: 800px;
-  margin: 0 auto 2.5rem;
+  margin: 2rem auto 3rem;
   color: var(--gray-dark);
 }
 
@@ -33,15 +62,26 @@
   display: flex;
   justify-content: center;
   gap: 3rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 .benefit {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
   font-size: 1.1rem;
+  background-color: var(--gray-light);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  transition: var(--transition);
+}
+
+.benefit:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
 }
 
 .benefit-check {
@@ -58,20 +98,54 @@
 
 .pricing-teaser-section .cta {
   font-size: 1.1rem;
-  padding: 1.2rem 3rem;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  transition: var(--transition);
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.pricing-teaser-section .cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.pricing-teaser-section .cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-teaser-section .cta:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 @media (max-width: 992px) {
   .pricing-teaser-section h2 {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
   
   .pricing-teaser-section p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
   .pricing-benefits {
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }
 
@@ -81,7 +155,7 @@
   }
   
   .pricing-teaser-section h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   
   .pricing-benefits {
@@ -92,18 +166,23 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .benefit {
+    width: 100%;
+  }
 }
 
 @media (max-width: 576px) {
   .pricing-teaser-section h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .pricing-teaser-section p {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   
   .benefit {
     font-size: 1rem;
+    padding: 0.7rem 1.2rem;
   }
 }

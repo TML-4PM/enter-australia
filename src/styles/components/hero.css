@@ -2,7 +2,7 @@
 /* Hero Section */
 .hero {
   height: 85vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1700&q=80');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1700&q=80');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -14,38 +14,37 @@
   padding: 0 1rem;
   position: relative;
   z-index: 1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2.5rem;
-  background-color: rgba(0, 0, 0, 0.35);
-  border-radius: 12px;
-  backdrop-filter: blur(3px);
-  animation: fadeIn 1s ease-in-out;
+  padding: 3rem;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.8s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero-content h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   font-weight: 700;
   color: var(--light-color);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  white-space: normal;
+  letter-spacing: -0.5px;
 }
 
 .hero-content h2 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   margin-bottom: 1.5rem;
   font-weight: 500;
   color: var(--secondary-color);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.3px;
 }
 
 .hero-content p {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin-bottom: 2.5rem;
   opacity: 0.95;
   max-width: 700px;
@@ -68,11 +67,11 @@
 
 @media (max-width: 992px) {
   .hero-content h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   
   .hero-content h2 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -82,19 +81,19 @@
   }
 
   .hero-content {
-    padding: 1.5rem;
+    padding: 2rem;
   }
   
   .hero-content h1 {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
   
   .hero-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   
   .hero-content p {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   
   .hero-buttons {
@@ -104,15 +103,15 @@
 }
 
 @media (max-width: 576px) {
+  .hero-content {
+    padding: 1.5rem;
+  }
+  
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .hero-content h2 {
-    font-size: 1.3rem;
-  }
-  
-  .hero-content p {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }

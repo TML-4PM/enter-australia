@@ -1,18 +1,20 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary-color: #00843D; /* Australian green */
+  --primary-color: #00843D; /* Australian green - slightly refined */
+  --primary-light: rgba(0, 132, 61, 0.1);
   --secondary-color: #FFCD00; /* Australian gold */
   --dark-color: #1A1F2C;
   --light-color: #ffffff;
   --accent-color: #E9483F; /* Red ochre - Australian earth */
   --australian-blue: #0A3161; /* Australian blue */
-  --gray-light: #f5f5f5;
-  --gray-medium: #e0e0e0;
-  --gray-dark: #333333;
+  --gray-light: #f7f9fa;
+  --gray-medium: #e5e7eb;
+  --gray-dark: #2D3748;
   --eucalyptus: #8BA58F; /* Eucalyptus green */
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
   --transition: all 0.3s ease;
 }
 
@@ -30,12 +32,18 @@ html, body {
 }
 
 html body {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   line-height: 1.6 !important;
   color: var(--dark-color) !important;
   background-color: var(--light-color) !important;
   min-height: 100vh;
   position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 a {
@@ -54,7 +62,7 @@ img {
 /* Alert */
 .alert {
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-top: 20px;
   animation: fadeIn 0.3s ease-in-out;
 }
@@ -86,7 +94,7 @@ html body header {
   display: block !important;
   width: 100% !important;
   background-color: var(--light-color) !important;
-  box-shadow: var(--shadow) !important;
+  box-shadow: var(--shadow-sm) !important;
 }
 
 html body nav {
@@ -99,13 +107,13 @@ html body nav {
 html body .btn.primary {
   background-color: var(--primary-color) !important;
   color: var(--light-color) !important;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
 }
 
 html body .btn.secondary {
   border: 2px solid var(--secondary-color) !important;
   color: var(--secondary-color) !important;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
 }
 
 /* Force load home page styles */

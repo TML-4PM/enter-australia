@@ -1,11 +1,10 @@
 
 /* Regional Teasers Section */
 .regional-teasers-section {
-  padding: 6rem 5%;
-  background-color: var(--eucalyptus);
-  background: linear-gradient(135deg, var(--eucalyptus), #a8c0a8);
+  padding: 7rem 5%;
+  background: linear-gradient(135deg, #00843D 0%, #006C32 100%);
   text-align: center;
-  color: var(--dark-color);
+  color: var(--light-color);
   position: relative;
   overflow: hidden;
 }
@@ -29,9 +28,23 @@
 }
 
 .regional-teasers-section h2 {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-  color: var(--dark-color);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--light-color);
+  position: relative;
+  display: inline-block;
+}
+
+.regional-teasers-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--secondary-color);
+  border-radius: 3px;
 }
 
 .regions-grid {
@@ -39,34 +52,41 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   max-width: 1400px;
-  margin: 3rem auto 0;
+  margin: 4rem auto 0;
 }
 
 .region-card {
   padding: 2.5rem;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.97);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
   height: 100%;
   display: flex;
   flex-direction: column;
   text-align: left;
+  transform: translateY(0);
 }
 
 .region-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-  border-left: 4px solid var(--accent-color);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .region-icon {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
+  background-color: rgba(0, 132, 61, 0.08);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
 }
 
 .region-card h3 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
 }
@@ -75,23 +95,34 @@
   margin-bottom: 1.5rem;
   flex-grow: 1;
   line-height: 1.6;
+  color: var(--gray-dark);
 }
 
 .region-link {
   color: var(--accent-color);
-  font-weight: 600;
+  font-weight: 500;
   transition: var(--transition);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+}
+
+.region-link::after {
+  content: '→';
+  margin-left: 6px;
+  transition: var(--transition);
+}
+
+.region-link:hover::after {
+  transform: translateX(4px);
 }
 
 .region-link:hover {
   color: var(--primary-color);
-  transform: translateX(5px);
 }
 
 @media (max-width: 992px) {
   .regional-teasers-section h2 {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
   
   .regions-grid {
@@ -105,7 +136,7 @@
   }
   
   .regional-teasers-section h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   
   .regions-grid {
@@ -118,6 +149,6 @@
 
 @media (max-width: 576px) {
   .regional-teasers-section h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }
