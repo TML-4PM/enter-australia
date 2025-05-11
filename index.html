@@ -7,27 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Enter Australia - Your journey to Australia starts here</title>
     <meta name="description" content="We guide you through visa applications, job placement, and relocation with ease.">
-    <!-- Hide Lovable update notification with stronger selectors -->
-    <style>
-      /* Critical: Hide update notification with highest priority */
-      [data-testid="update-project-notification"],
-      [data-testid="update-project-button"],
-      div[role="alert"][data-testid],
-      button[data-testid*="update"],
-      .notification-update,
-      .lovable-update-banner {
-        display: none !important;
-        opacity: 0 !important;
-        visibility: hidden !important;
-        position: absolute !important;
-        pointer-events: none !important;
-        width: 0 !important;
-        height: 0 !important;
-        overflow: hidden !important;
-        clip: rect(0 0 0 0) !important;
-        margin: -1px !important;
-      }
-    </style>
     <!-- Preload critical CSS -->
     <link rel="preload" href="/styles.css" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" as="style">
@@ -41,19 +20,6 @@
         margin: 0;
         padding: 0;
       }
-      .btn {
-        display: inline-block;
-        padding: 1rem 2rem;
-        border-radius: 50px;
-        font-weight: 600;
-        margin: 0.5rem;
-        cursor: pointer;
-      }
-      .btn.primary {
-        background-color: #00843D;
-        color: white;
-      }
-      
       /* Force basic layout during initial load */
       header {
         background-color: #ffffff;
@@ -75,12 +41,6 @@
         font-size: 1.5rem;
         color: #00843D;
       }
-      
-      /* Add anti-cache versioning */
-      .version {
-        display: none;
-        content: "v1.0.7-build-<?php echo time(); ?>";
-      }
     </style>
     <!-- Prevent caching -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -89,51 +49,8 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- Enable GPT Engineer script for new features -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // MutationObserver to aggressively remove notification elements
-      window.addEventListener('DOMContentLoaded', function() {
-        // Function to remove notification elements
-        const removeNotifications = function() {
-          const selectors = [
-            '[data-testid="update-project-notification"]',
-            '[data-testid="update-project-button"]',
-            'div[role="alert"][data-testid]',
-            'button[data-testid*="update"]',
-            '.notification-update',
-            '.lovable-update-banner'
-          ];
-          
-          selectors.forEach(selector => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(el => {
-              if (el && el.parentNode) {
-                el.parentNode.removeChild(el);
-              }
-            });
-          });
-        };
-        
-        // Initial removal
-        removeNotifications();
-        
-        // Set up MutationObserver to catch dynamically added elements
-        const observer = new MutationObserver(mutations => {
-          removeNotifications();
-        });
-        
-        // Start observing the entire document
-        observer.observe(document.documentElement, {
-          childList: true,
-          subtree: true
-        });
-        
-        // Also run periodically as a fallback
-        setInterval(removeNotifications, 500);
-      });
-      
       // Force CSS reload if styles aren't applied correctly
       window.addEventListener('DOMContentLoaded', (event) => {
         console.log('DOM fully loaded - checking styles');

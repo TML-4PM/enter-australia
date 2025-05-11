@@ -4,9 +4,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css'; // Import CSS before App
 import App from './App';
 
-// More comprehensive debugging
-console.log('Main JavaScript file loaded, beginning app initialization');
-
 // Create a function to monitor for styling issues
 const monitorStyles = () => {
   // Check if CSS is loaded properly
@@ -23,30 +20,20 @@ const monitorStyles = () => {
     } else {
       console.log('No visible error elements in the DOM');
     }
+    
+    // Additional logging to debug homepage-specific elements
+    if (document.querySelector('.hero')) {
+      console.log('Hero section found - home page rendering');
+    }
+    
+    if (document.querySelector('header')) {
+      console.log('Header element found');
+    }
+    
+    if (document.querySelector('main')) {
+      console.log('Main element found');
+    }
   }, 1000);
-  
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-        console.log('Class change detected on:', mutation.target);
-      }
-    });
-  });
-  
-  // Start observing once the DOM is loaded
-  window.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM content loaded, starting style observer');
-    
-    const linkElements = document.querySelectorAll('link[rel="stylesheet"]');
-    console.log('Found', linkElements.length, 'stylesheet links');
-    
-    observer.observe(document.body, { 
-      attributes: true, 
-      childList: true, 
-      subtree: true,
-      attributeFilter: ['class', 'style']
-    });
-  });
 };
 
 // Start monitoring
