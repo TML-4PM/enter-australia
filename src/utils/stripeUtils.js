@@ -16,6 +16,8 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
   setIsLoading(prev => ({ ...prev, [priceId]: true }));
   
   try {
+    console.log('Starting checkout process', { product: name, priceId, isSubscription });
+    
     // Dynamically import Stripe to reduce initial load time
     const { stripePromise } = await import('../config/stripeConfig');
     
@@ -43,8 +45,12 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
       }),
     });
     
+    console.log('Checkout API response status:', response.status);
+    
     // First check if the response is JSON
     const contentType = response.headers.get('content-type');
+    console.log('Response content type:', contentType);
+    
     if (!contentType || !contentType.includes('application/json')) {
       if (contentType && contentType.includes('text/html')) {
         const htmlResponse = await response.text();
@@ -88,15 +94,18 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     
     // Redirect to Stripe Checkout
     if (session.url) {
+      console.log('Redirecting to Stripe Checkout URL:', session.url);
       // Direct redirect to Checkout URL if available (preferred method)
       window.location.href = session.url;
     } else {
       // Fallback to redirectToCheckout method
+      console.log('Using redirectToCheckout method with session ID:', session.id);
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
       });
       
       if (result.error) {
+        console.error('Stripe redirectToCheckout error:', result.error);
         throw new Error(result.error.message);
       }
     }

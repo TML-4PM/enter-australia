@@ -9,29 +9,40 @@ const SuccessPage = () => {
   const [orderDetails, setOrderDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [debugInfo, setDebugInfo] = useState({
+    steps: [],
+    sessionId: sessionId || 'Not provided'
+  });
 
   useEffect(() => {
     const getOrderDetails = async () => {
       try {
         setLoading(true);
+        addDebugStep('Starting session verification');
         
         if (!sessionId) {
           throw new Error('No session ID provided');
         }
         
+        addDebugStep(`Fetching session details for ID: ${sessionId.substring(0, 8)}...`);
         // Update to use Netlify function endpoint
         const response = await fetch(`/.netlify/functions/verify-session?session_id=${sessionId}`);
         
+        addDebugStep(`Response status: ${response.status}`);
+        
         if (!response.ok) {
           const errorData = await response.json();
+          addDebugStep(`Error response: ${JSON.stringify(errorData)}`);
           throw new Error(errorData.error || 'Failed to verify session');
         }
         
         const data = await response.json();
+        addDebugStep(`Session verified successfully: ${JSON.stringify(data, null, 2)}`);
         setOrderDetails(data);
         
       } catch (error) {
         console.error('Error fetching order details:', error);
+        addDebugStep(`Error: ${error.message}`);
         setError(error.message);
       } finally {
         setLoading(false);
@@ -42,8 +53,16 @@ const SuccessPage = () => {
       getOrderDetails();
     } else {
       setLoading(false);
+      addDebugStep('No session ID provided in URL');
     }
   }, [sessionId]);
+
+  const addDebugStep = (step) => {
+    setDebugInfo(prev => ({
+      ...prev,
+      steps: [...prev.steps, `${new Date().toISOString().split('T')[1].split('.')[0]} - ${step}`]
+    }));
+  };
 
   if (loading) {
     return (
@@ -52,6 +71,15 @@ const SuccessPage = () => {
           <div className="loading-spinner"></div>
           <h2>Processing Your Order...</h2>
           <p>Please wait while we confirm your payment.</p>
+          <div className="debug-info">
+            <h4>Debug Information:</h4>
+            <p><strong>Session ID:</strong> {debugInfo.sessionId}</p>
+            <ul>
+              {debugInfo.steps.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     );
@@ -64,6 +92,16 @@ const SuccessPage = () => {
           <h2>Something Went Wrong</h2>
           <p>{error || "We couldn't find details for your order. Please contact our support team for assistance."}</p>
           <Link to="/pricing" className="back-button">Return to Pricing</Link>
+          
+          <div className="debug-info">
+            <h4>Debug Information:</h4>
+            <p><strong>Session ID:</strong> {debugInfo.sessionId}</p>
+            <ul>
+              {debugInfo.steps.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     );
@@ -129,6 +167,21 @@ const SuccessPage = () => {
         <div className="action-buttons">
           <Link to="/" className="back-button primary">Return to Home</Link>
           <Link to="/pricing" className="back-button secondary">View Other Plans</Link>
+        </div>
+        
+        <div className="debug-info collapsible">
+          <details>
+            <summary>Debug Information (Click to expand)</summary>
+            <p><strong>Session ID:</strong> {debugInfo.sessionId}</p>
+            <p><strong>Response Data:</strong></p>
+            <pre>{JSON.stringify(orderDetails, null, 2)}</pre>
+            <h4>Process Steps:</h4>
+            <ul>
+              {debugInfo.steps.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ul>
+          </details>
         </div>
       </div>
     </div>
