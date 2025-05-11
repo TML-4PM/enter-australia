@@ -33,6 +33,38 @@ const HomePage = ({ toggleLeadForm }) => {
         </div>
       </section>
 
+      <section id="regional-expertise" className="regional-teasers-section">
+        <h2>Regional Expertise</h2>
+        <div className="regions-grid">
+          <div className="region-card">
+            <h3>Asia-Pacific</h3>
+            <p>Strategic advantages for APAC innovators entering the Australian market.</p>
+            <Link to="/regions" className="region-link">Explore Asia-Pacific Insights →</Link>
+          </div>
+          <div className="region-card">
+            <h3>Middle East</h3>
+            <p>Navigate the Gulf-to-Gippsland corridor with our specialized knowledge.</p>
+            <Link to="/regions" className="region-link">Discover Middle East Opportunities →</Link>
+          </div>
+          <div className="region-card">
+            <h3>United States</h3>
+            <p>Leverage AUKUS partnerships and US-Australia Free Trade benefits.</p>
+            <Link to="/regions" className="region-link">Learn About US Advantages →</Link>
+          </div>
+          <div className="region-card">
+            <h3>Europe</h3>
+            <p>EU-Australia research collaborations and innovation corridors.</p>
+            <Link to="/regions" className="region-link">View European Pathways →</Link>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing-teaser" className="pricing-teaser-section">
+        <h2>Tailored Solutions for Every Need</h2>
+        <p>From market entry assessments to premium retainer services, we have the right plan for your Australian expansion.</p>
+        <Link to="/pricing" className="cta">View Pricing Plans</Link>
+      </section>
+
       <section id="about-us" className="why-australia-section">
         <h2>About Us</h2>
         <p>We're a team dedicated to helping you enter Australia with ease.</p>

@@ -11,6 +11,8 @@ const Navigation = ({ isMenuOpen, toggleMenu, closeMenu }) => {
         <li><Link to="/" onClick={closeMenu}>Home</Link></li>
         <li><Link to="/solutions" onClick={closeMenu}>Solutions</Link></li>
         <li><Link to="/partners" onClick={closeMenu}>Partners</Link></li>
+        <li><Link to="/regions" onClick={closeMenu}>Regions</Link></li>
+        <li><Link to="/pricing" onClick={closeMenu}>Pricing</Link></li>
         <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li>
         <li><Link to="/about" onClick={closeMenu}>About</Link></li>
         {isMenuOpen && (
