@@ -7,37 +7,37 @@ const HomePage = ({ toggleLeadForm }) => {
     <>
       <section id="home" className="hero">
         <div className="hero-content">
-          <h1>Enter Australia</h1>
-          <h2>Your journey to Australian market success starts here</h2>
-          <p>We guide innovative businesses through visa processes, market entry strategies, and government contracts with our expert local knowledge.</p>
+          <h1>Market Entry Specialists for Australia</h1>
+          <h2>Strategic guidance for businesses expanding into the Australian market</h2>
+          <p>We navigate regulatory complexities, establish local partnerships, and create tailored market entry strategies that accelerate your growth in Australia.</p>
           <div className="hero-buttons">
-            <button onClick={toggleLeadForm} className="btn primary">Get Started</button>
-            <Link to="/resources" className="btn secondary">Learn More</Link>
+            <button onClick={toggleLeadForm} className="btn primary">Start Your Strategy</button>
+            <Link to="/solutions" className="btn secondary">Explore Services</Link>
           </div>
         </div>
       </section>
 
       <section id="services" className="core-services-section">
         <div className="section-container">
-          <h2>Our Services</h2>
-          <p className="section-intro">Comprehensive solutions to successfully navigate the Australian market</p>
+          <h2>Our Core Solutions</h2>
+          <p className="section-intro">End-to-end market entry support for global businesses</p>
           <div className="services-grid">
             <div className="service-card">
-              <div className="service-icon">📋</div>
-              <h3>Visa Assistance</h3>
-              <p>Expert guidance through complex visa applications, ensuring you select the right visa category and meet all requirements.</p>
+              <div className="service-icon">📊</div>
+              <h3>Market Entry Strategy</h3>
+              <p>Comprehensive market research, regulatory analysis, and strategic planning to position your business for sustainable success in Australia.</p>
               <Link to="/solutions/market-entry" className="service-link">Learn more →</Link>
             </div>
             <div className="service-card">
-              <div className="service-icon">💼</div>
-              <h3>Job Placement</h3>
-              <p>Connect with Australian employers seeking your skills and experience through our extensive network of industry partnerships.</p>
-              <Link to="/solutions/partnerships" className="service-link">Learn more →</Link>
+              <div className="service-icon">🏛️</div>
+              <h3>Government Relations</h3>
+              <p>Navigate government procurement, build relationships with key agencies, and access grants and incentives to accelerate your market entry.</p>
+              <Link to="/solutions/govtech" className="service-link">Learn more →</Link>
             </div>
             <div className="service-card">
-              <div className="service-icon">🏠</div>
-              <h3>Relocation Support</h3>
-              <p>Seamless transition to Australia with housing assistance, banking setup, and integration into local communities.</p>
+              <div className="service-icon">🔄</div>
+              <h3>Business Integration</h3>
+              <p>Seamless establishment of your Australian operations, including entity setup, local hiring, office space, and operational infrastructure.</p>
               <Link to="/solutions/market-entry" className="service-link">Learn more →</Link>
             </div>
           </div>
@@ -46,17 +46,16 @@ const HomePage = ({ toggleLeadForm }) => {
 
       <section id="about-us" className="why-australia-section">
         <div className="section-container">
-          <h2>About Us</h2>
-          <p className="section-intro">Australia's premier market entry consultancy for global innovators</p>
+          <h2>Australia's Market Entry Experts</h2>
+          <p className="section-intro">Strategic guidance for successful expansion into the Australian market</p>
           
           <div className="about-grid">
             <div className="about-content">
-              <p>We're a specialized team of market entry experts who have helped hundreds of businesses successfully establish operations in Australia. Our deep understanding of local regulations, cultural nuances, and industry connections ensures a smooth entry into the Australian market.</p>
-              <p>With over 25 years of combined experience working with government agencies and private sector organizations, our consultants provide strategic guidance tailored to your specific industry and goals.</p>
+              <p>Our team combines industry expertise and government experience to help international businesses successfully enter and thrive in the Australian market. With strategic insights and local connections, we've guided over 200 businesses to successful market entry.</p>
               <div className="about-stats">
                 <div className="stat">
                   <span className="stat-number">200+</span>
-                  <span className="stat-label">Businesses Helped</span>
+                  <span className="stat-label">Successful Market Entries</span>
                 </div>
                 <div className="stat">
                   <span className="stat-number">25+</span>
@@ -64,7 +63,7 @@ const HomePage = ({ toggleLeadForm }) => {
                 </div>
                 <div className="stat">
                   <span className="stat-number">98%</span>
-                  <span className="stat-label">Success Rate</span>
+                  <span className="stat-label">Client Satisfaction</span>
                 </div>
               </div>
               <Link to="/about" className="about-link cta">Learn Our Story</Link>
@@ -81,25 +80,25 @@ const HomePage = ({ toggleLeadForm }) => {
             <div className="region-card">
               <div className="region-icon">🌏</div>
               <h3>Asia-Pacific</h3>
-              <p>Strategic advantages for APAC innovators entering the Australian market, leveraging regional trade agreements and cultural similarities.</p>
+              <p>Strategic advantages for APAC businesses entering Australia, leveraging regional trade agreements and established market channels.</p>
               <Link to="/regions" className="region-link">Explore Asia-Pacific Insights →</Link>
             </div>
             <div className="region-card">
               <div className="region-icon">🏜️</div>
               <h3>Middle East</h3>
-              <p>Navigate the Gulf-to-Gippsland corridor with our specialized knowledge of regulations, investment opportunities, and local partnerships.</p>
+              <p>Strategic pathways for Gulf region businesses to establish Australian operations in energy, education, and infrastructure sectors.</p>
               <Link to="/regions" className="region-link">Discover Middle East Opportunities →</Link>
             </div>
             <div className="region-card">
               <div className="region-icon">🦅</div>
-              <h3>United States</h3>
-              <p>Leverage AUKUS partnerships and US-Australia Free Trade benefits for tech companies, defense contractors, and service providers.</p>
+              <h3>North America</h3>
+              <p>Leveraging AUKUS and Free Trade benefits for tech companies and defense contractors entering the Australian market.</p>
               <Link to="/regions" className="region-link">Learn About US Advantages →</Link>
             </div>
             <div className="region-card">
               <div className="region-icon">🇪🇺</div>
               <h3>Europe</h3>
-              <p>EU-Australia research collaborations and innovation corridors providing unique opportunities for European businesses in healthcare, renewable energy, and advanced manufacturing.</p>
+              <p>EU-Australia partnerships creating unique opportunities in renewable energy, healthcare, and advanced manufacturing.</p>
               <Link to="/regions" className="region-link">View European Pathways →</Link>
             </div>
           </div>
@@ -108,8 +107,8 @@ const HomePage = ({ toggleLeadForm }) => {
 
       <section id="pricing-teaser" className="pricing-teaser-section">
         <div className="section-container">
-          <h2>Tailored Solutions for Every Need</h2>
-          <p>From market entry assessments to premium retainer services, we have the right plan for your Australian expansion.</p>
+          <h2>Tailored Entry Solutions</h2>
+          <p>From initial market assessments to comprehensive entry management, our services scale with your business needs.</p>
           <div className="pricing-benefits">
             <div className="benefit">
               <span className="benefit-check">✓</span>
@@ -130,11 +129,11 @@ const HomePage = ({ toggleLeadForm }) => {
 
       <section id="footer-cta" className="footer-cta-section">
         <div className="section-container">
-          <h2>Ready to begin your journey?</h2>
-          <p>Take the first step towards Australian market success today.</p>
+          <h2>Ready to Enter the Australian Market?</h2>
+          <p>Take the first step towards successful expansion today.</p>
           <div className="cta-buttons">
             <button onClick={toggleLeadForm} className="cta primary-cta">Get Your Strategy</button>
-            <Link to="/contact" className="cta">Contact Our Team</Link>
+            <Link to="/contact" className="cta">Schedule a Consultation</Link>
           </div>
         </div>
       </section>
