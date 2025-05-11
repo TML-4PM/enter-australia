@@ -1,7 +1,7 @@
 
 /* Regional Teasers Section */
 .regional-teasers-section {
-  padding: 7rem 5%;
+  padding: 6rem 5%;
   background: linear-gradient(135deg, #00843D 0%, #006C32 100%);
   text-align: center;
   color: var(--light-color);
@@ -30,7 +30,7 @@
 }
 
 .regional-teasers-section h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 0.5rem;
   color: var(--light-color);
   position: relative;
@@ -39,9 +39,9 @@
 }
 
 .regional-teasers-section .section-intro {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   max-width: 700px;
-  margin: 1.5rem auto 3.5rem;
+  margin: 1rem auto 2.5rem;
   color: var(--light-color);
   opacity: 0.9;
   font-weight: 300;
@@ -50,15 +50,15 @@
 .regions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .region-card {
-  padding: 2.5rem;
+  padding: 2.25rem;
   background-color: rgba(255, 255, 255, 0.97);
-  border-radius: 16px;
+  border-radius: var(--card-radius);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
   height: 100%;
@@ -68,6 +68,9 @@
   transform: translateY(0);
   position: relative;
   overflow: hidden;
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .region-card:hover {
@@ -105,8 +108,8 @@
 }
 
 .region-card h3 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
   color: var(--primary-color);
   letter-spacing: -0.01em;
   font-weight: 600;
@@ -164,11 +167,11 @@
   }
   
   .regional-teasers-section h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .regional-teasers-section .section-intro {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
   
   .regions-grid {
@@ -179,7 +182,7 @@
   }
 
   .region-card {
-    padding: 2rem;
+    padding: 1.75rem;
   }
 }
 

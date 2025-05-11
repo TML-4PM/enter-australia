@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BarChart3, Building, RefreshCcw, Globe } from 'lucide-react';
+import { BarChart3, Building, RefreshCcw, Globe, Flag, Award, MapPin, Map } from 'lucide-react';
 
 const HomePage = ({ toggleLeadForm }) => {
   return (
@@ -19,6 +19,8 @@ const HomePage = ({ toggleLeadForm }) => {
       </section>
 
       <section id="services" className="core-services-section">
+        <div className="circle-bg-1"></div>
+        <div className="circle-bg-2"></div>
         <div className="section-container">
           <h2>Our Core Solutions</h2>
           <p className="section-intro">End-to-end market entry support for global businesses</p>
@@ -52,6 +54,8 @@ const HomePage = ({ toggleLeadForm }) => {
       </section>
 
       <section id="about-us" className="why-australia-section">
+        <div className="circle-bg-1"></div>
+        <div className="circle-bg-2"></div>
         <div className="section-container">
           <h2>Australia's Market Entry Experts</h2>
           <p className="section-intro">Strategic guidance for successful expansion into the Australian market</p>
@@ -96,7 +100,7 @@ const HomePage = ({ toggleLeadForm }) => {
             </div>
             <div className="region-card">
               <div className="region-icon">
-                <span style={{fontSize: '32px'}}>🏜️</span>
+                <MapPin size={32} color="#00843D" />
               </div>
               <h3>Middle East</h3>
               <p>Strategic pathways for Gulf region businesses to establish Australian operations in energy, education, and infrastructure sectors.</p>
@@ -104,7 +108,7 @@ const HomePage = ({ toggleLeadForm }) => {
             </div>
             <div className="region-card">
               <div className="region-icon">
-                <span style={{fontSize: '32px'}}>🦅</span>
+                <Flag size={32} color="#00843D" />
               </div>
               <h3>North America</h3>
               <p>Leveraging AUKUS and Free Trade benefits for tech companies and defense contractors entering the Australian market.</p>
@@ -112,7 +116,7 @@ const HomePage = ({ toggleLeadForm }) => {
             </div>
             <div className="region-card">
               <div className="region-icon">
-                <span style={{fontSize: '32px'}}>🇪🇺</span>
+                <Map size={32} color="#00843D" />
               </div>
               <h3>Europe</h3>
               <p>EU-Australia partnerships creating unique opportunities in renewable energy, healthcare, and advanced manufacturing.</p>
@@ -123,6 +127,8 @@ const HomePage = ({ toggleLeadForm }) => {
       </section>
 
       <section id="pricing-teaser" className="pricing-teaser-section">
+        <div className="circle-bg-1"></div>
+        <div className="circle-bg-2"></div>
         <div className="section-container">
           <h2>Tailored Entry Solutions</h2>
           <p>From initial market assessments to comprehensive entry management, our services scale with your business needs.</p>

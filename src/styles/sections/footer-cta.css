@@ -1,6 +1,6 @@
 
 .footer-cta-section {
-  padding: 7rem 5%;
+  padding: 6rem 5%;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1700&q=80');
   background-size: cover;
   background-position: center;
@@ -24,11 +24,18 @@
   z-index: 1;
   max-width: 900px;
   margin: 0 auto;
+  padding: 3rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: var(--card-radius);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 .footer-cta-section h2 {
-  font-size: 2.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.2rem;
   color: var(--light-color);
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -36,9 +43,9 @@
 }
 
 .footer-cta-section p {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   max-width: 700px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2.5rem;
   opacity: 0.9;
   font-weight: 300;
 }
@@ -94,26 +101,26 @@
 
 @media (max-width: 992px) {
   .footer-cta-section h2 {
-    font-size: 2.5rem;
-  }
-  
-  .footer-cta-section p {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-cta-section {
-    padding: 6rem 5%;
-  }
-  
-  .footer-cta-section h2 {
     font-size: 2.2rem;
   }
   
   .footer-cta-section p {
     font-size: 1.1rem;
-    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-cta-section {
+    padding: 5rem 5%;
+  }
+  
+  .footer-cta-section h2 {
+    font-size: 2rem;
+  }
+  
+  .footer-cta-section p {
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
   }
   
   .cta-buttons {
@@ -126,6 +133,10 @@
     padding: 1rem 0;
     width: 100%;
     font-size: 1rem;
+  }
+  
+  .footer-cta-section .section-container {
+    padding: 2rem;
   }
 }
 

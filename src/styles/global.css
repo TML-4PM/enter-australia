@@ -16,6 +16,11 @@
   --shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
   --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.05);
   --transition: all 0.3s ease;
+  --card-radius: 16px;
+  --card-padding: 2.5rem;
+  --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  --blur-bg: rgba(255, 255, 255, 0.8);
+  --blur-effect: blur(10px);
 }
 
 *, *::before, *::after {
@@ -60,6 +65,79 @@ ul {
 
 img {
   max-width: 100%;
+}
+
+/* Modern section styling */
+.modern-section {
+  position: relative;
+  padding: 6rem 5%;
+  overflow: hidden;
+}
+
+.modern-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gray-medium), transparent);
+}
+
+.modern-section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.modern-section-heading {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.modern-section-intro {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 1rem auto 2.5rem;
+  font-weight: 300;
+}
+
+.modern-glass-card {
+  background-color: var(--blur-bg);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding);
+  transition: var(--transition);
+}
+
+.circle-bg-1, .circle-bg-2 {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  filter: blur(60px);
+  opacity: 0.15;
+}
+
+.circle-bg-1 {
+  background-color: var(--secondary-color);
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -100px;
+}
+
+.circle-bg-2 {
+  background-color: var(--primary-color);
+  width: 400px;
+  height: 400px;
+  bottom: -200px;
+  left: -200px;
 }
 
 /* Alert */

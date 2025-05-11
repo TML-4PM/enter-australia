@@ -1,6 +1,5 @@
-
 .why-australia-section {
-  padding: 7rem 5%;
+  padding: 6rem 5%;
   background-color: var(--gray-light);
   position: relative;
   overflow: hidden;
@@ -10,34 +9,23 @@
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
-.why-australia-section::before {
-  content: '';
-  position: absolute;
+.why-australia-section .circle-bg-1 {
   top: -70px;
   right: -70px;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: rgba(0, 132, 61, 0.05);
-  z-index: 0;
 }
 
-.why-australia-section::after {
-  content: '';
-  position: absolute;
+.why-australia-section .circle-bg-2 {
   bottom: -100px;
   left: -100px;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background-color: rgba(255, 205, 0, 0.05);
-  z-index: 0;
+  background-color: var(--secondary-color);
 }
 
 .why-australia-section h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 0.5rem;
   color: var(--primary-color);
   position: relative;
@@ -46,9 +34,9 @@
 }
 
 .why-australia-section .section-intro {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   max-width: 700px;
-  margin: 1.5rem auto 3.5rem;
+  margin: 1rem auto 2.5rem;
   color: var(--gray-dark);
   font-weight: 300;
 }
@@ -65,10 +53,13 @@
   text-align: left;
   max-width: 900px;
   margin: 0 auto;
-  background-color: var(--light-color);
-  padding: 3rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  background-color: var(--blur-bg);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  padding: 2.75rem;
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .about-content p {
@@ -90,15 +81,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1.5rem;
-  background-color: var(--light-color);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  padding: 1.75rem 1.5rem;
+  background-color: var(--blur-bg);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
   min-width: 180px;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .stat::before {
@@ -116,7 +109,7 @@
 
 .stat:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
 }
 
 .stat:hover::before {
@@ -186,15 +179,15 @@
   }
   
   .why-australia-section h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .why-australia-section .section-intro {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
   .about-content {
-    padding: 2rem;
+    padding: 1.75rem;
   }
   
   .about-stats {
