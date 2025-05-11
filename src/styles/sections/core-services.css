@@ -23,11 +23,12 @@
 }
 
 .core-services-section h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 0.5rem;
   color: var(--primary-color);
   position: relative;
   display: inline-block;
+  letter-spacing: -0.03em;
 }
 
 .core-services-section h2::after {
@@ -36,31 +37,32 @@
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
+  width: 60px;
+  height: 2px;
   background-color: var(--secondary-color);
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .section-intro {
-  font-size: 1.2rem;
-  max-width: 700px;
+  font-size: 1.1rem;
+  max-width: 650px;
   margin: 2rem auto 4rem;
   color: var(--gray-dark);
+  font-weight: 300;
 }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
+  gap: 2rem;
   margin-top: 2rem;
 }
 
 .service-card {
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
   background-color: var(--light-color);
   border-radius: 12px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
   transition: var(--transition);
   height: 100%;
   display: flex;
@@ -70,6 +72,7 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
 .service-card::before {
@@ -79,12 +82,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(247,249,250,0.8) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(247,249,250,0.5) 100%);
   z-index: -1;
 }
 
 .service-card:hover {
   transform: translateY(-8px);
+  box-shadow: var(--shadow);
 }
 
 .service-card:hover .service-icon {
@@ -93,28 +97,29 @@
 }
 
 .service-icon {
-  font-size: 2.8rem;
   margin-bottom: 1.5rem;
   background-color: var(--primary-light);
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 12px;
   transition: var(--transition);
+  font-size: 1.8rem;
 }
 
 .service-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   margin-bottom: 1rem;
   color: var(--dark-color);
+  letter-spacing: -0.01em;
 }
 
 .service-card p {
   margin-bottom: 1.5rem;
   color: var(--gray-dark);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   flex-grow: 1;
 }
@@ -127,6 +132,8 @@
   display: inline-flex;
   align-items: center;
   margin-top: auto;
+  position: relative;
+  font-size: 0.95rem;
 }
 
 .service-link::after {
@@ -149,11 +156,11 @@
   }
   
   .core-services-section h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   
   .section-intro {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }
 
@@ -166,7 +173,7 @@
   }
   
   .core-services-section h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .service-card {
@@ -180,11 +187,11 @@
   }
   
   .core-services-section h2 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
   
   .section-intro {
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: 2rem;
   }
 }

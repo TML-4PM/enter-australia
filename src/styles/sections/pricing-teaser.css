@@ -32,11 +32,12 @@
 }
 
 .pricing-teaser-section h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
   position: relative;
   display: inline-block;
+  letter-spacing: -0.03em;
 }
 
 .pricing-teaser-section h2::after {
@@ -45,23 +46,24 @@
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
+  width: 60px;
+  height: 2px;
   background-color: var(--secondary-color);
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .pricing-teaser-section p {
-  font-size: 1.2rem;
-  max-width: 800px;
+  font-size: 1.1rem;
+  max-width: 700px;
   margin: 2rem auto 3rem;
   color: var(--gray-dark);
+  font-weight: 300;
 }
 
 .pricing-benefits {
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 2.5rem;
   margin-bottom: 3rem;
   flex-wrap: wrap;
   position: relative;
@@ -71,35 +73,38 @@
 .benefit {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 1.1rem;
+  gap: 0.75rem;
+  font-size: 1rem;
   background-color: var(--gray-light);
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
+  padding: 0.7rem 1.25rem;
+  border-radius: 8px;
   transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.03);
 }
 
 .benefit:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
 
 .benefit-check {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
   background-color: var(--primary-color);
   color: white;
-  border-radius: 50%;
+  border-radius: 6px;
   font-weight: bold;
+  font-size: 0.9rem;
 }
 
 .pricing-teaser-section .cta {
-  font-size: 1.1rem;
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
+  font-size: 1rem;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
   background-color: var(--primary-color);
   color: white;
   text-decoration: none;
@@ -109,6 +114,8 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
+  box-shadow: var(--shadow-sm);
+  letter-spacing: 0.01em;
 }
 
 .pricing-teaser-section .cta::after {
@@ -127,7 +134,7 @@
 
 .pricing-teaser-section .cta:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow);
 }
 
 .pricing-teaser-section .cta:hover::after {

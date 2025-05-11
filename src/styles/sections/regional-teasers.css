@@ -28,11 +28,12 @@
 }
 
 .regional-teasers-section h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 0.5rem;
   color: var(--light-color);
   position: relative;
   display: inline-block;
+  letter-spacing: -0.03em;
 }
 
 .regional-teasers-section h2::after {
@@ -41,54 +42,74 @@
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
+  width: 60px;
+  height: 2px;
   background-color: var(--secondary-color);
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .regions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
   max-width: 1400px;
   margin: 4rem auto 0;
 }
 
 .region-card {
-  padding: 2.5rem;
+  padding: 2.25rem;
   background-color: rgba(255, 255, 255, 0.97);
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   transition: var(--transition);
   height: 100%;
   display: flex;
   flex-direction: column;
   text-align: left;
   transform: translateY(0);
+  position: relative;
+  overflow: hidden;
 }
 
 .region-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.region-card:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.region-card:hover:after {
+  transform: scaleX(1);
 }
 
 .region-icon {
-  font-size: 2.5rem;
   margin-bottom: 1.5rem;
   background-color: rgba(0, 132, 61, 0.08);
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 10px;
+  font-size: 1.75rem;
 }
 
 .region-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
+  letter-spacing: -0.01em;
 }
 
 .region-card p {
@@ -96,6 +117,7 @@
   flex-grow: 1;
   line-height: 1.6;
   color: var(--gray-dark);
+  font-size: 0.95rem;
 }
 
 .region-link {
@@ -104,6 +126,8 @@
   transition: var(--transition);
   display: inline-flex;
   align-items: center;
+  margin-top: auto;
+  font-size: 0.95rem;
 }
 
 .region-link::after {
