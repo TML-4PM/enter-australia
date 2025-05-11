@@ -13,8 +13,8 @@
   --gray-medium: #e5e7eb;
   --gray-dark: #2D3748;
   --eucalyptus: #8BA58F; /* Eucalyptus green */
-  --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.05);
   --transition: all 0.3s ease;
 }
 
@@ -38,6 +38,7 @@ html body {
   background-color: var(--light-color) !important;
   min-height: 100vh;
   position: relative;
+  font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -50,6 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 a {
   text-decoration: none;
   color: inherit;
+  transition: var(--transition);
 }
 
 ul {
@@ -63,9 +65,10 @@ img {
 /* Alert */
 .alert {
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-top: 20px;
   animation: fadeIn 0.3s ease-in-out;
+  box-shadow: var(--shadow-sm);
 }
 
 .error {
@@ -102,7 +105,7 @@ html body nav {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  padding: 0.5rem 1rem !important;
+  padding: 0.75rem 1.25rem !important;
 }
 
 html body .btn.primary {
@@ -113,7 +116,7 @@ html body .btn.primary {
 
 html body .btn.secondary {
   border: 2px solid var(--secondary-color) !important;
-  color: var(--secondary-color) !important;
+  color: var(--light-color) !important;
   font-family: 'Inter', sans-serif !important;
 }
 

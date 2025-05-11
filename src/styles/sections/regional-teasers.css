@@ -25,42 +25,41 @@
 .regional-teasers-section .section-container {
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .regional-teasers-section h2 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
   color: var(--light-color);
   position: relative;
-  display: inline-block;
+  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
-.regional-teasers-section h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background-color: var(--secondary-color);
-  border-radius: 2px;
+.regional-teasers-section .section-intro {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 1.5rem auto 3.5rem;
+  color: var(--light-color);
+  opacity: 0.9;
+  font-weight: 300;
 }
 
 .regions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.75rem;
-  max-width: 1400px;
-  margin: 4rem auto 0;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .region-card {
-  padding: 2.25rem;
+  padding: 2.5rem;
   background-color: rgba(255, 255, 255, 0.97);
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
   height: 100%;
   display: flex;
@@ -72,8 +71,8 @@
 }
 
 .region-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .region-card:after {
@@ -95,21 +94,22 @@
 
 .region-icon {
   margin-bottom: 1.5rem;
-  background-color: rgba(0, 132, 61, 0.08);
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(0, 132, 61, 0.08), rgba(0, 132, 61, 0.18));
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 1.75rem;
 }
 
 .region-card h3 {
-  font-size: 1.35rem;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
   letter-spacing: -0.01em;
+  font-weight: 600;
 }
 
 .region-card p {
@@ -117,27 +117,27 @@
   flex-grow: 1;
   line-height: 1.6;
   color: var(--gray-dark);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .region-link {
   color: var(--accent-color);
-  font-weight: 500;
+  font-weight: 600;
   transition: var(--transition);
   display: inline-flex;
   align-items: center;
   margin-top: auto;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .region-link::after {
   content: '→';
-  margin-left: 6px;
+  margin-left: 8px;
   transition: var(--transition);
 }
 
 .region-link:hover::after {
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 .region-link:hover {
@@ -150,7 +150,11 @@
   }
   
   .regions-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .regional-teasers-section .section-intro {
+    font-size: 1.1rem;
   }
 }
 
@@ -162,6 +166,10 @@
   .regional-teasers-section h2 {
     font-size: 2rem;
   }
+
+  .regional-teasers-section .section-intro {
+    font-size: 1.1rem;
+  }
   
   .regions-grid {
     grid-template-columns: 1fr;
@@ -169,10 +177,22 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .region-card {
+    padding: 2rem;
+  }
 }
 
 @media (max-width: 576px) {
+  .regional-teasers-section {
+    padding: 4rem 5%;
+  }
+
   .regional-teasers-section h2 {
     font-size: 1.8rem;
+  }
+
+  .regional-teasers-section .section-intro {
+    font-size: 1rem;
   }
 }

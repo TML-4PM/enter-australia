@@ -1,145 +1,83 @@
 
 .pricing-teaser-section {
   padding: 7rem 5%;
-  text-align: center;
   background-color: var(--light-color);
+  text-align: center;
   position: relative;
-  overflow: hidden;
 }
 
 .pricing-teaser-section::before {
   content: '';
   position: absolute;
-  top: -50px;
-  left: -50px;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: rgba(255, 205, 0, 0.05);
-  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gray-medium), transparent);
 }
 
-.pricing-teaser-section::after {
-  content: '';
-  position: absolute;
-  bottom: -70px;
-  right: -70px;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: rgba(0, 132, 61, 0.05);
-  z-index: 0;
+.pricing-teaser-section .section-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: var(--gray-light);
+  border-radius: 20px;
+  padding: 3.5rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
 }
 
 .pricing-teaser-section h2 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
   color: var(--primary-color);
-  position: relative;
-  display: inline-block;
+  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
-.pricing-teaser-section h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background-color: var(--secondary-color);
-  border-radius: 2px;
-}
-
 .pricing-teaser-section p {
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 2rem auto 3rem;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
   color: var(--gray-dark);
-  font-weight: 300;
 }
 
 .pricing-benefits {
   display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  margin-bottom: 3rem;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .benefit {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 1rem;
-  background-color: var(--gray-light);
-  padding: 0.7rem 1.25rem;
-  border-radius: 8px;
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(0,0,0,0.03);
+  background-color: var(--light-color);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
 }
 
 .benefit:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow);
 }
 
 .benefit-check {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  background-color: var(--primary-color);
-  color: white;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 0.9rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-right: 10px;
 }
 
 .pricing-teaser-section .cta {
-  font-size: 1rem;
-  padding: 0.9rem 2rem;
-  border-radius: 8px;
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  display: inline-block;
-  transition: var(--transition);
-  font-weight: 500;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  box-shadow: var(--shadow-sm);
-  letter-spacing: 0.01em;
-}
-
-.pricing-teaser-section .cta::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-  z-index: -1;
+  margin-top: 1rem;
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
 }
 
 .pricing-teaser-section .cta:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
-}
-
-.pricing-teaser-section .cta:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+  background-color: #ffd633;
+  color: var(--dark-color);
 }
 
 @media (max-width: 992px) {
@@ -151,8 +89,8 @@
     font-size: 1.1rem;
   }
   
-  .pricing-benefits {
-    gap: 1.5rem;
+  .pricing-teaser-section .section-container {
+    padding: 3rem;
   }
 }
 
@@ -168,18 +106,26 @@
   .pricing-benefits {
     flex-direction: column;
     gap: 1rem;
-    align-items: center;
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
   }
-
+  
   .benefit {
     width: 100%;
+    justify-content: center;
+  }
+  
+  .pricing-teaser-section .section-container {
+    padding: 2.5rem;
   }
 }
 
 @media (max-width: 576px) {
+  .pricing-teaser-section {
+    padding: 4rem 5%;
+  }
+  
   .pricing-teaser-section h2 {
     font-size: 1.8rem;
   }
@@ -188,8 +134,7 @@
     font-size: 1rem;
   }
   
-  .benefit {
-    font-size: 1rem;
-    padding: 0.7rem 1.2rem;
+  .pricing-teaser-section .section-container {
+    padding: 2rem;
   }
 }

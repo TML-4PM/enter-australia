@@ -1,6 +1,7 @@
+
 .footer-cta-section {
   padding: 7rem 5%;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1700&q=80');
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1700&q=80');
   background-size: cover;
   background-position: center;
   color: var(--light-color);
@@ -15,29 +16,29 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
 }
 
 .footer-cta-section .section-container {
   position: relative;
   z-index: 1;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .footer-cta-section h2 {
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   margin-bottom: 1.5rem;
   color: var(--light-color);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.2;
 }
 
 .footer-cta-section p {
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin: 0 auto 2.5rem;
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 0 auto 3rem;
   opacity: 0.9;
   font-weight: 300;
 }
@@ -45,68 +46,50 @@
 .cta-buttons {
   display: flex;
   justify-content: center;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .primary-cta {
   background-color: var(--secondary-color);
   color: var(--dark-color);
   font-weight: 600;
-  padding: 1rem 2.25rem;
-  border-radius: 8px;
+  padding: 1.1rem 2.5rem;
+  border-radius: 12px;
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s ease;
   border: none;
-  font-size: 1rem;
+  font-size: 1.1rem;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.primary-cta::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
+  box-shadow: 0 10px 25px rgba(255, 205, 0, 0.3);
 }
 
 .primary-cta:hover {
   background-color: #ffd633;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.primary-cta:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 205, 0, 0.35);
 }
 
 .cta {
-  padding: 1rem 2.25rem;
-  border-radius: 8px;
+  padding: 1.1rem 2.5rem;
+  border-radius: 12px;
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s ease;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background-color: transparent;
   color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .cta:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 992px) {
@@ -130,12 +113,19 @@
   
   .footer-cta-section p {
     font-size: 1.1rem;
+    margin-bottom: 2.5rem;
   }
   
   .cta-buttons {
     flex-direction: column;
     max-width: 300px;
     margin: 0 auto;
+  }
+
+  .primary-cta, .cta {
+    padding: 1rem 0;
+    width: 100%;
+    font-size: 1rem;
   }
 }
 
@@ -145,7 +135,7 @@
   }
   
   .footer-cta-section h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .footer-cta-section p {

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BarChart3, Building, RefreshCcw, Globe } from 'lucide-react';
 
 const HomePage = ({ toggleLeadForm }) => {
   return (
@@ -23,19 +24,25 @@ const HomePage = ({ toggleLeadForm }) => {
           <p className="section-intro">End-to-end market entry support for global businesses</p>
           <div className="services-grid">
             <div className="service-card">
-              <div className="service-icon">📊</div>
+              <div className="service-icon">
+                <BarChart3 size={32} color="#00843D" />
+              </div>
               <h3>Market Entry Strategy</h3>
               <p>Comprehensive market research, regulatory analysis, and strategic planning to position your business for sustainable success in Australia.</p>
               <Link to="/solutions/market-entry" className="service-link">Learn more</Link>
             </div>
             <div className="service-card">
-              <div className="service-icon">🏛️</div>
+              <div className="service-icon">
+                <Building size={32} color="#00843D" />
+              </div>
               <h3>Government Relations</h3>
               <p>Navigate government procurement, build relationships with key agencies, and access grants and incentives to accelerate your market entry.</p>
               <Link to="/solutions/govtech" className="service-link">Learn more</Link>
             </div>
             <div className="service-card">
-              <div className="service-icon">🔄</div>
+              <div className="service-icon">
+                <RefreshCcw size={32} color="#00843D" />
+              </div>
               <h3>Business Integration</h3>
               <p>Seamless establishment of your Australian operations, including entity setup, local hiring, office space, and operational infrastructure.</p>
               <Link to="/solutions/market-entry" className="service-link">Learn more</Link>
@@ -66,8 +73,8 @@ const HomePage = ({ toggleLeadForm }) => {
                   <span className="stat-label">Client Satisfaction</span>
                 </div>
               </div>
-              <div style={{textAlign: 'center', marginTop: '2rem'}}>
-                <Link to="/about" className="about-link cta">Learn Our Story</Link>
+              <div className="about-link-container">
+                <Link to="/about" className="about-link">Learn Our Story</Link>
               </div>
             </div>
           </div>
@@ -80,25 +87,33 @@ const HomePage = ({ toggleLeadForm }) => {
           <p className="section-intro">Specialized knowledge to help businesses from across the globe</p>
           <div className="regions-grid">
             <div className="region-card">
-              <div className="region-icon">🌏</div>
+              <div className="region-icon">
+                <Globe size={32} color="#00843D" />
+              </div>
               <h3>Asia-Pacific</h3>
               <p>Strategic advantages for APAC businesses entering Australia, leveraging regional trade agreements and established market channels.</p>
               <Link to="/regions" className="region-link">Explore Asia-Pacific Insights</Link>
             </div>
             <div className="region-card">
-              <div className="region-icon">🏜️</div>
+              <div className="region-icon">
+                <span style={{fontSize: '32px'}}>🏜️</span>
+              </div>
               <h3>Middle East</h3>
               <p>Strategic pathways for Gulf region businesses to establish Australian operations in energy, education, and infrastructure sectors.</p>
               <Link to="/regions" className="region-link">Discover Middle East Opportunities</Link>
             </div>
             <div className="region-card">
-              <div className="region-icon">🦅</div>
+              <div className="region-icon">
+                <span style={{fontSize: '32px'}}>🦅</span>
+              </div>
               <h3>North America</h3>
               <p>Leveraging AUKUS and Free Trade benefits for tech companies and defense contractors entering the Australian market.</p>
               <Link to="/regions" className="region-link">Learn About US Advantages</Link>
             </div>
             <div className="region-card">
-              <div className="region-icon">🇪🇺</div>
+              <div className="region-icon">
+                <span style={{fontSize: '32px'}}>🇪🇺</span>
+              </div>
               <h3>Europe</h3>
               <p>EU-Australia partnerships creating unique opportunities in renewable energy, healthcare, and advanced manufacturing.</p>
               <Link to="/regions" className="region-link">View European Pathways</Link>
