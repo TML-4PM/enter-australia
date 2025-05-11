@@ -1,6 +1,6 @@
 
 .pricing-teaser-section {
-  padding: 6rem 5%;
+  padding: var(--section-spacing);
   background-color: var(--light-color);
   text-align: center;
   position: relative;
@@ -40,13 +40,13 @@
 .pricing-teaser-section .section-container {
   max-width: 900px;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: var(--card-radius);
+  background-color: var(--glass-bg);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  border-radius: var(--glass-radius);
   padding: 3.5rem;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: var(--glass-shadow);
+  border: var(--glass-border);
   position: relative;
   z-index: 2;
 }
@@ -79,10 +79,10 @@
 .benefit {
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--glass-bg);
   padding: 1rem 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }

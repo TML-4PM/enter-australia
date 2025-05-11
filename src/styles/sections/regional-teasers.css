@@ -1,7 +1,7 @@
 
 /* Regional Teasers Section */
 .regional-teasers-section {
-  padding: 6rem 5%;
+  padding: var(--section-spacing);
   background: linear-gradient(135deg, #00843D 0%, #006C32 100%);
   text-align: center;
   color: var(--light-color);
@@ -28,11 +28,12 @@
   max-width: 1200px;
   margin: 0 auto;
   background-color: rgba(0, 84, 40, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: var(--card-radius);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  border-radius: var(--glass-radius);
   padding: 3.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 .regional-teasers-section h2 {
@@ -65,7 +66,7 @@
 .region-card {
   padding: 2.5rem;
   background-color: rgba(255, 255, 255, 0.97);
-  border-radius: var(--card-radius);
+  border-radius: var(--glass-radius);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
   transition: all 0.4s ease;
   height: 100%;
@@ -75,13 +76,13 @@
   transform: translateY(0);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .region-card:hover {
-  transform: translateY(-8px);
+  transform: var(--item-hover-transform);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
