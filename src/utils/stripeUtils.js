@@ -28,8 +28,8 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     
     console.log(`Creating checkout session for: ${name} (${isSubscription ? 'subscription' : 'one-time payment'})`);
     
-    // Call our serverless function to create a checkout session
-    const response = await fetch('/api/create-checkout-session', {
+    // Update the API endpoint to correctly use Netlify functions
+    const response = await fetch('/.netlify/functions/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -67,6 +67,8 @@ const Footer = () => {
             <li><Link to="/solutions/partnerships">Local Partnerships</Link></li>
             <li><Link to="/solutions/compliance">Compliance & Regulations</Link></li>
             <li><Link to="/solutions/grants">Grants & Incentives</Link></li>
+            <li><Link to="/pricing">Pricing Plans</Link></li>
+            <li><Link to="/opportunities">Current Opportunities</Link></li>
           </ul>
         </div>
         
@@ -79,8 +81,17 @@ const Footer = () => {
             <li><Link to="/webinars">Webinars</Link></li>
             <li><Link to="/faq">FAQs</Link></li>
             <li><Link to="/regions">Regional Insights</Link></li>
-            <li><Link to="/pricing">Pricing Plans</Link></li>
-            <li><Link to="/contact">Request Custom Research</Link></li>
+          </ul>
+        </div>
+        
+        <div className="footer-section">
+          <h3>Account</h3>
+          <ul>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/register">Register</Link></li>
+            <li><Link to="/profile">My Profile</Link></li>
+            <li><Link to="/success">Order Success</Link></li>
+            <li><Link to="/contact">Contact Us</Link></li>
           </ul>
         </div>
         

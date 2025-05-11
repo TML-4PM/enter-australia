@@ -19,8 +19,8 @@ const SuccessPage = () => {
           throw new Error('No session ID provided');
         }
         
-        // Verify the session with our backend
-        const response = await fetch(`/api/verify-session?session_id=${sessionId}`);
+        // Update to use Netlify function endpoint
+        const response = await fetch(`/.netlify/functions/verify-session?session_id=${sessionId}`);
         
         if (!response.ok) {
           const errorData = await response.json();

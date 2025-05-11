@@ -31,10 +31,18 @@ function App() {
 
   const toggleLeadForm = () => {
     setShowLeadForm(!showLeadForm);
+    // When opening lead form, close mobile menu if it's open
+    if (!showLeadForm && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
   };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    // When opening mobile menu, close lead form if it's open
+    if (!isMenuOpen && showLeadForm) {
+      setShowLeadForm(false);
+    }
   };
 
   const closeMenu = () => {
@@ -44,20 +52,37 @@ function App() {
   // Handle menu keyboard and click events
   useEffect(() => {
     const handleEscKey = (e) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        closeMenu();
+      if (e.key === 'Escape') {
+        if (isMenuOpen) {
+          closeMenu();
+        }
+        if (showLeadForm) {
+          setShowLeadForm(false);
+        }
       }
     };
 
     const handleOutsideClick = (e) => {
+      // Close mobile menu when clicking outside
       if (isMenuOpen && !e.target.closest('nav ul') && !e.target.closest('.menu-toggle')) {
         closeMenu();
+      }
+      
+      // Close user dropdown when clicking outside
+      if (!e.target.closest('.user-menu-wrapper') && !e.target.closest('.user-dropdown')) {
+        const userMenus = document.querySelectorAll('.user-dropdown');
+        if (userMenus.length > 0) {
+          // There might be a user menu open that needs to be closed
+          // We don't directly manipulate state here to avoid unnecessary rerenders
+          // This is handled by the Navigation component itself
+        }
       }
     };
 
     document.addEventListener('keydown', handleEscKey);
     document.addEventListener('mousedown', handleOutsideClick);
 
+    // Prevent body scrolling when mobile menu is open
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -67,8 +92,9 @@ function App() {
     return () => {
       document.removeEventListener('keydown', handleEscKey);
       document.removeEventListener('mousedown', handleOutsideClick);
+      document.body.style.overflow = 'auto'; // Reset on unmount
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, showLeadForm]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
