@@ -30,14 +30,14 @@
     </style>
     <!-- Preload critical CSS -->
     <link rel="preload" href="/styles.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" as="style">
     <!-- Fallback CSS -->
     <link rel="stylesheet" href="/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       /* Critical CSS for initial render */
       body {
-        font-family: 'Poppins', sans-serif !important;
+        font-family: 'Inter', sans-serif !important;
         margin: 0;
         padding: 0;
       }
@@ -79,7 +79,7 @@
       /* Add anti-cache versioning */
       .version {
         display: none;
-        content: "v1.0.6-build-<?php echo time(); ?>";
+        content: "v1.0.7-build-<?php echo time(); ?>";
       }
     </style>
     <!-- Prevent caching -->
@@ -134,13 +134,13 @@
         setInterval(removeNotifications, 500);
       });
       
-      // Simplified version checking
+      // Force CSS reload if styles aren't applied correctly
       window.addEventListener('DOMContentLoaded', (event) => {
         console.log('DOM fully loaded - checking styles');
         
         setTimeout(() => {
           const bodyStyles = getComputedStyle(document.body);
-          if (bodyStyles.fontFamily.indexOf('Poppins') === -1) {
+          if (bodyStyles.fontFamily.indexOf('Inter') === -1) {
             console.log('Forcing CSS reload');
             const links = document.querySelectorAll('link[rel="stylesheet"]');
             links.forEach(link => {

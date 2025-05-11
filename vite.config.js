@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite';
 import path from 'path';
 import react from '@vitejs/plugin-react';
+import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
   root: '.',
@@ -30,9 +31,8 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    // Note: componentTagger plugin removed due to ESM compatibility issues
-    // Will be re-enabled when compatibility issues are resolved
-  ],
+    mode === 'development' && componentTagger(),
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
