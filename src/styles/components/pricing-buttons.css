@@ -1,0 +1,36 @@
+
+/*
+ * Pricing Button Styles
+ * Specialized button styles for pricing cards that extend the base button system
+ */
+
+/* Pricing card actions container */
+.pricing-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+/* Learn more links for pricing cards */
+.learn-more-link {
+  display: inline-block;
+  text-align: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  transition: var(--transition);
+  border-bottom: 1px dashed var(--gray-medium);
+}
+
+.pricing-card.featured .learn-more-link,
+.pricing-card.premium-plan .learn-more-link {
+  color: var(--light-color);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.learn-more-link:hover {
+  color: var(--secondary-color);
+  border-bottom-color: var(--secondary-color);
+}
