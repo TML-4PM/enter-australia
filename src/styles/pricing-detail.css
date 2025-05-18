@@ -1,9 +1,9 @@
 
 @import './pricing-detail-header.css';
-@import './pricing-detail-buttons.css';
 @import './pricing-detail-grid.css';
 @import './pricing-process-timeline.css';
 @import './pricing-case-study.css';
 @import './pricing-cta-section.css';
 
 /* This file now imports all the smaller, more focused CSS files */
+
