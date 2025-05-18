@@ -1,0 +1,30 @@
+
+:root {
+  --primary-color: #00843D; /* Australian green - slightly refined */
+  --primary-light: rgba(0, 132, 61, 0.1);
+  --secondary-color: #FFCD00; /* Australian gold */
+  --dark-color: #1A1F2C;
+  --light-color: #ffffff;
+  --accent-color: #E9483F; /* Red ochre - Australian earth */
+  --australian-blue: #0A3161; /* Australian blue */
+  --gray-light: #f7f9fa;
+  --gray-medium: #e5e7eb;
+  --gray-dark: #2D3748;
+  --eucalyptus: #8BA58F; /* Eucalyptus green */
+  --shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s ease;
+  --card-radius: 16px;
+  --card-padding: 2.5rem;
+  --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  --blur-bg: rgba(255, 255, 255, 0.8);
+  --blur-effect: blur(10px);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+  --glass-radius: 16px;
+  --section-spacing: 6rem 5%;
+  --heading-spacing: 0.8rem;
+  --item-spacing: 2rem;
+  --item-hover-transform: translateY(-8px);
+}

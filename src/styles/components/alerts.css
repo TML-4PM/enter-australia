@@ -1,0 +1,31 @@
+
+/* Alert */
+.alert {
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+  box-shadow: var(--shadow-sm);
+}
+
+.error {
+  background-color: #ffecec;
+  color: #f44336;
+  border-left: 4px solid #f44336;
+}
+
+.success {
+  background-color: #e7f7e7;
+  color: #4CAF50;
+  border-left: 4px solid #4CAF50;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,63 @@
+
+/* Modern section styling */
+.modern-section {
+  position: relative;
+  padding: var(--section-spacing);
+  overflow: hidden;
+}
+
+.modern-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gray-medium), transparent);
+}
+
+.modern-section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.modern-section-heading {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.modern-section-intro {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 1rem auto 2.5rem;
+  font-weight: 300;
+}
+
+/* Circle background elements */
+.circle-bg-1, .circle-bg-2 {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  filter: blur(60px);
+  opacity: 0.15;
+}
+
+.circle-bg-1 {
+  background-color: var(--secondary-color);
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -100px;
+}
+
+.circle-bg-2 {
+  background-color: var(--primary-color);
+  width: 400px;
+  height: 400px;
+  bottom: -200px;
+  left: -200px;
+}

@@ -1,0 +1,12 @@
+
+html body .btn.primary {
+  background-color: var(--primary-color) !important;
+  color: var(--light-color) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+html body .btn.secondary {
+  border: 2px solid var(--secondary-color) !important;
+  color: var(--light-color) !important;
+  font-family: 'Inter', sans-serif !important;
+}
