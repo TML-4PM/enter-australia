@@ -4,50 +4,53 @@ import ReactDOM from 'react-dom/client';
 import './index.css'; // Import CSS before App
 import App from './App';
 
-// Create a function to monitor for styling issues
-const monitorStyles = () => {
-  // Check if CSS is loaded properly
+// Create a function to ensure all styles are loaded
+const ensureStylesLoaded = () => {
+  console.log('Ensuring styles are loaded correctly...');
+  
+  // Check if all CSS variables are loaded
+  const checkCssVariables = () => {
+    const variables = [
+      '--primary-color',
+      '--secondary-color',
+      '--dark-color',
+      '--light-color'
+    ];
+    
+    let allLoaded = true;
+    variables.forEach(variable => {
+      const value = getComputedStyle(document.documentElement).getPropertyValue(variable);
+      console.log(`CSS variable ${variable}:`, value);
+      if (!value) {
+        allLoaded = false;
+        console.warn(`Missing CSS variable: ${variable}`);
+      }
+    });
+    
+    return allLoaded;
+  };
+  
+  // Force refresh of styles if needed
   setTimeout(() => {
-    const body = document.body;
-    const computedStyle = window.getComputedStyle(body);
-    console.log('Body font-family:', computedStyle.fontFamily);
-    console.log('Body color:', computedStyle.color);
-    console.log('Body background:', computedStyle.backgroundColor);
-    
-    // Log CSS variables to ensure they're loaded
-    console.log('--primary-color:', getComputedStyle(document.documentElement).getPropertyValue('--primary-color'));
-    console.log('--secondary-color:', getComputedStyle(document.documentElement).getPropertyValue('--secondary-color'));
-    
-    console.log('App rendering complete, checking for errors...');
-    if (document.querySelector('.error')) {
-      console.error('Error elements found in the DOM');
-    } else {
-      console.log('No visible error elements in the DOM');
+    if (!checkCssVariables()) {
+      console.log('Forcing CSS reload...');
+      const links = document.querySelectorAll('link[rel="stylesheet"]');
+      links.forEach(link => {
+        const url = link.href;
+        link.href = url + '?refresh=' + new Date().getTime();
+      });
+      
+      // Add CSS variables directly if still missing
+      document.documentElement.style.setProperty('--primary-color', '#00843D');
+      document.documentElement.style.setProperty('--secondary-color', '#FFCD00');
+      document.documentElement.style.setProperty('--dark-color', '#1A1F2C');
+      document.documentElement.style.setProperty('--light-color', '#ffffff');
     }
-    
-    // Additional logging to debug homepage-specific elements
-    if (document.querySelector('.hero')) {
-      console.log('Hero section found - home page rendering');
-    }
-    
-    if (document.querySelector('header')) {
-      console.log('Header element found');
-    }
-    
-    if (document.querySelector('main')) {
-      console.log('Main element found');
-    }
-
-    // Force a refresh of CSS classes if needed
-    document.body.classList.add('css-loaded');
-    setTimeout(() => {
-      document.body.classList.remove('css-loaded');
-    }, 100);
-  }, 1000);
+  }, 500);
 };
 
-// Start monitoring
-monitorStyles();
+// Start monitoring styles
+ensureStylesLoaded();
 
 // Add global error handler
 window.addEventListener('error', (event) => {

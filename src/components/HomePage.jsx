@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BarChart3, Building, RefreshCcw, Globe, Flag, Award, MapPin, Map, Check } from 'lucide-react';
@@ -17,13 +18,18 @@ const HomePage = ({ toggleLeadForm }) => {
         </div>
       </section>
 
-      {/* Removed core-services-section as requested */}
-
-      {/* Removed why-australia-section as requested */}
-
-      {/* Removed regional-teasers-section as requested */}
-
-      {/* Removed pricing-teaser-section as requested */}
+      <section id="case-study" className="case-study-section">
+        <div className="section-container">
+          <h2>Success Stories</h2>
+          <div className="case-study-content">
+            <blockquote>
+              "Enter Australia guided us through every step of our Australian market entry. Their strategic approach and local connections helped us establish our presence faster than we ever expected."
+              <cite>— Sarah Chen, CEO of TechGrowth Solutions</cite>
+            </blockquote>
+            <Link to="/partners" className="read-more">Read more success stories →</Link>
+          </div>
+        </div>
+      </section>
 
       <section id="footer-cta" className="footer-cta-section">
         <div className="circle-bg-1"></div>

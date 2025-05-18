@@ -66,10 +66,11 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- Only include the script if it's available -->
+    <!-- Script only loads in development environment -->
     <script>
-      // Check if we're in the Lovable environment
-      if (window.location.hostname.includes('lovable.app') || 
+      // Only load the Lovable script in development environment
+      if (window.location.hostname === 'localhost' || 
+          window.location.hostname.includes('lovable.app') || 
           window.location.hostname.includes('gpteng.co')) {
         const script = document.createElement('script');
         script.src = 'https://cdn.gpteng.co/gptengineer.js';
