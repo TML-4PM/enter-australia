@@ -1,4 +1,6 @@
 
+@import './footer-buttons.css';
+
 .footer-cta-section {
   padding: 6rem 5%;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1700&q=80');
@@ -51,55 +53,7 @@
   line-height: 1.6;
 }
 
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.primary-cta {
-  background-color: var(--secondary-color);
-  color: var(--dark-color);
-  font-weight: 600;
-  padding: 1.2rem 2.8rem;
-  border-radius: 12px;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-  border: none;
-  font-size: 1.1rem;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(255, 205, 0, 0.3);
-}
-
-.primary-cta:hover {
-  background-color: #ffd633;
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(255, 205, 0, 0.35);
-}
-
-.cta {
-  padding: 1.2rem 2.8rem;
-  border-radius: 12px;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1.1rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background-color: transparent;
-  color: white;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.cta:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
+/* Media queries for responsive design */
 @media (max-width: 992px) {
   .footer-cta-section h2 {
     font-size: 2.4rem;
@@ -126,18 +80,6 @@
   .footer-cta-section p {
     font-size: 1.1rem;
     margin-bottom: 2.2rem;
-  }
-  
-  .cta-buttons {
-    flex-direction: column;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-
-  .primary-cta, .cta {
-    padding: 1.1rem 0;
-    width: 100%;
-    font-size: 1rem;
   }
   
   .footer-cta-section .section-container {
