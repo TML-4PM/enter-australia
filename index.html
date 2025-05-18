@@ -66,18 +66,8 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- Script only loads in development environment -->
-    <script>
-      // Only load the Lovable script in development environment
-      if (window.location.hostname === 'localhost' || 
-          window.location.hostname.includes('lovable.app') || 
-          window.location.hostname.includes('gpteng.co')) {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.gpteng.co/gptengineer.js';
-        script.type = 'module';
-        document.body.appendChild(script);
-      }
-    </script>
+    <!-- Required Lovable script tag for new features -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.jsx"></script>
     <script>
       // Force CSS reload if styles aren't applied correctly
