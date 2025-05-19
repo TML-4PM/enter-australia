@@ -3,7 +3,7 @@
 @import './pricing-card-premium.css';
 @import './pricing-card-header.css';
 @import './pricing-card-features.css';
-@import './pricing-card-actions.css';
+@import './components/pricing-buttons.css';
 @import './pricing-card-badges.css';
 @import './subscription-status-banner.css';
 
