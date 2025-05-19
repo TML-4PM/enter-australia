@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite';
 import path from 'path';
 import react from '@vitejs/plugin-react';
+import { componentTagger } from 'lovable-tagger';
 
 export default defineConfig(({ mode }) => ({
   root: '.',
@@ -30,22 +31,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    // We'll dynamically import the tagger only when needed to avoid ESM issues
-    mode === 'development' && {
-      name: 'dynamically-import-tagger',
-      async buildStart() {
-        if (mode === 'development') {
-          try {
-            // This dynamic import is ESM-compatible
-            const module = await import('lovable-tagger');
-            // Set up any needed configuration here
-            console.log('Lovable tagger loaded successfully');
-          } catch (error) {
-            console.warn('Could not load lovable-tagger:', error.message);
-          }
-        }
-      }
-    }
+    mode === 'development' && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
