@@ -10,3 +10,53 @@
 
 /* Force load home page styles */
 @import './home/index.css';
+
+/* Critical CSS fallbacks */
+:root {
+  --primary-color: #00843D;
+  --secondary-color: #FFCD00;
+  --dark-color: #1A1F2C;
+  --light-color: #ffffff;
+  --accent-color: #E9483F;
+  --australian-blue: #0A3161;
+  --gray-light: #f7f9fa;
+  --gray-medium: #e5e7eb;
+  --gray-dark: #2D3748;
+}
+
+/* Critical Layout Elements */
+body {
+  font-family: 'Inter', sans-serif !important;
+  margin: 0;
+  padding: 0;
+  color: var(--dark-color);
+  background: var(--light-color);
+  min-height: 100vh;
+}
+
+header {
+  background: var(--light-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+main {
+  min-height: 70vh;
+}
+
+/* Diagnostic helper */
+.css-loaded-indicator {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  z-index: 9999;
+  display: none;
+}
+
+/* Only display in development mode */
+.development .css-loaded-indicator {
+  display: block;
+}

@@ -81,25 +81,46 @@
           rootStyle.setProperty('--secondary-color', '#FFCD00');
           rootStyle.setProperty('--dark-color', '#1A1F2C');
           rootStyle.setProperty('--light-color', '#ffffff');
+          console.log('Applied CSS variables to :root');
         }
         
+        // Check if styles are loaded properly
         setTimeout(() => {
+          console.log('Checking CSS loading status...');
           const bodyStyles = getComputedStyle(document.body);
+          console.log('Body font-family:', bodyStyles.fontFamily);
+          
           if (bodyStyles.fontFamily.indexOf('Inter') === -1) {
-            console.log('Forcing CSS reload');
+            console.log('CSS not loaded correctly, force reloading stylesheets');
             const links = document.querySelectorAll('link[rel="stylesheet"]');
             links.forEach(link => {
+              const url = link.href;
+              console.log('Reloading stylesheet:', url);
               const clone = link.cloneNode();
+              clone.href = url + (url.includes('?') ? '&' : '?') + 'refresh=' + new Date().getTime();
               link.parentNode.replaceChild(clone, link);
             });
+          } else {
+            console.log('CSS loaded correctly');
           }
           
           // Force redraw of elements
           document.body.style.display = 'none';
           document.body.offsetHeight; // Trigger reflow
           document.body.style.display = '';
+          console.log('Forced page redraw');
         }, 1000);
       });
+      
+      // Diagnostic logging
+      console.log('Environment:', window.location.hostname);
+      
+      // Check for CSS load errors
+      window.addEventListener('error', function(e) {
+        if (e.target && (e.target.tagName === 'LINK' || e.target.tagName === 'STYLE')) {
+          console.error('CSS load error:', e.target.href || 'inline style');
+        }
+      }, true);
     </script>
   </body>
 </html>

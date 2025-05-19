@@ -2,7 +2,6 @@
 import { defineConfig } from 'vite';
 import path from 'path';
 import react from '@vitejs/plugin-react';
-import { componentTagger } from 'lovable-tagger';
 
 export default defineConfig(({ mode }) => ({
   root: '.',
@@ -31,7 +30,37 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
+    // We'll dynamically import the tagger only when needed to avoid ESM issues
+    mode === 'development' && {
+      name: 'dynamic-lovable-tagger',
+      async configureServer(server) {
+        if (mode === 'development') {
+          try {
+            // Dynamic import to handle ESM module
+            const taggerModule = await import('lovable-tagger');
+            if (taggerModule && taggerModule.componentTagger) {
+              console.log('Successfully loaded lovable-tagger');
+              // Apply the tagger through the Vite server
+              server.middlewares.use((req, res, next) => {
+                try {
+                  const taggerMiddleware = taggerModule.componentTagger();
+                  if (typeof taggerMiddleware === 'function') {
+                    taggerMiddleware(req, res, next);
+                  } else {
+                    next();
+                  }
+                } catch (error) {
+                  console.error('Error applying tagger middleware:', error);
+                  next();
+                }
+              });
+            }
+          } catch (error) {
+            console.warn('Could not load lovable-tagger:', error.message);
+          }
+        }
+      }
+    }
   ].filter(Boolean),
   resolve: {
     alias: {

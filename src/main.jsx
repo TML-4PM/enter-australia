@@ -37,7 +37,7 @@ const ensureStylesLoaded = () => {
       const links = document.querySelectorAll('link[rel="stylesheet"]');
       links.forEach(link => {
         const url = link.href;
-        link.href = url + '?refresh=' + new Date().getTime();
+        link.href = url + (url.includes('?') ? '&' : '?') + 'refresh=' + new Date().getTime();
       });
       
       // Add CSS variables directly if still missing
@@ -55,6 +55,11 @@ ensureStylesLoaded();
 // Add global error handler
 window.addEventListener('error', (event) => {
   console.error('Global error caught:', event.error);
+  
+  // Check specifically for CSS-related errors
+  if (event.filename && (event.filename.endsWith('.css') || event.message.includes('CSS'))) {
+    console.error('CSS error detected:', event.message, 'in', event.filename);
+  }
 });
 
 console.log('Creating React root and rendering app...');

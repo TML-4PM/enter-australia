@@ -1,10 +1,9 @@
 
-
 /* Component styles */
 @import './section.css';
 @import './cards.css';
 @import './alerts.css';
 @import './buttons.css';
 @import './button-variants.css';
-@import './pricing-buttons.css';
 
+/* Note: pricing-buttons.css is now imported in pricing-cards.css to avoid circular imports */
