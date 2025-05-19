@@ -5,5 +5,7 @@
 @import './alerts.css';
 @import './buttons.css';
 @import './button-variants.css';
+@import './pricing-buttons.css';  /* Move import here to avoid circular imports */
+@import './hero.css';
 
-/* Note: pricing-buttons.css is now imported in pricing-cards.css to avoid circular imports */
+/* Ensure all component styles are included */

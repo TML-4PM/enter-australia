@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    // We'll dynamically import the tagger only when needed to avoid ESM issues
+    // Using dynamic import for lovable-tagger to avoid ESM issues
     mode === 'development' && {
       name: 'dynamic-lovable-tagger',
       async configureServer(server) {

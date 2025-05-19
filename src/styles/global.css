@@ -8,8 +8,12 @@
 /* Elements */
 @import './elements/index.css';
 
-/* Force load home page styles */
+/* Home Page styles */
 @import './home/index.css';
+
+/* Pricing Related Styles */
+@import './pricing-cards.css';
+@import './pricing-detail.css';
 
 /* Critical CSS fallbacks */
 :root {

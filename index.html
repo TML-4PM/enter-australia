@@ -59,7 +59,7 @@
       }
     </style>
     
-    <!-- Prevent caching -->
+    <!-- Prevent caching during development -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -109,6 +109,17 @@
           document.body.offsetHeight; // Trigger reflow
           document.body.style.display = '';
           console.log('Forced page redraw');
+
+          // Add CSS diagnostic element for development
+          if (window.location.hostname === 'localhost' || 
+              window.location.hostname.includes('127.0.0.1') ||
+              window.location.hostname.includes('lovable.app')) {
+            document.body.classList.add('development');
+            const diagnosticElement = document.createElement('div');
+            diagnosticElement.className = 'css-loaded-indicator';
+            diagnosticElement.textContent = 'CSS Loaded ✓';
+            document.body.appendChild(diagnosticElement);
+          }
         }, 1000);
       });
       

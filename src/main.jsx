@@ -1,7 +1,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css'; // Import CSS before App
+import './index.css'; // Import base CSS
+import './styles/global.css'; // Import global styles with all imports
 import App from './App';
 
 // Create a function to ensure all styles are loaded
