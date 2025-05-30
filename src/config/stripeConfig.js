@@ -3,7 +3,9 @@ import { loadStripe } from '@stripe/stripe-js';
 
 // Initialize Stripe with the publishable key
 // This key is safe to expose in frontend code
-export const stripePromise = loadStripe('pk_test_51QdfYbD6fFdhmypR798NoSCJ4G9TGCkqw9QTuiDTkyvmn9cTHxjFG6GYDlcoBClLWsDN5Mgjb0tIfII00oVKQ67in');
+export const stripePromise = loadStripe(
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_51QdfYbD6fFdhmypR798NoSCJ4G9TGCkqw9QTuiDTkyvmn9cTHxjFG6GYDlcoBClLWsDN5Mgjb0tIfII00oVKQ67in'
+);
 
 // Define the product IDs and details
 export const PRODUCTS = {
@@ -103,6 +105,7 @@ export const PRODUCTS = {
     caseStudy: '"AgriSys" doubled their tender shortlist rate in 3 months on this plan.'
   },
   PREMIUM: {
+    priceId: 'price_1R6NEHD6fFdhmypRg6CN1BuQ',
     name: 'Premium Retainer',
     isSubscription: true,
     price: '$15K',

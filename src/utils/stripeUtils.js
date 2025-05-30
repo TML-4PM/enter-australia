@@ -30,7 +30,7 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     
     console.log(`Creating checkout session for: ${name} (${isSubscription ? 'subscription' : 'one-time payment'})`);
     
-    // Update the API endpoint to correctly use Netlify functions
+    // Use Netlify functions endpoint
     const response = await fetch('/.netlify/functions/create-checkout-session', {
       method: 'POST',
       headers: {

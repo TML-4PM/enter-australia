@@ -25,7 +25,7 @@ const SuccessPage = () => {
         }
         
         addDebugStep(`Fetching session details for ID: ${sessionId.substring(0, 8)}...`);
-        // Update to use Netlify function endpoint
+        // Use Netlify function endpoint
         const response = await fetch(`/.netlify/functions/verify-session?session_id=${sessionId}`);
         
         addDebugStep(`Response status: ${response.status}`);

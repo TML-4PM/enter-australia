@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { handleCheckout } from '../utils/stripeUtils';
+import { PRODUCTS } from '../config/stripeConfig';
 
 export const usePricing = (setErrorMessage) => {
   const [isLoading, setIsLoading] = useState(
@@ -69,6 +70,3 @@ export const usePricing = (setErrorMessage) => {
     processAction
   };
 };
-
-// Make sure PRODUCTS is available in this module
-import { PRODUCTS } from '../config/stripeConfig';
