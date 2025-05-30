@@ -1,5 +1,6 @@
 
 const Stripe = require('stripe');
+const { createClient } = require('@supabase/supabase-js');
 
 exports.handler = async (event, context) => {
   // Setup CORS headers
@@ -40,8 +41,32 @@ exports.handler = async (event, context) => {
   }
   
   try {
-    // Initialize Stripe with the secret key
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    // Initialize Supabase client to get the Stripe secret
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    );
+    
+    // Get Stripe secret key from Supabase secrets
+    const { data: secretData, error: secretError } = await supabase
+      .from('vault.secrets')
+      .select('secret')
+      .eq('name', 'STRIPE_SECRET_KEY')
+      .single();
+    
+    if (secretError || !secretData?.secret) {
+      console.error('Failed to retrieve Stripe secret key:', secretError);
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ 
+          error: 'Stripe configuration error. Please contact support.' 
+        })
+      };
+    }
+    
+    // Initialize Stripe with the secret key from Supabase
+    const stripe = new Stripe(secretData.secret);
     
     console.log("Retrieving session:", sessionId);
     
@@ -88,6 +113,46 @@ exports.handler = async (event, context) => {
     
     // The actual customer email will always be Troy's, but we'll refer to it generically for the UI
     const customerEmail = 'troy@tech4humanity.com.au';
+    
+    // Update subscribers table if this is a subscription
+    if (isSubscription && session.payment_status === 'paid') {
+      try {
+        // Get subscription details
+        const subscriptions = await stripe.subscriptions.list({
+          customer: session.customer,
+          status: 'active',
+          limit: 1
+        });
+        
+        if (subscriptions.data.length > 0) {
+          const subscription = subscriptions.data[0];
+          
+          // Determine subscription tier based on price
+          let subscriptionTier = 'Basic';
+          if (amount >= 15000) {
+            subscriptionTier = 'Premium';
+          } else if (amount >= 5000) {
+            subscriptionTier = 'Growth';
+          }
+          
+          // Update subscribers table
+          await supabase.from('subscribers').upsert({
+            email: customerEmail,
+            stripe_customer_id: session.customer,
+            subscribed: true,
+            subscription_tier: subscriptionTier,
+            subscription_end: new Date(subscription.current_period_end * 1000).toISOString(),
+            stripe_subscription_id: subscription.id,
+            payment_status: session.payment_status,
+            billing_cycle: interval,
+            updated_at: new Date().toISOString(),
+          }, { onConflict: 'email' });
+        }
+      } catch (dbError) {
+        console.error('Error updating subscribers table:', dbError);
+        // Don't fail the response if DB update fails
+      }
+    }
     
     // Return details about the successful payment
     return {

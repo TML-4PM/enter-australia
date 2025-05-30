@@ -1,5 +1,6 @@
 
 const Stripe = require('stripe');
+const { createClient } = require('@supabase/supabase-js');
 
 exports.handler = async (event, context) => {
   // Setup CORS headers
@@ -31,8 +32,32 @@ exports.handler = async (event, context) => {
     // Always use Troy's email as the customer email
     const customerEmail = 'troy@tech4humanity.com.au';
     
-    // Initialize Stripe with the secret key
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    // Initialize Supabase client to get the Stripe secret
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    );
+    
+    // Get Stripe secret key from Supabase secrets
+    const { data: secretData, error: secretError } = await supabase
+      .from('vault.secrets')
+      .select('secret')
+      .eq('name', 'STRIPE_SECRET_KEY')
+      .single();
+    
+    if (secretError || !secretData?.secret) {
+      console.error('Failed to retrieve Stripe secret key:', secretError);
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ 
+          error: 'Stripe configuration error. Please contact support.' 
+        })
+      };
+    }
+    
+    // Initialize Stripe with the secret key from Supabase
+    const stripe = new Stripe(secretData.secret);
     
     // Find the customer by email
     const customers = await stripe.customers.list({

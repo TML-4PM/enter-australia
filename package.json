@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^7.3.0",
-    "@supabase/supabase-js": "^2.38.4",
+    "@supabase/supabase-js": "^2.49.8",
     "@vitejs/plugin-react": "^4.3.4",
     "firebase": "^10.7.1",
     "lovable-tagger": "^1.1.7",
