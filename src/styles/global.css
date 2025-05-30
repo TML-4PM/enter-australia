@@ -1,66 +1,250 @@
 
-/* Base styles */
+/* Import base styles */
 @import './base/index.css';
 
-/* Components */
+/* Import component styles */
 @import './components/index.css';
+
+/* Import layout styles */
+@import './header.css';
+@import './footer.css';
+
+/* Import page styles */
+@import './home/index.css';
+@import './solutions.css';
+@import './solution-detail.css';
+@import './pricing-section.css';
+@import './pricing-cards.css';
+@import './pricing-detail.css';
+@import './pricing-faq.css';
+@import './pricing-cta.css';
+@import './pricing-solutions.css';
+@import './pricing-header.css';
+@import './pricing-detail-header.css';
+@import './pricing-detail-grid.css';
+@import './pricing-badges.css';
+@import './pricing-card-badges.css';
+@import './pricing-card-base.css';
+@import './pricing-card-header.css';
+@import './pricing-card-features.css';
+@import './pricing-card-premium.css';
+@import './pricing-cta-section.css';
+@import './pricing-solutions-section.css';
+@import './pricing-case-study.css';
+@import './pricing-process-timeline.css';
+@import './pricing-media-queries.css';
+@import './blog/index.css';
+@import './resources.css';
+@import './data-apis.css';
+@import './contact.css';
+@import './legal.css';
+@import './regions.css';
+@import './partners.css';
+@import './partners/partners-main.css';
+@import './partners/partner-hero.css';
+@import './partners/featured-partners.css';
+@import './partners/partner-directory.css';
+@import './partners/partner-card.css';
+@import './partners/success-stories.css';
+@import './partners/partnership-process.css';
+@import './partners/partnership-value.css';
+@import './partners/partner-cta.css';
+@import './about.css';
+@import './faq-page.css';
+@import './auth.css';
+@import './profile.css';
+@import './opportunities.css';
+@import './success.css';
+@import './lead-form.css';
+@import './live-chat.css';
+@import './how-it-works.css';
+@import './value-props.css';
+@import './marketing-posts.css';
+@import './comparison-table.css';
+@import './subscription-status-banner.css';
+@import './email-drip.css';
+@import './pdf-download.css';
+@import './error-message.css';
+@import './pre-deployment-check.css';
+@import './webinar-registration.css';
+@import './webinar/index.css';
+@import './demo-scheduler/index.css';
+@import './responsive.css';
+
+/* Sections */
+@import './sections/core-services.css';
+@import './sections/why-australia.css';
+@import './sections/case-study.css';
+@import './sections/pricing-teaser.css';
+@import './sections/regional-teasers.css';
+@import './sections/footer-cta.css';
+@import './sections/footer-buttons.css';
 
 /* Elements */
 @import './elements/index.css';
 
-/* Home Page styles */
-@import './home/index.css';
-
-/* Pricing Related Styles */
-@import './pricing-cards.css';
-@import './pricing-detail.css';
-
-/* Critical CSS fallbacks */
-:root {
-  --primary-color: #00843D;
-  --secondary-color: #FFCD00;
-  --dark-color: #1A1F2C;
-  --light-color: #ffffff;
-  --accent-color: #E9483F;
-  --australian-blue: #0A3161;
-  --gray-light: #f7f9fa;
-  --gray-medium: #e5e7eb;
-  --gray-dark: #2D3748;
-}
-
-/* Critical Layout Elements */
-body {
-  font-family: 'Inter', sans-serif !important;
-  margin: 0;
-  padding: 0;
-  color: var(--dark-color);
-  background: var(--light-color);
-  min-height: 100vh;
-}
-
-header {
-  background: var(--light-color);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-main {
+/* Error Boundary Styles */
+.error-boundary {
   min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 5%;
+  background-color: #f9fafb;
 }
 
-/* Diagnostic helper */
-.css-loaded-indicator {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  background: rgba(0,0,0,0.7);
+.error-boundary-container {
+  text-align: center;
+  max-width: 600px;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.error-icon {
+  color: #ef4444;
+  margin-bottom: 1.5rem;
+}
+
+.error-boundary-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+}
+
+.error-boundary-content p {
+  font-size: 1.1rem;
+  color: var(--gray-dark);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.error-actions .btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.error-actions .btn.primary {
+  background-color: var(--primary-color);
   color: white;
-  padding: 5px 10px;
-  font-size: 12px;
-  z-index: 9999;
-  display: none;
 }
 
-/* Only display in development mode */
-.development .css-loaded-indicator {
-  display: block;
+.error-actions .btn.primary:hover {
+  background-color: var(--secondary-color);
+}
+
+.error-actions .btn.secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.error-actions .btn.secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.error-details {
+  text-align: left;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 5px;
+  border: 1px solid #e5e7eb;
+}
+
+.error-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.error-details pre {
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0.5rem 0;
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .error-boundary-container {
+    padding: 2rem;
+  }
+  
+  .error-boundary-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Enhanced form validation styles */
+.error-input {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.success-text {
+  color: #10b981;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Alert styles */
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-weight: 500;
+}
+
+.alert.success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.alert.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.alert.warning {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.alert.info {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
 }

@@ -14,16 +14,60 @@ const ContactSection = () => {
   });
   
   const [formStatus, setFormStatus] = useState(null);
+  const [errors, setErrors] = useState({});
   
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormState({
       ...formState,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+  
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formState.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    
+    if (!formState.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formState.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formState.company.trim()) {
+      newErrors.company = 'Company name is required';
+    }
+    
+    if (!formState.service) {
+      newErrors.service = 'Please select a service';
+    }
+    
+    if (!formState.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formState.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters long';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      setFormStatus({ type: 'error', message: 'Please fix the errors above and try again.' });
+      return;
+    }
+    
     setFormStatus({ type: 'loading', message: 'Sending your message...' });
     
     try {
@@ -50,7 +94,7 @@ const ContactSection = () => {
         throw new Error(error.message);
       }
       
-      setFormStatus({ type: 'success', message: 'Message sent successfully! We will contact you shortly.' });
+      setFormStatus({ type: 'success', message: 'Message sent successfully! We will contact you within 24 hours.' });
       setFormState({
         name: '',
         email: '',
@@ -60,7 +104,7 @@ const ContactSection = () => {
       });
     } catch (error) {
       console.error('Error sending message:', error);
-      setFormStatus({ type: 'error', message: 'Failed to send message. Please try again later.' });
+      setFormStatus({ type: 'error', message: 'Failed to send message. Please try again or email us directly at info@enteraustralia.tech' });
     }
   };
 
@@ -95,7 +139,9 @@ const ContactSection = () => {
                 required 
                 value={formState.name}
                 onChange={handleChange}
+                className={errors.name ? 'error-input' : ''}
               />
+              {errors.name && <p className="error-text">{errors.name}</p>}
             </div>
             <div className="form-group">
               <input 
@@ -105,7 +151,9 @@ const ContactSection = () => {
                 required 
                 value={formState.email}
                 onChange={handleChange}
+                className={errors.email ? 'error-input' : ''}
               />
+              {errors.email && <p className="error-text">{errors.email}</p>}
             </div>
             <div className="form-group">
               <input 
@@ -115,7 +163,9 @@ const ContactSection = () => {
                 required 
                 value={formState.company}
                 onChange={handleChange}
+                className={errors.company ? 'error-input' : ''}
               />
+              {errors.company && <p className="error-text">{errors.company}</p>}
             </div>
             <div className="form-group">
               <select 
@@ -123,21 +173,29 @@ const ContactSection = () => {
                 required 
                 value={formState.service}
                 onChange={handleChange}
+                className={errors.service ? 'error-input' : ''}
               >
                 <option value="" disabled>Interested In</option>
                 <option value="entry-kit">Entry Kit ($5K)</option>
                 <option value="retainer">Retainer ($15K/month)</option>
+                <option value="market-entry">Market Entry Strategy</option>
+                <option value="govtech">Government Contracts</option>
+                <option value="partnerships">Local Partnerships</option>
+                <option value="compliance">Compliance & Regulations</option>
                 <option value="other">Other</option>
               </select>
+              {errors.service && <p className="error-text">{errors.service}</p>}
             </div>
             <div className="form-group">
               <textarea 
                 name="message" 
-                placeholder="Your Message" 
+                placeholder="Tell us about your Australian market goals and timeline" 
                 required 
                 value={formState.message}
                 onChange={handleChange}
+                className={errors.message ? 'error-input' : ''}
               ></textarea>
+              {errors.message && <p className="error-text">{errors.message}</p>}
             </div>
             <button type="submit" className="submit-btn" disabled={formStatus?.type === 'loading'}>
               {formStatus?.type === 'loading' ? 'Sending...' : 'Send Message'}
