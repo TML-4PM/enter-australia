@@ -134,6 +134,9 @@ const Footer = () => {
           <Link to="/terms">Terms of Service</Link>
           <Link to="/cookies">Cookie Policy</Link>
           <Link to="/sitemap">Sitemap</Link>
+          <a href="https://tech4humanity.org" target="_blank" rel="noopener noreferrer">Tech 4 Humanity</a>
+          <a href="https://holo-org.com" target="_blank" rel="noopener noreferrer">Holo-Org</a>
+          <a href="https://augmentedhumanitycoach.com" target="_blank" rel="noopener noreferrer">Augmented Humanity Coach</a>
         </div>
       </div>
     </footer>
