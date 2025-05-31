@@ -1,0 +1,50 @@
+
+{
+  "nav": {
+    "home": "Home",
+    "solutions": "Solutions",
+    "partners": "Partners",
+    "regions": "Regions",
+    "pricing": "Pricing",
+    "resources": "Resources",
+    "about": "About",
+    "login": "Log In",
+    "register": "Register",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "title": "Enter Australia",
+    "subtitle": "Your gateway to the Australian market"
+  },
+  "regions": {
+    "title": "Local Insights, Global Scale",
+    "subtitle": "Tailored market entry strategies by region of origin",
+    "asia": "Asia",
+    "middleEast": "Middle East",
+    "us": "U.S.",
+    "europe": "Europe",
+    "asiaPac": "Asia-Pac Innovators",
+    "gulfGippsland": "Gulf-to-Gippsland Corridor",
+    "siliconValley": "Silicon Valley to Sydney",
+    "euInnovators": "EU Innovators",
+    "strategicAdvantages": "Strategic Advantages",
+    "ourOffering": "Our Offering",
+    "speakWithTeam": "Speak with APAC Team",
+    "connectDubai": "Connect with our Dubai Office",
+    "talkToUS": "Talk to our U.S. Team",
+    "chatEU": "Chat with our EU Desk"
+  },
+  "footer": {
+    "solutions": "Solutions",
+    "company": "Company",
+    "legal": "Legal",
+    "connect": "Connect"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "close": "Close"
+  }
+}

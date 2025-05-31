@@ -1,16 +1,18 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import '../styles/regions.css';
 
 const RegionsPage = () => {
   const [activeRegion, setActiveRegion] = useState("asia");
+  const { t } = useTranslation();
   
   return (
     <section id="regions" className="regions-page">
       <div className="regions-hero">
-        <h1>Local Insights, Global Scale</h1>
-        <p>Tailored market entry strategies by region of origin</p>
+        <h1>{t('regions.title')}</h1>
+        <p>{t('regions.subtitle')}</p>
       </div>
       
       <div className="regions-tabs">
@@ -18,35 +20,35 @@ const RegionsPage = () => {
           className={`tab ${activeRegion === 'asia' ? 'active' : ''}`}
           onClick={() => setActiveRegion('asia')}
         >
-          Asia
+          {t('regions.asia')}
         </button>
         <button 
           className={`tab ${activeRegion === 'middleeast' ? 'active' : ''}`}
           onClick={() => setActiveRegion('middleeast')}
         >
-          Middle East
+          {t('regions.middleEast')}
         </button>
         <button 
           className={`tab ${activeRegion === 'us' ? 'active' : ''}`}
           onClick={() => setActiveRegion('us')}
         >
-          U.S.
+          {t('regions.us')}
         </button>
         <button 
           className={`tab ${activeRegion === 'europe' ? 'active' : ''}`}
           onClick={() => setActiveRegion('europe')}
         >
-          Europe
+          {t('regions.europe')}
         </button>
       </div>
       
       <div className="regions-content">
         <div className={`region-tab-content ${activeRegion === 'asia' ? 'active' : ''}`}>
-          <h2>Asia-Pac Innovators</h2>
+          <h2>{t('regions.asiaPac')}</h2>
           
           <div className="region-details">
             <div className="region-feature">
-              <h3>Strategic Advantages</h3>
+              <h3>{t('regions.strategicAdvantages')}</h3>
               <ul>
                 <li>Deploy from Singapore & Hong Kong</li>
                 <li>Leverage APAC trade agreements</li>
@@ -55,7 +57,7 @@ const RegionsPage = () => {
             </div>
             
             <div className="region-feature">
-              <h3>Our Offering</h3>
+              <h3>{t('regions.ourOffering')}</h3>
               <ul>
                 <li>VC introductions</li>
                 <li>R&D grant packaging</li>
@@ -65,16 +67,16 @@ const RegionsPage = () => {
           </div>
           
           <div className="region-cta">
-            <Link to="/contact" className="btn primary">Speak with APAC Team</Link>
+            <Link to="/contact" className="btn primary">{t('regions.speakWithTeam')}</Link>
           </div>
         </div>
         
         <div className={`region-tab-content ${activeRegion === 'middleeast' ? 'active' : ''}`}>
-          <h2>Gulf-to-Gippsland Corridor</h2>
+          <h2>{t('regions.gulfGippsland')}</h2>
           
           <div className="region-details">
             <div className="region-feature">
-              <h3>Strategic Advantages</h3>
+              <h3>{t('regions.strategicAdvantages')}</h3>
               <ul>
                 <li>Dubai–Melbourne direct investment flows</li>
                 <li>Sovereign wealth connections</li>
@@ -83,7 +85,7 @@ const RegionsPage = () => {
             </div>
             
             <div className="region-feature">
-              <h3>Our Offering</h3>
+              <h3>{t('regions.ourOffering')}</h3>
               <ul>
                 <li>Cybersecurity frameworks</li>
                 <li>Expo linkages</li>
@@ -93,16 +95,16 @@ const RegionsPage = () => {
           </div>
           
           <div className="region-cta">
-            <Link to="/contact" className="btn primary">Connect with our Dubai Office</Link>
+            <Link to="/contact" className="btn primary">{t('regions.connectDubai')}</Link>
           </div>
         </div>
         
         <div className={`region-tab-content ${activeRegion === 'us' ? 'active' : ''}`}>
-          <h2>Silicon Valley to Sydney</h2>
+          <h2>{t('regions.siliconValley')}</h2>
           
           <div className="region-details">
             <div className="region-feature">
-              <h3>Strategic Advantages</h3>
+              <h3>{t('regions.strategicAdvantages')}</h3>
               <ul>
                 <li>AUKUS technology partnerships</li>
                 <li>Defense tech procurement fast-track</li>
@@ -111,7 +113,7 @@ const RegionsPage = () => {
             </div>
             
             <div className="region-feature">
-              <h3>Our Offering</h3>
+              <h3>{t('regions.ourOffering')}</h3>
               <ul>
                 <li>AWS/Azure partnerships</li>
                 <li>Government cloud pilots</li>
@@ -121,16 +123,16 @@ const RegionsPage = () => {
           </div>
           
           <div className="region-cta">
-            <Link to="/contact" className="btn primary">Talk to our U.S. Team</Link>
+            <Link to="/contact" className="btn primary">{t('regions.talkToUS')}</Link>
           </div>
         </div>
         
         <div className={`region-tab-content ${activeRegion === 'europe' ? 'active' : ''}`}>
-          <h2>EU Innovators</h2>
+          <h2>{t('regions.euInnovators')}</h2>
           
           <div className="region-details">
             <div className="region-feature">
-              <h3>Strategic Advantages</h3>
+              <h3>{t('regions.strategicAdvantages')}</h3>
               <ul>
                 <li>EU-Australia research collaborations</li>
                 <li>Clean tech innovation corridors</li>
@@ -139,7 +141,7 @@ const RegionsPage = () => {
             </div>
             
             <div className="region-feature">
-              <h3>Our Offering</h3>
+              <h3>{t('regions.ourOffering')}</h3>
               <ul>
                 <li>GDPR & DPA localisation</li>
                 <li>SME grants access</li>
@@ -149,7 +151,7 @@ const RegionsPage = () => {
           </div>
           
           <div className="region-cta">
-            <Link to="/contact" className="btn primary">Chat with our EU Desk</Link>
+            <Link to="/contact" className="btn primary">{t('regions.chatEU')}</Link>
           </div>
         </div>
       </div>

@@ -2,12 +2,17 @@
 /* Import base styles */
 @import './base/index.css';
 
+/* Import RTL support */
+@import './rtl.css';
+
 /* Import component styles */
 @import './components/index.css';
 
 /* Import layout styles */
 @import './header.css';
 @import './footer.css';
+
+/* ... keep existing code (all the other @import statements) */
 
 /* Import page styles */
 @import './home/index.css';
@@ -82,6 +87,8 @@
 
 /* Elements */
 @import './elements/index.css';
+
+/* ... keep existing code (all the existing styles) */
 
 /* Error Boundary Styles */
 .error-boundary {

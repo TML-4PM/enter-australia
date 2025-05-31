@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { initializeAnalytics } from './utils/analyticsUtils';
+import './i18n'; // Initialize i18n
 
 // Layout components
 import Header from './components/layout/Header';
@@ -18,6 +19,11 @@ function App() {
   // Initialize analytics on app mount
   useEffect(() => {
     initializeAnalytics();
+    
+    // Set initial document direction
+    const savedLanguage = localStorage.getItem('i18nextLng') || 'en';
+    document.documentElement.dir = savedLanguage === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = savedLanguage;
   }, []);
 
   // Make toggleLeadForm available globally for components that need it
