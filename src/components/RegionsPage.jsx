@@ -50,18 +50,18 @@ const RegionsPage = () => {
             <div className="region-feature">
               <h3>{t('regions.strategicAdvantages')}</h3>
               <ul>
-                <li>Deploy from Singapore & Hong Kong</li>
-                <li>Leverage APAC trade agreements</li>
-                <li>Timezone-aligned support teams</li>
+                <li>{t('regions.asiaAdvantage1')}</li>
+                <li>{t('regions.asiaAdvantage2')}</li>
+                <li>{t('regions.asiaAdvantage3')}</li>
               </ul>
             </div>
             
             <div className="region-feature">
               <h3>{t('regions.ourOffering')}</h3>
               <ul>
-                <li>VC introductions</li>
-                <li>R&D grant packaging</li>
-                <li>Regional expansion planning</li>
+                <li>{t('regions.asiaOffering1')}</li>
+                <li>{t('regions.asiaOffering2')}</li>
+                <li>{t('regions.asiaOffering3')}</li>
               </ul>
             </div>
           </div>
@@ -78,18 +78,18 @@ const RegionsPage = () => {
             <div className="region-feature">
               <h3>{t('regions.strategicAdvantages')}</h3>
               <ul>
-                <li>Dubai–Melbourne direct investment flows</li>
-                <li>Sovereign wealth connections</li>
-                <li>Critical infrastructure partnerships</li>
+                <li>{t('regions.meAdvantage1')}</li>
+                <li>{t('regions.meAdvantage2')}</li>
+                <li>{t('regions.meAdvantage3')}</li>
               </ul>
             </div>
             
             <div className="region-feature">
               <h3>{t('regions.ourOffering')}</h3>
               <ul>
-                <li>Cybersecurity frameworks</li>
-                <li>Expo linkages</li>
-                <li>Government innovation program access</li>
+                <li>{t('regions.meOffering1')}</li>
+                <li>{t('regions.meOffering2')}</li>
+                <li>{t('regions.meOffering3')}</li>
               </ul>
             </div>
           </div>
@@ -106,18 +106,18 @@ const RegionsPage = () => {
             <div className="region-feature">
               <h3>{t('regions.strategicAdvantages')}</h3>
               <ul>
-                <li>AUKUS technology partnerships</li>
-                <li>Defense tech procurement fast-track</li>
-                <li>US-Australia Free Trade Agreement benefits</li>
+                <li>{t('regions.usAdvantage1')}</li>
+                <li>{t('regions.usAdvantage2')}</li>
+                <li>{t('regions.usAdvantage3')}</li>
               </ul>
             </div>
             
             <div className="region-feature">
               <h3>{t('regions.ourOffering')}</h3>
               <ul>
-                <li>AWS/Azure partnerships</li>
-                <li>Government cloud pilots</li>
-                <li>Security clearance pathways</li>
+                <li>{t('regions.usOffering1')}</li>
+                <li>{t('regions.usOffering2')}</li>
+                <li>{t('regions.usOffering3')}</li>
               </ul>
             </div>
           </div>
@@ -134,18 +134,18 @@ const RegionsPage = () => {
             <div className="region-feature">
               <h3>{t('regions.strategicAdvantages')}</h3>
               <ul>
-                <li>EU-Australia research collaborations</li>
-                <li>Clean tech innovation corridors</li>
-                <li>Compatible regulatory frameworks</li>
+                <li>{t('regions.euAdvantage1')}</li>
+                <li>{t('regions.euAdvantage2')}</li>
+                <li>{t('regions.euAdvantage3')}</li>
               </ul>
             </div>
             
             <div className="region-feature">
               <h3>{t('regions.ourOffering')}</h3>
               <ul>
-                <li>GDPR & DPA localisation</li>
-                <li>SME grants access</li>
-                <li>University partnership development</li>
+                <li>{t('regions.euOffering1')}</li>
+                <li>{t('regions.euOffering2')}</li>
+                <li>{t('regions.euOffering3')}</li>
               </ul>
             </div>
           </div>
