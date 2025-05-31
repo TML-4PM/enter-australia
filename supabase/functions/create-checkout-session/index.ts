@@ -1,35 +1,29 @@
 
-const Stripe = require('stripe');
-const { createClient } = require('@supabase/supabase-js');
+import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import Stripe from "https://esm.sh/stripe@14.21.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
-exports.handler = async (event, context) => {
-  // Setup CORS headers
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-  };
-  
-  // Handle OPTIONS requests (CORS preflight)
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ message: 'CORS preflight successful' })
-    };
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
   }
   
   // Verify method is POST
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
+  if (req.method !== "POST") {
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: corsHeaders,
+    });
   }
   
   try {
-    const body = JSON.parse(event.body);
+    const body = await req.json();
     const { priceId, productName, paymentType } = body;
     
     // Always use Troy's email regardless of user input
@@ -43,17 +37,16 @@ exports.handler = async (event, context) => {
     ];
     
     if (!validPriceIds.includes(priceId)) {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ error: 'Invalid price ID' })
-      };
+      return new Response(JSON.stringify({ error: "Invalid price ID" }), {
+        status: 400,
+        headers: corsHeaders,
+      });
     }
     
     // Initialize Supabase client to get the Stripe secret
     const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
     
     // Get Stripe secret key from Supabase secrets
@@ -65,13 +58,12 @@ exports.handler = async (event, context) => {
     
     if (secretError || !secretData?.secret) {
       console.error('Failed to retrieve Stripe secret key:', secretError);
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ 
-          error: 'Stripe configuration error. Please contact support.' 
-        })
-      };
+      return new Response(JSON.stringify({ 
+        error: 'Stripe configuration error. Please contact support.' 
+      }), {
+        status: 500,
+        headers: corsHeaders,
+      });
     }
     
     // Initialize Stripe with the secret key from Supabase
@@ -116,6 +108,9 @@ exports.handler = async (event, context) => {
       console.log("Created new customer:", customer.id);
     }
     
+    // Get origin from request headers
+    const origin = req.headers.get("origin") || 'https://your-site.com';
+    
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customer.id,
@@ -125,8 +120,8 @@ exports.handler = async (event, context) => {
         quantity: 1,
       }],
       mode: isSubscription ? 'subscription' : 'payment',
-      success_url: `${event.headers.origin || 'https://your-site.com'}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${event.headers.origin || 'https://your-site.com'}/pricing`,
+      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/pricing`,
       allow_promotion_codes: true,
       billing_address_collection: 'required',
       metadata: {
@@ -135,14 +130,13 @@ exports.handler = async (event, context) => {
       }
     });
     
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ 
-        id: session.id,
-        url: session.url
-      })
-    };
+    return new Response(JSON.stringify({ 
+      id: session.id,
+      url: session.url
+    }), {
+      status: 200,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   } catch (error) {
     console.error('Error creating checkout session:', error);
     
@@ -158,10 +152,9 @@ exports.handler = async (event, context) => {
       statusCode = 400;
     }
     
-    return {
-      statusCode,
-      headers,
-      body: JSON.stringify({ error: errorMessage })
-    };
+    return new Response(JSON.stringify({ error: errorMessage }), {
+      status: statusCode,
+      headers: corsHeaders,
+    });
   }
-};
+});

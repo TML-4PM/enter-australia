@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { supabase } from '../utils/supabaseClient';
 import '../styles/success.css';
 
 const SuccessPage = () => {
@@ -25,18 +26,17 @@ const SuccessPage = () => {
         }
         
         addDebugStep(`Fetching session details for ID: ${sessionId.substring(0, 8)}...`);
-        // Use Netlify function endpoint
-        const response = await fetch(`/.netlify/functions/verify-session?session_id=${sessionId}`);
         
-        addDebugStep(`Response status: ${response.status}`);
+        // Use Supabase Edge Function
+        const { data, error } = await supabase.functions.invoke('verify-session', {
+          body: { session_id: sessionId }
+        });
         
-        if (!response.ok) {
-          const errorData = await response.json();
-          addDebugStep(`Error response: ${JSON.stringify(errorData)}`);
-          throw new Error(errorData.error || 'Failed to verify session');
+        if (error) {
+          addDebugStep(`Error response: ${JSON.stringify(error)}`);
+          throw new Error(error.message || 'Failed to verify session');
         }
         
-        const data = await response.json();
         addDebugStep(`Session verified successfully: ${JSON.stringify(data, null, 2)}`);
         setOrderDetails(data);
         

@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import { supabase } from '../utils/supabaseClient';
 
 export const useSubscription = () => {
   const [isLoadingPortal, setIsLoadingPortal] = useState(false);
@@ -18,15 +19,13 @@ export const useSubscription = () => {
   // Helper function to check subscription status
   const checkSubscriptionStatus = async () => {
     try {
-      const response = await fetch('/api/check-subscription');
+      const { data, error } = await supabase.functions.invoke('check-subscription');
       
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Error checking subscription:', errorData);
+      if (error) {
+        console.error('Error checking subscription:', error);
         return;
       }
       
-      const data = await response.json();
       setSubscriptionStatus({
         loading: false,
         hasActiveSubscription: data.hasActiveSubscription,
@@ -44,22 +43,14 @@ export const useSubscription = () => {
     setErrorMessage('');
     
     try {
-      const response = await fetch('/api/customer-portal', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
+      const { data, error } = await supabase.functions.invoke('customer-portal');
       
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to open customer portal');
+      if (error) {
+        throw new Error(error.message || 'Failed to open customer portal');
       }
       
-      const { url } = await response.json();
-      
       // Redirect to the customer portal
-      window.location.href = url;
+      window.location.href = data.url;
     } catch (error) {
       console.error('Error opening customer portal:', error);
       setErrorMessage(

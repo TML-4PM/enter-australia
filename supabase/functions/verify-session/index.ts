@@ -1,50 +1,43 @@
 
-const Stripe = require('stripe');
-const { createClient } = require('@supabase/supabase-js');
+import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import Stripe from "https://esm.sh/stripe@14.21.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
-exports.handler = async (event, context) => {
-  // Setup CORS headers
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS'
-  };
-  
-  // Handle OPTIONS requests (CORS preflight)
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ message: 'CORS preflight successful' })
-    };
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
   }
   
   // Verify method is GET
-  if (event.httpMethod !== 'GET') {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
+  if (req.method !== "GET") {
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: corsHeaders,
+    });
   }
 
   // Parse query parameters
-  const queryParams = new URLSearchParams(event.queryStringParameters || {});
-  const sessionId = queryParams.get('session_id') || event.queryStringParameters?.session_id;
+  const url = new URL(req.url);
+  const sessionId = url.searchParams.get('session_id');
   
   if (!sessionId) {
-    return {
-      statusCode: 400,
-      headers,
-      body: JSON.stringify({ error: 'Session ID is required' })
-    };
+    return new Response(JSON.stringify({ error: "Session ID is required" }), {
+      status: 400,
+      headers: corsHeaders,
+    });
   }
   
   try {
     // Initialize Supabase client to get the Stripe secret
     const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
     
     // Get Stripe secret key from Supabase secrets
@@ -56,13 +49,12 @@ exports.handler = async (event, context) => {
     
     if (secretError || !secretData?.secret) {
       console.error('Failed to retrieve Stripe secret key:', secretError);
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ 
-          error: 'Stripe configuration error. Please contact support.' 
-        })
-      };
+      return new Response(JSON.stringify({ 
+        error: 'Stripe configuration error. Please contact support.' 
+      }), {
+        status: 500,
+        headers: corsHeaders,
+      });
     }
     
     // Initialize Stripe with the secret key from Supabase
@@ -76,11 +68,10 @@ exports.handler = async (event, context) => {
     });
     
     if (!session) {
-      return {
-        statusCode: 404,
-        headers,
-        body: JSON.stringify({ error: 'Session not found' })
-      };
+      return new Response(JSON.stringify({ error: "Session not found" }), {
+        status: 404,
+        headers: corsHeaders,
+      });
     }
     
     console.log("Session retrieved successfully");
@@ -155,20 +146,19 @@ exports.handler = async (event, context) => {
     }
     
     // Return details about the successful payment
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        success: true,
-        productName,
-        customerEmail,
-        paymentStatus: session.payment_status,
-        amount: amount,
-        currency: session.currency,
-        isSubscription,
-        interval
-      })
-    };
+    return new Response(JSON.stringify({
+      success: true,
+      productName,
+      customerEmail,
+      paymentStatus: session.payment_status,
+      amount: amount,
+      currency: session.currency,
+      isSubscription,
+      interval
+    }), {
+      status: 200,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   } catch (error) {
     console.error('Error verifying session:', error);
     
@@ -184,10 +174,9 @@ exports.handler = async (event, context) => {
       statusCode = 400;
     }
     
-    return {
-      statusCode,
-      headers,
-      body: JSON.stringify({ error: errorMessage })
-    };
+    return new Response(JSON.stringify({ error: errorMessage }), {
+      status: statusCode,
+      headers: corsHeaders,
+    });
   }
-};
+});

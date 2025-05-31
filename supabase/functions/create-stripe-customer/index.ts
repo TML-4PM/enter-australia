@@ -1,49 +1,51 @@
 
-const Stripe = require('stripe');
+import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import Stripe from "https://esm.sh/stripe@14.21.0";
 
-exports.handler = async (event, context) => {
-  // Setup CORS headers
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS'
-  };
-  
-  // Handle OPTIONS requests (CORS preflight)
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ message: 'CORS preflight successful' })
-    };
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
   }
   
   // Verify method is POST
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
+  if (req.method !== "POST") {
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: corsHeaders,
+    });
   }
   
   try {
-    const body = JSON.parse(event.body);
+    const body = await req.json();
     const { email, originalEmail, source } = body;
     
     if (!email) {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ error: 'Email is required' })
-      };
+      return new Response(JSON.stringify({ error: "Email is required" }), {
+        status: 400,
+        headers: corsHeaders,
+      });
     }
     
     // Always use Troy's email as the actual recipient
     const actualRecipientEmail = 'troy@tech4humanity.com.au';
     
+    // Get Stripe secret key from environment
+    const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
+    if (!stripeKey) {
+      return new Response(JSON.stringify({ error: "Stripe configuration error" }), {
+        status: 500,
+        headers: corsHeaders,
+      });
+    }
+    
     // Initialize Stripe with the secret key
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    const stripe = new Stripe(stripeKey);
     console.log("Initializing Stripe for customer creation");
     
     // Check if customer already exists with Troy's email
@@ -80,14 +82,13 @@ exports.handler = async (event, context) => {
       console.log("Created new customer:", customer.id);
     }
     
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ 
-        success: true,
-        customerId: customer.id
-      })
-    };
+    return new Response(JSON.stringify({ 
+      success: true,
+      customerId: customer.id
+    }), {
+      status: 200,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   } catch (error) {
     console.error('Error creating or updating customer:', error);
     
@@ -99,12 +100,11 @@ exports.handler = async (event, context) => {
       statusCode = 401;
     }
     
-    return {
-      statusCode,
-      headers,
-      body: JSON.stringify({ 
-        error: errorMessage
-      })
-    };
+    return new Response(JSON.stringify({ 
+      error: errorMessage
+    }), {
+      status: statusCode,
+      headers: corsHeaders,
+    });
   }
-};
+});

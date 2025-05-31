@@ -1,31 +1,25 @@
 
-const Stripe = require('stripe');
-const { createClient } = require('@supabase/supabase-js');
+import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import Stripe from "https://esm.sh/stripe@14.21.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
-exports.handler = async (event, context) => {
-  // Setup CORS headers
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS'
-  };
-  
-  // Handle OPTIONS requests (CORS preflight)
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ message: 'CORS preflight successful' })
-    };
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
   }
   
   // Verify method is GET
-  if (event.httpMethod !== 'GET') {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
+  if (req.method !== "GET") {
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: corsHeaders,
+    });
   }
   
   try {
@@ -34,8 +28,8 @@ exports.handler = async (event, context) => {
     
     // Initialize Supabase client to get the Stripe secret
     const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
     
     // Get Stripe secret key from Supabase secrets
@@ -47,13 +41,12 @@ exports.handler = async (event, context) => {
     
     if (secretError || !secretData?.secret) {
       console.error('Failed to retrieve Stripe secret key:', secretError);
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ 
-          error: 'Stripe configuration error. Please contact support.' 
-        })
-      };
+      return new Response(JSON.stringify({ 
+        error: 'Stripe configuration error. Please contact support.' 
+      }), {
+        status: 500,
+        headers: corsHeaders,
+      });
     }
     
     // Initialize Stripe with the secret key from Supabase
@@ -66,14 +59,25 @@ exports.handler = async (event, context) => {
     });
     
     if (customers.data.length === 0) {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ 
-          hasActiveSubscription: false,
-          subscriptionData: null
-        })
-      };
+      // Update subscribers table to reflect no active subscription
+      await supabase.from('subscribers').upsert({
+        email: customerEmail,
+        stripe_customer_id: null,
+        subscribed: false,
+        subscription_tier: null,
+        subscription_end: null,
+        stripe_subscription_id: null,
+        payment_status: 'inactive',
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'email' });
+      
+      return new Response(JSON.stringify({ 
+        hasActiveSubscription: false,
+        subscriptionData: null
+      }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
     
     const customerId = customers.data[0].id;
@@ -98,14 +102,13 @@ exports.handler = async (event, context) => {
         updated_at: new Date().toISOString(),
       }, { onConflict: 'email' });
       
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ 
-          hasActiveSubscription: false,
-          subscriptionData: null
-        })
-      };
+      return new Response(JSON.stringify({ 
+        hasActiveSubscription: false,
+        subscriptionData: null
+      }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
     
     // Get details of the active subscription
@@ -134,21 +137,20 @@ exports.handler = async (event, context) => {
     }, { onConflict: 'email' });
     
     // Return subscription details
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        hasActiveSubscription: true,
-        subscriptionData: {
-          id: subscription.id,
-          status: subscription.status,
-          currentPeriodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
-          cancelAtPeriodEnd: subscription.cancel_at_period_end,
-          planName: planName,
-          priceId: priceId
-        }
-      })
-    };
+    return new Response(JSON.stringify({
+      hasActiveSubscription: true,
+      subscriptionData: {
+        id: subscription.id,
+        status: subscription.status,
+        currentPeriodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
+        cancelAtPeriodEnd: subscription.cancel_at_period_end,
+        planName: planName,
+        priceId: priceId
+      }
+    }), {
+      status: 200,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
     
   } catch (error) {
     console.error('Error checking subscription status:', error);
@@ -161,12 +163,11 @@ exports.handler = async (event, context) => {
       statusCode = 401;
     }
     
-    return {
-      statusCode,
-      headers,
-      body: JSON.stringify({ 
-        error: errorMessage
-      })
-    };
+    return new Response(JSON.stringify({ 
+      error: errorMessage
+    }), {
+      status: statusCode,
+      headers: corsHeaders,
+    });
   }
-};
+});

@@ -1,6 +1,8 @@
 
+import { supabase } from './supabaseClient';
+
 /**
- * Initiates a checkout process with Stripe
+ * Initiates a checkout process with Stripe via Supabase Edge Functions
  * @param {Object} product - Product details including priceId, name, and isSubscription
  * @param {Function} setIsLoading - State setter for loading state
  * @param {Function} setErrorMessage - State setter for error messages
@@ -30,102 +32,40 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     
     console.log(`Creating checkout session for: ${name} (${isSubscription ? 'subscription' : 'one-time payment'})`);
     
-    // Use Netlify functions endpoint
-    const response = await fetch('/.netlify/functions/create-checkout-session', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+    // Use Supabase Edge Function
+    const { data, error } = await supabase.functions.invoke('create-checkout-session', {
+      body: {
         priceId,
         productName: name,
         paymentType: isSubscription ? 'subscription' : 'one-time',
         // Original user email is tracked in metadata but actual recipient is Troy
         recipientEmail: 'troy@tech4humanity.com.au'
-      }),
+      }
     });
     
-    console.log('Checkout API response status:', response.status);
-    
-    // First check if the response is JSON
-    const contentType = response.headers.get('content-type');
-    console.log('Response content type:', contentType);
-    
-    if (!contentType || !contentType.includes('application/json')) {
-      if (contentType && contentType.includes('text/html')) {
-        const htmlResponse = await response.text();
-        console.error('API returned HTML instead of JSON:', htmlResponse);
-        
-        // Check if this is a Stripe API key error
-        if (htmlResponse.includes("Invalid API key provided") || 
-            htmlResponse.includes("API key") || 
-            htmlResponse.includes("authentication")) {
-          throw new Error('Invalid Stripe API key. Please check your configuration.');
-        } else {
-          throw new Error('API endpoint returned HTML instead of JSON. The server may be misconfigured or unavailable.');
-        }
-      } else {
-        throw new Error(`Invalid response format: ${contentType}. Expected JSON.`);
-      }
+    if (error) {
+      console.error('Supabase function error:', error);
+      throw new Error(error.message || 'Failed to create checkout session');
     }
     
-    // Handle server errors with specific messages
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Server error response:', errorData);
-      if (response.status === 429) {
-        throw new Error('Too many requests. Please try again in a few minutes.');
-      } else if (response.status === 401) {
-        throw new Error('Invalid API key or insufficient permissions. Please check your Stripe configuration.');
-      } else if (response.status === 500) {
-        throw new Error('Our payment system is temporarily unavailable. Please try again later.');
-      } else {
-        throw new Error(errorData.error || 'Something went wrong with the payment process.');
-      }
-    }
+    console.log('Checkout session created:', data);
     
-    // Parse the session data
-    const session = await response.json();
-    console.log("Session received:", session);
-    
-    if (!session || !session.id) {
+    if (!data || !data.url) {
       throw new Error('Invalid checkout session received from server.');
     }
     
     // Redirect to Stripe Checkout
-    if (session.url) {
-      console.log('Redirecting to Stripe Checkout URL:', session.url);
-      // Direct redirect to Checkout URL if available (preferred method)
-      window.location.href = session.url;
-    } else {
-      // Fallback to redirectToCheckout method
-      console.log('Using redirectToCheckout method with session ID:', session.id);
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
-      
-      if (result.error) {
-        console.error('Stripe redirectToCheckout error:', result.error);
-        throw new Error(result.error.message);
-      }
-    }
+    console.log('Redirecting to Stripe Checkout URL:', data.url);
+    window.location.href = data.url;
+    
   } catch (error) {
     console.error("Error initiating checkout:", error);
     
-    // Check if error is related to API connection issues
-    if (error.message && error.message.includes('<!DOCTYPE')) {
-      setErrorMessage('API connection error. The service might be unavailable or misconfigured.');
-    } else if (error.message && error.message.includes('HTML instead of JSON')) {
-      setErrorMessage('Payment service is not properly configured. Please contact support.');
-    } else if (error.message && error.message.includes('API key')) {
-      setErrorMessage('Invalid Stripe API key configuration. Please check your configuration.');
-    } else {
-      // Show user-friendly error message
-      setErrorMessage(
-        error.message || 
-        'There was an error processing your payment. Please try again or contact support.'
-      );
-    }
+    // Show user-friendly error message
+    setErrorMessage(
+      error.message || 
+      'There was an error processing your payment. Please try again or contact support.'
+    );
     
     // Scroll to the error message to ensure it's visible
     setTimeout(() => {
