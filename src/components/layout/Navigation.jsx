@@ -1,31 +1,13 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// Temporarily comment out i18n for debugging
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Menu, X, User } from 'lucide-react';
-// import LanguageSwitcher from '../LanguageSwitcher';
+import LanguageSwitcher from '../LanguageSwitcher';
 
 const Navigation = ({ isMenuOpen, toggleMenu, closeMenu }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
-  // const { t } = useTranslation();
-  
-  // Fallback translations for debugging
-  const t = (key) => {
-    const translations = {
-      'nav.home': 'Home',
-      'nav.solutions': 'Solutions',
-      'nav.partners': 'Partners',
-      'nav.regions': 'Regions',
-      'nav.pricing': 'Pricing',
-      'nav.resources': 'Resources',
-      'nav.about': 'About',
-      'nav.login': 'Log In',
-      'nav.register': 'Register',
-      'nav.getStarted': 'Get Started'
-    };
-    return translations[key] || key;
-  };
+  const { t } = useTranslation();
 
   console.log('🧭 Navigation rendering, isMenuOpen:', isMenuOpen);
 
@@ -38,10 +20,6 @@ const Navigation = ({ isMenuOpen, toggleMenu, closeMenu }) => {
       <Link to="/" className="logo" onClick={closeMenu}>Enter Australia</Link>
       <ul className={isMenuOpen ? 'active' : ''}>
         <li><Link to="/" onClick={closeMenu}>{t('nav.home')}</Link></li>
-        <li><Link to="/debug" onClick={closeMenu}>Debug</Link></li>
-        <li><Link to="/test" onClick={closeMenu}>Test</Link></li>
-        {/* Temporarily comment out complex navigation */}
-        {/*
         <li className="has-dropdown">
           <Link to="/solutions" onClick={closeMenu}>{t('nav.solutions')}</Link>
           <ul className="nav-dropdown">
@@ -65,7 +43,6 @@ const Navigation = ({ isMenuOpen, toggleMenu, closeMenu }) => {
           </ul>
         </li>
         <li><Link to="/about" onClick={closeMenu}>{t('nav.about')}</Link></li>
-        */}
         {isMenuOpen && (
           <>
             <li className="visible-mobile">
@@ -90,8 +67,7 @@ const Navigation = ({ isMenuOpen, toggleMenu, closeMenu }) => {
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
       <div className="nav-actions desktop-only">
-        {/* Temporarily comment out LanguageSwitcher */}
-        {/* <LanguageSwitcher /> */}
+        <LanguageSwitcher />
         <div className="user-menu-wrapper">
           <button 
             className="user-menu-toggle"

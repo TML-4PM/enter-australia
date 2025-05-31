@@ -10,8 +10,6 @@ import Header from './components/layout/Header';
 import MainLayout from './components/layout/MainLayout';
 import Footer from './components/layout/Footer';
 import RouteTracker from './components/routing/RouteTracker';
-// Temporarily comment out LiveChatBot for debugging
-// import LiveChatBot from './components/LiveChatBot';
 
 function App() {
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -144,8 +142,7 @@ function App() {
       return (
         <AuthProvider>
           <Router>
-            {/* Temporarily comment out RouteTracker for debugging */}
-            {/* <RouteTracker /> */}
+            <RouteTracker />
             
             <div className="app">
               <Header 

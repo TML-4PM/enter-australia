@@ -7,40 +7,40 @@ import LeadForm from '../LeadForm';
 // Debug component
 import DebugRoute from '../DebugRoute';
 
-// Temporarily comment out complex components for debugging
+// Main page components
 import HomePage from '../HomePage';
-// import BlogPage from '../BlogPage';
-// import SolutionsPage from '../SolutionsPage';
-// import PartnersPage from '../partners/PartnersPage';
-// import RegionsPage from '../RegionsPage';
-// import ResourcesPage from '../ResourcesPage';
-// import FAQPage from '../FAQPage';
-// import AboutPage from '../AboutPage';
-// import OpportunitiesSection from '../OpportunitiesSection';
-// import PricingSection from '../PricingSection';
-// import PricingDetail from '../PricingDetail';
-// import WebinarPage from '../WebinarPage';
-// import ContactSection from '../ContactSection';
-// import SuccessPage from '../SuccessPage';
-// import LoginPage from '../LoginPage';
-// import RegisterPage from '../RegisterPage';
-// import ProfilePage from '../ProfilePage';
-// import PreDeploymentCheck from '../PreDeploymentCheck';
-// import DataApisPage from '../DataApisPage';
+import BlogPage from '../BlogPage';
+import SolutionsPage from '../SolutionsPage';
+import PartnersPage from '../partners/PartnersPage';
+import RegionsPage from '../RegionsPage';
+import ResourcesPage from '../ResourcesPage';
+import FAQPage from '../FAQPage';
+import AboutPage from '../AboutPage';
+import OpportunitiesSection from '../OpportunitiesSection';
+import PricingSection from '../PricingSection';
+import PricingDetail from '../PricingDetail';
+import WebinarPage from '../WebinarPage';
+import ContactSection from '../ContactSection';
+import SuccessPage from '../SuccessPage';
+import LoginPage from '../LoginPage';
+import RegisterPage from '../RegisterPage';
+import ProfilePage from '../ProfilePage';
+import PreDeploymentCheck from '../PreDeploymentCheck';
+import DataApisPage from '../DataApisPage';
 import NotFoundPage from '../NotFoundPage';
 
 // Legal pages
-// import PrivacyPolicyPage from '../legal/PrivacyPolicyPage';
-// import TermsPage from '../legal/TermsPage';
-// import CookiePolicyPage from '../legal/CookiePolicyPage';
-// import SitemapPage from '../legal/SitemapPage';
+import PrivacyPolicyPage from '../legal/PrivacyPolicyPage';
+import TermsPage from '../legal/TermsPage';
+import CookiePolicyPage from '../legal/CookiePolicyPage';
+import SitemapPage from '../legal/SitemapPage';
 
 // Solution detail pages
-// import MarketEntrySolution from '../solutions/MarketEntrySolution';
-// import GovTechSolution from '../solutions/GovTechSolution';
-// import PartnershipsSolution from '../solutions/PartnershipsSolution';
-// import ComplianceSolution from '../solutions/ComplianceSolution';
-// import GrantsSolution from '../solutions/GrantsSolution';
+import MarketEntrySolution from '../solutions/MarketEntrySolution';
+import GovTechSolution from '../solutions/GovTechSolution';
+import PartnershipsSolution from '../solutions/PartnershipsSolution';
+import ComplianceSolution from '../solutions/ComplianceSolution';
+import GrantsSolution from '../solutions/GrantsSolution';
 
 const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
   console.log('🏗️ MainLayout rendering with props:', { showLeadForm });
@@ -52,7 +52,7 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
           {/* Debug route - always available */}
           <Route path="/debug" element={<DebugRoute />} />
           
-          {/* Emergency minimal routes */}
+          {/* Core application routes */}
           <Route path="/" element={
             <HomePage 
               toggleLeadForm={toggleLeadForm} 
@@ -61,17 +61,7 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
             />
           } />
           
-          {/* Temporary simple routes for debugging */}
-          <Route path="/test" element={
-            <div style={{ padding: '2rem', textAlign: 'center' }}>
-              <h1>Test Route Working! ✅</h1>
-              <p>If you can see this, routing is functional.</p>
-              <a href="/debug" style={{ color: '#00843D' }}>Go to Debug Page</a>
-            </div>
-          } />
-          
-          {/* Temporarily comment out complex routes */}
-          {/*
+          {/* Content and information pages */}
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/data-apis" element={<DataApisPage />} />
@@ -80,6 +70,7 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/webinars" element={<WebinarPage />} />
           
+          {/* Solutions and services */}
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/solutions/market-entry" element={<MarketEntrySolution />} />
           <Route path="/solutions/govtech" element={<GovTechSolution />} />
@@ -87,25 +78,38 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
           <Route path="/solutions/compliance" element={<ComplianceSolution />} />
           <Route path="/solutions/grants" element={<GrantsSolution />} />
           
+          {/* Partners and regions */}
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/regions" element={<RegionsPage />} />
           
+          {/* Business pages */}
           <Route path="/opportunities" element={<OpportunitiesSection />} />
           <Route path="/pricing" element={<PricingSection />} />
           <Route path="/pricing/:tierSlug" element={<PricingDetail />} />
           
+          {/* User authentication and profile */}
           <Route path="/success" element={<SuccessPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           
+          {/* Legal and compliance pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/cookies" element={<CookiePolicyPage />} />
           <Route path="/sitemap" element={<SitemapPage />} />
           
+          {/* System and quality assurance */}
           <Route path="/pre-deployment-check" element={<PreDeploymentCheck />} />
-          */}
+          
+          {/* Emergency test route */}
+          <Route path="/test" element={
+            <div style={{ padding: '2rem', textAlign: 'center' }}>
+              <h1>Test Route Working! ✅</h1>
+              <p>If you can see this, routing is functional.</p>
+              <a href="/debug" style={{ color: '#00843D' }}>Go to Debug Page</a>
+            </div>
+          } />
           
           {/* 404 catch-all route - must be last */}
           <Route path="*" element={<NotFoundPage />} />
