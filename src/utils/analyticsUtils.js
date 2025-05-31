@@ -1,3 +1,4 @@
+
 /**
  * Utility functions for tracking analytics events
  */
@@ -21,6 +22,41 @@ export const initializeAnalytics = () => {
   
   // Run notification blocker after analytics loads
   runNotificationBlocker();
+  
+  // Initialize AI analytics
+  initializeAIAnalytics();
+};
+
+// Initialize AI-specific analytics
+const initializeAIAnalytics = () => {
+  // Clear expired AI cache entries on startup
+  try {
+    const { clearExpiredCache } = require('./aiCacheUtils');
+    const clearedEntries = clearExpiredCache();
+    console.log(`Cleared ${clearedEntries} expired AI cache entries`);
+  } catch (error) {
+    console.log('AI cache utilities not available');
+  }
+  
+  // Set up periodic AI analytics reporting
+  setInterval(() => {
+    try {
+      const { getAIUsageAnalytics } = require('./aiAnalyticsUtils');
+      const analytics = getAIUsageAnalytics();
+      
+      if (analytics.todayInteractions > 0) {
+        if (window.gtag) {
+          window.gtag('event', 'ai_daily_summary', {
+            'event_category': 'AI Analytics',
+            'event_label': 'daily_summary',
+            'custom_parameters': analytics
+          });
+        }
+      }
+    } catch (error) {
+      console.log('AI analytics utilities not available');
+    }
+  }, 24 * 60 * 60 * 1000); // Daily reporting
 };
 
 // Track page views
@@ -129,6 +165,8 @@ export const scoreLead = (actions) => {
   if (actions.subscribedToEmails) score += 5;
   if (actions.viewedPricing) score += 3;
   if (actions.sharedContent) score += 7; // New: award points for content sharing
+  if (actions.usedAIFeatures) score += 15; // New: AI feature usage is high value
+  if (actions.providedAIFeedback) score += 8; // New: feedback indicates engagement
   
   // Premium tiers get higher scores
   if (actions.tier === 'Premium Retainer' || actions.tier === 'Enterprise') {
@@ -138,4 +176,36 @@ export const scoreLead = (actions) => {
   }
   
   return score;
+};
+
+// New: Track AI-specific events (re-export from aiAnalyticsUtils)
+export const trackAIInteraction = (interactionType, details = {}) => {
+  try {
+    const { trackAIInteraction: aiTrack } = require('./aiAnalyticsUtils');
+    aiTrack(interactionType, details);
+  } catch (error) {
+    console.log('AI analytics not available, using basic tracking');
+    if (window.gtag) {
+      window.gtag('event', 'ai_interaction_fallback', {
+        'event_category': 'AI Usage',
+        'event_label': interactionType
+      });
+    }
+  }
+};
+
+// New: Track AI feedback
+export const trackAIFeedback = (responseId, feedback, details = {}) => {
+  try {
+    const { trackAIFeedback: aiFeedback } = require('./aiAnalyticsUtils');
+    aiFeedback(responseId, feedback, details);
+  } catch (error) {
+    console.log('AI feedback tracking not available, using basic tracking');
+    if (window.gtag) {
+      window.gtag('event', 'ai_feedback_fallback', {
+        'event_category': 'AI Quality',
+        'event_label': feedback
+      });
+    }
+  }
 };
