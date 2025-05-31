@@ -10,20 +10,46 @@ import Header from './components/layout/Header';
 import MainLayout from './components/layout/MainLayout';
 import Footer from './components/layout/Footer';
 import RouteTracker from './components/routing/RouteTracker';
-import LiveChatBot from './components/LiveChatBot';
+// Temporarily comment out LiveChatBot for debugging
+// import LiveChatBot from './components/LiveChatBot';
 
 function App() {
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [debugInfo, setDebugInfo] = useState({});
   
-  // Initialize analytics on app mount
+  // Debug logging
   useEffect(() => {
-    initializeAnalytics();
+    console.log('🚀 App component mounting...');
+    console.log('Environment:', {
+      hostname: window.location.hostname,
+      pathname: window.location.pathname,
+      userAgent: navigator.userAgent
+    });
+    
+    try {
+      initializeAnalytics();
+      console.log('✅ Analytics initialized successfully');
+    } catch (error) {
+      console.error('❌ Analytics initialization failed:', error);
+    }
     
     // Set initial document direction and language
-    const savedLanguage = localStorage.getItem('i18nextLng') || 'en';
-    document.documentElement.dir = savedLanguage === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = savedLanguage;
+    try {
+      const savedLanguage = localStorage.getItem('i18nextLng') || 'en';
+      console.log('🌐 Setting language to:', savedLanguage);
+      document.documentElement.dir = savedLanguage === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = savedLanguage;
+      console.log('✅ Language and direction set successfully');
+    } catch (error) {
+      console.error('❌ Language setup failed:', error);
+    }
+    
+    setDebugInfo({
+      mounted: true,
+      timestamp: new Date().toISOString(),
+      language: localStorage.getItem('i18nextLng') || 'en'
+    });
   }, []);
 
   // Make toggleLeadForm available globally for components that need it
@@ -36,6 +62,7 @@ function App() {
   }, [showLeadForm]);
 
   const toggleLeadForm = () => {
+    console.log('🔄 Toggling lead form from:', showLeadForm, 'to:', !showLeadForm);
     setShowLeadForm(!showLeadForm);
     // When opening lead form, close mobile menu if it's open
     if (!showLeadForm && isMenuOpen) {
@@ -44,6 +71,7 @@ function App() {
   };
 
   const toggleMenu = () => {
+    console.log('🔄 Toggling menu from:', isMenuOpen, 'to:', !isMenuOpen);
     setIsMenuOpen(!isMenuOpen);
     // When opening mobile menu, close lead form if it's open
     if (!isMenuOpen && showLeadForm) {
@@ -52,6 +80,7 @@ function App() {
   };
 
   const closeMenu = () => {
+    console.log('🔄 Closing menu');
     setIsMenuOpen(false);
   };
 
@@ -103,35 +132,82 @@ function App() {
   }, [isMenuOpen, showLeadForm]);
 
   const handleFormSubmit = (e) => {
+    console.log('📝 Form submitted');
     e.preventDefault();
     setShowLeadForm(false);
     alert("Thanks! Your 2025 Bid Forecast has been sent to your email.");
   };
 
-  return (
-    <AuthProvider>
-      <Router>
-        {/* Route tracker to log page views */}
-        <RouteTracker />
-        
-        <div className="app">
-          <Header 
-            isMenuOpen={isMenuOpen}
-            toggleMenu={toggleMenu}
-            closeMenu={closeMenu}
-          />
+  // Error boundary fallback
+  const renderWithErrorBoundary = () => {
+    try {
+      return (
+        <AuthProvider>
+          <Router>
+            {/* Temporarily comment out RouteTracker for debugging */}
+            {/* <RouteTracker /> */}
+            
+            <div className="app">
+              <Header 
+                isMenuOpen={isMenuOpen}
+                toggleMenu={toggleMenu}
+                closeMenu={closeMenu}
+              />
 
-          <MainLayout 
-            showLeadForm={showLeadForm}
-            toggleLeadForm={toggleLeadForm}
-            handleFormSubmit={handleFormSubmit}
-          />
+              <MainLayout 
+                showLeadForm={showLeadForm}
+                toggleLeadForm={toggleLeadForm}
+                handleFormSubmit={handleFormSubmit}
+              />
 
-          <Footer />
+              <Footer />
+            </div>
+          </Router>
+        </AuthProvider>
+      );
+    } catch (error) {
+      console.error('💥 App render error:', error);
+      return (
+        <div style={{ 
+          padding: '2rem', 
+          textAlign: 'center',
+          fontFamily: 'Arial, sans-serif',
+          maxWidth: '600px',
+          margin: '2rem auto'
+        }}>
+          <h1 style={{ color: '#e53e3e' }}>Application Error</h1>
+          <p>The application encountered an error. Please check the console for details.</p>
+          <pre style={{ 
+            background: '#f7fafc', 
+            padding: '1rem', 
+            borderRadius: '4px',
+            textAlign: 'left',
+            overflow: 'auto'
+          }}>
+            {error.toString()}
+          </pre>
+          <button 
+            onClick={() => window.location.reload()} 
+            style={{
+              background: '#00843D',
+              color: 'white',
+              padding: '0.75rem 1.5rem',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              marginTop: '1rem'
+            }}
+          >
+            Reload Page
+          </button>
         </div>
-      </Router>
-    </AuthProvider>
-  );
+      );
+    }
+  };
+
+  console.log('🎨 App rendering with debug info:', debugInfo);
+  
+  return renderWithErrorBoundary();
 }
 
 export default App;
