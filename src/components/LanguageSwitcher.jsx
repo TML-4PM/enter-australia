@@ -6,24 +6,48 @@ import { Globe } from 'lucide-react';
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
+  const languages = [
+    { code: 'en', name: 'English', nativeName: 'English' },
+    { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
+    { code: 'zh', name: 'Chinese', nativeName: '中文' }
+  ];
+
+  const getCurrentLanguageIndex = () => {
+    return languages.findIndex(lang => lang.code === i18n.language);
+  };
+
+  const getNextLanguage = () => {
+    const currentIndex = getCurrentLanguageIndex();
+    const nextIndex = (currentIndex + 1) % languages.length;
+    return languages[nextIndex];
+  };
+
   const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ar' : 'en';
-    i18n.changeLanguage(newLang);
+    const nextLang = getNextLanguage();
+    i18n.changeLanguage(nextLang.code);
     
     // Update document direction for RTL support
-    document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = newLang;
+    document.documentElement.dir = nextLang.code === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = nextLang.code;
   };
+
+  const getCurrentLanguage = () => {
+    const currentIndex = getCurrentLanguageIndex();
+    return currentIndex >= 0 ? languages[currentIndex] : languages[0];
+  };
+
+  const nextLanguage = getNextLanguage();
 
   return (
     <button
       onClick={toggleLanguage}
       className="language-switcher"
       aria-label="Switch language"
+      title={`Switch to ${nextLanguage.name}`}
     >
       <Globe size={18} />
       <span className="language-text">
-        {i18n.language === 'en' ? 'العربية' : 'English'}
+        {getCurrentLanguage().nativeName}
       </span>
     </button>
   );

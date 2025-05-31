@@ -44,6 +44,17 @@
   flex-direction: row-reverse;
 }
 
+/* Chinese language specific typography */
+[lang="zh"] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+[lang="zh"] h1, [lang="zh"] h2, [lang="zh"] h3 {
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
 /* Language Switcher Styles */
 .language-switcher {
   display: flex;
@@ -58,6 +69,7 @@
   transition: all 0.2s;
   font-size: 0.9rem;
   margin-right: 1rem;
+  min-width: 90px;
 }
 
 .language-switcher:hover {
@@ -75,6 +87,7 @@
   .language-switcher {
     margin: 0.5rem 1.5rem;
     justify-content: center;
+    min-width: 80px;
   }
   
   [dir="rtl"] .language-switcher {

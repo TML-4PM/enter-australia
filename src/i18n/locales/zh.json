@@ -1,0 +1,50 @@
+
+{
+  "nav": {
+    "home": "首页",
+    "solutions": "解决方案",
+    "partners": "合作伙伴",
+    "regions": "地区",
+    "pricing": "定价",
+    "resources": "资源",
+    "about": "关于",
+    "login": "登录",
+    "register": "注册",
+    "getStarted": "开始使用"
+  },
+  "hero": {
+    "title": "进入澳大利亚",
+    "subtitle": "您进入澳大利亚市场的门户"
+  },
+  "regions": {
+    "title": "本地洞察，全球规模",
+    "subtitle": "根据原产地定制的市场进入策略",
+    "asia": "亚洲",
+    "middleEast": "中东",
+    "us": "美国",
+    "europe": "欧洲",
+    "asiaPac": "亚太创新者",
+    "gulfGippsland": "海湾到吉普斯兰走廊",
+    "siliconValley": "从硅谷到悉尼",
+    "euInnovators": "欧盟创新者",
+    "strategicAdvantages": "战略优势",
+    "ourOffering": "我们的服务",
+    "speakWithTeam": "与亚太团队交流",
+    "connectDubai": "联系我们的迪拜办事处",
+    "talkToUS": "与我们的美国团队交流",
+    "chatEU": "与我们的欧盟办事处交流"
+  },
+  "footer": {
+    "solutions": "解决方案",
+    "company": "公司",
+    "legal": "法律",
+    "connect": "联系"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "submit": "提交",
+    "cancel": "取消",
+    "close": "关闭"
+  }
+}

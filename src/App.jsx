@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     initializeAnalytics();
     
-    // Set initial document direction
+    // Set initial document direction and language
     const savedLanguage = localStorage.getItem('i18nextLng') || 'en';
     document.documentElement.dir = savedLanguage === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = savedLanguage;
