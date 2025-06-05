@@ -9,7 +9,11 @@
   --australian-blue: #0A3161; /* Australian blue */
   --gray-light: #f7f9fa;
   --gray-medium: #e5e7eb;
-  --gray-dark: #2D3748;
+  --gray-dark: #374151; /* Darker for better contrast */
+  --text-primary: #1A1F2C; /* Dark text for light backgrounds */
+  --text-secondary: #374151; /* Slightly lighter dark text */
+  --text-light: #ffffff; /* White text for dark backgrounds */
+  --text-muted: #6B7280; /* Muted text color */
   --eucalyptus: #8BA58F; /* Eucalyptus green */
   --shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
   --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.05);

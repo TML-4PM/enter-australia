@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #ffffff;
-  color: #1a1a1a;
+  color: var(--text-primary);
   line-height: 1.6;
 }
 
@@ -17,4 +17,32 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Text color utilities */
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-light {
+  color: var(--text-light) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Ensure proper contrast on different backgrounds */
+.bg-light,
+.bg-white {
+  color: var(--text-primary);
+}
+
+.bg-dark,
+.bg-primary {
+  color: var(--text-light);
 }

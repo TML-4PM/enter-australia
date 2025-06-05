@@ -1,54 +1,95 @@
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pricing-card {
   background-color: var(--light-color);
-  border-radius: 10px;
-  padding: 2.5rem 1.5rem;
+  border-radius: 15px;
+  padding: 2.5rem;
   box-shadow: var(--shadow);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
-  text-align: left;
-  border: 1px solid var(--gray-medium);
-  display: flex;
-  flex-direction: column;
+  border: 2px solid transparent;
+  color: var(--text-primary); /* Ensure dark text on light background */
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 .pricing-card.featured {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-color: var(--secondary-color);
+  color: var(--text-light); /* Light text on dark background */
   transform: scale(1.05);
-  z-index: 1;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  background-color: var(--dark-color);
-  color: var(--light-color);
 }
 
-.pricing-card.current-plan {
-  border: 2px solid var(--secondary-color);
+.pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+/* Ensure proper text contrast in cards */
+.pricing-card h1,
+.pricing-card h2,
+.pricing-card h3,
+.pricing-card h4,
+.pricing-card h5,
+.pricing-card h6 {
+  color: inherit;
+}
+
+.pricing-card p,
+.pricing-card span,
+.pricing-card div {
+  color: inherit;
+}
+
+.pricing-card.featured h1,
+.pricing-card.featured h2,
+.pricing-card.featured h3,
+.pricing-card.featured h4,
+.pricing-card.featured h5,
+.pricing-card.featured h6 {
+  color: var(--text-light);
+}
+
+.pricing-card.featured p,
+.pricing-card.featured span,
+.pricing-card.featured div {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 @media (max-width: 1200px) {
   .pricing-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
   }
   
   .pricing-card {
-    padding: 2rem 1.25rem;
+    padding: 2rem;
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .pricing-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
   .pricing-card.featured {
     transform: none;
+  }
+  
+  .pricing-card.featured:hover {
+    transform: translateY(-8px);
   }
 }

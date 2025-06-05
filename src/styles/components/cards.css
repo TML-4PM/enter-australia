@@ -8,6 +8,7 @@
   box-shadow: var(--glass-shadow);
   padding: var(--card-padding);
   transition: var(--transition);
+  color: var(--text-primary); /* Ensure dark text on light background */
 }
 
 /* Card hover effects */
@@ -32,4 +33,21 @@
   justify-content: center;
   font-size: 1.8rem;
   box-shadow: 0 8px 20px rgba(0, 132, 61, 0.15);
+  color: var(--primary-color); /* Ensure proper icon color */
+}
+
+/* Card text elements */
+.modern-glass-card h1,
+.modern-glass-card h2,
+.modern-glass-card h3,
+.modern-glass-card h4,
+.modern-glass-card h5,
+.modern-glass-card h6 {
+  color: var(--text-primary);
+}
+
+.modern-glass-card p,
+.modern-glass-card span,
+.modern-glass-card div {
+  color: var(--text-secondary);
 }
