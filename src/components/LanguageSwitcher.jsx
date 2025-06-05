@@ -8,9 +8,10 @@ const LanguageSwitcher = () => {
 
   const languages = [
     { code: 'en', name: 'English', nativeName: 'English' },
-    { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
+    { code: 'ko', name: 'Korean', nativeName: '한국어' },
     { code: 'zh', name: 'Chinese', nativeName: '中文' },
-    { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी' }
+    { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी' },
+    { code: 'ar', name: 'Arabic', nativeName: 'العربية' }
   ];
 
   const getCurrentLanguageIndex = () => {

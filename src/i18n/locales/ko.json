@@ -1,0 +1,74 @@
+
+{
+  "nav": {
+    "home": "홈",
+    "solutions": "솔루션",
+    "partners": "파트너",
+    "regions": "지역",
+    "pricing": "요금제",
+    "resources": "리소스",
+    "about": "회사소개",
+    "login": "로그인",
+    "register": "회원가입",
+    "getStarted": "시작하기"
+  },
+  "hero": {
+    "title": "호주 진출",
+    "subtitle": "호주 시장 진출의 관문"
+  },
+  "regions": {
+    "title": "현지 통찰력, 글로벌 규모",
+    "subtitle": "출신 지역별 맞춤형 시장 진출 전략",
+    "asia": "아시아",
+    "middleEast": "중동",
+    "us": "미국",
+    "europe": "유럽",
+    "asiaPac": "아시아-태평양 혁신가들",
+    "gulfGippsland": "걸프-깁스랜드 회랑",
+    "siliconValley": "실리콘밸리에서 시드니까지",
+    "euInnovators": "EU 혁신가들",
+    "strategicAdvantages": "전략적 이점",
+    "ourOffering": "우리의 제안",
+    "speakWithTeam": "APAC 팀과 상담",
+    "connectDubai": "두바이 사무소와 연결",
+    "talkToUS": "미국 팀과 상담",
+    "chatEU": "EU 데스크와 채팅",
+    "asiaAdvantage1": "싱가포르 및 홍콩에서 배포",
+    "asiaAdvantage2": "APAC 무역 협정 활용",
+    "asiaAdvantage3": "시간대 맞춤 지원팀",
+    "asiaOffering1": "벤처캐피털 소개",
+    "asiaOffering2": "R&D 보조금 패키징",
+    "asiaOffering3": "지역 확장 계획",
+    "meAdvantage1": "두바이-멜버른 직접 투자 흐름",
+    "meAdvantage2": "국부펀드 연결",
+    "meAdvantage3": "핵심 인프라 파트너십",
+    "meOffering1": "사이버보안 프레임워크",
+    "meOffering2": "엑스포 연계",
+    "meOffering3": "정부 혁신 프로그램 접근",
+    "usAdvantage1": "AUKUS 기술 파트너십",
+    "usAdvantage2": "방위 기술 조달 패스트트랙",
+    "usAdvantage3": "미-호 자유무역협정 혜택",
+    "usOffering1": "AWS/Azure 파트너십",
+    "usOffering2": "정부 클라우드 파일럿",
+    "usOffering3": "보안 인가 경로",
+    "euAdvantage1": "EU-호주 연구 협력",
+    "euAdvantage2": "청정기술 혁신 회랑",
+    "euAdvantage3": "호환 가능한 규제 프레임워크",
+    "euOffering1": "GDPR 및 DPA 현지화",
+    "euOffering2": "SME 보조금 접근",
+    "euOffering3": "대학 파트너십 개발"
+  },
+  "footer": {
+    "solutions": "솔루션",
+    "company": "회사",
+    "legal": "법적 고지",
+    "connect": "연결"
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류",
+    "submit": "제출",
+    "cancel": "취소",
+    "close": "닫기"
+  }
+}

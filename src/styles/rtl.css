@@ -55,6 +55,27 @@
   letter-spacing: 0.02em;
 }
 
+/* Korean language specific typography */
+[lang="ko"] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+[lang="ko"] h1, [lang="ko"] h2, [lang="ko"] h3 {
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+/* Hindi language specific typography */
+[lang="hi"] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Devanagari', 'Arial Unicode MS', sans-serif;
+  line-height: 1.7;
+}
+
+[lang="hi"] h1, [lang="hi"] h2, [lang="hi"] h3 {
+  line-height: 1.5;
+}
+
 /* Language Switcher Styles */
 .language-switcher {
   display: flex;
