@@ -1,13 +1,27 @@
-
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Supabase client with your Supabase URL and anon key
-// Make sure these values are correct for your project
+// Initialize Supabase client with error handling
 const supabaseUrl = 'https://lzfgigiyqpuuxslsygjt.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6ZmdpZ2l5cXB1dXhzbHN5Z2p0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODM1ODMwMjcsImV4cCI6MTk5OTE1OTAyN30.xjG8aNO-mSiNLUfL-lBw4BwhkQlfXPZJxXfIkwgKLQo';
 
-// Create the Supabase client
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Missing Supabase configuration');
+}
+
+// Create the Supabase client with error handling
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+  }
+});
+
+// Test connection
+supabase.from('_test').select('*').limit(1).then(() => {
+  console.log('✅ Supabase connection successful');
+}).catch((error) => {
+  console.warn('⚠️ Supabase connection issue:', error.message);
+});
 
 // Authentication helpers
 export const signUp = async (email, password) => {

@@ -11,41 +11,9 @@
     <!-- Preload critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Preload critical CSS -->
-    <link rel="preload" href="/styles.css" as="style">
-    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-      /* Critical CSS for initial render */
-      body {
-        font-family: 'Inter', sans-serif !important;
-        margin: 0;
-        padding: 0;
-      }
-      /* Force basic layout during initial load */
-      header {
-        background-color: #ffffff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 1rem;
-        width: 100%;
-        position: relative;
-        z-index: 1000;
-      }
-      
-      nav {
-        display: flex !important;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      .logo {
-        font-weight: bold;
-        font-size: 1.5rem;
-        color: #00843D;
-      }
-      
       :root {
         --primary-color: #00843D;
         --secondary-color: #FFCD00;
@@ -57,81 +25,23 @@
         --gray-medium: #e5e7eb;
         --gray-dark: #2D3748;
       }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.6;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
     </style>
-    
-    <!-- Prevent caching during development -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
   </head>
   <body>
     <div id="root"></div>
-    <!-- Required Lovable script tag for new features -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      // Force CSS reload if styles aren't applied correctly
-      window.addEventListener('DOMContentLoaded', (event) => {
-        console.log('DOM fully loaded - checking styles');
-        
-        // Add CSS variables to document root if they're not already there
-        const rootStyle = document.documentElement.style;
-        if (!rootStyle.getPropertyValue('--primary-color')) {
-          rootStyle.setProperty('--primary-color', '#00843D');
-          rootStyle.setProperty('--secondary-color', '#FFCD00');
-          rootStyle.setProperty('--dark-color', '#1A1F2C');
-          rootStyle.setProperty('--light-color', '#ffffff');
-          console.log('Applied CSS variables to :root');
-        }
-        
-        // Check if styles are loaded properly
-        setTimeout(() => {
-          console.log('Checking CSS loading status...');
-          const bodyStyles = getComputedStyle(document.body);
-          console.log('Body font-family:', bodyStyles.fontFamily);
-          
-          if (bodyStyles.fontFamily.indexOf('Inter') === -1) {
-            console.log('CSS not loaded correctly, force reloading stylesheets');
-            const links = document.querySelectorAll('link[rel="stylesheet"]');
-            links.forEach(link => {
-              const url = link.href;
-              console.log('Reloading stylesheet:', url);
-              const clone = link.cloneNode();
-              clone.href = url + (url.includes('?') ? '&' : '?') + 'refresh=' + new Date().getTime();
-              link.parentNode.replaceChild(clone, link);
-            });
-          } else {
-            console.log('CSS loaded correctly');
-          }
-          
-          // Force redraw of elements
-          document.body.style.display = 'none';
-          document.body.offsetHeight; // Trigger reflow
-          document.body.style.display = '';
-          console.log('Forced page redraw');
-
-          // Add CSS diagnostic element for development
-          if (window.location.hostname === 'localhost' || 
-              window.location.hostname.includes('127.0.0.1') ||
-              window.location.hostname.includes('lovable.app')) {
-            document.body.classList.add('development');
-            const diagnosticElement = document.createElement('div');
-            diagnosticElement.className = 'css-loaded-indicator';
-            diagnosticElement.textContent = 'CSS Loaded ✓';
-            document.body.appendChild(diagnosticElement);
-          }
-        }, 1000);
-      });
-      
-      // Diagnostic logging
-      console.log('Environment:', window.location.hostname);
-      
-      // Check for CSS load errors
-      window.addEventListener('error', function(e) {
-        if (e.target && (e.target.tagName === 'LINK' || e.target.tagName === 'STYLE')) {
-          console.error('CSS load error:', e.target.href || 'inline style');
-        }
-      }, true);
-    </script>
   </body>
 </html>

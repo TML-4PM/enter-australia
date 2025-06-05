@@ -1,64 +1,33 @@
 
-/* Import base styles */
+/* Import base styles first */
 @import './styles/base/index.css';
 
-/* Import component styles */
+/* Import essential component styles */
 @import './styles/components/index.css';
-
-/* Import section styles */
 @import './styles/sections/index.css';
 
-/* Import page-specific styles */
-@import './styles/global.css';
-@import './styles/responsive.css';
+/* Import layout styles */
 @import './styles/header.css';
 @import './styles/footer.css';
-@import './styles/home/index.css';
-@import './styles/pricing-section.css';
-@import './styles/pricing-cards.css';
-@import './styles/pricing-detail.css';
-@import './styles/pricing-faq.css';
-@import './styles/pricing-solutions.css';
-@import './styles/comparison-table.css';
-@import './styles/how-it-works.css';
-@import './styles/opportunities.css';
-@import './styles/contact.css';
-@import './styles/lead-form.css';
-@import './styles/marketing-posts.css';
-@import './styles/live-chat.css';
-@import './styles/about.css';
-@import './styles/solutions.css';
-@import './styles/solution-detail.css';
-@import './styles/regions.css';
-@import './styles/resources.css';
-@import './styles/faq-page.css';
-@import './styles/blog/index.css';
-@import './styles/partners.css';
-@import './styles/partners/partners-main.css';
-@import './styles/webinar-registration.css';
-@import './styles/webinar/index.css';
-@import './styles/demo-scheduler/index.css';
-@import './styles/auth.css';
-@import './styles/profile.css';
-@import './styles/success.css';
-@import './styles/subscription-status-banner.css';
-@import './styles/legal.css';
-@import './styles/email-drip.css';
-@import './styles/data-apis.css';
-@import './styles/pre-deployment-check.css';
-@import './styles/rtl.css';
-@import './styles/error-message.css';
+@import './styles/responsive.css';
 
-/* Import AI component styles */
-@import './styles/ai-components.css';
+/* Import page styles */
+@import './styles/global.css';
 
-/* Override any conflicting styles */
+/* Ensure proper app layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Essential global styles */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #ffffff;
@@ -71,17 +40,5 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-/* Ensure proper spacing and layout */
-.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
