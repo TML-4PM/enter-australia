@@ -3,9 +3,12 @@
 @import './base/core-imports.css';
 
 /* Import modern design system */
-@import './modern-layout.css';
+@import './layout/modern-sections.css';
+@import './layout/grid-systems.css';
 @import './components/modern-buttons.css';
 @import './components/modern-cards.css';
+@import './components/case-study-cards.css';
+@import './components/footer-cta-modern.css';
 
 /* Import utilities */
 @import './utilities/common-utilities.css';

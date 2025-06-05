@@ -1,0 +1,36 @@
+
+/* Grid Systems */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-2xl);
+  margin: var(--spacing-3xl) 0;
+}
+
+.case-studies-grid.modern {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-2xl);
+  margin: var(--spacing-3xl) 0;
+}
+
+.case-study-card.featured {
+  grid-column: span 1;
+}
+
+/* Responsive Grid Design */
+@media (max-width: 992px) {
+  .case-studies-grid.modern {
+    grid-template-columns: 1fr;
+  }
+  
+  .case-study-card.featured {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}

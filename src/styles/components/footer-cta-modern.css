@@ -1,0 +1,73 @@
+
+/* Footer CTA Modern */
+.footer-cta-section.modern {
+  padding: var(--spacing-4xl) 5%;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--gray-800) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-cta-section.modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 70%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.cta-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-icon {
+  margin-bottom: var(--spacing-lg);
+  color: var(--secondary-color);
+}
+
+.urgency-indicator {
+  background: linear-gradient(135deg, var(--secondary-color), #FF8E8E);
+  color: var(--text-light);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  display: inline-block;
+  margin: var(--spacing-lg) 0 var(--spacing-xl);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  box-shadow: var(--shadow-md);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  margin: var(--spacing-xl) 0;
+  flex-wrap: wrap;
+}
+
+.guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+/* Responsive Design for Footer CTA */
+@media (max-width: 768px) {
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
