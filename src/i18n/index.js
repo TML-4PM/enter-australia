@@ -3,6 +3,12 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+// Import translations directly for immediate availability
+import enTranslations from './locales/en.json';
+import koTranslations from './locales/ko.json';
+import zhTranslations from './locales/zh.json';
+import arTranslations from './locales/ar.json';
+
 import { initializeLanguage, checkMissingTranslations } from '../utils/i18nUtils';
 import { initializeTranslationCache, translationCache } from '../utils/i18nCache';
 import { detectUserLanguage, trackLanguageUsage } from '../utils/languageDetection';
@@ -11,12 +17,19 @@ import { i18nPerformanceMonitor, timeI18nOperation } from '../utils/i18nPerforma
 // Enhanced language detection with fallback
 const detectedLanguage = detectUserLanguage();
 
+// Initialize with all translations immediately available
+const resources = {
+  en: { translation: enTranslations },
+  ko: { translation: koTranslations },
+  zh: { translation: zhTranslations },
+  ar: { translation: arTranslations }
+};
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    // Start with minimal resources - load dynamically
-    resources: {},
+    resources,
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
     
@@ -28,41 +41,19 @@ i18n
       order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
       lookupLocalStorage: 'i18nextLng'
-    },
-
-    // Enhanced backend configuration for dynamic loading
-    backend: {
-      loadPath: (languages, namespaces) => {
-        // This will be handled by our translation cache
-        return null;
-      }
     }
   }, async (err, t) => {
     if (err) {
       console.error('i18n initialization error:', err);
+      return;
     }
 
     try {
-      // Initialize translation cache and preload common languages
+      // Initialize translation cache after basic setup
       await initializeTranslationCache();
       
-      // Load initial language
-      const initialLanguage = detectedLanguage;
-      const timer = timeI18nOperation('language_switch', initialLanguage);
-      timer.start();
-      
-      const translations = await translationCache.getTranslations(initialLanguage);
-      
-      // Add resources dynamically
-      i18n.addResourceBundle(initialLanguage, 'translation', translations, true, true);
-      
-      // Change to detected language
-      await i18n.changeLanguage(initialLanguage);
-      
-      timer.end();
-      
       // Track initial language usage
-      trackLanguageUsage(initialLanguage, 'initial_load');
+      trackLanguageUsage(detectedLanguage, 'initial_load');
       
       // Initialize language based on user preference
       initializeLanguage(i18n);
@@ -71,21 +62,10 @@ i18n
       if (process.env.NODE_ENV === 'development') {
         const missingTranslations = checkMissingTranslations(i18n, true);
         console.info('Missing translations report:', missingTranslations);
-        
-        // Log performance stats
-        setTimeout(() => {
-          console.info('i18n Performance Stats:', i18nPerformanceMonitor.getStats());
-          const recommendations = i18nPerformanceMonitor.getRecommendations();
-          if (recommendations.length > 0) {
-            console.info('Performance Recommendations:', recommendations);
-          }
-        }, 2000);
       }
     } catch (error) {
-      console.error('Failed to initialize enhanced i18n:', error);
-      // Fallback to basic initialization
-      const enTranslations = await import('./locales/en.json');
-      i18n.addResourceBundle('en', 'translation', enTranslations.default, true, true);
+      console.error('Failed to initialize enhanced i18n features:', error);
+      // Continue with basic functionality
     }
   });
 
@@ -96,12 +76,6 @@ i18n.changeLanguage = async (language, callback) => {
   timer.start();
   
   try {
-    // Load translations if not already loaded
-    if (!i18n.hasResourceBundle(language, 'translation')) {
-      const translations = await translationCache.getTranslations(language);
-      i18n.addResourceBundle(language, 'translation', translations, true, true);
-    }
-    
     // Track language usage
     trackLanguageUsage(language, 'manual_switch');
     

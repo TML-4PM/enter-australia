@@ -2,7 +2,7 @@
 {
   "nav": {
     "home": "Home",
-    "solutions": "Solutions",
+    "solutions": "Solutions", 
     "partners": "Partners",
     "regions": "Regions",
     "pricing": "Pricing",
@@ -18,7 +18,7 @@
     "badge": "Trusted by 200+ International Companies",
     "stats": {
       "successRate": "Success Rate",
-      "marketEntry": "Avg. Market Entry",
+      "marketEntry": "Avg. Market Entry", 
       "revenue": "Avg. First Year Revenue"
     },
     "buttons": {
@@ -67,7 +67,7 @@
       }
     },
     "govtech": {
-      "title": "GovTech Pioneer",
+      "title": "GovTech Pioneer", 
       "description": "First international contract worth $2.1M with NSW Government",
       "tags": {
         "government": "Government",
@@ -112,7 +112,7 @@
     "form": {
       "name": "Your Name",
       "namePlaceholder": "Your Name",
-      "email": "Your Email",
+      "email": "Your Email", 
       "emailPlaceholder": "Your Email",
       "company": "Company Name",
       "companyPlaceholder": "Company Name",
@@ -243,6 +243,7 @@
     "error": "Error",
     "submit": "Submit",
     "cancel": "Cancel",
-    "close": "Close"
+    "close": "Close",
+    "months": "months"
   }
 }
