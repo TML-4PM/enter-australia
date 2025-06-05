@@ -88,36 +88,6 @@
   font-weight: 600;
 }
 
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin: 3rem 0;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-number {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #10b981;
-  margin-bottom: 0.5rem;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-}
-
 .hero-buttons {
   display: flex;
   gap: 1rem;
@@ -211,15 +181,6 @@
   
   .hero-subtitle {
     font-size: 1.125rem;
-  }
-  
-  .hero-stats {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .stat-number {
-    font-size: 2rem;
   }
   
   .hero-buttons {

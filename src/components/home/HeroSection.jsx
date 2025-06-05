@@ -27,21 +27,6 @@ const HeroSection = ({ toggleLeadForm }) => {
         <h1 className="hero-title">{t('hero.title')}</h1>
         <p className="hero-subtitle">{t('hero.subtitle')}</p>
         
-        <div className="hero-stats">
-          <div className="stat-item">
-            <div className="stat-number">95%</div>
-            <div className="stat-label">{t('hero.stats.successRate')}</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">6 {t('common.months')}</div>
-            <div className="stat-label">{t('hero.stats.marketEntry')}</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">$2.4M</div>
-            <div className="stat-label">{t('hero.stats.revenue')}</div>
-          </div>
-        </div>
-        
         <div className="hero-buttons">
           <button onClick={toggleLeadForm} className="btn-primary">
             {t('hero.buttons.getStrategy')}
