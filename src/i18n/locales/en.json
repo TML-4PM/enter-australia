@@ -106,6 +106,80 @@
       "button": "Book a Free Consultation"
     }
   },
+  "contact": {
+    "title": "Ready to Crack Australia? Let's Talk",
+    "subtitle": "Fill out the form below, and our team will get back to you within 24 hours.",
+    "form": {
+      "name": "Your Name",
+      "namePlaceholder": "Your Name",
+      "email": "Your Email",
+      "emailPlaceholder": "Your Email",
+      "company": "Company Name",
+      "companyPlaceholder": "Company Name",
+      "service": "Interested In",
+      "servicePlaceholder": "Interested In",
+      "message": "Tell us about your Australian market goals and timeline",
+      "messagePlaceholder": "Tell us about your Australian market goals and timeline",
+      "submit": "Send Message",
+      "submitting": "Sending..."
+    },
+    "services": {
+      "entryKit": "Entry Kit ($5K)",
+      "retainer": "Retainer ($15K/month)",
+      "marketEntry": "Market Entry Strategy",
+      "govtech": "Government Contracts",
+      "partnerships": "Local Partnerships",
+      "compliance": "Compliance & Regulations",
+      "other": "Other"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "companyRequired": "Company name is required",
+      "serviceRequired": "Please select a service",
+      "messageRequired": "Message is required",
+      "messageMinLength": "Message must be at least 10 characters long",
+      "fixErrors": "Please fix the errors above and try again."
+    },
+    "status": {
+      "success": "Message sent successfully! We will contact you within 24 hours.",
+      "error": "Failed to send message. Please try again or email us directly at info@enteraustralia.tech"
+    },
+    "meeting": {
+      "title": "Schedule a Meeting",
+      "email": "Email: info@enteraustralia.tech"
+    },
+    "aria": {
+      "name": "Your name",
+      "email": "Your email address",
+      "company": "Your company name",
+      "service": "Service of interest",
+      "message": "Your message"
+    }
+  },
+  "leadForm": {
+    "title": "Get Your Free Market Assessment",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "company": "Company Name",
+      "submit": "Get My Free Assessment",
+      "submitting": "Submitting..."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Email is invalid",
+      "companyRequired": "Company name is required"
+    },
+    "aria": {
+      "close": "Close form",
+      "name": "Your name",
+      "email": "Your email address",
+      "company": "Your company name"
+    }
+  },
   "footerCta": {
     "title": "Ready to Enter the Australian Market?",
     "subtitle": "Join 200+ successful companies who chose Enter Australia as their market entry partner",

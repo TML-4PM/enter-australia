@@ -106,6 +106,80 @@
       "button": "무료 상담 예약"
     }
   },
+  "contact": {
+    "title": "호주 시장 진출 준비가 되셨나요? 상담해 보세요",
+    "subtitle": "아래 양식을 작성하시면 24시간 내에 저희 팀이 연락드리겠습니다.",
+    "form": {
+      "name": "이름",
+      "namePlaceholder": "이름",
+      "email": "이메일",
+      "emailPlaceholder": "이메일",
+      "company": "회사명",
+      "companyPlaceholder": "회사명",
+      "service": "관심 서비스",
+      "servicePlaceholder": "관심 서비스",
+      "message": "호주 시장 목표와 일정을 알려주세요",
+      "messagePlaceholder": "호주 시장 목표와 일정을 알려주세요",
+      "submit": "메시지 보내기",
+      "submitting": "전송 중..."
+    },
+    "services": {
+      "entryKit": "진입 키트 ($5K)",
+      "retainer": "리테이너 ($15K/월)",
+      "marketEntry": "시장 진입 전략",
+      "govtech": "정부 계약",
+      "partnerships": "현지 파트너십",
+      "compliance": "규정 준수 및 규제",
+      "other": "기타"
+    },
+    "validation": {
+      "nameRequired": "이름을 입력해주세요",
+      "emailRequired": "이메일을 입력해주세요",
+      "emailInvalid": "유효한 이메일 주소를 입력해주세요",
+      "companyRequired": "회사명을 입력해주세요",
+      "serviceRequired": "서비스를 선택해주세요",
+      "messageRequired": "메시지를 입력해주세요",
+      "messageMinLength": "메시지는 최소 10자 이상이어야 합니다",
+      "fixErrors": "위의 오류를 수정한 후 다시 시도해주세요."
+    },
+    "status": {
+      "success": "메시지가 성공적으로 전송되었습니다! 24시간 내에 연락드리겠습니다.",
+      "error": "메시지 전송에 실패했습니다. 다시 시도하거나 info@enteraustralia.tech로 직접 이메일을 보내주세요"
+    },
+    "meeting": {
+      "title": "미팅 예약하기",
+      "email": "이메일: info@enteraustralia.tech"
+    },
+    "aria": {
+      "name": "이름",
+      "email": "이메일 주소",
+      "company": "회사명",
+      "service": "관심 서비스",
+      "message": "메시지"
+    }
+  },
+  "leadForm": {
+    "title": "무료 시장 평가 받기",
+    "form": {
+      "name": "이름",
+      "email": "이메일",
+      "company": "회사명",
+      "submit": "무료 평가 받기",
+      "submitting": "제출 중..."
+    },
+    "validation": {
+      "nameRequired": "이름을 입력해주세요",
+      "emailRequired": "이메일을 입력해주세요",
+      "emailInvalid": "이메일이 유효하지 않습니다",
+      "companyRequired": "회사명을 입력해주세요"
+    },
+    "aria": {
+      "close": "양식 닫기",
+      "name": "이름",
+      "email": "이메일 주소",
+      "company": "회사명"
+    }
+  },
   "footerCta": {
     "title": "호주 시장 진입 준비가 되셨나요?",
     "subtitle": "Enter Australia를 시장 진입 파트너로 선택한 200개 이상의 성공한 기업에 합류하세요",

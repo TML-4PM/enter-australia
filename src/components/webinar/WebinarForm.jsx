@@ -1,13 +1,16 @@
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { trackFormSubmission } from '../../utils/analyticsUtils';
 
 const WebinarForm = ({ formState, handleChange, handleCheckboxChange, handleSubmit, isSubmitting, webinarTopics, timeSlots }) => {
+  const { t } = useTranslation();
+  
   return (
     <form onSubmit={handleSubmit} className="webinar-registration-form">
       <div className="form-row">
         <div className="form-group">
-          <label htmlFor="name">Your Name</label>
+          <label htmlFor="name">{t('contact.form.name')}</label>
           <input
             type="text"
             id="name"
@@ -15,12 +18,13 @@ const WebinarForm = ({ formState, handleChange, handleCheckboxChange, handleSubm
             value={formState.name}
             onChange={handleChange}
             required
-            placeholder="Full Name"
+            placeholder={t('contact.form.namePlaceholder')}
+            aria-label={t('contact.aria.name')}
           />
         </div>
         
         <div className="form-group">
-          <label htmlFor="email">Email Address</label>
+          <label htmlFor="email">{t('contact.form.email')}</label>
           <input
             type="email"
             id="email"
@@ -28,14 +32,15 @@ const WebinarForm = ({ formState, handleChange, handleCheckboxChange, handleSubm
             value={formState.email}
             onChange={handleChange}
             required
-            placeholder="your@email.com"
+            placeholder={t('contact.form.emailPlaceholder')}
+            aria-label={t('contact.aria.email')}
           />
         </div>
       </div>
       
       <div className="form-row">
         <div className="form-group">
-          <label htmlFor="company">Company Name</label>
+          <label htmlFor="company">{t('contact.form.company')}</label>
           <input
             type="text"
             id="company"
@@ -43,7 +48,8 @@ const WebinarForm = ({ formState, handleChange, handleCheckboxChange, handleSubm
             value={formState.company}
             onChange={handleChange}
             required
-            placeholder="Your Company"
+            placeholder={t('contact.form.companyPlaceholder')}
+            aria-label={t('contact.aria.company')}
           />
         </div>
         
@@ -84,14 +90,15 @@ const WebinarForm = ({ formState, handleChange, handleCheckboxChange, handleSubm
       </div>
       
       <div className="form-group">
-        <label htmlFor="message">Questions or Notes</label>
+        <label htmlFor="message">{t('contact.form.message')}</label>
         <textarea
           id="message"
           name="message"
           value={formState.message}
           onChange={handleChange}
-          placeholder="Let us know any specific questions or topics you'd like covered"
+          placeholder={t('contact.form.messagePlaceholder')}
           rows={3}
+          aria-label={t('contact.aria.message')}
         />
       </div>
       
@@ -100,7 +107,7 @@ const WebinarForm = ({ formState, handleChange, handleCheckboxChange, handleSubm
         className="webinar-submit-btn"
         disabled={isSubmitting}
       >
-        {isSubmitting ? 'Registering...' : 'Register for Webinar'}
+        {isSubmitting ? t('contact.form.submitting') : 'Register for Webinar'}
       </button>
     </form>
   );

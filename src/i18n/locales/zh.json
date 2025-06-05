@@ -1,4 +1,3 @@
-
 {
   "nav": {
     "home": "首页",
@@ -104,6 +103,80 @@
       "title": "不确定哪种解决方案适合您？",
       "subtitle": "预约免费咨询，我们的专家将指导您了解各种选择。",
       "button": "预约免费咨询"
+    }
+  },
+  "contact": {
+    "title": "准备好进入澳大利亚市场了吗？让我们谈谈",
+    "subtitle": "填写下面的表格，我们的团队将在24小时内与您联系。",
+    "form": {
+      "name": "姓名",
+      "namePlaceholder": "您的姓名",
+      "email": "邮箱",
+      "emailPlaceholder": "您的邮箱",
+      "company": "公司名称",
+      "companyPlaceholder": "公司名称",
+      "service": "感兴趣的服务",
+      "servicePlaceholder": "感兴趣的服务",
+      "message": "告诉我们您的澳大利亚市场目标和时间表",
+      "messagePlaceholder": "告诉我们您的澳大利亚市场目标和时间表",
+      "submit": "发送消息",
+      "submitting": "发送中..."
+    },
+    "services": {
+      "entryKit": "入门套件 ($5K)",
+      "retainer": "保持费 ($15K/月)",
+      "marketEntry": "市场进入策略",
+      "govtech": "政府合同",
+      "partnerships": "本地合作伙伴",
+      "compliance": "合规性和法规",
+      "other": "其他"
+    },
+    "validation": {
+      "nameRequired": "姓名为必填项",
+      "emailRequired": "邮箱为必填项",
+      "emailInvalid": "请输入有效的邮箱地址",
+      "companyRequired": "公司名称为必填项",
+      "serviceRequired": "请选择一项服务",
+      "messageRequired": "消息为必填项",
+      "messageMinLength": "消息至少需要10个字符",
+      "fixErrors": "请修正上述错误后重试。"
+    },
+    "status": {
+      "success": "消息发送成功！我们将在24小时内与您联系。",
+      "error": "发送消息失败。请重试或直接发邮件至 info@enteraustralia.tech"
+    },
+    "meeting": {
+      "title": "安排会议",
+      "email": "邮箱：info@enteraustralia.tech"
+    },
+    "aria": {
+      "name": "您的姓名",
+      "email": "您的邮箱地址",
+      "company": "您的公司名称",
+      "service": "感兴趣的服务",
+      "message": "您的消息"
+    }
+  },
+  "leadForm": {
+    "title": "获取免费市场评估",
+    "form": {
+      "name": "您的姓名",
+      "email": "您的邮箱",
+      "company": "公司名称",
+      "submit": "获取免费评估",
+      "submitting": "提交中..."
+    },
+    "validation": {
+      "nameRequired": "姓名为必填项",
+      "emailRequired": "邮箱为必填项",
+      "emailInvalid": "邮箱无效",
+      "companyRequired": "公司名称为必填项"
+    },
+    "aria": {
+      "close": "关闭表单",
+      "name": "您的姓名",
+      "email": "您的邮箱地址",
+      "company": "您的公司名称"
     }
   },
   "footerCta": {

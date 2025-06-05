@@ -1,8 +1,10 @@
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { trackFormSubmission } from '../utils/analyticsUtils';
 
 const LeadForm = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -27,17 +29,17 @@ const LeadForm = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
     const newErrors = {};
     
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = t('leadForm.validation.nameRequired');
     }
     
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = t('leadForm.validation.emailRequired');
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = t('leadForm.validation.emailInvalid');
     }
     
     if (!formData.company.trim()) {
-      newErrors.company = 'Company name is required';
+      newErrors.company = t('leadForm.validation.companyRequired');
     }
     
     setErrors(newErrors);
@@ -67,21 +69,21 @@ const LeadForm = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
         <button 
           className="close-btn" 
           onClick={toggleLeadForm}
-          aria-label="Close form"
+          aria-label={t('leadForm.aria.close')}
         >
           ×
         </button>
-        <h2>Get Your Free Market Assessment</h2>
+        <h2>{t('leadForm.title')}</h2>
         <form onSubmit={onSubmit} noValidate>
           <div className="form-group">
             <input 
               type="text" 
               name="name" 
-              placeholder="Your Name" 
+              placeholder={t('leadForm.form.name')} 
               required 
               value={formData.name}
               onChange={handleChange}
-              aria-label="Your name"
+              aria-label={t('leadForm.aria.name')}
               className={errors.name ? 'error-input' : ''}
             />
             {errors.name && <p className="error-text">{errors.name}</p>}
@@ -90,11 +92,11 @@ const LeadForm = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
             <input 
               type="email" 
               name="email" 
-              placeholder="Your Email" 
+              placeholder={t('leadForm.form.email')} 
               required 
               value={formData.email}
               onChange={handleChange}
-              aria-label="Your email address"
+              aria-label={t('leadForm.aria.email')}
               className={errors.email ? 'error-input' : ''}
             />
             {errors.email && <p className="error-text">{errors.email}</p>}
@@ -103,11 +105,11 @@ const LeadForm = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
             <input 
               type="text" 
               name="company" 
-              placeholder="Company Name" 
+              placeholder={t('leadForm.form.company')} 
               required 
               value={formData.company}
               onChange={handleChange}
-              aria-label="Your company name"
+              aria-label={t('leadForm.aria.company')}
               className={errors.company ? 'error-input' : ''}
             />
             {errors.company && <p className="error-text">{errors.company}</p>}
@@ -117,7 +119,7 @@ const LeadForm = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
             className="submit-btn"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Submitting...' : 'Get My Free Assessment'}
+            {isSubmitting ? t('leadForm.form.submitting') : t('leadForm.form.submit')}
           </button>
         </form>
       </div>
