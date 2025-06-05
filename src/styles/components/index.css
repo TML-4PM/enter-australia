@@ -6,6 +6,5 @@
 @import './buttons.css';
 @import './button-variants.css';
 @import './pricing-buttons.css';  /* Move import here to avoid circular imports */
-@import './hero.css';
 
 /* Ensure all component styles are included */
