@@ -1,0 +1,64 @@
+
+/*
+ * Button States
+ * Hover, active, disabled, and other interactive states
+ */
+
+/* Primary button states */
+.btn.primary:hover {
+  background-color: #00a651;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn.primary:active {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Secondary button states */
+.btn.secondary:hover {
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn.secondary:active {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* CTA button states */
+.cta:hover {
+  background-color: #00a651;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.cta:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.cta:active {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Submit button states */
+.submit-btn:hover:not(:disabled) {
+  background-color: #00a651;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:hover:not(:disabled)::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.submit-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

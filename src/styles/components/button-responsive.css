@@ -1,0 +1,25 @@
+
+/*
+ * Button Responsive Styles
+ * Mobile and tablet adaptations
+ */
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .btn, .cta {
+    padding: 0.9rem 1.75rem;
+    font-size: 0.95rem;
+    min-width: 100%;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 576px) {
+  .btn, .cta {
+    display: block;
+    width: 100%;
+    margin: 0.7rem 0;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

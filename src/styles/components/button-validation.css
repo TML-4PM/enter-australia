@@ -1,0 +1,18 @@
+
+/*
+ * Button Validation Styles
+ * Form validation and error states
+ */
+
+/* Form validation styling */
+.error-input {
+  border-color: #f44336 !important;
+  box-shadow: 0 0 0 1px #f44336 !important;
+}
+
+.error-text {
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
