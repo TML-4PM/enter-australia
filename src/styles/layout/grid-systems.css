@@ -9,9 +9,9 @@
 
 .case-studies-grid.modern {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--spacing-2xl);
-  margin: var(--spacing-3xl) 0;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin: var(--spacing-2xl) 0;
 }
 
 .case-study-card.featured {

@@ -1,7 +1,7 @@
 
 /* Modern Layout System - Sections */
 .modern-section {
-  padding: var(--spacing-4xl) 5%;
+  padding: var(--spacing-3xl) 5%;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -13,11 +13,11 @@
 
 .section-header {
   text-align: center;
-  margin-bottom: var(--spacing-4xl);
+  margin-bottom: var(--spacing-3xl);
 }
 
 .section-header h2 {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   color: var(--text-primary);
 }
 
@@ -28,5 +28,5 @@
 
 .section-cta {
   text-align: center;
-  margin-top: var(--spacing-3xl);
+  margin-top: var(--spacing-2xl);
 }
