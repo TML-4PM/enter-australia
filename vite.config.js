@@ -2,7 +2,6 @@
 import { defineConfig } from 'vite';
 import path from 'path';
 import react from '@vitejs/plugin-react';
-import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
   root: '.',
@@ -31,7 +30,10 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
+    mode === 'development' && (async () => {
+      const { componentTagger } = await import('lovable-tagger');
+      return componentTagger();
+    })(),
   ].filter(Boolean),
   resolve: {
     alias: {

@@ -1,34 +1,95 @@
 
 :root {
-  --primary-color: #00843D; /* Australian green - slightly refined */
-  --primary-light: rgba(0, 132, 61, 0.1);
-  --secondary-color: #FFCD00; /* Australian gold */
-  --dark-color: #1A1F2C;
-  --light-color: #ffffff;
-  --accent-color: #E9483F; /* Red ochre - Australian earth */
-  --australian-blue: #0A3161; /* Australian blue */
-  --gray-light: #f7f9fa;
-  --gray-medium: #e5e7eb;
-  --gray-dark: #374151; /* Darker for better contrast */
-  --text-primary: #1A1F2C; /* Dark text for light backgrounds */
-  --text-secondary: #374151; /* Slightly lighter dark text */
+  /* Modern Color Palette */
+  --primary-color: #0F1419; /* Deep midnight blue for authority */
+  --primary-light: rgba(15, 20, 25, 0.1);
+  --secondary-color: #FF6B6B; /* Vibrant coral for energy */
+  --secondary-light: rgba(255, 107, 107, 0.1);
+  --accent-color: #10B981; /* Modern green */
+  --accent-light: rgba(16, 185, 129, 0.1);
+  
+  /* Neutral Colors */
+  --light-color: #F8FAFC;
+  --white: #ffffff;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --gray-900: #0F172A;
+  
+  /* Text Colors */
+  --text-primary: #0F172A; /* Dark text for light backgrounds */
+  --text-secondary: #475569; /* Medium gray text */
   --text-light: #ffffff; /* White text for dark backgrounds */
-  --text-muted: #6B7280; /* Muted text color */
-  --eucalyptus: #8BA58F; /* Eucalyptus green */
-  --shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-  --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.05);
-  --transition: all 0.3s ease;
-  --card-radius: 16px;
-  --card-padding: 2.5rem;
-  --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  --blur-bg: rgba(255, 255, 255, 0.8);
-  --blur-effect: blur(10px);
-  --glass-bg: rgba(255, 255, 255, 0.9);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.18);
-  --glass-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
-  --glass-radius: 16px;
+  --text-muted: #64748B; /* Muted text color */
+  
+  /* Legacy support (gradually remove these) */
+  --dark-color: var(--primary-color);
+  --australian-blue: #1E40AF;
+  --gray-light: var(--gray-100);
+  --gray-medium: var(--gray-300);
+  --gray-dark: var(--gray-700);
+  --eucalyptus: var(--accent-color);
+  
+  /* Modern Design System */
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 8px 10px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  
+  /* Glass Morphism */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --blur-effect: blur(16px);
+  
+  /* Spacing System */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+  
+  /* Typography */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 4rem;
+  
+  /* Legacy card variables (to be phased out) */
+  --card-radius: var(--radius-xl);
+  --card-padding: var(--spacing-2xl);
+  --card-shadow: var(--shadow-lg);
+  --blur-bg: var(--glass-bg);
+  --glass-radius: var(--radius-xl);
   --section-spacing: 6rem 5%;
-  --heading-spacing: 0.8rem;
-  --item-spacing: 2rem;
-  --item-hover-transform: translateY(-8px);
+  --heading-spacing: var(--spacing-lg);
+  --item-spacing: var(--spacing-xl);
+  --item-hover-transform: translateY(-4px);
 }

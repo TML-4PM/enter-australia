@@ -2,6 +2,12 @@
 /* Import base styles */
 @import './base/core-imports.css';
 
+/* Import modern design system */
+@import './modern-layout.css';
+@import './components/modern-buttons.css';
+@import './components/modern-cards.css';
+@import './components/modern-hero.css';
+
 /* Import utilities */
 @import './utilities/common-utilities.css';
 
