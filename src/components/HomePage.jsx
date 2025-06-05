@@ -12,8 +12,8 @@ const HomePage = ({ toggleLeadForm }) => {
       <section id="home" className="hero modern">
         <div className="hero-background modern">
           <img 
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80" 
-            alt="Sydney Harbour Bridge, Australia"
+            src="https://images.unsplash.com/photo-1524293368444-8376ac6cabdc?auto=format&fit=crop&w=1920&q=80" 
+            alt="Sydney Opera House, Australia"
             className="hero-bg-image modern"
             onLoad={() => console.log('Hero image loaded successfully')}
             onError={() => console.log('Hero image failed to load')}

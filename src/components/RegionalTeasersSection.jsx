@@ -12,7 +12,7 @@ const RegionalTeasersSection = () => {
       description: 'Leverage Singapore & Hong Kong as your launchpad into the dynamic Australian market with strategic trade partnerships.',
       icon: <Globe className="text-primary" />,
       features: ['VC Introductions', 'R&D Grant Access', 'Timezone Alignment'],
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80'
+      image: 'https://images.unsplash.com/photo-1524293368444-8376ac6cabdc?auto=format&fit=crop&w=800&q=80'
     },
     {
       id: 'middleeast',
@@ -28,7 +28,7 @@ const RegionalTeasersSection = () => {
       description: 'Fast-track your AUKUS technology partnerships with defense procurement and cloud infrastructure access.',
       icon: <Briefcase className="text-accent" />,
       features: ['AUKUS Tech Access', 'AWS/Azure Partnerships', 'Security Clearance'],
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80'
+      image: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5d?auto=format&fit=crop&w=800&q=80'
     },
     {
       id: 'europe',
