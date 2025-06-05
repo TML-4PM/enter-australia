@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -13,8 +12,8 @@ const HomePage = ({ toggleLeadForm }) => {
       <section id="home" className="hero modern">
         <div className="hero-background modern">
           <img 
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80" 
-            alt="Sydney Harbour Bridge"
+            src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5d?auto=format&fit=crop&w=1920&q=80" 
+            alt="Bondi Beach, Sydney Australia"
             className="hero-bg-image modern"
           />
         </div>
