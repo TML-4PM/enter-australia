@@ -13,8 +13,108 @@
     "getStarted": "开始使用"
   },
   "hero": {
-    "title": "进入澳大利亚",
-    "subtitle": "您进入澳大利亚市场的门户"
+    "title": "自信进入澳大利亚市场",
+    "subtitle": "战略指导和本地专业知识，加速您的业务扩展到澳大利亚1.9万亿美元的经济",
+    "badge": "200多家国际公司信赖",
+    "stats": {
+      "successRate": "成功率",
+      "marketEntry": "平均市场进入",
+      "revenue": "平均第一年收入"
+    },
+    "buttons": {
+      "getStrategy": "获取您的2025年策略",
+      "exploreServices": "探索服务"
+    },
+    "trustText": "受到来自以下地区公司的信赖：",
+    "trustLogos": {
+      "siliconValley": "硅谷",
+      "singapore": "新加坡",
+      "dubai": "迪拜",
+      "berlin": "柏林"
+    }
+  },
+  "whyAustralia": {
+    "title": "为什么选择澳大利亚？为什么是现在？",
+    "subtitle": "澳大利亚是世界上最稳定和最有利可图的国际扩张市场之一",
+    "economy": {
+      "title": "1.9万亿美元经济",
+      "description": "全球第14大经济体，GDP强劲增长，政治稳定"
+    },
+    "gateway": {
+      "title": "亚太地区门户",
+      "description": "连接西方企业与增长最快经济区域的战略位置"
+    },
+    "innovation": {
+      "title": "创新中心",
+      "description": "世界级基础设施、熟练劳动力和政府创新支持"
+    }
+  },
+  "caseStudy": {
+    "title": "成功案例",
+    "subtitle": "看看我们如何帮助像您一样的公司在澳大利亚取得成功",
+    "featured": {
+      "quote": "Enter Australia指导我们完成了澳大利亚市场进入的每一个步骤。他们的战略方法和本地连接帮助我们比预期更快地建立了业务。",
+      "author": "萨拉·陈，TechGrowth Solutions首席执行官",
+      "revenueGrowth": "收入增长",
+      "timeToMarket": "市场进入时间"
+    },
+    "fintech": {
+      "title": "金融科技扩展",
+      "description": "在市场进入8个月内获得500万美元澳大利亚资金",
+      "tags": {
+        "financial": "金融服务",
+        "seriesA": "A轮"
+      }
+    },
+    "govtech": {
+      "title": "政府科技先锋",
+      "description": "与新南威尔士州政府签订价值210万美元的首个国际合同",
+      "tags": {
+        "government": "政府",
+        "b2g": "B2G"
+      }
+    },
+    "readMore": "阅读所有成功案例"
+  },
+  "solutions": {
+    "title": "为您的行业量身定制的解决方案",
+    "subtitle": "针对每个技术垂直领域的定制化市场进入策略",
+    "marketEntry": {
+      "title": "市场进入",
+      "description": "在澳大利亚启动——零猜测，零官僚主义。30天内获得法律、运营和战略市场准备。"
+    },
+    "govtech": {
+      "title": "政府科技采购",
+      "description": "赢得政府合同——不再有80%的拒绝率。提交合规、有说服力的投标，将您的入围率提高30%。"
+    },
+    "partnerships": {
+      "title": "本地合作伙伴关系",
+      "description": "扩大您的影响力——与澳大利亚顶级渠道合作。建立加速销售周期的联合销售交易和经销商网络。"
+    },
+    "compliance": {
+      "title": "合规性和法规",
+      "description": "保持审计就绪——无意外，无罚款。60天内在网络安全、数据、出口管制等方面达到完全监管态势。"
+    },
+    "grants": {
+      "title": "补助金和激励措施",
+      "description": "为您的扩张提供资金——解锁非稀释性资本。导航超过50亿澳元的补助金、研发税收抵免和州政府回扣。"
+    },
+    "learnMore": "了解更多",
+    "notSure": {
+      "title": "不确定哪种解决方案适合您？",
+      "subtitle": "预约免费咨询，我们的专家将指导您了解各种选择。",
+      "button": "预约免费咨询"
+    }
+  },
+  "footerCta": {
+    "title": "准备进入澳大利亚市场了吗？",
+    "subtitle": "加入200多家选择Enter Australia作为市场进入合作伙伴的成功公司",
+    "urgency": "🔥 2025年第一季度队列名额有限",
+    "buttons": {
+      "getStrategy": "获取您的策略",
+      "schedule": "安排咨询"
+    },
+    "guarantee": "30天退款保证"
   },
   "regions": {
     "title": "本地洞察，全球规模",

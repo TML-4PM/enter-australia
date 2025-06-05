@@ -13,8 +13,108 @@
     "getStarted": "Get Started"
   },
   "hero": {
-    "title": "Enter Australia",
-    "subtitle": "Your gateway to the Australian market"
+    "title": "Enter the Australian Market with Confidence",
+    "subtitle": "Strategic guidance and local expertise to accelerate your business expansion into Australia's $1.9 trillion economy",
+    "badge": "Trusted by 200+ International Companies",
+    "stats": {
+      "successRate": "Success Rate",
+      "marketEntry": "Avg. Market Entry",
+      "revenue": "Avg. First Year Revenue"
+    },
+    "buttons": {
+      "getStrategy": "Get Your 2025 Strategy",
+      "exploreServices": "Explore Services"
+    },
+    "trustText": "Trusted by companies from:",
+    "trustLogos": {
+      "siliconValley": "Silicon Valley",
+      "singapore": "Singapore",
+      "dubai": "Dubai",
+      "berlin": "Berlin"
+    }
+  },
+  "whyAustralia": {
+    "title": "Why Australia? Why Now?",
+    "subtitle": "Australia represents one of the world's most stable and profitable markets for international expansion",
+    "economy": {
+      "title": "$1.9T Economy",
+      "description": "14th largest economy globally with strong GDP growth and political stability"
+    },
+    "gateway": {
+      "title": "Gateway to Asia-Pacific",
+      "description": "Strategic location connecting Western businesses to the fastest-growing economic region"
+    },
+    "innovation": {
+      "title": "Innovation Hub",
+      "description": "World-class infrastructure, skilled workforce, and government support for innovation"
+    }
+  },
+  "caseStudy": {
+    "title": "Success Stories",
+    "subtitle": "See how we've helped companies like yours succeed in Australia",
+    "featured": {
+      "quote": "Enter Australia guided us through every step of our Australian market entry. Their strategic approach and local connections helped us establish our presence faster than we ever expected.",
+      "author": "Sarah Chen, CEO of TechGrowth Solutions",
+      "revenueGrowth": "Revenue Growth",
+      "timeToMarket": "Time to Market"
+    },
+    "fintech": {
+      "title": "FinTech Scale-Up",
+      "description": "Secured $5M in Australian funding within 8 months of market entry",
+      "tags": {
+        "financial": "Financial Services",
+        "seriesA": "Series A"
+      }
+    },
+    "govtech": {
+      "title": "GovTech Pioneer",
+      "description": "First international contract worth $2.1M with NSW Government",
+      "tags": {
+        "government": "Government",
+        "b2g": "B2G"
+      }
+    },
+    "readMore": "Read all success stories"
+  },
+  "solutions": {
+    "title": "Tailored Solutions for Your Industry",
+    "subtitle": "Customized market-entry strategies for every technology vertical",
+    "marketEntry": {
+      "title": "Market Entry",
+      "description": "Launch in Australia—zero guesswork, zero red tape. Get legal, operational & strategic market readiness in 30 days."
+    },
+    "govtech": {
+      "title": "GovTech Procurement",
+      "description": "Win government contracts—no more 80% rejections. Submit compliant, compelling bids that boost your shortlist rate by 30%."
+    },
+    "partnerships": {
+      "title": "Local Partnerships",
+      "description": "Multiply your reach—partner with Australia's top channels. Build co-sell deals and reseller networks that accelerate your sales cycle."
+    },
+    "compliance": {
+      "title": "Compliance & Regulations",
+      "description": "Stay audit-ready—no surprises, no fines. Full regulatory posture in 60 days, across cybersecurity, data, export controls & more."
+    },
+    "grants": {
+      "title": "Grants & Incentives",
+      "description": "Fund your expansion—unlock non-dilutive capital. Navigate A$5 billion+ in grants, R&D tax offsets & state rebates."
+    },
+    "learnMore": "Learn more",
+    "notSure": {
+      "title": "Not sure which solution is right for you?",
+      "subtitle": "Book a free consultation and our experts will guide you through the options.",
+      "button": "Book a Free Consultation"
+    }
+  },
+  "footerCta": {
+    "title": "Ready to Enter the Australian Market?",
+    "subtitle": "Join 200+ successful companies who chose Enter Australia as their market entry partner",
+    "urgency": "🔥 Limited spots available for Q1 2025 cohort",
+    "buttons": {
+      "getStrategy": "Get Your Strategy",
+      "schedule": "Schedule Consultation"
+    },
+    "guarantee": "30-day money-back guarantee"
   },
   "regions": {
     "title": "Local Insights, Global Scale",

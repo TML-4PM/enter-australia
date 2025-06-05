@@ -1,10 +1,13 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { BarChart3, Building, RefreshCcw, Globe, Flag, Award, MapPin, Map, Check, ArrowRight, Zap, Shield } from 'lucide-react';
 import RegionalTeasersSection from './RegionalTeasersSection';
 
 const HomePage = ({ toggleLeadForm }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <section id="home" className="hero modern">
@@ -18,45 +21,45 @@ const HomePage = ({ toggleLeadForm }) => {
         <div className="hero-content modern">
           <div className="hero-badge modern">
             <Shield size={16} />
-            <span>Trusted by 200+ International Companies</span>
+            <span>{t('hero.badge')}</span>
           </div>
-          <h1>Enter the Australian Market with Confidence</h1>
+          <h1>{t('hero.title')}</h1>
           <p className="hero-subtitle">
-            Strategic guidance and local expertise to accelerate your business expansion into Australia's $1.9 trillion economy
+            {t('hero.subtitle')}
           </p>
           
           <div className="hero-stats modern">
             <div className="stat modern">
               <strong>95%</strong>
-              <span>Success Rate</span>
+              <span>{t('hero.stats.successRate')}</span>
             </div>
             <div className="stat modern">
-              <strong>6 Months</strong>
-              <span>Avg. Market Entry</span>
+              <strong>6 {t('common.months')}</strong>
+              <span>{t('hero.stats.marketEntry')}</span>
             </div>
             <div className="stat modern">
               <strong>$2.4M</strong>
-              <span>Avg. First Year Revenue</span>
+              <span>{t('hero.stats.revenue')}</span>
             </div>
           </div>
           
           <div className="hero-buttons modern">
             <button onClick={toggleLeadForm} className="btn primary large pulse">
-              Get Your 2025 Strategy
+              {t('hero.buttons.getStrategy')}
               <ArrowRight size={20} />
             </button>
             <Link to="/solutions" className="btn secondary large">
-              Explore Services
+              {t('hero.buttons.exploreServices')}
             </Link>
           </div>
           
           <div className="hero-trust-indicators modern">
-            <p>Trusted by companies from:</p>
+            <p>{t('hero.trustText')}</p>
             <div className="trust-logos modern">
-              <span>Silicon Valley</span>
-              <span>Singapore</span>
-              <span>Dubai</span>
-              <span>Berlin</span>
+              <span>{t('hero.trustLogos.siliconValley')}</span>
+              <span>{t('hero.trustLogos.singapore')}</span>
+              <span>{t('hero.trustLogos.dubai')}</span>
+              <span>{t('hero.trustLogos.berlin')}</span>
             </div>
           </div>
         </div>
@@ -65,9 +68,9 @@ const HomePage = ({ toggleLeadForm }) => {
       <section id="why-australia" className="modern-section">
         <div className="section-container">
           <div className="section-header">
-            <h2>Why Australia? Why Now?</h2>
+            <h2>{t('whyAustralia.title')}</h2>
             <p className="text-lead">
-              Australia represents one of the world's most stable and profitable markets for international expansion
+              {t('whyAustralia.subtitle')}
             </p>
           </div>
           
@@ -76,24 +79,24 @@ const HomePage = ({ toggleLeadForm }) => {
               <div className="feature-icon">
                 <BarChart3 size={24} />
               </div>
-              <h3>$1.9T Economy</h3>
-              <p>14th largest economy globally with strong GDP growth and political stability</p>
+              <h3>{t('whyAustralia.economy.title')}</h3>
+              <p>{t('whyAustralia.economy.description')}</p>
             </div>
             
             <div className="modern-card feature-card">
               <div className="feature-icon">
                 <Globe size={24} />
               </div>
-              <h3>Gateway to Asia-Pacific</h3>
-              <p>Strategic location connecting Western businesses to the fastest-growing economic region</p>
+              <h3>{t('whyAustralia.gateway.title')}</h3>
+              <p>{t('whyAustralia.gateway.description')}</p>
             </div>
             
             <div className="modern-card feature-card">
               <div className="feature-icon">
                 <Zap size={24} />
               </div>
-              <h3>Innovation Hub</h3>
-              <p>World-class infrastructure, skilled workforce, and government support for innovation</p>
+              <h3>{t('whyAustralia.innovation.title')}</h3>
+              <p>{t('whyAustralia.innovation.description')}</p>
             </div>
           </div>
         </div>
@@ -102,8 +105,8 @@ const HomePage = ({ toggleLeadForm }) => {
       <section id="case-study" className="case-study-section modern">
         <div className="section-container">
           <div className="section-header">
-            <h2>Success Stories</h2>
-            <p className="text-lead">See how we've helped companies like yours succeed in Australia</p>
+            <h2>{t('caseStudy.title')}</h2>
+            <p className="text-lead">{t('caseStudy.subtitle')}</p>
           </div>
           
           <div className="case-studies-grid modern">
@@ -116,44 +119,44 @@ const HomePage = ({ toggleLeadForm }) => {
               </div>
               <div className="case-study-content">
                 <blockquote>
-                  "Enter Australia guided us through every step of our Australian market entry. Their strategic approach and local connections helped us establish our presence faster than we ever expected."
-                  <cite>— Sarah Chen, CEO of TechGrowth Solutions</cite>
+                  "{t('caseStudy.featured.quote')}"
+                  <cite>— {t('caseStudy.featured.author')}</cite>
                 </blockquote>
                 <div className="case-study-metrics">
                   <div className="metric">
                     <strong>300%</strong>
-                    <span>Revenue Growth</span>
+                    <span>{t('caseStudy.featured.revenueGrowth')}</span>
                   </div>
                   <div className="metric">
-                    <strong>4 Months</strong>
-                    <span>Time to Market</span>
+                    <strong>4 {t('common.months')}</strong>
+                    <span>{t('caseStudy.featured.timeToMarket')}</span>
                   </div>
                 </div>
               </div>
             </div>
             
             <div className="modern-card case-study-card">
-              <h3>FinTech Scale-Up</h3>
-              <p>"Secured $5M in Australian funding within 8 months of market entry"</p>
+              <h3>{t('caseStudy.fintech.title')}</h3>
+              <p>"{t('caseStudy.fintech.description')}"</p>
               <div className="case-study-tags">
-                <span>Financial Services</span>
-                <span>Series A</span>
+                <span>{t('caseStudy.fintech.tags.financial')}</span>
+                <span>{t('caseStudy.fintech.tags.seriesA')}</span>
               </div>
             </div>
             
             <div className="modern-card case-study-card">
-              <h3>GovTech Pioneer</h3>
-              <p>"First international contract worth $2.1M with NSW Government"</p>
+              <h3>{t('caseStudy.govtech.title')}</h3>
+              <p>"{t('caseStudy.govtech.description')}"</p>
               <div className="case-study-tags">
-                <span>Government</span>
-                <span>B2G</span>
+                <span>{t('caseStudy.govtech.tags.government')}</span>
+                <span>{t('caseStudy.govtech.tags.b2g')}</span>
               </div>
             </div>
           </div>
           
           <div className="section-cta">
             <Link to="/partners" className="btn ghost">
-              Read all success stories
+              {t('caseStudy.readMore')}
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -168,23 +171,23 @@ const HomePage = ({ toggleLeadForm }) => {
             <div className="cta-icon">
               <Award size={48} />
             </div>
-            <h2>Ready to Enter the Australian Market?</h2>
-            <p>Join 200+ successful companies who chose Enter Australia as their market entry partner</p>
+            <h2>{t('footerCta.title')}</h2>
+            <p>{t('footerCta.subtitle')}</p>
             <div className="urgency-indicator">
-              <span>🔥 Limited spots available for Q1 2025 cohort</span>
+              <span>{t('footerCta.urgency')}</span>
             </div>
             <div className="cta-buttons">
               <button onClick={toggleLeadForm} className="btn accent large">
-                Get Your Strategy
+                {t('footerCta.buttons.getStrategy')}
                 <ArrowRight size={20} />
               </button>
               <Link to="/contact" className="btn ghost">
-                Schedule Consultation
+                {t('footerCta.buttons.schedule')}
               </Link>
             </div>
             <div className="guarantee">
               <Check size={16} />
-              <span>30-day money-back guarantee</span>
+              <span>{t('footerCta.guarantee')}</span>
             </div>
           </div>
         </div>

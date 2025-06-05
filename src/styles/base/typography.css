@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+Arabic:wght@300;400;500;700&family=Noto+Sans+Devanagari:wght@300;400;500;700&display=swap');
 
 /* Typography System */
 html {
@@ -8,13 +8,38 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-primary);
   background-color: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Default Language - English */
+[lang="en"] {
+  font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Arabic Language */
+[lang="ar"] {
+  font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
+}
+
+/* Chinese Language */
+[lang="zh"] {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Inter', sans-serif;
+}
+
+/* Korean Language */
+[lang="ko"] {
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Inter', sans-serif;
+}
+
+/* Hindi Language */
+[lang="hi"] {
+  font-family: 'Noto Sans Devanagari', 'Arial Unicode MS', 'Inter', sans-serif;
 }
 
 /* Headings */
@@ -25,6 +50,27 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.025em;
   color: var(--text-primary);
   margin: 0;
+}
+
+/* Language-specific heading adjustments */
+[lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  letter-spacing: 0;
+}
+
+[lang="zh"] h1, [lang="zh"] h2, [lang="zh"] h3, [lang="zh"] h4, [lang="zh"] h5, [lang="zh"] h6 {
+  font-family: 'Noto Sans SC', sans-serif;
+  letter-spacing: 0;
+}
+
+[lang="ko"] h1, [lang="ko"] h2, [lang="ko"] h3, [lang="ko"] h4, [lang="ko"] h5, [lang="ko"] h6 {
+  font-family: 'Noto Sans KR', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+[lang="hi"] h1, [lang="hi"] h2, [lang="hi"] h3, [lang="hi"] h4, [lang="hi"] h5, [lang="hi"] h6 {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  letter-spacing: 0;
 }
 
 h1 {
@@ -91,6 +137,15 @@ p {
 .font-extrabold { font-weight: 800; }
 .font-black { font-weight: 900; }
 
+/* Line height adjustments for non-Latin scripts */
+[lang="ar"] p, [lang="hi"] p {
+  line-height: 1.8;
+}
+
+[lang="zh"] p, [lang="ko"] p {
+  line-height: 1.7;
+}
+
 /* Responsive typography */
 @media (max-width: 768px) {
   h1 {
@@ -104,6 +159,10 @@ p {
   h3 {
     font-size: var(--font-size-2xl);
   }
+  
+  .text-lead {
+    font-size: var(--font-size-lg);
+  }
 }
 
 @media (max-width: 480px) {
@@ -113,5 +172,9 @@ p {
   
   h2 {
     font-size: var(--font-size-2xl);
+  }
+  
+  p, .text-lead {
+    font-size: var(--font-size-base);
   }
 }

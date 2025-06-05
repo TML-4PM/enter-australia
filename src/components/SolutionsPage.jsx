@@ -1,43 +1,46 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import '../styles/solutions.css';
 
 const SolutionsPage = () => {
+  const { t } = useTranslation();
+  
   // Solution cards data
   const solutions = [
     {
       id: 'market-entry',
-      title: 'Market Entry',
-      description: 'Launch in Australia—zero guesswork, zero red tape. Get legal, operational & strategic market readiness in 30 days.',
+      title: t('solutions.marketEntry.title'),
+      description: t('solutions.marketEntry.description'),
       icon: '🚀',
       link: '/solutions/market-entry'
     },
     {
       id: 'govtech',
-      title: 'GovTech Procurement',
-      description: 'Win government contracts—no more 80% rejections. Submit compliant, compelling bids that boost your shortlist rate by 30%.',
+      title: t('solutions.govtech.title'),
+      description: t('solutions.govtech.description'),
       icon: '🏛️',
       link: '/solutions/govtech'
     },
     {
       id: 'partnerships',
-      title: 'Local Partnerships',
-      description: 'Multiply your reach—partner with Australia\'s top channels. Build co-sell deals and reseller networks that accelerate your sales cycle.',
+      title: t('solutions.partnerships.title'),
+      description: t('solutions.partnerships.description'),
       icon: '🤝',
       link: '/solutions/partnerships'
     },
     {
       id: 'compliance',
-      title: 'Compliance & Regulations',
-      description: 'Stay audit-ready—no surprises, no fines. Full regulatory posture in 60 days, across cybersecurity, data, export controls & more.',
+      title: t('solutions.compliance.title'),
+      description: t('solutions.compliance.description'),
       icon: '📋',
       link: '/solutions/compliance'
     },
     {
       id: 'grants',
-      title: 'Grants & Incentives',
-      description: 'Fund your expansion—unlock non-dilutive capital. Navigate A$5 billion+ in grants, R&D tax offsets & state rebates.',
+      title: t('solutions.grants.title'),
+      description: t('solutions.grants.description'),
       icon: '💰',
       link: '/solutions/grants'
     }
@@ -46,8 +49,8 @@ const SolutionsPage = () => {
   return (
     <section id="solutions" className="solutions-page">
       <div className="solutions-hero">
-        <h1>Tailored Solutions for Your Industry</h1>
-        <p>Customized market-entry strategies for every technology vertical</p>
+        <h1>{t('solutions.title')}</h1>
+        <p>{t('solutions.subtitle')}</p>
       </div>
       
       <div className="solutions-cards">
@@ -57,16 +60,16 @@ const SolutionsPage = () => {
             <h3>{solution.title}</h3>
             <p>{solution.description}</p>
             <Link to={solution.link} className="solution-link">
-              Learn more <span className="arrow-icon">→</span>
+              {t('solutions.learnMore')} <span className="arrow-icon">→</span>
             </Link>
           </div>
         ))}
       </div>
       
       <div className="solutions-cta">
-        <h2>Not sure which solution is right for you?</h2>
-        <p>Book a free consultation and our experts will guide you through the options.</p>
-        <Link to="/contact" className="btn primary">Book a Free Consultation</Link>
+        <h2>{t('solutions.notSure.title')}</h2>
+        <p>{t('solutions.notSure.subtitle')}</p>
+        <Link to="/contact" className="btn primary">{t('solutions.notSure.button')}</Link>
       </div>
     </section>
   );

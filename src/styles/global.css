@@ -15,6 +15,8 @@
 @import './components/error-boundary.css';
 @import './components/form-validation.css';
 @import './components/alert-components.css';
+@import './components/language-switcher.css';
+@import './rtl.css';
 
 /* Import page styles */
 @import './home/index.css';
