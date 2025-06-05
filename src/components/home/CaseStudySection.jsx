@@ -42,20 +42,48 @@ const CaseStudySection = () => {
           </div>
           
           <div className="modern-card case-study-card">
-            <h3>{t('caseStudy.fintech.title')}</h3>
-            <p>"{t('caseStudy.fintech.description')}"</p>
-            <div className="case-study-tags">
-              <span>{t('caseStudy.fintech.tags.financial')}</span>
-              <span>{t('caseStudy.fintech.tags.seriesA')}</span>
+            <div className="case-study-image">
+              <img 
+                src="https://images.unsplash.com/photo-1496307653780-42ee777d4833?auto=format&fit=crop&w=400&q=80" 
+                alt="Financial technology building"
+              />
+            </div>
+            <div className="case-study-content">
+              <h3>{t('caseStudy.fintech.title')}</h3>
+              <p>"{t('caseStudy.fintech.description')}"</p>
+              <div className="case-study-metrics">
+                <div className="metric">
+                  <strong>$5M</strong>
+                  <span>Australian funding within 8 months</span>
+                </div>
+              </div>
+              <div className="case-study-tags">
+                <span>{t('caseStudy.fintech.tags.financial')}</span>
+                <span>{t('caseStudy.fintech.tags.seriesA')}</span>
+              </div>
             </div>
           </div>
           
           <div className="modern-card case-study-card">
-            <h3>{t('caseStudy.govtech.title')}</h3>
-            <p>"{t('caseStudy.govtech.description')}"</p>
-            <div className="case-study-tags">
-              <span>{t('caseStudy.govtech.tags.government')}</span>
-              <span>{t('caseStudy.govtech.tags.b2g')}</span>
+            <div className="case-study-image">
+              <img 
+                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=400&q=80" 
+                alt="Government technology display"
+              />
+            </div>
+            <div className="case-study-content">
+              <h3>{t('caseStudy.govtech.title')}</h3>
+              <p>"{t('caseStudy.govtech.description')}"</p>
+              <div className="case-study-metrics">
+                <div className="metric">
+                  <strong>$2.1M</strong>
+                  <span>contract with NSW Government</span>
+                </div>
+              </div>
+              <div className="case-study-tags">
+                <span>{t('caseStudy.govtech.tags.government')}</span>
+                <span>{t('caseStudy.govtech.tags.b2g')}</span>
+              </div>
             </div>
           </div>
         </div>
