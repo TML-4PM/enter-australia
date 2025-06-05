@@ -1,5 +1,5 @@
 
-@import '../components/simple-hero.css';
+@import '../components/hero-section.css';
 @import '../components/buttons.css';
 @import '../sections/why-australia.css';
 @import '../sections/core-services.css';
@@ -10,31 +10,32 @@
 
 /* Main home page styles - ensure everything loads properly */
 .modern-section {
-  padding: 4rem 0;
-  background: #ffffff;
+  padding: var(--spacing-3xl) 5%;
+  background: var(--white);
+  animation: fade-in 0.6s ease-out;
 }
 
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--spacing-lg);
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-3xl);
 }
 
 .section-header h2 {
-  font-size: 2.5rem;
+  font-size: var(--font-size-4xl);
   font-weight: 800;
-  color: #1f2937;
-  margin-bottom: 1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
 }
 
 .text-lead {
-  font-size: 1.25rem;
-  color: #6b7280;
+  font-size: var(--font-size-xl);
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -43,44 +44,91 @@
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  gap: var(--spacing-2xl);
+  margin-top: var(--spacing-3xl);
 }
 
 .modern-card {
-  background: #ffffff;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
-  transition: all 0.3s ease;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+  transition: var(--transition-slow);
 }
 
 .modern-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
 .feature-card .feature-icon {
   width: 3rem;
   height: 3rem;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+  border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
-  color: white;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-light);
+  transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1);
 }
 
 .feature-card h3 {
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
   font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
 }
 
 .feature-card p {
-  color: #6b7280;
+  color: var(--text-secondary);
   line-height: 1.6;
+}
+
+/* Animation keyframes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive typography improvements */
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .text-lead {
+    font-size: var(--font-size-lg);
+  }
+  
+  .section-container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 576px) {
+  .section-header h2 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .text-lead {
+    font-size: var(--font-size-base);
+  }
 }

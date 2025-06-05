@@ -12,6 +12,7 @@
 
 /* Import utilities */
 @import './utilities/common-utilities.css';
+@import './utilities/accessibility.css';
 
 /* Import enhanced component styles */
 @import './components/error-boundary.css';
