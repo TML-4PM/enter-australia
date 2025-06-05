@@ -1,0 +1,7 @@
+
+/* Core style imports */
+@import './index.css';
+@import '../rtl.css';
+@import '../components/index.css';
+@import '../header.css';
+@import '../footer.css';

@@ -1,0 +1,116 @@
+
+/* Error Boundary Styles */
+.error-boundary {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 5%;
+  background-color: #f9fafb;
+}
+
+.error-boundary-container {
+  text-align: center;
+  max-width: 600px;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.error-icon {
+  color: #ef4444;
+  margin-bottom: 1.5rem;
+}
+
+.error-boundary-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+}
+
+.error-boundary-content p {
+  font-size: 1.1rem;
+  color: var(--gray-dark);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.error-actions .btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.error-actions .btn.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.error-actions .btn.primary:hover {
+  background-color: var(--secondary-color);
+}
+
+.error-actions .btn.secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.error-actions .btn.secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.error-details {
+  text-align: left;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 5px;
+  border: 1px solid #e5e7eb;
+}
+
+.error-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.error-details pre {
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0.5rem 0;
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .error-boundary-container {
+    padding: 2rem;
+  }
+  
+  .error-boundary-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
