@@ -11,7 +11,7 @@ const HeroSection = ({ toggleLeadForm }) => {
     <section className="simple-hero">
       <div className="hero-background">
         <img 
-          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80" 
+          src="https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?auto=format&fit=crop&w=1920&q=80" 
           alt="Sydney Harbour Bridge, Australia"
           className="hero-image"
         />
