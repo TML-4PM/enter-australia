@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ErrorBoundary from '../ErrorBoundary';
@@ -28,6 +27,7 @@ import ProfilePage from '../ProfilePage';
 import PreDeploymentCheck from '../PreDeploymentCheck';
 import DataApisPage from '../DataApisPage';
 import NotFoundPage from '../NotFoundPage';
+import ToolsPage from '../ToolsPage';
 
 // Legal pages
 import PrivacyPolicyPage from '../legal/PrivacyPolicyPage';
@@ -60,6 +60,9 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
               handleFormSubmit={handleFormSubmit} 
             />
           } />
+          
+          {/* NEW: Interactive tools page */}
+          <Route path="/tools" element={<ToolsPage />} />
           
           {/* Content and information pages */}
           <Route path="/blog" element={<BlogPage />} />

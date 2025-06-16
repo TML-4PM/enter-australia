@@ -1,4 +1,3 @@
-
 /**
  * Utility functions for tracking analytics events
  */
@@ -20,11 +19,96 @@ export const initializeAnalytics = () => {
   // Make gtag available globally
   window.gtag = gtag;
   
+  // Initialize enhanced analytics tracking
+  initializeEnhancedTracking();
+  
   // Run notification blocker after analytics loads
   runNotificationBlocker();
   
   // Initialize AI analytics
   initializeAIAnalytics();
+};
+
+// NEW: Initialize enhanced tracking features
+const initializeEnhancedTracking = () => {
+  // Import enhanced analytics utilities
+  try {
+    const { initializeSessionTracking } = require('./enhancedAnalyticsUtils');
+    initializeSessionTracking();
+  } catch (error) {
+    console.log('Enhanced analytics utilities not available');
+  }
+  
+  // Set up conversion funnel tracking
+  setupConversionTracking();
+  
+  // Initialize heat mapping event listeners
+  setupHeatmapTracking();
+};
+
+// NEW: Setup conversion funnel tracking
+const setupConversionTracking = () => {
+  // Track page views with enhanced data
+  const originalPushState = history.pushState;
+  history.pushState = function() {
+    originalPushState.apply(history, arguments);
+    setTimeout(() => {
+      trackEnhancedPageView();
+    }, 100);
+  };
+  
+  // Track initial page load
+  trackEnhancedPageView();
+};
+
+// NEW: Enhanced page view tracking
+const trackEnhancedPageView = () => {
+  if (window.gtag) {
+    window.gtag('event', 'enhanced_page_view', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      custom_parameters: {
+        user_agent: navigator.userAgent,
+        screen_resolution: `${window.screen.width}x${window.screen.height}`,
+        viewport_size: `${window.innerWidth}x${window.innerHeight}`,
+        referrer: document.referrer
+      }
+    });
+  }
+};
+
+// NEW: Setup heatmap and user interaction tracking
+const setupHeatmapTracking = () => {
+  // Track scroll depth
+  let maxScrollDepth = 0;
+  window.addEventListener('scroll', () => {
+    const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    if (scrollDepth > maxScrollDepth && scrollDepth % 25 === 0) {
+      maxScrollDepth = scrollDepth;
+      if (window.gtag) {
+        window.gtag('event', 'scroll_depth', {
+          event_category: 'Engagement',
+          event_label: `${scrollDepth}%`,
+          value: scrollDepth
+        });
+      }
+    }
+  });
+  
+  // Track time on page milestones
+  const timeOnPageMilestones = [30, 60, 120, 300]; // seconds
+  timeOnPageMilestones.forEach(seconds => {
+    setTimeout(() => {
+      if (window.gtag) {
+        window.gtag('event', 'time_on_page', {
+          event_category: 'Engagement',
+          event_label: `${seconds}s`,
+          value: seconds
+        });
+      }
+    }, seconds * 1000);
+  });
 };
 
 // Initialize AI-specific analytics
