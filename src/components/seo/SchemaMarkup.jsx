@@ -1,6 +1,5 @@
 
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 
 const SchemaMarkup = ({ type, data }) => {
   const generateSchema = () => {
@@ -140,13 +139,30 @@ const SchemaMarkup = ({ type, data }) => {
     }
   };
 
-  return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(generateSchema())}
-      </script>
-    </Helmet>
-  );
+  useEffect(() => {
+    const schema = generateSchema();
+    const scriptId = `schema-${type}-${Date.now()}`;
+    
+    // Create script element
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = scriptId;
+    script.textContent = JSON.stringify(schema);
+    
+    // Add to head
+    document.head.appendChild(script);
+    
+    // Cleanup function to remove script when component unmounts
+    return () => {
+      const existingScript = document.getElementById(scriptId);
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, [type, data]);
+
+  // This component doesn't render anything visible
+  return null;
 };
 
 export default SchemaMarkup;
