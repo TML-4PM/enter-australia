@@ -4,48 +4,43 @@ import idExchangeLogo from '../../../assets/id-exchange-logo.jpg';
 
 const PartnershipLogos = () => {
   return (
-    <div className="mb-8">
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 p-6 rounded-2xl modern-glass-card" style={{ 
-        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8))',
-        boxShadow: 'var(--shadow-lg)'
-      }}>
-        <div className="text-center mb-4 sm:mb-0">
-          <p className="text-sm font-medium mb-3" style={{ color: 'var(--text-secondary)' }}>
-            Strategic Intelligence Partners
-          </p>
-        </div>
+    <footer className="mt-16 pt-8 border-t" style={{ borderColor: 'var(--gray-200)' }}>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 py-6">
+        <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
+          In partnership with
+        </span>
         
-        <div className="flex flex-col sm:flex-row items-center gap-6">
+        <div className="flex items-center gap-6">
           <a 
             href="https://austarab.com.au/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group transition-all duration-300 hover:scale-105"
+            className="group transition-all duration-300 hover:opacity-80"
           >
             <img 
               src={aacciLogo} 
               alt="AACCI - Australian Arab Chamber of Commerce and Industry" 
-              className="h-12 w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
+              className="h-8 w-auto object-contain opacity-70 group-hover:opacity-90 transition-all duration-300"
             />
           </a>
           
-          <div className="w-px h-8 hidden sm:block" style={{ backgroundColor: 'var(--gray-300)' }}></div>
+          <div className="w-px h-6" style={{ backgroundColor: 'var(--gray-300)' }}></div>
           
           <a 
             href="https://idexchange.me/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group transition-all duration-300 hover:scale-105"
+            className="group transition-all duration-300 hover:opacity-80"
           >
             <img 
               src={idExchangeLogo} 
               alt="ID Exchange - Strategic Intelligence Platform" 
-              className="h-12 w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
+              className="h-8 w-auto object-contain opacity-70 group-hover:opacity-90 transition-all duration-300"
             />
           </a>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

@@ -109,8 +109,6 @@ const CountryDashboard = () => {
           </div>
         </div>
 
-        {/* Partnership Logos */}
-        <PartnershipLogos />
 
         {/* Enhanced Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -261,6 +259,9 @@ const CountryDashboard = () => {
             </div>
           </div>
         )}
+
+        {/* Partnership Footer */}
+        <PartnershipLogos />
       </div>
     </div>
   );
