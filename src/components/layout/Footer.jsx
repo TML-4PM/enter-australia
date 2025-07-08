@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 import { saveEmailSubscription } from '../../utils/subscriptionUtils';
+import aacciLogo from '../../assets/aacci-logo.png';
+import idExchangeLogo from '../../assets/id-exchange-logo.jpg';
 
 const Footer = () => {
   const [emailSubscription, setEmailSubscription] = useState('');
@@ -125,6 +127,44 @@ const Footer = () => {
       </div>
       
       <div className="footer-bottom">
+        <div className="partnership-section">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 py-4 border-b" style={{ borderColor: 'var(--gray-200)' }}>
+            <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
+              In partnership with
+            </span>
+            
+            <div className="flex items-center gap-6">
+              <a 
+                href="https://austarab.com.au/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group transition-all duration-300 hover:opacity-80"
+              >
+                <img 
+                  src={aacciLogo} 
+                  alt="AACCI - Australian Arab Chamber of Commerce and Industry" 
+                  className="h-6 w-auto object-contain opacity-70 group-hover:opacity-90 transition-all duration-300"
+                />
+              </a>
+              
+              <div className="w-px h-4" style={{ backgroundColor: 'var(--gray-300)' }}></div>
+              
+              <a 
+                href="https://idexchange.me/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group transition-all duration-300 hover:opacity-80"
+              >
+                <img 
+                  src={idExchangeLogo} 
+                  alt="ID Exchange - Strategic Intelligence Platform" 
+                  className="h-6 w-auto object-contain opacity-70 group-hover:opacity-90 transition-all duration-300"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        
         <div className="copyright">
           <p>© 2025 Enter Australia. All rights reserved. | enteraustralia.tech</p>
         </div>
