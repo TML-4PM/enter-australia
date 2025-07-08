@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Globe, MapPin, Users, TrendingUp } from 'lucide-react';
+import { Globe, MapPin, Users, TrendingUp, BarChart3 } from 'lucide-react';
 
 const RegionsHub = () => {
   const navigate = useNavigate();
@@ -55,6 +55,20 @@ const RegionsHub = () => {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Global Strategic Intelligence</h1>
         <p className="text-gray-600">Regional market entry and partnership platforms</p>
+      </div>
+
+      {/* Central Reporting Button */}
+      <div className="mb-8">
+        <button 
+          onClick={() => navigate('/regions/central-reporting')}
+          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all"
+        >
+          <div className="flex items-center justify-center mb-2">
+            <BarChart3 className="w-8 h-8 mr-3" />
+            <h2 className="text-xl font-bold">Central Intelligence Dashboard</h2>
+          </div>
+          <p className="text-blue-100">Cross-regional analytics, strategic insights, and global market intelligence</p>
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

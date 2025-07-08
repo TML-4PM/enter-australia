@@ -14,6 +14,7 @@ import PartnersPage from '../partners/PartnersPage';
 import RegionsHub from '../regions/RegionsHub';
 import MiddleEastHub from '../regions/middle-east/MiddleEastHub';
 import CountryDashboard from '../regions/middle-east/CountryDashboard';
+import CentralReportingDashboard from '../regions/CentralReportingDashboard';
 import ResourcesPage from '../ResourcesPage';
 import FAQPage from '../FAQPage';
 import AboutPage from '../AboutPage';
@@ -86,6 +87,7 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
           {/* Partners and regions */}
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/regions" element={<RegionsHub />} />
+          <Route path="/regions/central-reporting" element={<CentralReportingDashboard />} />
           <Route path="/regions/middle-east" element={<MiddleEastHub />} />
           <Route path="/regions/middle-east/:countrySlug" element={<CountryDashboard />} />
           <Route path="/regions/middle-east/:countrySlug/private/:customerId" element={<CountryDashboard />} />
