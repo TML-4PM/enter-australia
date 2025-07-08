@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Lock, User, Building, DollarSign, Users, MapPin } from 'lucide-react';
 import StrategicNavigator from './StrategicNavigator';
+import PartnershipLogos from './PartnershipLogos';
 import { countries } from '../../../data/regions/middle-east/countries.json';
 
 const CountryDashboard = () => {
@@ -107,6 +108,9 @@ const CountryDashboard = () => {
             </div>
           </div>
         </div>
+
+        {/* Partnership Logos */}
+        <PartnershipLogos />
 
         {/* Enhanced Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">

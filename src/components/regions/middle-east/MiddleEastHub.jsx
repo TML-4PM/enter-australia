@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, MapPin, Users, DollarSign, ArrowLeft } from 'lucide-react';
 import { countries } from '../../../data/regions/middle-east/countries.json';
+import PartnershipLogos from './PartnershipLogos';
 
 const MiddleEastHub = () => {
   const navigate = useNavigate();
@@ -66,6 +67,9 @@ const MiddleEastHub = () => {
             Navigate strategic partnerships across 22 Middle Eastern countries with comprehensive market intelligence and data-driven insights.
           </p>
         </div>
+
+        {/* Partnership Logos */}
+        <PartnershipLogos />
 
         {/* Enhanced Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
