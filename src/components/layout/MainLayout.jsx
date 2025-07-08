@@ -15,6 +15,9 @@ import RegionsHub from '../regions/RegionsHub';
 import MiddleEastHub from '../regions/middle-east/MiddleEastHub';
 import CountryDashboard from '../regions/middle-east/CountryDashboard';
 import CentralReportingDashboard from '../regions/CentralReportingDashboard';
+import AACCIDashboard from '../regions/AACCIDashboard';
+import Tech4HumanityDashboard from '../regions/Tech4HumanityDashboard';
+import CountryReportPage from '../regions/CountryReportPage';
 import ResourcesPage from '../ResourcesPage';
 import FAQPage from '../FAQPage';
 import AboutPage from '../AboutPage';
@@ -88,6 +91,9 @@ const MainLayout = ({ showLeadForm, toggleLeadForm, handleFormSubmit }) => {
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/regions" element={<RegionsHub />} />
           <Route path="/regions/central-reporting" element={<CentralReportingDashboard />} />
+          <Route path="/regions/aacci-dashboard" element={<AACCIDashboard />} />
+          <Route path="/regions/tech4humanity-dashboard" element={<Tech4HumanityDashboard />} />
+          <Route path="/regions/country-report/:countrySlug" element={<CountryReportPage />} />
           <Route path="/regions/middle-east" element={<MiddleEastHub />} />
           <Route path="/regions/middle-east/:countrySlug" element={<CountryDashboard />} />
           <Route path="/regions/middle-east/:countrySlug/private/:customerId" element={<CountryDashboard />} />

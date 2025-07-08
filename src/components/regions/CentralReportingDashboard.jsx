@@ -214,46 +214,77 @@ const CentralReportingDashboard = () => {
               .sort((a, b) => parseFloat(b.gdp.replace(/[$B]/g, '')) - parseFloat(a.gdp.replace(/[$B]/g, '')))
               .slice(0, 5)
               .map((country, idx) => (
-                <TopCountryCard key={country.id} country={country} rank={idx + 1} />
+                <TopCountryCard 
+                  key={country.id} 
+                  country={country} 
+                  rank={idx + 1}
+                  onClick={() => navigate(`/regions/country-report/${country.slug}`)}
+                />
               ))}
           </div>
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
           <div 
-            className="group bg-gradient-to-br from-blue-500/10 via-blue-600/5 to-blue-700/10 p-8 rounded-3xl border border-blue-200/50 cursor-pointer hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
+            className="group bg-gradient-to-br from-blue-500/10 via-blue-600/5 to-blue-700/10 p-6 rounded-2xl border border-blue-200/50 cursor-pointer hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
             onClick={() => navigate('/regions/middle-east')}
           >
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
-                <MapPin className="w-6 h-6 text-white" />
+            <div className="flex items-center mb-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
+                <MapPin className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-blue-900">Explore Middle East</h3>
+              <h3 className="text-lg font-bold text-blue-900">Country Explorer</h3>
             </div>
-            <p className="text-blue-700 leading-relaxed">Access individual country strategic navigators and detailed market analysis</p>
+            <p className="text-blue-700 text-sm leading-relaxed">Navigate individual country strategic intelligence</p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500/10 via-purple-600/5 to-purple-700/10 p-8 rounded-3xl border border-purple-200/50">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
-                <BarChart3 className="w-6 h-6 text-white" />
+          <div 
+            className="group bg-gradient-to-br from-green-500/10 via-green-600/5 to-green-700/10 p-6 rounded-2xl border border-green-200/50 cursor-pointer hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+            onClick={() => navigate('/regions/aacci-dashboard')}
+          >
+            <div className="flex items-center mb-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-3">
+                <Users className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-purple-900">Advanced Analytics</h3>
+              <h3 className="text-lg font-bold text-green-900">AACCI Dashboard</h3>
             </div>
-            <p className="text-purple-700 leading-relaxed mb-4">Cross-country comparisons, market modeling, and predictive insights</p>
-            <div className="inline-block text-xs text-purple-700 bg-purple-200/80 px-3 py-1 rounded-full font-medium">Coming Soon</div>
+            <p className="text-green-700 text-sm leading-relaxed">Arab-Australian Chamber commerce intelligence</p>
           </div>
 
-          <div className="bg-gradient-to-br from-emerald-500/10 via-emerald-600/5 to-emerald-700/10 p-8 rounded-3xl border border-emerald-200/50">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center mr-4">
-                <Users className="w-6 h-6 text-white" />
+          <div 
+            className="group bg-gradient-to-br from-purple-500/10 via-purple-600/5 to-purple-700/10 p-6 rounded-2xl border border-purple-200/50 cursor-pointer hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+            onClick={() => navigate('/regions/tech4humanity-dashboard')}
+          >
+            <div className="flex items-center mb-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                <BarChart3 className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-emerald-900">Customer Portal</h3>
+              <h3 className="text-lg font-bold text-purple-900">Tech4Humanity</h3>
             </div>
-            <p className="text-emerald-700 leading-relaxed mb-4">Access private dashboards and customized strategic intelligence</p>
-            <div className="inline-block text-xs text-emerald-700 bg-emerald-200/80 px-3 py-1 rounded-full font-medium">Private Access</div>
+            <p className="text-purple-700 text-sm leading-relaxed">Technology impact and transformation metrics</p>
+          </div>
+
+          <div className="bg-gradient-to-br from-orange-500/10 via-orange-600/5 to-orange-700/10 p-6 rounded-2xl border border-orange-200/50">
+            <div className="flex items-center mb-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center mr-3">
+                <TrendingUp className="w-5 h-5 text-white" />
+              </div>
+              <h3 className="text-lg font-bold text-orange-900">Advanced Analytics</h3>
+            </div>
+            <p className="text-orange-700 text-sm leading-relaxed mb-3">Predictive modeling and market forecasting</p>
+            <div className="inline-block text-xs text-orange-700 bg-orange-200/80 px-2 py-1 rounded-full font-medium">Coming Soon</div>
+          </div>
+
+          <div className="bg-gradient-to-br from-teal-500/10 via-teal-600/5 to-teal-700/10 p-6 rounded-2xl border border-teal-200/50">
+            <div className="flex items-center mb-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center mr-3">
+                <Globe className="w-5 h-5 text-white" />
+              </div>
+              <h3 className="text-lg font-bold text-teal-900">Global Insights</h3>
+            </div>
+            <p className="text-teal-700 text-sm leading-relaxed mb-3">International benchmarking and comparisons</p>
+            <div className="inline-block text-xs text-teal-700 bg-teal-200/80 px-2 py-1 rounded-full font-medium">Beta Access</div>
           </div>
         </div>
       </div>

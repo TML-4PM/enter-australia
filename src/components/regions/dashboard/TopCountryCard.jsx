@@ -1,13 +1,21 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const TopCountryCard = ({ country, rank }) => {
+const TopCountryCard = ({ country, rank, onClick }) => {
   const navigate = useNavigate();
+  
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      navigate(`/regions/middle-east/${country.slug}`);
+    }
+  };
   
   return (
     <div 
       className="group bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-white/50 shadow-lg hover:shadow-xl cursor-pointer transition-all duration-300 hover:scale-105"
-      onClick={() => navigate(`/regions/middle-east/${country.slug}`)}
+      onClick={handleClick}
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
