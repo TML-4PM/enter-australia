@@ -9,99 +9,193 @@ const StrategicNavigator = ({ country, isPrivate = false, customer = null }) => 
   const [showTradeoffs, setShowTradeoffs] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
-  // Dynamic scenarios based on country data
-  const scenarios = [
-    {
-      id: 'conservative',
-      name: 'Heritage First',
-      description: `Focus on traditional knowledge preservation with minimal technology integration in ${country.name}`,
-      omanBenefit: 95,
-      australiaBenefit: 45,
-      politicalRisk: 20,
-      investment: '$15B',
-      timeline: '15 years',
-      pros: ['Low political risk', 'High cultural authenticity', 'Manageable investment'],
-      cons: ['Limited global impact', 'Lower revenue potential', 'Reduced Australian engagement'],
-      keyRisks: ['May not achieve economic transformation', 'Limited technology transfer']
-    },
-    {
-      id: 'balanced',
-      name: 'Heritage-Tech Balance',
-      description: `Strategic integration of technology with heritage preservation in ${country.name}`,
-      omanBenefit: 85,
-      australiaBenefit: 80,
-      politicalRisk: 45,
-      investment: '$45B',
-      timeline: '25 years',
-      pros: ['Balanced value creation', 'Sustainable approach', 'Strong partnership foundation'],
-      cons: ['Higher complexity', 'Longer timeline', 'Moderate political challenges'],
-      keyRisks: ['Technology integration challenges', 'Cultural preservation concerns']
-    },
-    {
-      id: 'aggressive',
-      name: 'Innovation Accelerator',
-      description: `Rapid technology deployment with heritage as foundation in ${country.name}`,
-      omanBenefit: 75,
-      australiaBenefit: 95,
-      politicalRisk: 75,
-      investment: '$75B',
-      timeline: '20 years',
-      pros: ['Maximum global impact', 'Fastest revenue generation', 'Technology leadership'],
-      cons: ['High political risk', 'Cultural authenticity concerns', 'Massive investment'],
-      keyRisks: ['Cultural backlash', 'Overextension', 'Dependency on Australia']
-    }
-  ];
+  // Generate country-specific scenarios based on category, priority, and market potential
+  const generateScenarios = () => {
+    const gdpValue = parseFloat(country.gdp.replace(/[$B]/g, ''));
+    const baseInvestment = Math.max(gdpValue * 0.1, 5); // 10% of GDP, minimum $5B
+    
+    // Adjust benefits based on country characteristics
+    const countryBenefit = country.marketPotential === 'Very High' ? 85 : 
+                          country.marketPotential === 'High' ? 75 : 
+                          country.marketPotential === 'Medium' ? 65 : 55;
+    
+    const australiaBenefit = country.priority === 'high' ? 85 :
+                            country.priority === 'medium' ? 65 : 45;
+    
+    const politicalRisk = country.status === 'active' ? 25 :
+                         country.status === 'developing' ? 45 : 65;
 
-  // Dynamic initiatives based on country opportunities
-  const getInitiatives = () => {
-    const baseInitiatives = [
-      {
-        id: 'primary',
-        name: country.opportunities[0] || 'Primary Initiative',
-        omanValue: { political: 85, economic: 70, cultural: 90 },
-        australiaValue: { political: 60, economic: 85, cultural: 40 },
-        complexity: 'High',
-        timeline: '5-7 years',
-        investment: '$8B',
-        tradeoffs: {
-          oman: [`High strategic value for ${country.name} but requires foreign technology`, 'Economic benefits take time to materialize'],
-          australia: ['Major technology export opportunity but limited direct benefits', 'Relevant expertise highly applicable']
-        },
-        criticalSuccess: ['Local stakeholder engagement', 'Regulatory framework development', 'Technology transfer protocols']
+    // Category-specific scenario names and approaches
+    const categoryScenarios = {
+      'gcc': {
+        conservative: 'Heritage Innovation',
+        balanced: 'Smart Heritage Cities',
+        aggressive: 'Tech Transformation'
       },
-      {
-        id: 'secondary',
-        name: country.opportunities[1] || 'Secondary Initiative',
-        omanValue: { political: 70, economic: 85, cultural: 75 },
-        australiaValue: { political: 80, economic: 90, cultural: 70 },
-        complexity: 'Medium',
-        timeline: '3-5 years',
-        investment: '$25B',
-        tradeoffs: {
-          oman: [`High revenue potential in ${country.name} but requires adaptation`, 'May require significant infrastructure'],
-          australia: ['Strong sector expertise application', 'Limited unique competitive advantage']
-        },
-        criticalSuccess: ['Market readiness assessment', 'Partnership structure', 'Local capacity building']
+      'levant': {
+        conservative: 'Reconstruction First',
+        balanced: 'Sustainable Development',
+        aggressive: 'Innovation Accelerator'
       },
+      'north-africa': {
+        conservative: 'Agricultural Focus',
+        balanced: 'Energy Transition',
+        aggressive: 'Industrial Revolution'
+      },
+      'other': {
+        conservative: 'Sector Specialization',
+        balanced: 'Strategic Integration',
+        aggressive: 'Global Hub Development'
+      }
+    };
+
+    const scenarios = categoryScenarios[country.category];
+
+    return [
       {
-        id: 'tertiary',
-        name: country.opportunities[2] || 'Innovation Cities',
-        omanValue: { political: 60, economic: 90, cultural: 80 },
-        australiaValue: { political: 50, economic: 70, cultural: 30 },
-        complexity: 'Very High',
+        id: 'conservative',
+        name: scenarios.conservative,
+        description: `Conservative approach focusing on ${country.name}'s core strengths with gradual modernization`,
+        countryBenefit: Math.min(countryBenefit + 15, 95),
+        australiaBenefit: australiaBenefit - 20,
+        politicalRisk: Math.max(politicalRisk - 20, 10),
+        investment: `$${(baseInvestment * 0.5).toFixed(0)}B`,
         timeline: '10-15 years',
-        investment: '$20B',
-        tradeoffs: {
-          oman: [`Massive economic transformation potential in ${country.name} but highest political risk`, 'Long-term commitment required'],
-          australia: ['Limited direct role except consulting', 'Technology export opportunities']
-        },
-        criticalSuccess: ['Government alignment', 'International standards', 'Sustainability framework']
+        pros: ['Low political risk', 'High local acceptance', 'Manageable investment', 'Cultural preservation'],
+        cons: ['Limited scalability', 'Slower revenue generation', 'Lower technology transfer'],
+        keyRisks: ['May not achieve transformation goals', 'Competitive disadvantage', 'Limited innovation']
+      },
+      {
+        id: 'balanced',
+        name: scenarios.balanced,
+        description: `Balanced approach integrating ${country.name}'s priorities with Australian expertise`,
+        countryBenefit: countryBenefit,
+        australiaBenefit: australiaBenefit,
+        politicalRisk: politicalRisk,
+        investment: `$${baseInvestment.toFixed(0)}B`,
+        timeline: '15-20 years',
+        pros: ['Sustainable growth', 'Balanced value creation', 'Strong partnership', 'Risk management'],
+        cons: ['Complex implementation', 'Longer timelines', 'Resource coordination'],
+        keyRisks: ['Implementation complexity', 'Stakeholder alignment', 'Market changes']
+      },
+      {
+        id: 'aggressive',
+        name: scenarios.aggressive,
+        description: `Accelerated development leveraging ${country.name}'s market potential for maximum impact`,
+        countryBenefit: Math.max(countryBenefit - 15, 50),
+        australiaBenefit: Math.min(australiaBenefit + 15, 95),
+        politicalRisk: Math.min(politicalRisk + 25, 85),
+        investment: `$${(baseInvestment * 2).toFixed(0)}B`,
+        timeline: '10-25 years',
+        pros: ['Maximum market impact', 'Rapid technology deployment', 'First-mover advantage', 'High returns'],
+        cons: ['High political risk', 'Massive investment', 'Cultural resistance', 'Implementation complexity'],
+        keyRisks: ['Political backlash', 'Overextension', 'Cultural disruption', 'Technology dependence']
       }
     ];
-    return baseInitiatives;
   };
 
-  const initiatives = getInitiatives();
+  const scenarios = generateScenarios();
+
+  // Generate country-specific initiatives based on opportunities and characteristics
+  const generateInitiatives = () => {
+    const gdpValue = parseFloat(country.gdp.replace(/[$B]/g, ''));
+    const baseInvestment = Math.max(gdpValue * 0.05, 2); // 5% of GDP for initiatives
+    
+    // Adjust values based on country characteristics
+    const countryPolitical = country.status === 'active' ? 80 : country.status === 'developing' ? 65 : 50;
+    const countryEconomic = country.marketPotential === 'Very High' ? 90 : 
+                           country.marketPotential === 'High' ? 80 : 
+                           country.marketPotential === 'Medium' ? 70 : 60;
+    const countryCultural = country.category === 'gcc' ? 85 : 
+                          country.category === 'levant' ? 70 : 
+                          country.category === 'north-africa' ? 75 : 80;
+
+    const australiaPolitical = country.priority === 'high' ? 75 : country.priority === 'medium' ? 60 : 45;
+    const australiaEconomic = country.priority === 'high' ? 85 : country.priority === 'medium' ? 70 : 55;
+    const australiaCultural = 50; // Baseline cultural value for Australia
+
+    // Generate initiatives from opportunities
+    const initiatives = country.opportunities.slice(0, 5).map((opportunity, index) => {
+      const complexityLevels = ['High', 'Medium', 'High', 'Very High', 'Medium'];
+      const timelines = ['5-7 years', '3-5 years', '7-10 years', '10-15 years', '4-6 years'];
+      
+      // Category-specific trade-offs
+      const getTradeoffs = (opportunity, category) => {
+        const categoryTradeoffs = {
+          'gcc': {
+            country: [`Strategic value for ${country.name}'s diversification goals`, 'Requires significant technology transfer', 'May challenge traditional approaches'],
+            australia: ['High-value technology export opportunity', 'Strong mining/energy sector alignment', 'Limited cultural connectivity']
+          },
+          'levant': {
+            country: [`Critical for ${country.name}'s reconstruction and development`, 'Requires substantial infrastructure investment', 'Political stability considerations'],
+            australia: ['Humanitarian and development expertise application', 'Limited direct economic returns', 'Strong educational/technical alignment']
+          },
+          'north-africa': {
+            country: [`Leverages ${country.name}'s geographic and resource advantages`, 'Requires modernization of traditional sectors', 'Environmental sustainability focus needed'],
+            australia: ['Natural resource expertise highly relevant', 'Agricultural and mining technology transfer', 'Moderate political risk exposure']
+          },
+          'other': {
+            country: [`Aligns with ${country.name}'s unique market position`, 'Requires specialized expertise and technology', 'Strategic partnership dependencies'],
+            australia: ['Niche market opportunities', 'Technology and services export potential', 'Variable risk-return profile']
+          }
+        };
+        return categoryTradeoffs[category] || categoryTradeoffs.other;
+      };
+
+      const tradeoffs = getTradeoffs(opportunity, country.category);
+
+      return {
+        id: `initiative-${index}`,
+        name: opportunity,
+        countryValue: { 
+          political: countryPolitical + (index === 0 ? 5 : index === 1 ? 0 : -5), 
+          economic: countryEconomic + (index <= 1 ? 5 : 0), 
+          cultural: countryCultural - (index * 5) 
+        },
+        australiaValue: { 
+          political: australiaPolitical - (index * 5), 
+          economic: australiaEconomic + (index === 1 ? 10 : 0), 
+          cultural: australiaCultural 
+        },
+        complexity: complexityLevels[index] || 'Medium',
+        timeline: timelines[index] || '3-5 years',
+        investment: `$${(baseInvestment * (1 + index * 0.5)).toFixed(0)}B`,
+        tradeoffs: {
+          country: tradeoffs.country,
+          australia: tradeoffs.australia
+        },
+        criticalSuccess: [
+          `${country.name} government alignment and support`,
+          'Regulatory framework development',
+          'Technology transfer and capacity building',
+          'Local stakeholder engagement',
+          'Risk management and mitigation'
+        ].slice(0, 3 + index % 2)
+      };
+    });
+
+    // Ensure at least 3 initiatives
+    while (initiatives.length < 3) {
+      initiatives.push({
+        id: `initiative-${initiatives.length}`,
+        name: 'Strategic Development Initiative',
+        countryValue: { political: countryPolitical, economic: countryEconomic - 10, cultural: countryCultural },
+        australiaValue: { political: australiaPolitical - 10, economic: australiaEconomic - 10, cultural: australiaCultural },
+        complexity: 'Medium',
+        timeline: '5-8 years',
+        investment: `$${(baseInvestment * 2).toFixed(0)}B`,
+        tradeoffs: {
+          country: [`Development opportunity for ${country.name}`, 'Requires foreign partnership and expertise'],
+          australia: ['Technology and services export opportunity', 'Moderate risk-return profile']
+        },
+        criticalSuccess: ['Partnership framework', 'Local capacity building', 'Risk management']
+      });
+    }
+
+    return initiatives;
+  };
+
+  const initiatives = generateInitiatives();
 
   const implementationSteps = [
     {
@@ -160,7 +254,7 @@ const StrategicNavigator = ({ country, isPrivate = false, customer = null }) => 
         <div>
           <h5 className="font-medium text-green-700 mb-2">{country.name} Considerations</h5>
           <ul className="text-sm space-y-1">
-            {initiative.tradeoffs.oman.map((item, idx) => (
+            {initiative.tradeoffs.country.map((item, idx) => (
               <li key={idx} className="flex items-start">
                 <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
                 {item}
@@ -223,26 +317,29 @@ const StrategicNavigator = ({ country, isPrivate = false, customer = null }) => 
       {activeView === 'overview' && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <ValueCard title="Total Investment" value="$45B" color="text-green-600" icon={DollarSign} />
-            <ValueCard title="Timeline" value="25 years" color="text-blue-600" icon={Clock} />
-            <ValueCard title="Revenue Potential" value="$50B/year" color="text-purple-600" icon={TrendingUp} />
-            <ValueCard title="Global Impact" value="High" color="text-orange-600" icon={Globe} />
+            <ValueCard title="Total Investment" value={scenarios[1].investment} color="text-green-600" icon={DollarSign} />
+            <ValueCard title="Timeline" value={scenarios[1].timeline} color="text-blue-600" icon={Clock} />
+            <ValueCard title="Revenue Potential" value={`$${Math.round(parseFloat(country.gdp.replace(/[$B]/g, '')) * 0.6)}B/year`} color="text-purple-600" icon={TrendingUp} />
+            <ValueCard title="Market Potential" value={country.marketPotential} color="text-orange-600" icon={Globe} />
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <h2 className="text-xl font-bold mb-4">Strategic Choice Framework for {country.name}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600 mb-2">Heritage First</div>
-                <div className="text-sm text-gray-600">Low risk, authentic approach</div>
+                <div className="text-2xl font-bold text-green-600 mb-2">{scenarios[0].name}</div>
+                <div className="text-sm text-gray-600">Low risk, gradual approach</div>
+                <div className="text-xs text-green-700 mt-2">Investment: {scenarios[0].investment}</div>
               </div>
               <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600 mb-2">Balanced</div>
-                <div className="text-sm text-gray-600">Strategic integration</div>
+                <div className="text-2xl font-bold text-blue-600 mb-2">{scenarios[1].name}</div>
+                <div className="text-sm text-gray-600">Balanced integration</div>
+                <div className="text-xs text-blue-700 mt-2">Investment: {scenarios[1].investment}</div>
               </div>
               <div className="text-center p-4 bg-purple-50 rounded-lg">
-                <div className="text-2xl font-bold text-purple-600 mb-2">Innovation</div>
-                <div className="text-sm text-gray-600">High impact, high risk</div>
+                <div className="text-2xl font-bold text-purple-600 mb-2">{scenarios[2].name}</div>
+                <div className="text-sm text-gray-600">High impact, accelerated</div>
+                <div className="text-xs text-purple-700 mt-2">Investment: {scenarios[2].investment}</div>
               </div>
             </div>
           </div>
@@ -271,9 +368,9 @@ const StrategicNavigator = ({ country, isPrivate = false, customer = null }) => 
                   <div className="flex justify-between items-center">
                     <span className="text-sm">{country.name} Benefit</span>
                     <div className="flex-1 mx-3 bg-gray-200 rounded-full h-2">
-                      <div className="bg-green-500 h-2 rounded-full" style={{ width: `${scenario.omanBenefit}%` }}></div>
+                      <div className="bg-green-500 h-2 rounded-full" style={{ width: `${scenario.countryBenefit}%` }}></div>
                     </div>
-                    <span className="text-sm font-medium">{scenario.omanBenefit}%</span>
+                    <span className="text-sm font-medium">{scenario.countryBenefit}%</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm">Australia Benefit</span>
@@ -381,10 +478,10 @@ const StrategicNavigator = ({ country, isPrivate = false, customer = null }) => 
                   <div>
                     <div className="flex justify-between text-sm mb-1">
                       <span>{country.name} Value</span>
-                      <span>Political: {initiative.omanValue.political}% | Economic: {initiative.omanValue.economic}% | Cultural: {initiative.omanValue.cultural}%</span>
+                      <span>Political: {initiative.countryValue.political}% | Economic: {initiative.countryValue.economic}% | Cultural: {initiative.countryValue.cultural}%</span>
                     </div>
                     <div className="bg-gray-200 rounded-full h-2">
-                      <div className="bg-green-500 h-2 rounded-full" style={{ width: `${(initiative.omanValue.political + initiative.omanValue.economic + initiative.omanValue.cultural) / 3}%` }}></div>
+                      <div className="bg-green-500 h-2 rounded-full" style={{ width: `${(initiative.countryValue.political + initiative.countryValue.economic + initiative.countryValue.cultural) / 3}%` }}></div>
                     </div>
                   </div>
                   <div>
