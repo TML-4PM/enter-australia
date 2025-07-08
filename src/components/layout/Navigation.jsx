@@ -31,7 +31,7 @@ const Navigation = ({ isMenuOpen, toggleMenu, closeMenu }) => {
           </ul>
         </li>
         <li><Link to="/partners" onClick={closeMenu}>{t('nav.partners')}</Link></li>
-        <li><Link to="/regions" onClick={closeMenu}>Strategic Intelligence</Link></li>
+        <li><Link to="/regions" onClick={closeMenu}>Regions</Link></li>
         <li><Link to="/pricing" onClick={closeMenu}>{t('nav.pricing')}</Link></li>
         <li className="has-dropdown">
           <Link to="/resources" onClick={closeMenu}>{t('nav.resources')}</Link>
