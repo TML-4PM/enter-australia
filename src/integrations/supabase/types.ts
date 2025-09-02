@@ -3475,6 +3475,48 @@ export type Database = {
         }
         Relationships: []
       }
+      leads: {
+        Row: {
+          company: string | null
+          created_at: string
+          display_email: string | null
+          email: string
+          id: string
+          message: string | null
+          name: string
+          service: string | null
+          source: string | null
+          target_email: string
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          display_email?: string | null
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          service?: string | null
+          source?: string | null
+          target_email?: string
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          display_email?: string | null
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          service?: string | null
+          source?: string | null
+          target_email?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       life_stages: {
         Row: {
           created_at: string

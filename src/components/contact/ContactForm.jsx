@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { supabase } from '../../utils/supabaseClient';
+import { supabase } from '../../integrations/supabase/client';
 
 const ContactForm = () => {
   const { t } = useTranslation();
@@ -71,27 +71,39 @@ const ContactForm = () => {
     setFormStatus({ type: 'loading', message: t('contact.form.submitting') });
     
     try {
-      // Always use troy@tech4humanity.com.au as the recipient
-      // but store info@enteraustralia.tech as the target for display
-      const actualRecipientEmail = 'troy@tech4humanity.com.au';
-      const displayEmail = 'info@enteraustralia.tech';
-      
-      // Save to Supabase leads table with original user email for tracking
-      const { error } = await supabase
+      // Save to Supabase leads table first
+      const { data: leadData, error: leadError } = await supabase
         .from('leads')
         .insert({
           name: formState.name,
-          email: formState.email, // Store user's input for tracking
-          target_email: actualRecipientEmail, // Store actual recipient
-          display_email: displayEmail, // Store display email
+          email: formState.email,
           company: formState.company,
           service: formState.service,
           message: formState.message,
           source: 'contact_form'
-        });
+        })
+        .select()
+        .single();
         
-      if (error) {
-        throw new Error(error.message);
+      if (leadError) {
+        throw new Error(leadError.message);
+      }
+
+      // Send email notification via Edge Function
+      const { error: emailError } = await supabase.functions.invoke('contact-email', {
+        body: {
+          name: formState.name,
+          email: formState.email,
+          company: formState.company,
+          service: formState.service,
+          message: formState.message,
+          leadId: leadData.id
+        }
+      });
+
+      if (emailError) {
+        console.warn('Email sending failed, but lead was saved:', emailError);
+        // Don't throw error - lead was saved successfully
       }
       
       setFormStatus({ type: 'success', message: t('contact.status.success') });
