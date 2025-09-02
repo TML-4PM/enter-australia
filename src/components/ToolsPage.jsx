@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
-import { Calculator, BarChart, ArrowRight, Target } from 'lucide-react';
+import { Calculator, BarChart, ArrowRight, Target, DollarSign } from 'lucide-react';
 import ROICalculator from './tools/ROICalculator';
 import MarketSizingTool from './tools/MarketSizingTool';
+import PaymentsPlanner from './tools/PaymentsPlanner';
 
 const ToolsPage = () => {
   const [activeTab, setActiveTab] = useState('roi');
@@ -21,6 +22,13 @@ const ToolsPage = () => {
       description: 'Analyze your total addressable market and opportunity size in Australia',
       icon: BarChart,
       component: MarketSizingTool
+    },
+    {
+      id: 'payments-planner',
+      title: 'Startup Payments Planner',
+      description: 'Compare payment models and optimize cash flow for pre-revenue startups',
+      icon: DollarSign,
+      component: PaymentsPlanner
     }
   ];
 

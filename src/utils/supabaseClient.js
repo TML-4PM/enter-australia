@@ -171,3 +171,12 @@ export const getLastETLRun = async (source) => {
   
   return { data, error };
 };
+
+// Calculator results helpers
+export const saveCalculatorResult = async (calculatorData) => {
+  const { data, error } = await supabase
+    .from('calculator_results')
+    .insert([calculatorData]);
+  
+  return { data, error };
+};
