@@ -72,7 +72,7 @@ const ContactForm = () => {
     
     try {
       // Save to Supabase leads table first
-      const { data: leadData, error: leadError } = await supabase
+      const { error: leadError } = await supabase
         .from('leads')
         .insert({
           name: formState.name,
@@ -81,9 +81,7 @@ const ContactForm = () => {
           service: formState.service,
           message: formState.message,
           source: 'contact_form'
-        })
-        .select()
-        .single();
+        });
         
       if (leadError) {
         throw new Error(leadError.message);
@@ -96,8 +94,7 @@ const ContactForm = () => {
           email: formState.email,
           company: formState.company,
           service: formState.service,
-          message: formState.message,
-          leadId: leadData.id
+          message: formState.message
         }
       });
 
