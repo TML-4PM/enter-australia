@@ -2461,6 +2461,30 @@ export type Database = {
         }
         Relationships: []
       }
+      email_subscriptions: {
+        Row: {
+          created_at: string
+          email: string
+          source: string | null
+          subscribed_at: string
+          target_email: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          source?: string | null
+          subscribed_at?: string
+          target_email?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          source?: string | null
+          subscribed_at?: string
+          target_email?: string
+        }
+        Relationships: []
+      }
       family_agents: {
         Row: {
           achievement: string | null

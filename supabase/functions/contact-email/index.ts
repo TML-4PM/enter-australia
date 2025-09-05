@@ -1,7 +1,13 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.56.1";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+const supabase = createClient(
+  Deno.env.get("SUPABASE_URL") ?? "",
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -15,7 +21,6 @@ interface ContactEmailRequest {
   company: string;  
   service: string;
   message: string;
-  leadId: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -25,18 +30,56 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, company, service, message, leadId }: ContactEmailRequest = await req.json();
+    const { name, email, company, service, message }: ContactEmailRequest = await req.json();
+    const timestamp = new Date().toISOString();
+    
+    console.log("Processing contact form submission:", { name, email, company, service });
 
-    console.log("Sending contact email for lead:", leadId);
+    // 1. Save to email_subscriptions table
+    const { error: subscriptionError } = await supabase
+      .from('email_subscriptions')
+      .upsert({
+        email,
+        target_email: 'troy@tech4humanity.com.au',
+        source: 'contact_form',
+        subscribed_at: timestamp
+      }, { onConflict: 'email' });
 
-    // Send email to troy@tech4humanity.com.au
+    if (subscriptionError) {
+      console.error("Error saving to email_subscriptions:", subscriptionError);
+    }
+
+    // 2. Save full form data to storage as JSON file
+    const submissionData = {
+      name,
+      email,
+      company,
+      service,
+      message,
+      timestamp,
+      source: 'contact_form'
+    };
+
+    const fileName = `contact-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.json`;
+    
+    const { error: storageError } = await supabase.storage
+      .from('form-archives')
+      .upload(fileName, JSON.stringify(submissionData, null, 2), {
+        contentType: 'application/json'
+      });
+
+    if (storageError) {
+      console.error("Error saving to storage:", storageError);
+    }
+
+    // 3. Send email to troy@tech4humanity.com.au
     const emailResponse = await resend.emails.send({
       from: "Tech4Humanity Contact <onboarding@resend.dev>",
       to: ["troy@tech4humanity.com.au"],
       subject: `New ${service} inquiry from ${name} at ${company}`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Lead ID:</strong> ${leadId}</p>
+        <p><strong>Timestamp:</strong> ${timestamp}</p>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Company:</strong> ${company}</p>
@@ -45,13 +88,18 @@ const handler = async (req: Request): Promise<Response> => {
         <p>${message.replace(/\n/g, '<br>')}</p>
         
         <hr>
-        <p><em>Sent via Tech4Humanity contact form</em></p>
+        <p><em>Sent via Tech4Humanity contact form | Archived as ${fileName}</em></p>
       `,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    console.log("Form submission processed successfully:", { fileName, emailSent: !!emailResponse.id });
 
-    return new Response(JSON.stringify(emailResponse), {
+    return new Response(JSON.stringify({ 
+      success: true, 
+      emailResponse,
+      archived: !storageError,
+      fileName 
+    }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
