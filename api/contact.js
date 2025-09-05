@@ -14,8 +14,8 @@ export default function handler(req, res) {
     }
 
     // In a real application, you would send this data to your email service
-    // Always send to troy@tech4humanity.com.au regardless of what email was input
-    const actualRecipientEmail = 'troy@tech4humanity.com.au';
+    // Always send to troy@enteraustralia.tech regardless of what email was input
+    const actualRecipientEmail = 'troy@enteraustralia.tech';
     
     // Here you would have your email sending logic, using actualRecipientEmail
     // Example pseudocode:

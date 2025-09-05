@@ -33,7 +33,7 @@ serve(async (req) => {
     }
     
     // Always use Troy's email as the actual recipient
-    const actualRecipientEmail = 'troy@tech4humanity.com.au';
+    const actualRecipientEmail = 'troy@enteraustralia.tech';
     
     // Get Stripe secret key from environment
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");

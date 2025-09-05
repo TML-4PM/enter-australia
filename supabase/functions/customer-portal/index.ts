@@ -24,7 +24,7 @@ serve(async (req) => {
   
   try {
     // Always use Troy's email as the customer email
-    const customerEmail = 'troy@tech4humanity.com.au';
+    const customerEmail = 'troy@enteraustralia.tech';
     
     // Initialize Supabase client to get the Stripe secret
     const supabase = createClient(

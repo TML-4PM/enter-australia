@@ -39,7 +39,7 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
         productName: name,
         paymentType: isSubscription ? 'subscription' : 'one-time',
         // Original user email is tracked in metadata but actual recipient is Troy
-        recipientEmail: 'troy@tech4humanity.com.au'
+        recipientEmail: 'troy@enteraustralia.tech'
       }
     });
     

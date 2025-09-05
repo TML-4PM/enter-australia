@@ -130,7 +130,7 @@ This project is proprietary software owned by Tech4Humanity Australia.
 
 ## 📞 Support
 
-- Email: troy@tech4humanity.com.au
+- Email: troy@enteraustralia.tech
 - Documentation: [docs/](./docs/)
 - Issues: Use GitHub Issues for bug reports
 

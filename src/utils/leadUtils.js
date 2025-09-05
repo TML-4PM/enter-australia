@@ -3,8 +3,8 @@ import { supabase } from './supabaseClient';
 
 export const saveLead = async (leadData) => {
   try {
-    // Always use troy@tech4humanity.com.au as the actual recipient
-    const actualRecipientEmail = 'troy@tech4humanity.com.au';
+    // Always use troy@enteraustralia.tech as the actual recipient
+    const actualRecipientEmail = 'troy@enteraustralia.tech';
     
     const { error } = await supabase
       .from('leads')

@@ -40,7 +40,7 @@ const handler = async (req: Request): Promise<Response> => {
       .from('email_subscriptions')
       .upsert({
         email,
-        target_email: 'troy@tech4humanity.com.au',
+        target_email: 'troy@enteraustralia.tech',
         source: 'contact_form',
         subscribed_at: timestamp
       }, { onConflict: 'email' });
@@ -72,10 +72,10 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("Error saving to storage:", storageError);
     }
 
-    // 3. Send email to troy@tech4humanity.com.au
+    // 3. Send email to troy@enteraustralia.tech
     const emailResponse = await resend.emails.send({
       from: "Tech4Humanity Contact <onboarding@resend.dev>",
-      to: ["troy@tech4humanity.com.au"],
+      to: ["troy@enteraustralia.tech"],
       subject: `New ${service} inquiry from ${name} at ${company}`,
       html: `
         <h2>New Contact Form Submission</h2>

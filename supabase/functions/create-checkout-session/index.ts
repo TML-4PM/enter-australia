@@ -27,7 +27,7 @@ serve(async (req) => {
     const { priceId, productName, paymentType } = body;
     
     // Always use Troy's email regardless of user input
-    const actualRecipientEmail = 'troy@tech4humanity.com.au';
+    const actualRecipientEmail = 'troy@enteraustralia.tech';
     
     // Validate the price ID is one of the allowed values
     const validPriceIds = [

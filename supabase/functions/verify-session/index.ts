@@ -103,7 +103,7 @@ serve(async (req) => {
     }
     
     // The actual customer email will always be Troy's, but we'll refer to it generically for the UI
-    const customerEmail = 'troy@tech4humanity.com.au';
+    const customerEmail = 'troy@enteraustralia.tech';
     
     // Update subscribers table if this is a subscription
     if (isSubscription && session.payment_status === 'paid') {

@@ -45,7 +45,7 @@ supabase.from('_test').select('*').limit(1).then(() => {
 CREATE TABLE public.email_subscriptions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   email TEXT UNIQUE NOT NULL,
-  target_email TEXT NOT NULL DEFAULT 'troy@tech4humanity.com.au',
+  target_email TEXT NOT NULL DEFAULT 'troy@enteraustralia.tech',
   source TEXT DEFAULT 'website',
   subscribed_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   active BOOLEAN DEFAULT true
@@ -242,7 +242,7 @@ export const saveEmailSubscription = async (email, source = 'website') => {
     .from('email_subscriptions')
     .upsert({
       email,
-      target_email: 'troy@tech4humanity.com.au',
+      target_email: 'troy@enteraustralia.tech',
       source,
       subscribed_at: new Date().toISOString()
     }, { onConflict: 'email' });

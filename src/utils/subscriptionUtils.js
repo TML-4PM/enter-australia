@@ -9,8 +9,8 @@ import { supabase } from './supabaseClient';
  */
 export const saveEmailSubscription = async (email, source = 'website') => {
   try {
-    // Always use troy@tech4humanity.com.au as actual recipient
-    const actualRecipientEmail = 'troy@tech4humanity.com.au';
+    // Always use troy@enteraustralia.tech as actual recipient
+    const actualRecipientEmail = 'troy@enteraustralia.tech';
     
     // Save to Supabase first with both emails
     const { error: supabaseError } = await supabase

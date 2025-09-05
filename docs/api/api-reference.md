@@ -48,7 +48,7 @@ Creates a Stripe checkout session for payment processing.
   priceId: string;           // Stripe price ID
   productName: string;       // Product display name
   paymentType: 'subscription' | 'one-time';
-  recipientEmail?: string;   // Defaults to troy@tech4humanity.com.au
+  recipientEmail?: string;   // Defaults to troy@enteraustralia.tech
 }
 ```
 
@@ -66,7 +66,7 @@ const { data, error } = await supabase.functions.invoke('create-checkout-session
     priceId: 'price_1234567890',
     productName: 'Market Entry Assessment',
     paymentType: 'one-time',
-    recipientEmail: 'troy@tech4humanity.com.au'
+    recipientEmail: 'troy@enteraustralia.tech'
   }
 });
 
@@ -100,7 +100,7 @@ Creates a Stripe customer record for email subscribers.
 ```javascript
 const { data, error } = await supabase.functions.invoke('create-stripe-customer', {
   body: {
-    email: 'troy@tech4humanity.com.au',
+    email: 'troy@enteraustralia.tech',
     originalEmail: 'user@example.com',
     source: 'roi_calculator'
   }
@@ -212,7 +212,7 @@ const { data, error } = await supabase
   .from('email_subscriptions')
   .insert({
     email: 'user@example.com',
-    target_email: 'troy@tech4humanity.com.au',
+    target_email: 'troy@enteraustralia.tech',
     source: 'footer_signup'
   });
 ```
