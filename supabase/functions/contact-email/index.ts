@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.56.1";
+import { z } from "npm:zod@3.22.4";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -14,6 +15,15 @@ const corsHeaders = {
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type",
 };
+
+// Input validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  company: z.string().trim().min(1, "Company is required").max(200, "Company must be less than 200 characters"),
+  service: z.string().trim().min(1, "Service is required").max(100, "Service must be less than 100 characters"),
+  message: z.string().trim().min(10, "Message must be at least 10 characters").max(5000, "Message must be less than 5000 characters"),
+});
 
 interface ContactEmailRequest {
   name: string;
@@ -30,7 +40,25 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, company, service, message }: ContactEmailRequest = await req.json();
+    const body = await req.json();
+    
+    // Validate input
+    const validationResult = contactSchema.safeParse(body);
+    if (!validationResult.success) {
+      console.error("Validation error:", validationResult.error);
+      return new Response(
+        JSON.stringify({ 
+          error: "Validation failed", 
+          details: validationResult.error.flatten().fieldErrors 
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const { name, email, company, service, message } = validationResult.data;
     const timestamp = new Date().toISOString();
     
     console.log("Processing contact form submission:", { name, email, company, service });
