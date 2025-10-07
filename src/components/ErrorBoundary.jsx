@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { AlertTriangle, Home, RefreshCw } from 'lucide-react';
 
 class ErrorBoundary extends React.Component {
@@ -27,6 +26,10 @@ class ErrorBoundary extends React.Component {
     this.setState({ hasError: false, error: null, errorInfo: null });
   };
 
+  handleGoHome = () => {
+    window.location.href = '/';
+  };
+
   render() {
     if (this.state.hasError) {
       return (
@@ -45,10 +48,10 @@ class ErrorBoundary extends React.Component {
                   <RefreshCw size={20} />
                   Try Again
                 </button>
-                <Link to="/" className="btn secondary">
+                <button onClick={this.handleGoHome} className="btn secondary">
                   <Home size={20} />
                   Go Home
-                </Link>
+                </button>
               </div>
               
               {process.env.NODE_ENV === 'development' && (
