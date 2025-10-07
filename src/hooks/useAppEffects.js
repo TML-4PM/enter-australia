@@ -1,5 +1,4 @@
-
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { initializeAnalytics } from '../utils/analyticsUtils';
 
 export const useAppEffects = (toggleLeadForm, isMenuOpen, showLeadForm, closeMenu, setShowLeadForm) => {
