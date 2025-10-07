@@ -25,49 +25,58 @@ const resources = {
   ar: { translation: arTranslations }
 };
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources,
-    fallbackLng: 'en',
-    debug: process.env.NODE_ENV === 'development',
-    
-    interpolation: {
-      escapeValue: false
-    },
-    
-    detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'i18nextLng'
-    }
-  }, async (err, t) => {
-    if (err) {
-      console.error('i18n initialization error:', err);
-      return;
-    }
+// Create a promise to track i18n initialization
+let i18nInitPromise;
 
-    try {
-      // Initialize translation cache after basic setup
-      await initializeTranslationCache();
+i18nInitPromise = new Promise((resolve, reject) => {
+  i18n
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      resources,
+      fallbackLng: 'en',
+      debug: process.env.NODE_ENV === 'development',
       
-      // Track initial language usage
-      trackLanguageUsage(detectedLanguage, 'initial_load');
+      interpolation: {
+        escapeValue: false
+      },
       
-      // Initialize language based on user preference
-      initializeLanguage(i18n);
-      
-      // Check for missing translations in development environment
-      if (process.env.NODE_ENV === 'development') {
-        const missingTranslations = checkMissingTranslations(i18n, true);
-        console.info('Missing translations report:', missingTranslations);
+      detection: {
+        order: ['localStorage', 'navigator', 'htmlTag'],
+        caches: ['localStorage'],
+        lookupLocalStorage: 'i18nextLng'
       }
-    } catch (error) {
-      console.error('Failed to initialize enhanced i18n features:', error);
-      // Continue with basic functionality
-    }
-  });
+    }, async (err, t) => {
+      if (err) {
+        console.error('i18n initialization error:', err);
+        reject(err);
+        return;
+      }
+
+      try {
+        // Initialize translation cache after basic setup
+        await initializeTranslationCache();
+        
+        // Track initial language usage
+        trackLanguageUsage(detectedLanguage, 'initial_load');
+        
+        // Initialize language based on user preference
+        initializeLanguage(i18n);
+        
+        // Check for missing translations in development environment
+        if (process.env.NODE_ENV === 'development') {
+          const missingTranslations = checkMissingTranslations(i18n, true);
+          console.info('Missing translations report:', missingTranslations);
+        }
+        
+        resolve(i18n);
+      } catch (error) {
+        console.error('Failed to initialize enhanced i18n features:', error);
+        // Continue with basic functionality
+        resolve(i18n);
+      }
+    });
+});
 
 // Enhanced language change handler
 const originalChangeLanguage = i18n.changeLanguage.bind(i18n);
@@ -89,4 +98,5 @@ i18n.changeLanguage = async (language, callback) => {
   }
 };
 
+export { i18nInitPromise };
 export default i18n;
