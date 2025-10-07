@@ -25,10 +25,8 @@ const resources = {
   ar: { translation: arTranslations }
 };
 
-// Create a promise to track i18n initialization
-let i18nInitPromise;
-
-i18nInitPromise = new Promise((resolve, reject) => {
+// Create and export the initialization promise immediately
+export const i18nInitPromise = new Promise((resolve, reject) => {
   i18n
     .use(LanguageDetector)
     .use(initReactI18next)
@@ -98,5 +96,4 @@ i18n.changeLanguage = async (language, callback) => {
   }
 };
 
-export { i18nInitPromise };
 export default i18n;
