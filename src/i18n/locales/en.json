@@ -121,7 +121,8 @@
       "message": "Tell us about your Australian market goals and timeline",
       "messagePlaceholder": "Tell us about your Australian market goals and timeline",
       "submit": "Send Message",
-      "submitting": "Sending..."
+      "submitting": "Sending...",
+      "wait": "Wait"
     },
     "services": {
       "entryKit": "Entry Kit ($5K)",
@@ -144,7 +145,8 @@
     },
     "status": {
       "success": "Message sent successfully! We will contact you within 24 hours.",
-      "error": "Failed to send message. Please try again or email us directly at info@enteraustralia.tech"
+      "error": "Failed to send message. Please try again or email us directly at info@enteraustralia.tech",
+      "rateLimited": "Please wait"
     },
     "meeting": {
       "title": "Schedule a Meeting",

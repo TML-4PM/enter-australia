@@ -40,6 +40,78 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Extract client IP address (with fallback chain for different hosting providers)
+    const ipAddress = req.headers.get('cf-connecting-ip') ||
+                     req.headers.get('x-real-ip') || 
+                     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+                     '0.0.0.0';
+    
+    console.log("Contact form submission from IP:", ipAddress);
+    
+    // Check if IP is blocked
+    const { data: isBlocked, error: blockError } = await supabase.rpc('is_ip_blocked', { _ip: ipAddress });
+    
+    if (blockError) {
+      console.error("Error checking IP blocklist:", blockError);
+    }
+    
+    if (isBlocked) {
+      console.warn("Blocked IP attempted submission:", ipAddress);
+      await supabase.rpc('log_rate_limit_violation', { 
+        _ip: ipAddress, 
+        _endpoint: 'contact-email'
+      });
+      
+      return new Response(
+        JSON.stringify({ 
+          error: "Too many requests from this IP address. Please try again later or contact us directly at troy@enteraustralia.tech" 
+        }),
+        {
+          status: 429,
+          headers: { 
+            "Content-Type": "application/json", 
+            "Retry-After": "3600",
+            ...corsHeaders 
+          },
+        }
+      );
+    }
+    
+    // Check form rate limit (3 submissions per hour per IP)
+    const { data: canSubmit, error: rateLimitError } = await supabase.rpc('check_form_rate_limit', {
+      _ip: ipAddress,
+      _form_type: 'contact_submission',
+      _max_submissions: 3,
+      _window_hours: 1
+    });
+    
+    if (rateLimitError) {
+      console.error("Error checking rate limit:", rateLimitError);
+    }
+    
+    if (!canSubmit) {
+      console.warn("Rate limit exceeded for IP:", ipAddress);
+      await supabase.rpc('log_rate_limit_violation', { 
+        _ip: ipAddress, 
+        _endpoint: 'contact-email'
+      });
+      
+      return new Response(
+        JSON.stringify({ 
+          error: "Rate limit exceeded. Please wait 1 hour before submitting again, or email us directly at troy@enteraustralia.tech",
+          retryAfter: 3600
+        }),
+        {
+          status: 429,
+          headers: { 
+            "Content-Type": "application/json", 
+            "Retry-After": "3600",
+            ...corsHeaders 
+          },
+        }
+      );
+    }
+
     const body = await req.json();
     
     // Validate input
@@ -98,6 +170,19 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (storageError) {
       console.error("Error saving to storage:", storageError);
+    }
+    
+    // Track form submission for rate limiting
+    const { error: trackingError } = await supabase
+      .from('form_submission_tracking')
+      .insert({
+        ip_address: ipAddress,
+        form_type: 'contact_submission',
+        user_id: null
+      });
+    
+    if (trackingError) {
+      console.error("Error tracking submission:", trackingError);
     }
 
     // 3. Send email to troy@enteraustralia.tech

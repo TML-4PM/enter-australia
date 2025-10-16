@@ -23,14 +23,55 @@ serve(async (req) => {
   }
   
   try {
-    // Always check subscriptions for Troy's email
-    const customerEmail = 'troy@enteraustralia.tech';
-    
-    // Initialize Supabase client to get the Stripe secret
+    // Initialize Supabase client
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
+    
+    // Extract client IP for rate limiting
+    const ipAddress = req.headers.get('cf-connecting-ip') ||
+                     req.headers.get('x-real-ip') || 
+                     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+                     'unknown';
+    
+    // Check API rate limit (20 requests per minute)
+    const { data: canProceed, error: rateLimitError } = await supabase.rpc('check_api_rate_limit', {
+      _identifier: ipAddress,
+      _endpoint: 'check-subscription',
+      _max_requests: 20,
+      _window_minutes: 1
+    });
+    
+    if (rateLimitError) {
+      console.error("Rate limit check error:", rateLimitError);
+    }
+    
+    if (!canProceed) {
+      console.warn("Rate limit exceeded for check-subscription:", ipAddress);
+      await supabase.rpc('log_rate_limit_violation', { 
+        _ip: ipAddress, 
+        _endpoint: 'check-subscription'
+      });
+      
+      return new Response(
+        JSON.stringify({ 
+          error: "Too many requests. Please try again in a minute.",
+          retryAfter: 60
+        }),
+        {
+          status: 429,
+          headers: { 
+            "Content-Type": "application/json",
+            "Retry-After": "60",
+            ...corsHeaders 
+          },
+        }
+      );
+    }
+    
+    // Always check subscriptions for Troy's email
+    const customerEmail = 'troy@enteraustralia.tech';
     
     // Get Stripe secret key from Supabase secrets
     const { data: secretData, error: secretError } = await supabase

@@ -22,6 +22,50 @@ serve(async (req) => {
   }
   
   try {
+    // Initialize Supabase client
+    const supabase = createClient("https://pflisxkcxbzboxwidywf.supabase.co", Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "");
+    
+    // Extract client IP for rate limiting
+    const ipAddress = req.headers.get('cf-connecting-ip') ||
+                     req.headers.get('x-real-ip') || 
+                     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+                     'unknown';
+    
+    // Check API rate limit (10 requests per hour for customer creation)
+    const { data: canProceed, error: rateLimitError } = await supabase.rpc('check_api_rate_limit', {
+      _identifier: ipAddress,
+      _endpoint: 'create-stripe-customer',
+      _max_requests: 10,
+      _window_minutes: 60
+    });
+    
+    if (rateLimitError) {
+      console.error("Rate limit check error:", rateLimitError);
+    }
+    
+    if (!canProceed) {
+      console.warn("Rate limit exceeded for create-customer:", ipAddress);
+      await supabase.rpc('log_rate_limit_violation', { 
+        _ip: ipAddress, 
+        _endpoint: 'create-stripe-customer'
+      });
+      
+      return new Response(
+        JSON.stringify({ 
+          error: "Too many customer creation attempts. Please try again later.",
+          retryAfter: 3600
+        }),
+        {
+          status: 429,
+          headers: { 
+            "Content-Type": "application/json",
+            "Retry-After": "3600",
+            ...corsHeaders 
+          },
+        }
+      );
+    }
+    
     const body = await req.json();
     const { email, originalEmail, source } = body;
     

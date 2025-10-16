@@ -1,5 +1,6 @@
 
 import { supabase } from './supabaseClient';
+import { handleRateLimitError } from './rateLimitHandler';
 
 /**
  * Initiates a checkout process with Stripe via Supabase Edge Functions
@@ -45,6 +46,10 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     
     if (error) {
       console.error('Supabase function error:', error);
+      const rateLimitError = handleRateLimitError(error);
+      if (rateLimitError.isRateLimited) {
+        throw new Error(`${rateLimitError.userMessage}\n\nIf you need immediate assistance, please contact us at troy@enteraustralia.tech`);
+      }
       throw new Error(error.message || 'Failed to create checkout session');
     }
     

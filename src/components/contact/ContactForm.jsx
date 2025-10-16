@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../integrations/supabase/client';
+import { handleRateLimitError, getRateLimitState, storeRateLimitState, calculateRetryTime } from '../../utils/rateLimitHandler';
 
 const ContactForm = () => {
   const { t } = useTranslation();
@@ -15,6 +16,42 @@ const ContactForm = () => {
   
   const [formStatus, setFormStatus] = useState(null);
   const [errors, setErrors] = useState({});
+  const [rateLimitInfo, setRateLimitInfo] = useState(null);
+  
+  // Check for existing rate limit on mount
+  useEffect(() => {
+    const existingLimit = getRateLimitState('contact-form');
+    if (existingLimit) {
+      setRateLimitInfo(existingLimit);
+      setFormStatus({
+        type: 'error',
+        message: `${t('contact.status.rateLimited')} ${existingLimit.displayText}.`
+      });
+    }
+  }, [t]);
+
+  // Update countdown timer if rate limited
+  useEffect(() => {
+    if (!rateLimitInfo) return;
+
+    const interval = setInterval(() => {
+      const retryInfo = calculateRetryTime(rateLimitInfo.timestamp, rateLimitInfo.retryAfter);
+      
+      if (retryInfo.canRetry) {
+        setRateLimitInfo(null);
+        setFormStatus(null);
+        clearInterval(interval);
+      } else {
+        setRateLimitInfo(prev => ({ ...prev, ...retryInfo }));
+        setFormStatus({
+          type: 'error',
+          message: `${t('contact.status.rateLimited')} ${retryInfo.displayText}.`
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [rateLimitInfo, t]);
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -100,6 +137,17 @@ const ContactForm = () => {
 
       if (emailError) {
         console.warn('Email sending failed, but lead was saved:', emailError);
+        // Check if it's a rate limit error
+        const rateLimitError = handleRateLimitError(emailError);
+        if (rateLimitError.isRateLimited) {
+          storeRateLimitState('contact-form', rateLimitError.retryAfter);
+          setRateLimitInfo({
+            timestamp: rateLimitError.timestamp,
+            retryAfter: rateLimitError.retryAfter
+          });
+          setFormStatus({ type: 'error', message: rateLimitError.userMessage });
+          return;
+        }
         // Don't throw error - lead was saved successfully
       }
       
@@ -191,8 +239,18 @@ const ContactForm = () => {
           ></textarea>
           {errors.message && <p className="error-text">{errors.message}</p>}
         </div>
-        <button type="submit" className="submit-btn" disabled={formStatus?.type === 'loading'}>
-          {formStatus?.type === 'loading' ? t('contact.form.submitting') : t('contact.form.submit')}
+        <button 
+          type="submit" 
+          className="submit-btn" 
+          disabled={formStatus?.type === 'loading' || rateLimitInfo}
+          title={rateLimitInfo ? `${t('contact.status.rateLimited')} ${rateLimitInfo.displayText}` : ''}
+        >
+          {formStatus?.type === 'loading' 
+            ? t('contact.form.submitting') 
+            : rateLimitInfo 
+              ? `${t('contact.form.wait')} ${rateLimitInfo.displayText}` 
+              : t('contact.form.submit')
+          }
         </button>
         
         {formStatus && (

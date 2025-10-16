@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
+import { handleRateLimitError } from '../utils/rateLimitHandler';
 
 export const useSubscription = () => {
   const [isLoadingPortal, setIsLoadingPortal] = useState(false);
@@ -23,6 +24,10 @@ export const useSubscription = () => {
       
       if (error) {
         console.error('Error checking subscription:', error);
+        const rateLimitError = handleRateLimitError(error);
+        if (rateLimitError.isRateLimited) {
+          console.warn('Rate limited checking subscription:', rateLimitError.userMessage);
+        }
         return;
       }
       
@@ -46,6 +51,10 @@ export const useSubscription = () => {
       const { data, error } = await supabase.functions.invoke('customer-portal');
       
       if (error) {
+        const rateLimitError = handleRateLimitError(error);
+        if (rateLimitError.isRateLimited) {
+          throw new Error(rateLimitError.userMessage);
+        }
         throw new Error(error.message || 'Failed to open customer portal');
       }
       

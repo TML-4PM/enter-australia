@@ -34,11 +34,52 @@ serve(async (req) => {
   }
   
   try {
+    // Extract client IP for rate limiting
+    const ipAddress = req.headers.get('cf-connecting-ip') ||
+                     req.headers.get('x-real-ip') || 
+                     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+                     'unknown';
+    
     // Initialize Supabase client to get the Stripe secret
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
+    
+    // Check API rate limit (30 requests per minute for session verification)
+    const { data: canProceed, error: rateLimitError } = await supabase.rpc('check_api_rate_limit', {
+      _identifier: ipAddress,
+      _endpoint: 'verify-session',
+      _max_requests: 30,
+      _window_minutes: 1
+    });
+    
+    if (rateLimitError) {
+      console.error("Rate limit check error:", rateLimitError);
+    }
+    
+    if (!canProceed) {
+      console.warn("Rate limit exceeded for verify-session:", ipAddress);
+      await supabase.rpc('log_rate_limit_violation', { 
+        _ip: ipAddress, 
+        _endpoint: 'verify-session'
+      });
+      
+      return new Response(
+        JSON.stringify({ 
+          error: "Too many verification requests. Please try again in a minute.",
+          retryAfter: 60
+        }),
+        {
+          status: 429,
+          headers: { 
+            "Content-Type": "application/json",
+            "Retry-After": "60",
+            ...corsHeaders 
+          },
+        }
+      );
+    }
     
     // Get Stripe secret key from Supabase secrets
     const { data: secretData, error: secretError } = await supabase
