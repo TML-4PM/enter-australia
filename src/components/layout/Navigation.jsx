@@ -17,7 +17,14 @@ const Navigation = ({ isMenuOpen, toggleMenu, closeMenu }) => {
 
   return (
     <nav>
-      <Link to="/" className="logo" onClick={closeMenu}>Enter Australia</Link>
+      <Link to="/" className="logo" onClick={closeMenu}>
+        <img 
+          src="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/AHC%20droid%20head.webp" 
+          alt="Enter Australia" 
+          className="logo-image"
+        />
+        <span className="logo-text">Enter Australia</span>
+      </Link>
       <ul className={isMenuOpen ? 'active' : ''}>
         <li><Link to="/" onClick={closeMenu}>{t('nav.home')}</Link></li>
         <li className="has-dropdown">

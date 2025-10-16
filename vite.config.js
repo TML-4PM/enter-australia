@@ -4,6 +4,7 @@ import path from 'path';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => ({
+  base: '/',
   root: '.',
   publicDir: 'public',
   build: {
@@ -13,11 +14,14 @@ export default defineConfig(({ mode }) => ({
       include: [/node_modules/],
       extensions: ['.js', '.jsx']
     },
-    chunkSizeWarningLimit: 600,
-    sourcemap: false, // Disable sourcemaps for production
+    chunkSizeWarningLimit: 1000,
+    sourcemap: false,
     minify: 'terser',
     rollupOptions: {
       output: {
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]',
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom']
         }
