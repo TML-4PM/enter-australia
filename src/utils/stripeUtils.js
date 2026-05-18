@@ -32,13 +32,28 @@ export const handleCheckout = async (product, setIsLoading, setErrorMessage) => 
     }
     
     console.log(`Creating checkout session for: ${name} (${isSubscription ? 'subscription' : 'one-time payment'})`);
-    
+
+    // Resolve customer email (required by backend to avoid mis-routing payments)
+    const { data: { user } } = await supabase.auth.getUser();
+    let customerEmail = user?.email;
+    if (!customerEmail) {
+      // Fallback: prompt for email when user isn't signed in
+      const entered = typeof window !== 'undefined'
+        ? window.prompt('Please enter your email to continue to checkout:')
+        : null;
+      customerEmail = entered && entered.trim() ? entered.trim() : null;
+    }
+    if (!customerEmail) {
+      throw new Error('An email address is required to start checkout. Please sign in or provide your email and try again.');
+    }
+
     // Use Supabase Edge Function
     const { data, error } = await supabase.functions.invoke('create-checkout-session', {
       body: {
         priceId,
         productName: name,
         paymentType: isSubscription ? 'subscription' : 'one-time',
+        customerEmail,
         // Original user email is tracked in metadata but actual recipient is Troy
         recipientEmail: 'troy@enteraustralia.tech'
       }
